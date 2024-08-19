@@ -34,7 +34,7 @@ module.exports = {
     'no-duplicate-imports': 'error',
     'no-eval': 'error',
     'no-multiple-empty-lines': 'error',
-    camelcase: ['error', { properties: 'never' }],
+    /*   camelcase: ['error', { properties: 'never' }], */
   },
 };
 

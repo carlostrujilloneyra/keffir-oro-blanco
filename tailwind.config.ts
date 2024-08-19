@@ -1,18 +1,33 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
+import { fontFamily } from 'tailwindcss/defaultTheme';
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        'title-color': {
+          700: '#141414',
+          800: '#0A0A0A',
+        },
+
+        'color-text': {
+          400: '#333',
+        },
+
+        'color-button': {
+          green: '#25A244',
+          hover: '#2DC653',
+        },
+      },
+      fontFamily: {
+        league_spartan: ['var(--font-league-spartan)', ...fontFamily.serif],
+        public_sans: ['var(--font-public-sans)', ...fontFamily.serif],
       },
     },
   },
