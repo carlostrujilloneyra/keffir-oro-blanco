@@ -1,4 +1,4 @@
-## Colores y reglas:
+### Colores y reglas:
 
 Colores:
 
