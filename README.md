@@ -12,16 +12,19 @@ boton con hover: #2DC653
 
 TODO: Agregar variaciones en Tailwind
 
+<!-- ✅: Completado
+🔄: En proceso -->
+
 ### Repasar:
 
 ## Parte 1:
 
 - Repaso de JS y TS
+  [✅] Destructuring (Objetos, arrays)
+  [✅] Spread Operator
+  [✅] Array methods
   [] POO en JavaScript
-  [] Destructuring (Objetos, arrays)
-  [] Spread Operator
   [] POO con TypeScript
-  [] Array methods
   [] Peticiones http con TS
   [] Enums, Record, Type
   [] Patrones de diseño (Curso de Udemy, duración: 10 hrs.)
