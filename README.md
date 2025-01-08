@@ -23,10 +23,10 @@ TODO: Agregar variaciones en Tailwind
   [✅] Destructuring (Objetos, arrays)
   [✅] Spread Operator
   [✅] Array methods
+  [🔄] Enums, Record, Type y Interfaces
+  [] Peticiones http con TS
   [] POO en JavaScript
   [] POO con TypeScript
-  [] Peticiones http con TS
-  [] Enums, Record, Type
   [] Patrones de diseño (Curso de Udemy, duración: 10 hrs.)
 
 ## Parte 2:
