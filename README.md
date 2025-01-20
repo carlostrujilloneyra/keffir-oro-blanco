@@ -23,8 +23,8 @@ TODO: Agregar variaciones en Tailwind
   [✅] Destructuring (Objetos, arrays)
   [✅] Spread Operator
   [✅] Array methods
-  [🔄] Enums, Record, Type y Interfaces
-  [] Peticiones http con TS
+  [✅] Enums, Record, Type, Genericos y Interfaces
+  [🔄] Peticiones HTTP (GET, POST, PUT, DELETE)
   [] POO en JavaScript
   [] POO con TypeScript
   [] Patrones de diseño (Curso de Udemy, duración: 10 hrs.)
@@ -40,8 +40,8 @@ TODO: Agregar variaciones en Tailwind
 
 - Repasando Frontend
   [] Repaso de React
-  [] Next.js (Curso de Udemy, duración: 37 hrs.)
   [] Zustand (Curso de Udemy, duración: 6 hrs.)
+  [] Next.js (Curso de Udemy, duración: 37 hrs.)
 
 ## Parte 4:
 
