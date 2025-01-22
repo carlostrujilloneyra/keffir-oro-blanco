@@ -12,8 +12,11 @@ boton con hover: #2DC653
 
 TODO: Agregar variaciones en Tailwind
 
-<!-- ✅: Completado
-🔄: En proceso -->
+<!--
+🕒: Pendiente
+🔄: En proceso
+✅: Completado
+-->
 
 ### Repasar:
 
@@ -24,10 +27,10 @@ TODO: Agregar variaciones en Tailwind
   [✅] Spread Operator
   [✅] Array methods
   [✅] Enums, Record, Type, Genericos y Interfaces
-  [🔄] Peticiones HTTP (GET, POST, PUT, DELETE)
-  [] POO en JavaScript
-  [] POO con TypeScript
-  [] Patrones de diseño (Curso de Udemy, duración: 10 hrs.)
+  [✅] Peticiones HTTP (GET, POST, PUT, DELETE)
+  [✅] POO en JavaScript
+  [✅] POO con TypeScript
+  [🕒] Patrones de diseño (Curso de Udemy, duración: 10 hrs.)
 
 ## Parte 2:
 
