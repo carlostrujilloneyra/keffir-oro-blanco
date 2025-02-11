@@ -30,7 +30,8 @@ TODO: Agregar variaciones en Tailwind
   [✅] Peticiones HTTP (GET, POST, PUT, DELETE)
   [✅] POO en JavaScript
   [✅] POO con TypeScript
-  [🕒] Patrones de diseño (Curso de Udemy, duración: 10 hrs.)
+  [🕒] Clases Abstractas y Estáticas
+  [🔄] Patrones de diseño (Curso de Udemy, duración: 10 hrs.)
 
 ## Parte 2:
 
@@ -43,8 +44,8 @@ TODO: Agregar variaciones en Tailwind
 
 - Repasando Frontend
   [] Repaso de React
-  [] Zustand (Curso de Udemy, duración: 6 hrs.)
   [] Next.js (Curso de Udemy, duración: 37 hrs.)
+  [] Zustand (Curso de Udemy, duración: 6 hrs.)
 
 ## Parte 4:
 

@@ -1,14 +1,66 @@
 export default function HomePage() {
-  class Product {
+  class Computer {
     constructor(
-      public name: string,
-      public price: number,
+      public cpu: string = 'cpu - not defined',
+      public ram: string = 'ram - not defined',
+      public storage: string = 'storage - not defined',
+      public gpu?: string,
     ) {}
+
+    displayConfiguration() {
+      console.log(`Configuración de la computadora
+        CPU: ${this.cpu}
+        RAM: ${this.ram}
+        Almacenamiento: ${this.storage}
+        GPU: ${this.gpu}
+        `);
+    }
   }
 
-  const milk = new Product('Mantequilla A1', 24);
+  class ComputerBuilder {
+    private computer: Computer;
 
-  console.log(milk);
+    constructor() {
+      this.computer = new Computer();
+    }
+
+    setCPU(cpu: string): ComputerBuilder {
+      this.computer.cpu = cpu;
+      return this;
+    }
+
+    setRAM(ram: string): ComputerBuilder {
+      this.computer.ram = ram;
+      return this;
+    }
+
+    setStorage(storage: string): ComputerBuilder {
+      this.computer.storage = storage;
+      return this;
+    }
+
+    setGPU(gpu: string): ComputerBuilder {
+      this.computer.gpu = gpu;
+      return this;
+    }
+
+    build() {
+      return this.computer;
+    }
+  }
+
+  function main() {
+    const basicComputer = new ComputerBuilder()
+      .setCPU('Intel Core 1')
+      .setRAM('4GB')
+      .setStorage('512GB')
+      .setGPU('Gráficas bajas')
+      .build();
+
+    basicComputer.displayConfiguration();
+  }
+
+  main();
 
   return (
     <>
