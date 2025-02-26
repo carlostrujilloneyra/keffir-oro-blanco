@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect } from 'react';
+
 export default function HomePage() {
   class Computer {
     constructor(
@@ -60,7 +64,22 @@ export default function HomePage() {
     basicComputer.displayConfiguration();
   }
 
-  main();
+  const url = 'https://jsonplaceholder.typicode.com/posts';
+
+  useEffect(() => {
+    const fetchPosts = () => {
+      fetch(url)
+        .then((rsp) => {
+          return rsp.json();
+        })
+
+        .then((data) => {
+          console.log(data);
+        });
+    };
+
+    fetchPosts();
+  }, []);
 
   return (
     <>

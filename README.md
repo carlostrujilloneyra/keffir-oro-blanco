@@ -20,6 +20,8 @@ TODO: Agregar variaciones en Tailwind
 
 ### Repasar:
 
+Fecha de entrega de Landing para Oro Blanco - Silvia Neyra: marzo del 2025
+
 ## Parte 1:
 
 - Repaso de JS y TS
@@ -32,20 +34,22 @@ TODO: Agregar variaciones en Tailwind
   [✅] POO con TypeScript
   [🕒] Clases Abstractas y Estáticas
   [🔄] Patrones de diseño (Curso de Udemy, duración: 10 hrs.)
+  [] Promesas
 
 ## Parte 2:
-
-- Aprendiendo BD
-  [] Curso completo de Base de Datos (Relacional: Curso de Udemy, duración: 21 hrs.)
-  [] PostgreSQL (Curso de Fernando Herrera, duración: 16 hrs.)
-  [] Prisma (Curso de Fazt, URL: https://www.youtube.com/watch?v=N5dkg28jRF0)
-
-## Parte 3:
 
 - Repasando Frontend
   [] Repaso de React
   [] Next.js (Curso de Udemy, duración: 37 hrs.)
   [] Zustand (Curso de Udemy, duración: 6 hrs.)
+  [] Next.js + Strapi para un ecommerce (Curso de Udemy, duración: 22hrs.)
+
+## Parte 3:
+
+- Aprendiendo BD
+  [] Curso completo de Base de Datos (Relacional: Curso de Udemy, duración: 21 hrs.)
+  [] PostgreSQL (Curso de Fernando Herrera, duración: 16 hrs.)
+  [] Prisma (Curso de Fazt, URL: https://www.youtube.com/watch?v=N5dkg28jRF0)
 
 ## Parte 4:
 
