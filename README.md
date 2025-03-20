@@ -20,8 +20,6 @@ TODO: Agregar variaciones en Tailwind
 
 ### Repasar:
 
-Fecha de entrega de Landing para Oro Blanco - Silvia Neyra: marzo del 2025
-
 ## Parte 1:
 
 - Repaso de JS y TS
@@ -32,9 +30,9 @@ Fecha de entrega de Landing para Oro Blanco - Silvia Neyra: marzo del 2025
   [✅] Peticiones HTTP (GET, POST, PUT, DELETE)
   [✅] POO en JavaScript
   [✅] POO con TypeScript
-  [🕒] Clases Abstractas y Estáticas
-  [🔄] Patrones de diseño (Curso de Udemy, duración: 10 hrs.)
-  [] Promesas
+  [✅] Clases Estáticas
+  [✅] Promesas
+  [🔄] Patrones de diseño: Está CONGELADO. (Curso de Udemy, duración: 10 hrs.)
 
 ## Parte 2:
 
