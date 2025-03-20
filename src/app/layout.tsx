@@ -17,7 +17,7 @@ const public_sans = Public_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Oro Blanco | Silvia Neyra',
+  title: 'Keffir Oro Blanco',
   description:
     '¡Bienvenido a Oro Blanco en Perú | Silvia Neyra! Aquí, te ofrecemos lo mejor de la naturaleza con nuestra exclusiva selección de kéfir natural. Descubre los beneficios únicos de nuestros productos: kéfir de agua, kéfir de leche y kéfir de guanábana, todos elaborados para nutrir y revitalizar tu cuerpo. Con probióticos naturales que mejoran tu digestión, fortalecen tu sistema inmunológico y promueven un bienestar integral, nuestros kéfirs son la elección perfecta para quienes buscan una vida más saludable. Haz que el bienestar sea parte de tu rutina diaria con nuestras deliciosas opciones naturales.',
   keywords:
