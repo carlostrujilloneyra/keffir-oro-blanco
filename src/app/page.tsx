@@ -1,14 +1,5 @@
-import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 export default function HomePage() {
-  return (
-    <>
-      <p>
-        Visita mi Linkedin{' '}
-        <Link className='font-bold underline' href='https://www.linkedin.com/in/carlostrujillo21/'>
-          ir a perfil.
-        </Link>
-      </p>
-    </>
-  );
+  redirect('/dashboard/main');
 }

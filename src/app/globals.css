@@ -6,8 +6,4 @@
   html {
     @apply scroll-smooth;
   }
-
-  body {
-    @apply p-4;
-  }
 }
