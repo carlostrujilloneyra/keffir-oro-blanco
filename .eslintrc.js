@@ -22,7 +22,7 @@ module.exports = {
     ecmaVersion: 2022,
     sourceType: 'module',
     ecmaFeatures: { jsx: true },
-    project: './tsconfig.json',
+    project: './tsconfig.eslint.json',
   },
   plugins: ['react', '@typescript-eslint', '@next/eslint-plugin-next'], // Incluir el plugin de TypeScript
   rules: {
