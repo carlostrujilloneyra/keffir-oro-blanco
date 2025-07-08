@@ -37,9 +37,9 @@ TODO: Agregar variaciones en Tailwind
 ## Parte 2:
 
 - Repasando Frontend
-  [] Repaso de React
+  [✅] Repaso de React
   [] Next.js (Curso de Udemy, duración: 37 hrs.)
-  [] Zustand (Curso de Udemy, duración: 6 hrs.)
+  [✅] Zustand (Curso de Udemy, duración: 6 hrs.)
   [] Next.js + Strapi para un ecommerce (Curso de Udemy, duración: 22hrs.)
 
 ## Parte 3:
