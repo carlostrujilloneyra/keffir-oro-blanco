@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { League_Spartan, Public_Sans } from 'next/font/google';
 import './globals.css';
+import { Header } from '@/components/shared/Header/Header';
 
 const league_spartan = League_Spartan({
   weight: ['300', '400', '500', '600', '700', '800'],
@@ -34,7 +35,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='es'>
-      <body className={`${league_spartan.variable} ${public_sans.variable}`}>{children}</body>
+      <body className={`${league_spartan.variable} ${public_sans.variable}`}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

@@ -8,6 +8,6 @@
   }
 
   body {
-    @apply p-4;
+    @apply flex flex-col items-center;
   }
 }
