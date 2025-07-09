@@ -10,4 +10,33 @@
   body {
     @apply flex flex-col items-center;
   }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-league_spartan;
+  }
+
+  p,
+  span,
+  a,
+  li,
+  button {
+    @apply font-public_sans;
+  }
+
+  .container-max {
+    @apply m-auto max-w-[1550px];
+  }
+}
+
+@layer components {
+  .header-item {
+    @apply my-4 transition-all duration-[400ms] ease-in-out sm:my-0 sm:py-0 lg:h-full lg:hover:scale-[1.25] lg:hover:text-blue-500;
+  }
+
+  .list-header:hover .header-item:not(:hover) {
+    @apply transition-all duration-[400ms] ease-in-out lg:opacity-0;
+  }
 }

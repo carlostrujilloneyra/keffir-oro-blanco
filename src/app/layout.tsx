@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { League_Spartan, Public_Sans } from 'next/font/google';
-import './globals.css';
 import { Header } from '@/components/shared/Header/Header';
+import './globals.css';
 
 const league_spartan = League_Spartan({
   weight: ['300', '400', '500', '600', '700', '800'],
