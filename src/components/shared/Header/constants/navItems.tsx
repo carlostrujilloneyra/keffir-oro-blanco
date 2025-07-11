@@ -1,5 +1,5 @@
-import { GiGoat, GiButter, GiCow } from 'react-icons/gi';
-import { PiCheese } from 'react-icons/pi';
+import { GiGoat, GiButter, GiCow, GiPig, GiStrawberry, GiChocolateBar, GiFruitBowl } from 'react-icons/gi';
+import { PiCheese, PiOrange } from 'react-icons/pi';
 import { TbVaccineBottle } from 'react-icons/tb';
 
 export type NavSlug = 'lacteos' | 'kefir-frutado' | 'bebidas-fermentadas' | 'tradicionales';
@@ -54,7 +54,7 @@ export const SUB_MENUS_ITEMS: Partial<Record<NavSlug, SubMenuItem[]>> = {
       label: 'Leche de Cabra',
       href: '/categorias/lacteos#leche',
       description:
-        'Nutritiva y suave para la digestión. Ideal para personas con intolerancia a la lactosa. 100% natural y fresca de nuestras chacras.',
+        'Nutritiva y suave para la digestión. Ideal para personas con intolerancia a la lactosa. 100% natural y fresca, de cabras de libre pastoreo de Canta.',
       icon: <GiGoat className='h-6 w-6' />,
     },
 
@@ -70,7 +70,7 @@ export const SUB_MENUS_ITEMS: Partial<Record<NavSlug, SubMenuItem[]>> = {
       label: 'Mantequilla artesanal',
       href: '/categorias/lacteos#mantequilla',
       description:
-        'Mantequilla 100% natural, elaborada de forma artesanal con nata de leche fresca. Sin aditivos ni conservantes, con un sabor auténtico y una textura cremosa.',
+        'Mantequilla 100% natural de Cajamarca, elaborada de forma artesanal con nata de leche fresca. Sin aditivos ni conservantes, con un sabor auténtico y una textura cremosa.',
       icon: <GiButter className='h-6 w-6' />,
     },
   ],
@@ -97,6 +97,50 @@ export const SUB_MENUS_ITEMS: Partial<Record<NavSlug, SubMenuItem[]>> = {
       description:
         'Bebida ancestral fermentada con té y cultivos vivos. Refrescante, burbujeante y llena de probióticos que nutren tu digestión y elevan tu bienestar de forma natural.',
       icon: <TbVaccineBottle className='h-6 w-6' />,
+    },
+  ],
+
+  'kefir-frutado': [
+    {
+      label: 'Kéfir de leche de vaca/cabra - fresa',
+      href: '',
+      description:
+        'Suave y cremoso, fermentado con fresas frescas recolectadas a mano. Un toque dulce y natural que despierta tus sentidos y nutre tu microbiota con cada sorbo.',
+      icon: <GiStrawberry className='h-6 w-6' />,
+    },
+
+    {
+      label: 'Kéfir de leche de vaca/cabra - arándanos',
+      href: '',
+      description:
+        'Concentrado en antioxidantes: arándanos jugosos que potencian tu salud intestinal de forma natural.',
+      icon: <GiFruitBowl className='h-6 w-6' />,
+    },
+
+    {
+      label: 'Kéfir de leche de vaca/cabra - chocolate',
+      href: '',
+      description:
+        'La fusión perfecta de 100% cacao intenso y probióticos vivos. Cada botella ofrece un placer indulgente que mejora tu estado de ánimo y cuida tu flora intestinal de manera natural.',
+      icon: <GiChocolateBar className='h-6 w-6' />,
+    },
+  ],
+
+  tradicionales: [
+    {
+      label: 'Manteca de cerdo',
+      href: '',
+      description:
+        'Manteca 100% natural y artesanal, ideal para cocinar, freír y hornear. Aporta un sabor auténtico y es una alternativa saludable a los aceites procesados.',
+      icon: <GiPig className='h-6 w-6' />,
+    },
+
+    {
+      label: 'Mermelada de Quito Quito',
+      href: '',
+      description:
+        'Explosión de sabor andino elaborada con frutos de Quito Quito traídos directamente de Oxapampa. Dulce y suave, perfecta para convertir tu desayuno en un momento especial. 100 % natural y sin conservantes.',
+      icon: <PiOrange className='h-6 w-6' />,
     },
   ],
 };

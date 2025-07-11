@@ -8,7 +8,7 @@ interface Props {
 
 export const SubMenu = ({ slug }: Props) => {
   return (
-    <ul className='absolute left-0 top-full z-50 hidden w-full min-w-[400px] max-w-[700px] flex-col space-y-2 rounded-xl bg-white p-4 text-sm text-black shadow-[0_6px_20px_rgba(0,0,0,0.15)] group-hover:flex'>
+    <ul className='absolute left-0 top-full z-50 hidden w-full min-w-[400px] max-w-[730px] flex-col space-y-2 rounded-xl bg-white p-4 text-sm text-black shadow-[0_6px_20px_rgba(0,0,0,0.15)] group-hover:flex'>
       {SUB_MENUS_ITEMS[slug]?.map(({ label, href, description, icon }, index) => {
         return (
           <li key={index} className='w-full'>

@@ -18,7 +18,7 @@ export const NavBar = () => {
                 href={href}
                 className={clsx(
                   styles.root,
-                  'flex h-full items-center text-sm tracking-wide md:px-1 md:py-3 md:text-base',
+                  'flex h-full items-center text-sm tracking-wide md:px-2 md:py-3 md:text-base',
                 )}
               >
                 {label}
