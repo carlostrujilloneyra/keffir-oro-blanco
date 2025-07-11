@@ -1,19 +1,8 @@
-.root::before {
-  background-color: white;
-  bottom: -6px;
-  content: '';
-  display: inline-block;
-  height: 3px;
-  opacity: 0;
-  position: absolute;
-  width: 0;
-  transition: all 0.4s;
+.item:hover .root {
+  color: #f55947;
+  transition: all 0.3s;
 }
 
-.root:hover::before {
-  opacity: 1;
-  width: 100%;
-  left: 0;
-  width: 100%;
+.root {
   transition: all 0.4s;
 }

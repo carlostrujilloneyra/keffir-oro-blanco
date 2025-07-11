@@ -19,7 +19,7 @@ const themeClass: Partial<Record<ButtonTheme, string>> = {
 
 const sizeClass: Record<ButtonSize, string> = {
   sm: 'text-xs px-1 py-1',
-  md: 'text-sm px-2 py-2 lg:text-base',
+  md: 'text-sm px-2 py-2 md:px-3',
   lg: 'text-base px-3 py-3',
 };
 

@@ -1,29 +1,36 @@
+'use client';
+
 import Link from 'next/link';
+import { NAV_ITEMS, SUB_MENUS_ITEMS } from '../../constants/navItems';
 import clsx from 'clsx';
-import { NAV_ITEMS } from '../../constants/navItems';
+import { IoMdArrowDropdown } from 'react-icons/io';
+import { SubMenu } from './SubMenu/SubMenu';
 import styles from './styles.module.css';
 
 export const NavBar = () => {
   return (
-    <nav
-      className={clsx(
-        'z-10 hidden bg-black bg-transparent font-bold text-white md:order-2 md:flex md:items-center md:justify-center',
-      )}
-    >
-      <ul className='list-header flex h-full w-auto flex-col items-center justify-center sm:flex-row'>
-        {NAV_ITEMS.map(({ href, label }, i) => (
-          <li className='header-item group text-center md:mx-4' key={i}>
-            <Link
-              className={clsx(
-                styles.root,
-                'relative flex w-full items-center uppercase tracking-wide md:text-[15px] lg:h-full',
-              )}
-              href={href}
-            >
-              {label}
-            </Link>
-          </li>
-        ))}
+    <nav className='hidden bg-neutral-100 font-bold text-white md:order-2 md:block md:rounded-lg md:text-slate-700'>
+      <ul className='flex space-x-6 px-6 py-2 md:px-7 md:py-1'>
+        {NAV_ITEMS.map(({ label, href, slug, hasSubMenu }) => {
+          return (
+            <li key={slug} className={clsx(styles.item, 'group relative')}>
+              <Link
+                href={href}
+                className={clsx(
+                  styles.root,
+                  'flex h-full items-center text-sm tracking-wide md:px-1 md:py-3 md:text-base',
+                )}
+              >
+                {label}
+                {hasSubMenu && <IoMdArrowDropdown className='h-5 w-5' />}
+              </Link>
+
+              {/* Submenú solo si existe */}
+
+              {hasSubMenu && SUB_MENUS_ITEMS[slug] && <SubMenu slug={slug} />}
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
