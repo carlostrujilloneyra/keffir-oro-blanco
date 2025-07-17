@@ -1,12 +1,11 @@
 'use client';
 
 import clsx from 'clsx';
-import { ButtonSize, ButtonTheme } from './types/button.types';
+import { ButtonTheme } from './types/button.types';
 
 interface ButtonProps {
   className?: string;
   icon?: JSX.Element;
-  size: ButtonSize;
   text?: string;
   theme: ButtonTheme;
   onClick?: () => void;
@@ -14,25 +13,19 @@ interface ButtonProps {
 
 const themeClass: Partial<Record<ButtonTheme, string>> = {
   primary: 'bg-black text-white',
-  secondary: 'bg-green-500 text-white',
-};
-
-const sizeClass: Record<ButtonSize, string> = {
-  sm: 'text-xs px-1 py-1',
-  md: 'text-sm p-2 md:p-3 lg:px-4',
-  lg: 'text-base px-3 py-3',
+  secondary: 'bg-[#f55947] text-white',
 };
 
 export const Button = ({
-  size = 'lg',
+  className = '',
   text = 'Más información',
   theme = 'primary',
   onClick = () => {},
 }: ButtonProps) => {
-  const base = 'text-center font-semibold rounded-lg order-3';
+  const base = 'text-center font-semibold rounded-lg order-3 text-[13px] md:text-sm px-6 py-4 md:p-3 lg:py-4 lg:px-6';
 
   return (
-    <button className={clsx(base, themeClass[theme], sizeClass[size])} onClick={onClick}>
+    <button className={clsx(base, themeClass[theme], className)} onClick={onClick}>
       {text}
     </button>
   );
