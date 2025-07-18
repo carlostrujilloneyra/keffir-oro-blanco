@@ -14,7 +14,7 @@ export const SubMenu = ({ slug }: Props) => {
           <li key={index} className='w-full'>
             <Link
               href={href}
-              className='grid cursor-pointer grid-cols-[max-content_1fr] gap-3 rounded-lg transition duration-300 hover:bg-[#f7f7f5] hover:ease-in-out lg:px-4 lg:py-3'
+              className='grid cursor-pointer grid-cols-[max-content_1fr] gap-3 rounded-lg transition duration-300 hover:bg-[#d6d5d5] hover:ease-in-out lg:px-4 lg:py-3'
             >
               <span className='text-primary flex h-6 w-6 items-center justify-center'>
                 {icon ?? <LuMilk className='h-5 w-5' />}

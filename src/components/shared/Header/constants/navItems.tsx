@@ -70,7 +70,7 @@ export const SUB_MENUS_ITEMS: Partial<Record<NavSlug, SubMenuItem[]>> = {
       label: 'Mantequilla artesanal',
       href: '/categorias/lacteos#mantequilla',
       description:
-        'Mantequilla 100% natural de Cajamarca, elaborada de forma artesanal con nata de leche fresca. Sin aditivos ni conservantes, con un sabor auténtico y una textura cremosa.',
+        'Mantequilla 100% natural, elaborada de forma artesanal con nata de leche fresca. Sin aditivos ni conservantes, con un sabor auténtico y una textura cremosa.',
       icon: <GiButter className='h-6 w-6' />,
     },
   ],

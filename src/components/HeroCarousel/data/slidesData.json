@@ -3,7 +3,7 @@
     "isNew": false,
     "title": "Manteca de cerdo",
     "description": "¡Regresa a lo natural! Nuestra manteca 100% artesanal realza el sabor de tus comidas con un toque auténtico y saludable. Perfecta para freír, hornear y cocinar sin químicos.",
-    "image": "/images/fresa.png",
+    "image": "/images/maneteca-de-cerdo.png",
     "slug": "manteca-de-cerdo"
   },
 
@@ -18,8 +18,8 @@
   {
     "isNew": false,
     "title": "Mantequilla artesanal",
-    "description": "Sabor que enamora. Elaborada en Cajamarca con nata fresca, esta mantequilla artesanal es pura, cremosa y sin aditivos. Ideal para tus panes, postres o recetas caseras.",
-    "image": "/images/mantequilla.png",
+    "description": "Sabor que enamora. Elaborada con nata fresca, esta mantequilla artesanal es pura, cremosa y sin aditivos. Ideal para tus panes, postres o recetas caseras.",
+    "image": "/images/mantequilla-artesanal.png",
     "slug": "mantequilla-artesanal"
   },
 
@@ -27,7 +27,7 @@
     "isNew": false,
     "title": "Queso de Cabra",
     "description": "Delicioso queso de cabra artesanal, 100% natural y lleno de sabor. Suave, cremoso y nutritivo, ideal para ensaladas, pastas o simplemente disfrutar solo.",
-    "image": "/images/quesillo.png",
+    "image": "/images/queso-de-cabra.png",
     "slug": "queso-de-cabra"
   },
 
