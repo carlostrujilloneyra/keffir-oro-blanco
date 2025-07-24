@@ -23,7 +23,7 @@
   a,
   li,
   button {
-    @apply font-public_sans;
+    @apply font-inter;
   }
 
   .container-max {

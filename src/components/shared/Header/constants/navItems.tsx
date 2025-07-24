@@ -2,7 +2,7 @@ import { GiGoat, GiButter, GiCow, GiPig, GiStrawberry, GiChocolateBar, GiFruitBo
 import { PiCheese, PiOrange } from 'react-icons/pi';
 import { TbVaccineBottle } from 'react-icons/tb';
 
-export type NavSlug = 'lacteos' | 'kefir-frutado' | 'bebidas-fermentadas' | 'tradicionales';
+export type NavSlug = 'lacteos' | 'kefir-frutado' | 'probioticos' | 'tradicionales';
 
 interface NavItem {
   label: string;
@@ -27,9 +27,9 @@ export const NAV_ITEMS: NavItem[] = [
   },
 
   {
-    label: 'Bebidas Fermentadas',
-    href: '/categorias/bebidas-fermentadas', //kefir de agua, kefir de leche, kombucha
-    slug: 'bebidas-fermentadas',
+    label: 'Probióticos',
+    href: '/categorias/probioticos', //kefir de agua, kefir de leche, kombucha
+    slug: 'probioticos',
     hasSubMenu: true,
   },
 
@@ -75,7 +75,7 @@ export const SUB_MENUS_ITEMS: Partial<Record<NavSlug, SubMenuItem[]>> = {
     },
   ],
 
-  'bebidas-fermentadas': [
+  probioticos: [
     {
       label: 'Kéfir de leche (vaca o cabra)',
       href: '/categorias/kefir-frutado#fresa',

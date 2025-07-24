@@ -10,6 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        tablet: '600px',
+      },
       colors: {
         'title-color': {
           700: '#141414',
@@ -27,7 +30,7 @@ const config: Config = {
       },
       fontFamily: {
         league_spartan: ['var(--font-league-spartan)', ...fontFamily.serif],
-        public_sans: ['var(--font-public-sans)', ...fontFamily.serif],
+        inter: ['var(--font-inter)', ...fontFamily.serif],
       },
     },
   },

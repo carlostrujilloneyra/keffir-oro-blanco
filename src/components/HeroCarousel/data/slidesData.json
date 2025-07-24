@@ -3,39 +3,39 @@
     "isNew": false,
     "title": "Manteca de cerdo",
     "description": "¡Regresa a lo natural! Nuestra manteca 100% artesanal realza el sabor de tus comidas con un toque auténtico y saludable. Perfecta para freír, hornear y cocinar sin químicos.",
-    "image": "/images/maneteca-de-cerdo.png",
+    "image": "/assets/images/banners/manteca-de-cerdo.png",
     "slug": "manteca-de-cerdo"
-  },
-
-  {
-    "isNew": false,
-    "title": "Keffir de Leche (Vaca o Cabra)",
-    "description": "Refuerza tu salud desde el interior. Este probiótico natural, cremoso y artesanal cuida tu digestión y fortalece tu sistema inmune. ¡Tu intestino te lo agradecerá!",
-    "image": "/images/kefir-de-leche.png",
-    "slug": "kefir-de-leche"
   },
 
   {
     "isNew": false,
     "title": "Mantequilla artesanal",
     "description": "Sabor que enamora. Elaborada con nata fresca, esta mantequilla artesanal es pura, cremosa y sin aditivos. Ideal para tus panes, postres o recetas caseras.",
-    "image": "/images/mantequilla-artesanal.png",
+    "image": "/assets/images/banners/mantequilla-artesanal.png",
     "slug": "mantequilla-artesanal"
+  },
+
+  {
+    "isNew": false,
+    "title": "Kéfir de Agua",
+    "description": "Refresca tu cuerpo con probióticos naturales. Esta bebida fermentada, ligera y burbujeante, mejora tu digestión y te llena de energía. ¡Hidratación saludable que tu cuerpo ama!",
+    "image": "/assets/images/banners/kefir-de-agua.png",
+    "slug": "kefir-de-agua"
+  },
+
+  {
+    "isNew": false,
+    "title": "Kéfir de Leche (Vaca o Cabra)",
+    "description": "Refuerza tu salud desde el interior. Este probiótico natural, cremoso y artesanal cuida tu digestión y fortalece tu sistema inmune. ¡Tu intestino te lo agradecerá!",
+    "image": "/assets/images/banners/kefir-de-leche.png",
+    "slug": "kefir-de-leche"
   },
 
   {
     "isNew": false,
     "title": "Queso de Cabra",
     "description": "Delicioso queso de cabra artesanal, 100% natural y lleno de sabor. Suave, cremoso y nutritivo, ideal para ensaladas, pastas o simplemente disfrutar solo.",
-    "image": "/images/queso-de-cabra.png",
+    "image": "/assets/images/banners/queso-de-cabra.png",
     "slug": "queso-de-cabra"
-  },
-
-  {
-    "isNew": true,
-    "title": "Mermelada de quito quito artesanal",
-    "description": "Descubre el sabor exótico del quito quito. Fruto traído de Oxapampa, convertido en una mermelada artesanal única: cítrica, intensa y 100% natural. ¡Una explosión de sabor andino en cada cucharada!",
-    "image": "/images/mermelada-quito-quito.png",
-    "slug": "mermelada-de-quito-quito"
   }
 ]

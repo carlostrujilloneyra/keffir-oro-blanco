@@ -10,12 +10,13 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const themeClass: Partial<Record<ButtonTheme, string>> = {
-  primary: 'bg-black text-white',
-  secondary: 'bg-[#f55947] text-white',
+  primary: 'bg-black text-[#C6C6C6]',
+  secondary: 'bg-[#f55947] text-[#F5F5F5]',
 };
 
 export const Button = ({ className, text = 'Más información', theme = 'primary', ...props }: ButtonProps) => {
-  const base = 'text-center font-semibold rounded-lg order-3 text-[13px] md:text-sm px-6 py-4 md:p-3 lg:py-4 lg:px-6';
+  const base =
+    'text-center font-semibold text-xs rounded-lg order-3 md:text-sm px-3 py-4 md:py-4 md:px-5 lg:py-4 lg:px-6';
 
   return (
     <button className={clsx(base, themeClass[theme], className)} {...props}>

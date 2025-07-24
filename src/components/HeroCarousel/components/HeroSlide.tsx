@@ -13,17 +13,26 @@ export const HeroSlide = ({ description, image, isNew, slug, title }: HeroSlideP
   const imageAlt = `Imagen de ${title}`;
 
   return (
-    <div className='relative grid h-full grid-cols-1 gap-3 lg:w-full lg:grid-cols-2'>
-      <div className='flex flex-col justify-center gap-3'>
-        <h1 className='font-bold uppercase leading-[1.4] text-white md:text-5xl lg:text-[54px]'>{title}</h1>
-        <p className='justify-center text-[#C6C6C6] md:text-[17px] lg:w-3/4'>{description}</p>
+    <div className='relative grid h-full grid-cols-1 grid-rows-[1fr_380px] gap-7 lg:w-full lg:grid-cols-2 lg:grid-rows-[minmax(450px,1fr)]'>
+      <div className='flex flex-col justify-center gap-[10px] px-6 py-3 tablet:gap-3 tablet:py-10 tablet:text-center lg:p-20 lg:text-start'>
+        {isNew && <span className='text-xs uppercase text-[#8C8C8C]'>Nuevo producto</span>}
 
-        <div className='lg:mt-3'>
+        <h1 className='text-3xl font-bold uppercase leading-[1.2] text-white tablet:text-[42px] lg:text-[54px] lg:leading-[1.1]'>
+          {title}
+        </h1>
+
+        <p className='text-justify text-sm text-[#C6C6C6] tablet:text-center tablet:text-base lg:w-[85%] lg:text-justify'>
+          {description}
+        </p>
+
+        <div className='mt-3 tablet:mt-4'>
           <Button className='rounded uppercase' theme='secondary' />
         </div>
       </div>
 
-      <Image width={400} height={400} src={image} alt={imageAlt} />
+      <div className='relative flex items-center justify-center'>
+        <Image sizes='(min-width: 768px) 100vw, 360px' className='object-contain' src={image} fill alt={imageAlt} />
+      </div>
     </div>
   );
 };

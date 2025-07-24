@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 
 export const NavBar = () => {
   return (
-    <nav className='hidden bg-neutral-100 font-bold text-white md:order-2 md:block md:rounded-lg md:text-slate-700'>
+    <nav className='hidden bg-[#DADADA] font-bold text-white md:order-2 md:block md:rounded-lg md:text-slate-700'>
       <ul className='flex space-x-6 px-6 py-2 md:px-7 md:py-1'>
         {NAV_ITEMS.map(({ label, href, slug, hasSubMenu }) => {
           return (
