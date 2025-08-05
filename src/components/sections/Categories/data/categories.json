@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Lácteos",
+    "image": "/assets/images/categories/mantequilla-artesanal.webp",
+    "slug": "lacteos"
+  },
+
+  {
+    "name": "Probióticos",
+    "image": "/assets/images/categories/kefir-de-leche.webp",
+    "slug": "probioticos"
+  },
+
+  {
+    "name": "Kéfir Frutado",
+    "image": "/assets/images/categories/kefir-de-leche.webp",
+    "slug": "kefir-frutado"
+  },
+
+  {
+    "name": "Tradicionales",
+    "image": "/assets/images/categories/manteca-de-cerdo.webp",
+    "slug": "tradicionales"
+  }
+]

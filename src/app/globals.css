@@ -25,7 +25,9 @@
   button {
     @apply font-inter;
   }
+}
 
+@layer components {
   .container-max {
     @apply mx-auto max-w-[1500px];
   }

@@ -1,0 +1,13 @@
+export { CheeseIcon } from './CheeseIcon';
+export { GoatIcon } from './GoatIcon';
+export { CowIcon } from './CowIcon';
+export { ChocolateIcon } from './ChocolateIcon';
+export { StrawberryIcon } from './StrawberryIcon';
+export { PigIcon } from './PigIcon';
+export { ButterIcon } from './ButterIcon';
+export { KefirAguaIcon } from './KefirAguaIcon';
+export { KombuchaIcon } from './KombuchaIcon';
+export { FruitIcon } from './FruitIcon';
+export { ArrowIcon } from './ArrowIcon';
+export { HamburgerIcon } from './HamburgerIcon';
+export { BlueberryIcon } from './BlueBerryIcon';

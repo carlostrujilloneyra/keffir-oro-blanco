@@ -1,17 +1,17 @@
 import type { Metadata } from 'next';
 import { Inter, League_Spartan } from 'next/font/google';
-import { Header } from '@/components/shared/Header/Header';
+import { Header } from '@/components/sections/Header/Header';
 import './globals.css';
 
 const league_spartan = League_Spartan({
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700', '800'],
   subsets: ['latin'],
   variable: '--font-league-spartan',
   style: ['normal'],
 });
 
 const inter = Inter({
-  weight: ['200', '300', '400', '500', '600', '700', '800'],
+  weight: ['400', '600', '700', '800'],
   subsets: ['latin'],
   variable: '--font-inter',
   style: ['normal'],

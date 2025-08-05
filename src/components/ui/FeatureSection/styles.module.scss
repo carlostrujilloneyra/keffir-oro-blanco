@@ -1,0 +1,29 @@
+@mixin create-themed-gradient($highlight-color, $base-color) {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)),
+    radial-gradient(80% 60% at 50% 120%, $highlight-color 0%, rgba(30, 30, 35, 0) 100%),
+    radial-gradient(60% 80% at 100% -20%, $highlight-color 0%, rgba(30, 30, 35, 0) 100%), $base-color;
+
+  @media (min-width: 768px) {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)),
+      radial-gradient(50% 197.34% at 100% 0%, $highlight-color 0%, rgba(30, 30, 35, 0) 100%),
+      radial-gradient(50% 197.34% at 0% 100%, $highlight-color 0%, rgba(30, 30, 35, 0) 100%), $base-color;
+  }
+}
+
+.kefir-chocolate {
+  .bgGradient {
+    @include create-themed-gradient(#693119, #2d2d31);
+  }
+}
+
+.vinage-de-manzana {
+  .bgGradient {
+    @include create-themed-gradient(#a4161a, #2d2d31);
+  }
+}
+
+.sal-de-maras {
+  .bgGradient {
+    @include create-themed-gradient(#c19d09, #131314);
+  }
+}
