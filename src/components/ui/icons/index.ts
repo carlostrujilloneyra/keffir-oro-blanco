@@ -10,4 +10,4 @@ export { KombuchaIcon } from './KombuchaIcon';
 export { FruitIcon } from './FruitIcon';
 export { ArrowIcon } from './ArrowIcon';
 export { HamburgerIcon } from './HamburgerIcon';
-export { BlueberryIcon } from './BlueBerryIcon';
+export { BlueberryIcon } from './BlueberryIcon';

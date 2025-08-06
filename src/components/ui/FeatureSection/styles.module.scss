@@ -27,3 +27,9 @@
     @include create-themed-gradient(#c19d09, #131314);
   }
 }
+
+.mermelada-quito-quito {
+  .bgGradient {
+    @include create-themed-gradient(#f58723, #131314);
+  }
+}

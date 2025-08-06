@@ -12,7 +12,7 @@ export const Categories = () => {
   const categories: CategoryProps[] = rawCategories;
 
   return (
-    <div className='container-max w-full px-6 pb-10 pt-16 tablet:px-8 lg:p-20'>
+    <div className='container-max lg:p-18 w-full px-6 pb-10 pt-16 tablet:px-8'>
       <h2 className='mb-6 text-center text-3xl font-medium text-gray-800 tablet:text-4xl lg:text-[42px]'>Categorías</h2>
 
       <div className='grid grid-rows-4 justify-center gap-8 tablet:grid-cols-[repeat(2,minmax(min-content,200px))] tablet:grid-rows-2 tablet:gap-12 tablet:p-5 lg:grid-cols-[repeat(4,minmax(min-content,240px))] lg:grid-rows-1 lg:gap-5 2xl:grid-cols-[repeat(4,minmax(min-content,270px))]'>

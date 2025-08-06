@@ -5,11 +5,11 @@ import { NavBar } from './components/NavBar/NavBar';
 
 export const Header = () => {
   return (
-    <header className='container-max grid h-[90px] w-full grid-cols-[36px_1fr_max-content] items-center justify-items-center bg-black px-6 py-6 md:bg-transparent md:px-10 md:py-6 lg:h-[120px] lg:grid-cols-[120px_1fr_max-content] lg:px-20'>
+    <header className='container-max lg:px-18 grid h-[90px] w-full grid-cols-[36px_1fr_max-content] items-center justify-items-center bg-black px-6 py-6 md:bg-transparent md:px-10 md:py-6 lg:h-[120px] lg:grid-cols-[270px_1fr_max-content]'>
       <MainHamburger />
 
       {/* <Logo /> */}
-      <div className='relative h-[44px] w-[120px] lg:h-16 lg:w-[200px] min-[1300px]:w-[240px]'>
+      <div className='relative h-[44px] w-[120px] lg:h-16 lg:w-[260px] min-[1300px]:w-[270px]'>
         <Image
           priority
           className='object-cover'

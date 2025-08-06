@@ -1,6 +1,6 @@
 'use client';
 
-import clsx from 'clsx';
+import { cn } from '@/lib/utils';
 
 type ActionButton = 'info' | 'promocional' | 'submit';
 
@@ -23,12 +23,12 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   secondary: 'bg-[#f55947] text-[#F5F5F5]',
 }; */
 
-export const Button = ({ theme = 'primary', action, className, children, ...props }: ButtonProps) => {
+export const Button = ({ theme = 'primary', className, children, ...props }: ButtonProps) => {
   const base =
     'text-center font-semibold text-xs rounded-lg order-3 md:text-sm px-6 py-4 md:py-4 md:px-5 lg:py-4 lg:px-6 transition-all duration-300 ease-in-out tablet:text-[13px]';
 
   return (
-    <button className={clsx(base, themeClass[theme], className)} {...props}>
+    <button className={cn(base, themeClass[theme], className)} {...props}>
       {children}
     </button>
   );
