@@ -53,7 +53,7 @@ export const newProducts: NewProduct[] = [
   },
 
   {
-    bgImageSrc: '/assets/images/content/products/vinagre-de-manzana/bg-card.webp',
+    bgImageSrc: '/assets/images/content/products/kefir-de-chocolate/bg-card.webp',
     name: 'kefir-chocolate',
     isNew: true,
     title: 'Kefir de Leche con Chocolate',

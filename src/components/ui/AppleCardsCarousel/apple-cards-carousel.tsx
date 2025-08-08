@@ -209,7 +209,7 @@ export const Card = ({ card, index, layout = false }: { card: Card; index: numbe
                 <IconX className='h-6 w-6 text-neutral-100 dark:text-neutral-900' />
               </button>
 
-              <div className='py-6 lg:py-10'>{card.content}</div>
+              <div className='py-6 lg:py-8'>{card.content}</div>
             </motion.div>
           </div>
         )}
@@ -218,14 +218,14 @@ export const Card = ({ card, index, layout = false }: { card: Card; index: numbe
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
-        className='relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 dark:bg-neutral-900 md:h-[36rem] md:w-96'
+        className='relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 dark:bg-neutral-900 tablet:h-[32rem] tablet:w-[340px]'
         initial='rest'
         whileHover='hover'
         animate='rest'
       >
         <div className='pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent' />
 
-        <div className='relative z-40 p-6 tablet:p-8'>
+        <div className='relative z-40 p-6 tablet:px-8 tablet:py-6'>
           <motion.h4
             layoutId={layout ? `category-${card.category}` : undefined}
             className='text-left text-sm font-semibold uppercase text-light-200 md:text-base'

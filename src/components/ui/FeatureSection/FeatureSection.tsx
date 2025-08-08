@@ -43,13 +43,18 @@ const FeatureSectionInformation = ({ className, ...props }: React.HTMLAttributes
 };
 FeatureSectionInformation.displayName = 'FeatureSectionInformation';
 
-const FeatureSectionTitle = ({ isNew = false, children, ...props }: FeatureSectionTitleProps) => {
+const FeatureSectionTitle = ({ isNew = false, className, children, ...props }: FeatureSectionTitleProps) => {
   return (
     <div {...props}>
       {isNew && (
-        <h4 className='text-light-500 mb-2 text-sm font-medium uppercase tracking-widest lg:mb-3'>Nuevo producto</h4>
+        <h4 className='mb-2 text-sm font-medium uppercase tracking-widest text-light-500 lg:mb-3'>Nuevo producto</h4>
       )}
-      <h2 className='text-[28px] font-medium uppercase leading-[1.1] tablet:text-4xl lg:text-[54px] lg:leading-[1]'>
+      <h2
+        className={cn(
+          'text-[28px] font-medium uppercase leading-[1.1] tablet:text-4xl lg:text-[54px] lg:leading-[1]',
+          className,
+        )}
+      >
         {children}
       </h2>
     </div>
