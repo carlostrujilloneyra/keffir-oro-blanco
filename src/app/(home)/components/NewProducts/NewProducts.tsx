@@ -22,7 +22,7 @@ export const NewProducts = () => {
     ({ name, isNew, title, imageSrc, imageAlt, description, hasDifferentOrder, linkUrl, bgImageSrc }, index) => {
       const cardContent = (
         <FeatureSection name={name}>
-          <FeatureSectionContent className='grid-rows-none items-center gap-6 lg:grid-cols-2 lg:gap-12'>
+          <FeatureSectionContent className='grid-rows-none items-center gap-6 p-6 tablet:py-10 lg:grid-cols-2 lg:gap-12 lg:px-12 lg:py-5'>
             <FeatureSectionImage className={cn('h-[280px] w-full lg:h-[480px]', hasDifferentOrder && 'lg:order-1')}>
               <Image
                 className='object-contain lg:translate-y-12 lg:scale-125'
@@ -38,7 +38,7 @@ export const NewProducts = () => {
                 'talbet:px-8 rounded-3xl bg-gray-800/30 px-6 py-8 text-center backdrop-blur-md tablet:py-6 lg:text-left',
               )}
             >
-              <FeatureSectionTitle className='text-light-100' isNew={isNew}>
+              <FeatureSectionTitle className='uppercase text-light-100' isNew={isNew}>
                 {title}
               </FeatureSectionTitle>
 

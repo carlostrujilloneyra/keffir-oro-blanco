@@ -20,7 +20,7 @@ const FeatureSectionContent = ({ className, ...props }: React.HTMLAttributes<HTM
     <div
       {...props}
       className={cn(
-        'grid justify-items-center overflow-hidden rounded-lg p-6 tablet:py-10 lg:grid-cols-2 lg:grid-rows-1 lg:px-12 lg:py-5',
+        'grid justify-items-center overflow-hidden rounded-lg lg:grid-cols-2 lg:grid-rows-1',
         styles.bgGradient,
         className,
       )}
@@ -50,10 +50,7 @@ const FeatureSectionTitle = ({ isNew = false, className, children, ...props }: F
         <h4 className='mb-2 text-sm font-medium uppercase tracking-widest text-light-500 lg:mb-3'>Nuevo producto</h4>
       )}
       <h2
-        className={cn(
-          'text-[28px] font-medium uppercase leading-[1.1] tablet:text-4xl lg:text-[54px] lg:leading-[1]',
-          className,
-        )}
+        className={cn('text-[28px] font-medium leading-[1.1] tablet:text-4xl lg:text-[54px] lg:leading-[1]', className)}
       >
         {children}
       </h2>
