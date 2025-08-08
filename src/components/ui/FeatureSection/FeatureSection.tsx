@@ -50,7 +50,10 @@ const FeatureSectionTitle = ({ isNew = false, className, children, ...props }: F
         <h4 className='mb-2 text-sm font-medium uppercase tracking-widest text-light-500 lg:mb-3'>Nuevo producto</h4>
       )}
       <h2
-        className={cn('text-[28px] font-medium leading-[1.1] tablet:text-4xl lg:text-[54px] lg:leading-[1]', className)}
+        className={cn(
+          'text-[28px] font-medium leading-[1] tablet:text-[36px] lg:text-[54px] lg:leading-[1]',
+          className,
+        )}
       >
         {children}
       </h2>

@@ -57,7 +57,7 @@ export const newProducts: NewProduct[] = [
     name: 'kefir-chocolate',
     isNew: true,
     title: 'Kefir de Leche con Chocolate',
-    imageSrc: '/assets/images/content/products/kefir-de-chocolate/featured.png',
+    imageSrc: '/assets/images/content/products/kefir-de-chocolate/bg-card.webp',
     imageAlt: 'Botella de Kéfir de Leche con Chocolate',
     description: (
       <>

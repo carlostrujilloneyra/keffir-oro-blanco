@@ -25,7 +25,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button = ({ theme = 'primary', className, children, ...props }: ButtonProps) => {
   const base =
-    'text-center font-semibold text-xs rounded-lg order-3 md:text-sm px-6 py-4 md:py-4 md:px-5 lg:py-4 lg:px-6 transition-all duration-300 ease-in-out tablet:text-[13px]';
+    'text-center font-semibold text-xs rounded-lg order-3 tablet:text-sm transition-all duration-300 ease-in-out tablet:text-[13px]';
 
   return (
     <button className={cn(base, themeClass[theme], className)} {...props}>

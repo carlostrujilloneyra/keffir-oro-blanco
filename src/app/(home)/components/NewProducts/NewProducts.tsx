@@ -47,7 +47,7 @@ export const NewProducts = () => {
               </FeatureSectionDescription>
 
               <FeatureSectionBottom className='mt-4 flex justify-center lg:justify-start'>
-                <Button className='flex items-center gap-2 uppercase' theme='primary'>
+                <Button className='flex items-center gap-2 px-5 py-4 uppercase lg:px-6' theme='primary'>
                   {' '}
                   <Link href={linkUrl}>Descubrir el producto</Link>
                   <MoveRight className='h-5 w-5' />

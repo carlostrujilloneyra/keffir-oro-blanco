@@ -10,6 +10,14 @@
   }
 }
 
+.lacteos-section {
+  @include create-themed-gradient(#a8dadc, #2a3d45);
+}
+
+.kefir-section {
+  @include create-themed-gradient(#c83e4d, #311d3f);
+}
+
 .kefir-chocolate {
   .bgGradient {
     @include create-themed-gradient(#693119, #2d2d31);

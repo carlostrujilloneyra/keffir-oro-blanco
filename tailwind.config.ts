@@ -18,6 +18,12 @@ const config: Config = {
       screens: {
         tablet: '600px',
       },
+
+      boxShadow: {
+        strong: '0 20px 40px -10px rgba(0, 0, 0, 0.35)',
+        'glow-light': '0 25px 50px -12px rgba(255, 255, 255, 0.1)',
+      },
+
       colors: {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
