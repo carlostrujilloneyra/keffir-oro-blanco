@@ -6,8 +6,14 @@ import { AnimatePresence, motion } from 'motion/react';
 import Image, { ImageProps } from 'next/image';
 import { useOutsideClick } from '@/hooks/use-outside-click';
 
+type CardData = {
+  src: string;
+  title: string;
+  category: string;
+  content: React.ReactNode;
+};
 interface CarouselProps {
-  items: JSX.Element[];
+  data: CardData[];
   initialScroll?: number;
 }
 
@@ -26,7 +32,7 @@ export const CarouselContext = createContext<{
   currentIndex: 0,
 });
 
-export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
+export const Carousel = ({ data, initialScroll = 0 }: CarouselProps) => {
   const carouselRef = React.useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = React.useState(false);
   const [canScrollRight, setCanScrollRight] = React.useState(true);
@@ -86,30 +92,25 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
         >
           <div className={cn('absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l')}></div>
 
+          {/* --- ¡CAMBIO IMPORTANTE EN EL RENDERIZADO! --- */}
           <div
             className={cn(
-              'flex flex-row justify-start gap-4 tablet:gap-6', // remove max-w-4xl if you want the carousel to span the full width of its container
+              'flex flex-row items-center justify-start gap-4 tablet:gap-6', // Añadido p-4 para padding
             )}
           >
-            {items.map((item, index) => (
+            {data.map((cardData, index) => (
               <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{
                   opacity: 1,
                   y: 0,
-                  transition: {
-                    duration: 0.5,
-                    delay: 0.2 * index,
-                    ease: 'easeOut',
-                  },
+                  transition: { duration: 0.5, delay: 0.2 * index, ease: 'easeOut' },
                 }}
-                key={'card' + index}
-                className='rounded-3xl last:pr-[5%] md:last:pr-[5%]'
+                key={'card-' + cardData.title + index} // Usamos una key más robusta
+                className='rounded-3xl' // El padding extra al final ya no es necesario
               >
-                {item}
+                {/* Y renderizamos el componente Card aquí mismo */}
+                <Card card={cardData} index={index} />
               </motion.div>
             ))}
           </div>

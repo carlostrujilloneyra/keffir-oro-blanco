@@ -27,7 +27,7 @@ const config: Config = {
       colors: {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
-          hover: '#1A1A1A',
+          hover: '#262626',
           foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
