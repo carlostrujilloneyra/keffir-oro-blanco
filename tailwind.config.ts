@@ -3,12 +3,7 @@ import { fontFamily } from 'tailwindcss/defaultTheme';
 
 const config: Config = {
   darkMode: ['class'],
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       spacing: {
@@ -27,7 +22,7 @@ const config: Config = {
       colors: {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
-          hover: '#262626',
+          hover: '#1a1a1a',
           foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {

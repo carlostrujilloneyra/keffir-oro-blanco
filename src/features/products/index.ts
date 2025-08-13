@@ -1,3 +1,8 @@
+// --- 1. Exportamos los COMPONENTES y VALORES ---
+//    (Cosas que se usan en el código que se ejecuta)
 export { ProductCard } from './components/ProductCard';
+export { allProducts } from './data/products';
 
-export type { Product } from './types/product.type'; // se pone "type" para indicar que solo me importa el tipo no el código
+// --- 2. Exportamos los TIPOS ---
+export type { Product, ProductTab } from './types/product.type';
+export { ProductCategory, categoryDetails } from './data/categories';

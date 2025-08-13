@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Carousel } from '@/components/ui/AppleCardsCarousel/apple-cards-carousel'; // Solo necesitamos el Carousel aquí
+
+import { Carousel } from '@/components/ui/AppleCardsCarousel/apple-cards-carousel';
 import {
   FeatureSection,
   FeatureSectionBottom,
@@ -15,11 +16,17 @@ import {
 import { Button } from '@/components/ui/Button/Button';
 import { MoveRight } from 'lucide-react';
 
-import { newProducts } from '@/common/data/newProducts';
+import { allProducts, type Product } from '@/features/products';
 import { cn } from '@/lib/utils';
 
+// --- COMPONENTE PRINCIPAL ---
 export const NewProducts = () => {
-  const cardData = newProducts.map((product) => {
+  // --- 👇 CAMBIO #2: Filtramos la data para obtener solo los productos que queremos mostrar 👇 ---
+  // Ahora esta sección es dinámica. Si quitas el tag 'new' de un producto, desaparecerá de aquí.
+  const newProductsToShow = allProducts.filter((p) => p.tags?.includes('new'));
+
+  // --- 👇 CAMBIO #3: Mapeamos sobre la lista filtrada y usamos los nuevos nombres de props 👇 ---
+  const cardData = newProductsToShow.map((product: Product) => {
     const cardContent = (
       <FeatureSection name={product.name}>
         <FeatureSectionContent className='grid-rows-none items-center gap-6 p-6 tablet:py-10 lg:grid-cols-2 lg:gap-12 lg:px-12 lg:py-5'>
@@ -28,10 +35,10 @@ export const NewProducts = () => {
           >
             <Image
               className='object-contain lg:translate-y-12 lg:scale-125'
-              sizes='(min-width: 1024px) 460px, 100vw'
+              sizes='(min-width: 600px) 460px, 400px'
               fill
-              src={product.imageSrc}
-              alt={product.imageAlt}
+              src={product.featuredImage}
+              alt={product.title}
             />
           </FeatureSectionImage>
 
@@ -45,7 +52,7 @@ export const NewProducts = () => {
             </FeatureSectionTitle>
 
             <FeatureSectionDescription className='text-center text-light-400 lg:text-justify'>
-              {product.description}
+              {product.longDescription} {/* Antes: description, AHORA: longDescription */}
             </FeatureSectionDescription>
 
             <FeatureSectionBottom className='mt-4 lg:justify-start'>
@@ -61,16 +68,16 @@ export const NewProducts = () => {
       </FeatureSection>
     );
 
+    // Los datos para la tarjeta cerrada (vista del carrusel)
     return {
-      category: product.isNew ? 'Nuevo Producto' : 'Recomendado',
+      category: product.isNew ? 'Nuevo Producto' : product.category,
       title: product.title,
-      src: product.bgImageSrc, // Imagen para la tarjeta CERRADA
+      src: product.bgImageSrc, // Imagen para el fondo de la tarjeta CERRADA
       content: cardContent, // Tu FeatureSection para la tarjeta ABIERTA
     };
   });
 
-  // 2. RENDERIZAMOS EL CAROUSEL
-  //    Le pasamos la DATA cruda, no los componentes ya renderizados.
+  // Renderizamos el carrusel pasándole la data ya preparada
   return (
     <section>
       <Carousel data={cardData} />
