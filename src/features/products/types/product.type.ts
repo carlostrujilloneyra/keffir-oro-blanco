@@ -5,6 +5,13 @@ export interface ProductTab {
   title: string;
   content: React.ReactNode;
 }
+
+interface ProductVariant {
+  id: string;
+  name: string;
+  price?: number;
+  stock?: number;
+}
 export interface Product {
   id: string;
   category: ProductCategory;
@@ -12,15 +19,17 @@ export interface Product {
   title: string;
   isNew?: boolean;
 
-  /* Descripciones, textos largos o cortos */
-  shortDescription: string; // Para tarjetas
-  longDescription: React.ReactNode; // El JSX para la vista de detalle
-
   // Rutas a las imágenes
   bgImageSrc: string; // Para el fondo de la tarjeta del carrusel
   featuredImage: string; // La imagen "hero" para el modal
   thumbnailImage: string; // Para tarjetas pequeñas (a futuro)
   galleryImages?: string[];
+
+  /* Descripciones, textos largos o cortos */
+  shortDescription: string; // Para tarjetas
+  longDescription: React.ReactNode; // El JSX para la vista de detalle
+
+  presentations?: ProductVariant[];
 
   details?: ProductTab[];
 

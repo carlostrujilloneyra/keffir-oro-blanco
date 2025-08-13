@@ -26,6 +26,11 @@ export const allProducts: Product[] = [
       </>
     ),
 
+    presentations: [
+      { id: 'sal-1kg', name: '1 Kg', price: 19.0 },
+      { id: 'sal-2kg', name: '2 Kg', price: 35.0 },
+    ],
+
     tags: ['new'],
   },
 
@@ -53,6 +58,8 @@ export const allProducts: Product[] = [
         <strong>tu digestión, defensas y bienestar diario.</strong>
       </>
     ),
+
+    presentations: [{ id: 'vinagre-500', name: '500 ml', price: 17.0 }],
     tags: ['new'],
   },
 
@@ -79,6 +86,12 @@ export const allProducts: Product[] = [
         magnesio. Disfruta el delicioso poder de sentirte bien.
       </>
     ),
+
+    presentations: [
+      { id: 'kefir-choco-300', name: '350 ml', price: 11.0 },
+      { id: 'kefir-choco-500', name: '500 ml', price: 17.0 },
+    ],
+
     tags: ['new'],
   },
 

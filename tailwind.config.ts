@@ -30,9 +30,7 @@ const config: Config = {
           hover: '#D94A38',
           foreground: 'hsl(var(--secondary-foreground))',
         },
-        promotional: {
-          chocolate: '#D2B48C',
-        },
+
         light: {
           '50': '#FFFFFF', // ✅ BLANCO PURO. Úsalo con moderación para máximo impacto (ej. el texto de un botón de color vivo).
           '100': '#F9FAFB', // BLANCO ROTO BRILLANTE. Ideal para títulos principales (h1, h2) que necesitan "pop".
