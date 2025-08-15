@@ -33,13 +33,15 @@ export const NewProducts = () => {
           <FeatureSectionImage
             className={cn('h-[280px] w-full lg:h-[480px]', product.hasDifferentOrder && 'lg:order-1')}
           >
-            <Image
-              className='object-contain lg:translate-y-12 lg:scale-125'
-              sizes='(min-width: 600px) 460px, 400px'
-              fill
-              src={product.featuredImage}
-              alt={product.title}
-            />
+            {product.featuredImage && (
+              <Image
+                className='object-contain lg:translate-y-12 lg:scale-125'
+                sizes='(min-width: 600px) 460px, 400px'
+                fill
+                src={product.featuredImage}
+                alt={product.title}
+              />
+            )}
           </FeatureSectionImage>
 
           <FeatureSectionInformation
@@ -72,7 +74,7 @@ export const NewProducts = () => {
     return {
       category: product.isNew ? 'Nuevo Producto' : product.category,
       title: product.title,
-      src: product.bgImageSrc, // Imagen para el fondo de la tarjeta CERRADA
+      src: product.bgImageSrc ?? '/assets/images/placeholder.webp', // Imagen para el fondo de la tarjeta CERRADA
       content: cardContent, // Tu FeatureSection para la tarjeta ABIERTA
     };
   });

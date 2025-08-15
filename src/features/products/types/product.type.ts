@@ -20,14 +20,14 @@ export interface Product {
   isNew?: boolean;
 
   // Rutas a las imágenes
-  bgImageSrc: string; // Para el fondo de la tarjeta del carrusel
-  featuredImage: string; // La imagen "hero" para el modal
+  bgImageSrc?: string; // Para el fondo de la tarjeta del carrusel
+  featuredImage?: string; // La imagen "hero" para el modal
   thumbnailImage: string; // Para tarjetas pequeñas (a futuro)
   galleryImages?: string[];
 
   /* Descripciones, textos largos o cortos */
   shortDescription: string; // Para tarjetas
-  longDescription: React.ReactNode; // El JSX para la vista de detalle
+  longDescription?: React.ReactNode; // El JSX para la vista de detalle
 
   presentations?: ProductVariant[];
 
@@ -35,7 +35,7 @@ export interface Product {
 
   linkUrl: string;
 
-  tags?: ('new' | 'best-seller')[];
+  tags?: ('new' | 'best-seller' | 'recommended')[];
 
   hasDifferentOrder?: boolean;
 }

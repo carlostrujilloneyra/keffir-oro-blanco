@@ -12,7 +12,7 @@ import {
   StrawberryIcon,
 } from '@/components/ui/icons';
 
-export type NavSlug = 'lacteos' | 'kefir-frutado' | 'probioticos' | 'tradicionales';
+export type NavSlug = 'lacteos' | 'kefir-frutado' | 'probioticos' | 'tradicionales' | 'otros';
 
 interface NavItem {
   label: string;

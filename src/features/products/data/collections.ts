@@ -1,6 +1,3 @@
-/* // src/lib/data/collections.ts
-
-// 1. Importamos la "base de datos" completa
 import { allProducts } from './products';
 
 // 2. Exportamos cada "lista de reproducción" como una constante
@@ -12,4 +9,3 @@ export const recommendedCollection = allProducts.filter((p) => p.tags?.includes(
 
 // También puedes exportar colecciones más complejas
 export const featuredHomeProducts = allProducts.slice(0, 4);
- */

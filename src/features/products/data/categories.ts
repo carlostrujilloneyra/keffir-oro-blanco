@@ -3,6 +3,7 @@ export enum ProductCategory {
   PROBIOTICOS = 'probioticos',
   KEFIR_FRUTADO = 'kefir-frutado',
   TRADICIONALES = 'tradicionales',
+  OTROS = 'otros',
 }
 
 export const categoryDetails = {
@@ -21,5 +22,10 @@ export const categoryDetails = {
   [ProductCategory.TRADICIONALES]: {
     title: 'Tradicionales',
     slug: 'tradicionales',
+  },
+
+  [ProductCategory.OTROS]: {
+    title: 'Otros productos',
+    slug: 'otros',
   },
 };
