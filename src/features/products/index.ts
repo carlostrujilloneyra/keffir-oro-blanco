@@ -9,6 +9,7 @@ export {
   bestSellersCollection,
   recommendedCollection,
   featuredHomeProducts,
+  mainCollection,
 } from './data/collections';
 
 // --- 3. Exportamos los TIPOS ---

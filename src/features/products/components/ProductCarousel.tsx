@@ -3,9 +3,17 @@
 import { ProductCard, type Product } from '@/features/products';
 import { Autoplay, FreeMode, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { SliderNextButton, SliderPrevButton, useSwiperNavButtons } from './SliderButtons';
+import { SliderNextButton, SliderPrevButton } from './SliderButtons';
 import { useEffect, useState } from 'react';
 import { ProductCardSkeleton } from './ProductCardSkeleton';
+import { CardContent, CardFooter } from '@/components/ui/Card/card';
+import {
+  ProductCardAction,
+  ProductCardCategory,
+  ProductCardImage,
+  ProductCardPresentations,
+  ProductCardTitle,
+} from './ProductCard';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -15,11 +23,10 @@ interface ProductCarouselProps {
 }
 
 const SwiperNavButtons = () => {
-  const { isBeginning, isEnd } = useSwiperNavButtons();
   return (
     <>
-      <SliderPrevButton isBeginning={isBeginning} />
-      <SliderNextButton isEnd={isEnd} />
+      <SliderPrevButton />
+      <SliderNextButton />
     </>
   );
 };
@@ -75,7 +82,22 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
               ))
             : products.map((product) => (
                 <SwiperSlide key={product.id} className='max-w-64 flex-shrink-0 pr-4 tablet:pr-6'>
-                  <ProductCard product={product} />
+                  <ProductCard>
+                    <ProductCardImage src={product.thumbnailImage} alt={product.title} />
+
+                    <CardContent className='mb-3 flex flex-grow flex-col pt-3'>
+                      <ProductCardCategory category={product.category} />
+                      <ProductCardTitle title={product.title} />
+
+                      <div className='flex-grow'>
+                        <ProductCardPresentations presentations={product?.presentations} />
+                      </div>
+                    </CardContent>
+
+                    <CardFooter>
+                      <ProductCardAction href={product.linkUrl} />
+                    </CardFooter>
+                  </ProductCard>
                 </SwiperSlide>
               ))}
 

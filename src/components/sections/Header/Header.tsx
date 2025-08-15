@@ -1,11 +1,11 @@
-import Image from 'next/image';
-import { Button } from '../../../components/ui/Button/Button';
 import { MainHamburger } from './components/MainHamburger';
+import { Button } from '@/components/ui/Button/Button';
 import { NavBar } from './components/NavBar/NavBar';
+import Image from 'next/image';
 
 export const Header = () => {
   return (
-    <header className='container-max lg:px-18 grid h-[90px] w-full grid-cols-[36px_1fr_max-content] items-center justify-items-center bg-black px-6 py-6 md:bg-transparent md:px-10 md:py-6 lg:h-[120px] lg:grid-cols-[270px_1fr_max-content]'>
+    <header className='container-max grid h-[90px] w-full grid-cols-[36px_1fr_max-content] items-center justify-items-center bg-black px-6 py-6 md:bg-transparent md:px-10 md:py-6 lg:h-[120px] lg:grid-cols-[270px_1fr_max-content] lg:px-18'>
       <MainHamburger />
 
       {/* <Logo /> */}

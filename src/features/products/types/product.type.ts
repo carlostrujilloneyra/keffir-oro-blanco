@@ -35,7 +35,7 @@ export interface Product {
 
   linkUrl: string;
 
-  tags?: ('new' | 'best-seller' | 'recommended')[];
+  tags?: ('new' | 'best-seller' | 'recommended' | 'main-product')[];
 
   hasDifferentOrder?: boolean;
 }

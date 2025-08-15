@@ -128,7 +128,7 @@ export const allProducts: Product[] = [
     title: 'Mantequilla Artesanal',
     isNew: false,
     linkUrl: '/productos/mantequilla-artesanal',
-    tags: ['best-seller'],
+    tags: ['best-seller', 'main-product'],
 
     featuredImage: '/assets/images/content/products/mantequilla-artesanal/featured.webp',
     thumbnailImage: '/assets/images/content/products/mantequilla-artesanal/thumbnail.webp',
@@ -278,7 +278,7 @@ export const allProducts: Product[] = [
     title: 'Chucrut Morado Fermentado',
     isNew: false,
     linkUrl: '/productos/chucrut-morado',
-    tags: ['recommended'],
+    tags: ['recommended', 'main-product'],
 
     featuredImage: '/assets/images/content/products/vinagre-de-manzana/thumbnail.webp',
     thumbnailImage: '/assets/images/content/products/vinagre-de-manzana/thumbnail.webp',

@@ -42,9 +42,9 @@ export const CategoryCard = ({ imageAlt, imageSrc, linkUrl, name, title }: Categ
           </FeatureSectionBottom>
         </FeatureSectionInformation>
 
-        <FeatureSectionImage className='h-80 w-full lg:h-[240px]'>
+        <FeatureSectionImage className='h-80 w-full lg:h-[240px] lg:justify-end'>
           <Image
-            className='object-contain lg:translate-x-12 lg:translate-y-6 lg:scale-[1.3]'
+            className='object-contain lg:translate-x-1/3 lg:translate-y-6 lg:scale-[1.3]'
             sizes='(min-width:600px) 400px, 100vw'
             fill
             src={imageSrc}
