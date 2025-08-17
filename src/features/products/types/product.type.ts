@@ -28,6 +28,7 @@ export interface Product {
   /* Descripciones, textos largos o cortos */
   shortDescription: string; // Para tarjetas
   longDescription?: React.ReactNode; // El JSX para la vista de detalle
+  benefits?: string[];
 
   presentations?: ProductVariant[];
 

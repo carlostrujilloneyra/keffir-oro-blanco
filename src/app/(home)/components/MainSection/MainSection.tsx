@@ -3,7 +3,7 @@ import { CategoryCard } from './components/CategoryCard';
 import {
   ProductCardAction,
   ProductCardCategory,
-  ProductCardDescription,
+  ProductCardFeatureList,
   ProductCardImage,
   ProductCardPresentations,
   ProductCardTitle,
@@ -12,8 +12,8 @@ import { CardContent, CardFooter } from '@/components/ui/Card/card';
 
 export const MainSection = () => {
   return (
-    <section className='container-max grid w-full px-6 py-12 tablet:gap-4 tablet:px-10 lg:grid-cols-[1fr_.9fr] lg:px-18 lg:py-12'>
-      <div className='grid gap-6 tablet:gap-4 lg:grid-rows-[repeat(2,minmax(min-content,240px))]'>
+    <section className='container-max grid w-full gap-5 px-6 py-12 tablet:gap-4 tablet:px-10 lg:grid-cols-[1fr_.9fr] lg:px-18 lg:py-12'>
+      <div className='grid gap-5 tablet:gap-4 lg:grid-rows-[repeat(2,minmax(min-content,300px))] min-[1400px]:grid-rows-[repeat(2,minmax(min-content,240px))]'>
         <CategoryCard
           name='lacteos-section'
           title='Del campo a tu mesa: lácteos frescos y artesanales'
@@ -32,7 +32,7 @@ export const MainSection = () => {
       </div>
 
       {/* Contenedor para dos cards: Mantequilla, Chucrut */}
-      <div className='grid gap-4 tablet:grid-cols-2'>
+      <div className='grid gap-5 tablet:grid-cols-2 tablet:gap-4'>
         {mainCollection.map((product) => {
           return (
             <ProductCard key={product.id}>
@@ -40,17 +40,18 @@ export const MainSection = () => {
 
               <CardContent className='mb-3 flex flex-grow flex-col pt-3'>
                 <ProductCardCategory category={product.category} />
-                <ProductCardTitle className='text-[18px]' title={product.title} />
 
-                <ProductCardDescription description='Esta es una descripción para poder llenar el card del producto.' />
+                <ProductCardTitle className='text-[22px] lg:leading-[1]' title={product.title} />
 
-                <div>
+                <ProductCardFeatureList features={product.benefits} />
+
+                <div className='mt-2 flex flex-col gap-1'>
                   <ProductCardPresentations presentations={product?.presentations} />
                 </div>
               </CardContent>
 
               <CardFooter>
-                <ProductCardAction href={product.linkUrl} />
+                <ProductCardAction hasIcon href={product.linkUrl} />
               </CardFooter>
             </ProductCard>
           );

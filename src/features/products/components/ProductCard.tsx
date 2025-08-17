@@ -10,6 +10,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
+import { CircleCheck, MoveRight } from 'lucide-react';
 
 // --- Definiciones de los Tipos para los Props ---
 
@@ -24,7 +25,7 @@ const imageVariants = cva(
     variants: {
       size: {
         default: 'h-[160px] w-[160px] tablet:h-[190px] tablet:w-[190px]',
-        large: 'h-[160px] w-[160px] tablet:h-[270px] tablet:w-[270px]',
+        large: 'h-[230px] w-[230px] tablet:h-[270px] tablet:w-[270px] min-[1400px]:w-[240px] min-[1400px]:h-[240px]',
       },
     },
     defaultVariants: {
@@ -55,14 +56,21 @@ interface ProductCardTitleProps {
 
 type ProductCardPresentationsProps = {
   presentations: Product['presentations'];
+  className?: string;
 };
 
 interface ProductCardDescriptionProps {
-  description?: string;
+  description?: string[];
+}
+
+interface ProductCardFeatureListProps {
+  features?: string[];
+  className?: string;
 }
 
 interface ProductCardActionProps {
   href: string;
+  hasIcon?: boolean;
 }
 
 // --- Definiciones de los Subcomponentes (con tipos explícitos) ---
@@ -95,17 +103,34 @@ const ProductCardCategory = ({ category }: ProductCardCategoryProps) => {
 const ProductCardTitle = ({ title, className }: ProductCardTitleProps) => {
   return (
     <CardTitle asChild className={className}>
-      <span className='inline-block min-h-8 leading-[1.2] tablet:min-h-14 tablet:leading-[1]'>{title}</span>
+      <h3 className='inline-block leading-[1.22] text-gray-700 tablet:leading-[1]'>{title}</h3>
     </CardTitle>
   );
 };
 
-const ProductCardPresentations = ({ presentations }: ProductCardPresentationsProps) => {
+const ProductCardFeatureList = ({ features, className }: ProductCardFeatureListProps) => {
+  if (!features) return null;
+
+  return (
+    <ul className={cn('mb-2 mt-3 space-y-2 text-[13.5px] text-gray-600', className)}>
+      {features.map((feature, idx) => (
+        <li className='flex items-center gap-2 leading-[1.1]' key={idx}>
+          <div>
+            <CircleCheck className='h-4 w-4' />
+          </div>
+          <span>{feature}</span>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+const ProductCardPresentations = ({ className, presentations }: ProductCardPresentationsProps) => {
   if (!presentations || presentations.length === 0) {
     return null;
   }
   return (
-    <div className='mt-2 flex flex-wrap gap-2'>
+    <div className={cn('mt-2 flex flex-wrap gap-2', className)}>
       {presentations.map((variant) => (
         <Badge key={variant.id} variant='stone'>
           {variant.name}
@@ -116,15 +141,21 @@ const ProductCardPresentations = ({ presentations }: ProductCardPresentationsPro
 };
 
 const ProductCardDescription = ({ description }: ProductCardDescriptionProps) => {
-  if (!description) {
-    return null;
-  }
-  return <p className='text-sm leading-tight text-gray-600'>{description}</p>;
+  if (!description) return null;
+
+  return <p className='mt-1 text-justify text-sm leading-tight text-gray-600'>{description}</p>;
 };
 
-const ProductCardAction = ({ href }: ProductCardActionProps) => (
-  <Button className='flex w-full justify-center gap-2 px-8 py-3 text-center uppercase' asChild theme='primary'>
-    <Link href={href}>Ver Producto</Link>
+const ProductCardAction = ({ href, hasIcon }: ProductCardActionProps) => (
+  <Button
+    className='flex w-full items-center justify-center gap-2 px-8 py-3 text-center uppercase'
+    asChild
+    theme='primary'
+  >
+    <Link href={href}>
+      Ver Producto
+      {hasIcon && <MoveRight className='h-5 w-5' />}
+    </Link>
   </Button>
 );
 
@@ -135,5 +166,6 @@ export {
   ProductCardTitle,
   ProductCardPresentations,
   ProductCardDescription,
+  ProductCardFeatureList,
   ProductCardAction,
 };

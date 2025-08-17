@@ -12,6 +12,7 @@ const config: Config = {
 
       screens: {
         tablet: '600px',
+        super_desktop: '1400px',
       },
 
       boxShadow: {

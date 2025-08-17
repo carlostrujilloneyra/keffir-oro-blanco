@@ -87,7 +87,7 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
 
                     <CardContent className='mb-3 flex flex-grow flex-col pt-3'>
                       <ProductCardCategory category={product.category} />
-                      <ProductCardTitle title={product.title} />
+                      <ProductCardTitle className='min-h-12' title={product.title} />
 
                       <div className='flex-grow'>
                         <ProductCardPresentations presentations={product?.presentations} />

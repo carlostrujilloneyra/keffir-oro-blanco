@@ -21,7 +21,11 @@ const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
     // 3. Decidimos qué componente renderizar: el Slot o un h2 por defecto
     const Comp = asChild ? Slot : 'h2';
     return (
-      <Comp ref={ref} className={cn('text-2xl font-semibold leading-none tracking-tight', className)} {...props} />
+      <Comp
+        ref={ref}
+        className={cn('min-h-7 text-xl font-semibold leading-none tracking-tight tablet:min-h-10', className)}
+        {...props}
+      />
     );
   },
 );

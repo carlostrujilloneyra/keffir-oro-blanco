@@ -136,6 +136,13 @@ export const allProducts: Product[] = [
     hasDifferentOrder: false,
 
     shortDescription: 'Sabor y cremosidad 100% natural, sin aditivos.',
+    benefits: [
+      '100% Natural, sin conservantes.',
+      'Elaborada con pura nata de leche.',
+      'Sabor y cremosidad incomparables.',
+      'Duración: 15 días.',
+    ],
+
     longDescription: (
       <>
         Descubre el auténtico sabor de la mantequilla de verdad. Elaborada artesanalmente con{' '}
@@ -286,6 +293,13 @@ export const allProducts: Product[] = [
     hasDifferentOrder: false,
 
     shortDescription: 'Un superalimento crujiente para tu salud intestinal.',
+    benefits: [
+      'Rico en probióticos y vitaminas.',
+      'Potente fuente de antioxidantes.',
+      'Sabor suave y ligeramente dulce.',
+      'Fortalece el sistema inmunológico.',
+    ],
+
     longDescription: (
       <>
         Añade un toque de color y un universo de beneficios a tus platos. Nuestro Chucrut Morado es col morada{' '}

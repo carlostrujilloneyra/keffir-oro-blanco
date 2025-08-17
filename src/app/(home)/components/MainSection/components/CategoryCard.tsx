@@ -27,7 +27,7 @@ export const CategoryCard = ({ imageAlt, imageSrc, linkUrl, name, title }: Categ
       name={name}
     >
       <FeatureSectionContent className='gap-8 px-8 py-10 transition-all duration-300 ease-in-out hover:rounded-xl hover:shadow-strong tablet:grid-cols-[300px_1fr] lg:gap-2 lg:py-6 xl:grid-cols-[320px_1fr]'>
-        <FeatureSectionInformation className='gap-5 transition-all duration-300 ease-in-out group-hover:translate-x-3 lg:gap-6'>
+        <FeatureSectionInformation className='order-1 gap-5 transition-all duration-300 ease-in-out group-hover:translate-x-3 lg:gap-6'>
           <FeatureSectionTitle className='text-center font-semibold text-light-300 tablet:text-start lg:text-[32px] xl:text-[34px]'>
             {title}
           </FeatureSectionTitle>
@@ -42,9 +42,9 @@ export const CategoryCard = ({ imageAlt, imageSrc, linkUrl, name, title }: Categ
           </FeatureSectionBottom>
         </FeatureSectionInformation>
 
-        <FeatureSectionImage className='h-80 w-full lg:h-[240px] lg:justify-end'>
+        <FeatureSectionImage className='super_desktop:h-60 h-80 w-full tablet:order-3 lg:h-[285px] lg:justify-end xl:h-[270px]'>
           <Image
-            className='object-contain lg:translate-x-1/3 lg:translate-y-6 lg:scale-[1.3]'
+            className='object-contain lg:translate-x-1/3 lg:translate-y-6 lg:scale-[1.3] min-[1400px]:translate-y-5'
             sizes='(min-width:600px) 400px, 100vw'
             fill
             src={imageSrc}
