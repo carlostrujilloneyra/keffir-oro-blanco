@@ -99,7 +99,7 @@ export const Carousel = ({ data, initialScroll = 0 }: CarouselProps) => {
             )}
           >
             {data.map((cardData, index) => (
-              <motion.div
+              <motion.article
                 initial={{ opacity: 0, y: 20 }}
                 animate={{
                   opacity: 1,
@@ -111,7 +111,7 @@ export const Carousel = ({ data, initialScroll = 0 }: CarouselProps) => {
               >
                 {/* Y renderizamos el componente Card aquí mismo */}
                 <Card card={cardData} index={index} />
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </div>

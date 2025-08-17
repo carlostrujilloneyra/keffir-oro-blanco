@@ -80,9 +80,5 @@ export const NewProducts = () => {
   });
 
   // Renderizamos el carrusel pasándole la data ya preparada
-  return (
-    <section>
-      <Carousel data={cardData} />
-    </section>
-  );
+  return <Carousel data={cardData} />;
 };

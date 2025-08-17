@@ -1,8 +1,8 @@
-import { NewProducts } from '../NewProducts/NewProducts';
+import { NewProducts } from './components/NewProducts';
 
-export const MainContent = () => {
+export const NewProductsSection = () => {
   return (
-    <main className='container-max flex w-full flex-col gap-8 overflow-hidden px-6 py-4 tablet:px-10 tablet:py-9 lg:px-18 lg:py-12'>
+    <section className='container-max flex w-full flex-col gap-8 overflow-hidden px-6 py-4 tablet:px-10 tablet:py-9 lg:px-18 lg:py-12'>
       <div className='lg:max-w-2xl'>
         <h2 className='mb-2 text-[32px] font-semibold leading-[1.1] text-gray-800 tablet:mb-1 tablet:text-[40px] lg:text-[42px]'>
           ¡Recién Salidos del Taller!
@@ -16,6 +16,6 @@ export const MainContent = () => {
       </div>
 
       <NewProducts />
-    </main>
+    </section>
   );
 };

@@ -14,7 +14,7 @@ export const HeroSlide = ({ description, image, isNew, slug, title }: HeroSlideP
   const imageAlt = `Imagen de ${title}`;
 
   return (
-    <div className='relative grid h-full grid-cols-1 grid-rows-[1fr_380px] gap-7 lg:w-full lg:grid-cols-2 lg:grid-rows-[minmax(450px,1fr)]'>
+    <article className='relative grid h-full grid-cols-1 grid-rows-[1fr_380px] gap-7 lg:w-full lg:grid-cols-2 lg:grid-rows-[minmax(450px,1fr)]'>
       <div className='flex flex-col justify-center gap-[10px] px-6 py-3 tablet:gap-3 tablet:py-10 tablet:text-center lg:p-18 lg:text-start'>
         {isNew && <span className='text-xs uppercase text-[#8C8C8C]'>Nuevo producto</span>}
 
@@ -36,6 +36,6 @@ export const HeroSlide = ({ description, image, isNew, slug, title }: HeroSlideP
       <div className='relative flex items-center justify-center'>
         <Image sizes='(min-width: 768px) 688px, 360px' className='object-contain' src={image} fill alt={imageAlt} />
       </div>
-    </div>
+    </article>
   );
 };

@@ -12,7 +12,7 @@ import { CardContent, CardFooter } from '@/components/ui/Card/card';
 
 export const MainSection = () => {
   return (
-    <section className='container-max grid w-full gap-5 px-6 py-12 tablet:gap-4 tablet:px-10 lg:grid-cols-[1fr_.9fr] lg:px-18 lg:py-12'>
+    <main className='container-max grid w-full gap-5 px-6 py-12 tablet:gap-4 tablet:px-10 lg:grid-cols-[1fr_.9fr] lg:px-18 lg:py-12'>
       <div className='grid gap-5 tablet:gap-4 lg:grid-rows-[repeat(2,minmax(min-content,300px))] min-[1400px]:grid-rows-[repeat(2,minmax(min-content,240px))]'>
         <CategoryCard
           name='lacteos-section'
@@ -57,6 +57,6 @@ export const MainSection = () => {
           );
         })}
       </div>
-    </section>
+    </main>
   );
 };

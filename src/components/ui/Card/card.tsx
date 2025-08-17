@@ -2,8 +2,12 @@ import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cn } from '@/lib/utils';
 
-const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn('flex flex-col rounded-xl border text-card-foreground shadow', className)} {...props} />
+const Card = React.forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(({ className, ...props }, ref) => (
+  <article
+    ref={ref}
+    className={cn('flex flex-col rounded-xl border text-card-foreground shadow', className)}
+    {...props}
+  />
 ));
 Card.displayName = 'Card';
 

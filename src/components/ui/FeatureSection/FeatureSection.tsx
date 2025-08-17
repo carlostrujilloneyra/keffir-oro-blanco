@@ -1,17 +1,21 @@
 import { cn } from '@/lib/utils';
 import styles from './styles.module.scss';
+import { Slot } from '@radix-ui/react-slot';
 
 interface FeatureSectionProps extends React.HTMLAttributes<HTMLElement> {
   hasOrder?: boolean;
   name: string;
+  asChild?: boolean;
 }
 
 interface FeatureSectionTitleProps extends React.HTMLAttributes<HTMLDivElement> {
   isNew?: boolean;
 }
 
-const FeatureSection = ({ name, className, ...props }: FeatureSectionProps) => {
-  return <section className={cn(styles[name], className)} {...props} />;
+const FeatureSection = ({ name, className, asChild = false, ...props }: FeatureSectionProps) => {
+  const Comp = asChild ? Slot : 'section';
+
+  return <Comp className={cn(styles[name], className)} {...props} />;
 };
 FeatureSection.displayName = 'FeatureSection';
 
