@@ -9,6 +9,7 @@ export const allProducts: Product[] = [
     title: 'Sal de Maras, Cusco',
     isNew: true,
     linkUrl: '/productos/sal-de-maras',
+    tags: ['new'],
 
     bgImageSrc: '/assets/images/content/products/sal-de-maras/bg-card.webp',
     featuredImage: '/assets/images/content/products/sal-de-maras/featured.webp',
@@ -27,20 +28,49 @@ export const allProducts: Product[] = [
     ),
 
     presentations: [
-      { id: 'sal-1kg', name: '1 Kg', price: 19.0 },
-      { id: 'sal-2kg', name: '2 Kg', price: 35.0 },
+      { id: 'sal-1kg', name: '1 kilo', price: 19.0 },
+      { id: 'sal-2kg', name: '2 kilos', price: 35.0 },
     ],
-
-    tags: ['new'],
   },
 
   {
     id: 'prod_002',
+    category: ProductCategory.TRADICIONALES,
+    name: 'manteca-de-cerdo',
+    title: 'Manteca de Cerdo Artesanal',
+    isNew: false,
+    linkUrl: '/productos/manteca-de-cerdo',
+    tags: ['recommended', 'best-seller'],
+
+    featuredImage: '/assets/images/content/products/manteca-de-cerdo/featured.webp',
+    thumbnailImage: '/assets/images/content/products/manteca-de-cerdo/thumbnail.webp',
+
+    hasDifferentOrder: true,
+
+    shortDescription: 'El secreto de la cocina tradicional para un sabor inigualable.',
+    longDescription: (
+      <>
+        Vuelve al origen del sabor con nuestra Manteca de Cerdo 100% natural. Ideal para freír, hornear o dar un toque
+        de sabor auténtico a tus guisos, es una <strong>alternativa saludable a los aceites procesados</strong>. Rica en
+        grasas estables al calor, es el secreto de las abuelas para comidas más sabrosas y nutritivas.
+      </>
+    ),
+
+    presentations: [
+      { id: 'manteca-300g', name: '300 g', price: 20.0 },
+      { id: 'manteca-500g', name: '500 g' },
+      { id: 'manteca-1kilo', name: '1 Kilo' },
+    ],
+  },
+
+  {
+    id: 'prod_003',
     category: ProductCategory.PROBIOTICOS,
     name: 'vinage-de-manzana',
     title: 'Vinagre de Manzana',
     isNew: true,
     linkUrl: '/productos/vinagre-de-manzana',
+    tags: ['new'],
 
     bgImageSrc: '/assets/images/content/products/vinagre-de-manzana/bg-card.webp',
     featuredImage: '/assets/images/content/products/vinagre-de-manzana/featured.webp',
@@ -60,16 +90,139 @@ export const allProducts: Product[] = [
     ),
 
     presentations: [{ id: 'vinagre-500', name: '500 ml', price: 17.0 }],
-    tags: ['new'],
   },
 
   {
-    id: 'prod_003',
+    id: 'prod_004',
+    category: ProductCategory.KEFIR,
+    name: 'kefir-leche-vaca',
+    title: 'Kéfir de Leche de Vaca',
+    isNew: false,
+    linkUrl: '/productos/kefir-leche-vaca',
+    tags: ['recommended', 'best-seller'],
+
+    featuredImage: '/assets/images/content/products/kefir-de-leche-vaca/featured.webp',
+    thumbnailImage: '/assets/images/content/products/kefir-de-leche-vaca/thumbnail.webp',
+
+    hasDifferentOrder: false,
+
+    shortDescription: 'El clásico probiótico, cremoso y lleno de beneficios.',
+    longDescription: (
+      <>
+        El pilar del bienestar digestivo. Nuestro Kéfir de Leche de Vaca es un probiótico natural, cremoso y de sabor
+        suave, elaborado con <strong>leche fresca de pastoreo</strong>. Cada sorbo está lleno de millones de
+        microorganismos beneficiosos que trabajan para{' '}
+        <strong>fortalecer tu microbiota, mejorar tu digestión y reforzar tu sistema inmune</strong>. Es el punto de
+        partida perfecto para una vida más saludable.
+      </>
+    ),
+
+    presentations: [
+      { id: 'kefir-vaca-475', name: '475 ml', price: 13.0 },
+      { id: 'kefir-vaca-1l', name: '1 Litro', price: 23.0 },
+    ],
+  },
+
+  {
+    id: 'prod_005',
+    category: ProductCategory.KEFIR,
+    name: 'kefir-leche-cabra',
+    title: 'Kéfir de Leche de Cabra',
+    isNew: false,
+    linkUrl: '/productos/kefir-leche-cabra',
+    tags: ['recommended', 'best-seller'],
+
+    featuredImage: '/assets/images/content/products/kefir-de-leche-cabra/thumbnail.webp',
+    thumbnailImage: '/assets/images/content/products/vinagre-de-cabra/thumbnail.webp',
+
+    hasDifferentOrder: false,
+
+    shortDescription: 'Nutritivo, suave y más fácil de digerir.',
+    longDescription: (
+      <>
+        Para quienes buscan una opción aún más nutritiva y suave. El Kéfir de Leche de Cabra es conocido por ser{' '}
+        <strong>más fácil de digerir</strong> que el de vaca, gracias a sus moléculas de grasa más pequeñas. Disfruta de
+        todos los beneficios probióticos con un <strong>perfil nutricional superior</strong> y un sabor ligeramente más
+        ácido y característico.
+      </>
+    ),
+
+    presentations: [
+      { id: 'kefir-cabra-475', name: '475 ml', price: 14.0 },
+      { id: 'kefir-cabra-1l', name: '1 Litro', price: 24.0 },
+    ],
+  },
+
+  {
+    id: 'prod_006',
+    category: ProductCategory.KEFIR_FRUTADO,
+    name: 'kefir-arandanos',
+    title: 'Kéfir de Leche con Arándanos',
+    isNew: false,
+    linkUrl: '/productos/kefir-arandanos',
+    tags: ['best-seller', 'recommended'],
+
+    featuredImage: '/assets/images/content/products/kefir-frutado-arandanos/featured.webp',
+    thumbnailImage: '/assets/images/content/products/kefir-frutado-arandanos/thumbnail.webp',
+
+    hasDifferentOrder: false,
+
+    shortDescription: 'Un impulso de antioxidantes y probióticos.',
+    longDescription: (
+      <>
+        Potencia tu bienestar con la combinación perfecta de nuestro cremoso kéfir de leche y{' '}
+        <strong>arándanos silvestres</strong>. Cada sorbo es una explosión de sabor y un impulso para tu salud, cargado
+        de antioxidantes y probióticos que fortalecen tu sistema inmune y cuidan tu digestión.
+      </>
+    ),
+
+    presentations: [
+      { id: 'kefir-arandanos-300', name: '300 ml', price: 10.0 },
+      { id: 'kefir-arandanos-475', name: '475 ml', price: 15.0 },
+      { id: 'kefir-arandanos-1l', name: '1 Litro', price: 27.0 },
+    ],
+  },
+
+  {
+    id: 'prod_007',
+    category: ProductCategory.KEFIR_FRUTADO,
+    name: 'kefir-fresa',
+    title: 'Kéfir de Leche con Fresa',
+    isNew: false,
+    linkUrl: '/productos/kefir-fresa',
+    tags: ['best-seller', 'recommended'],
+
+    featuredImage: '/assets/images/content/products/kefir-frutado-fresa/featured.webp',
+    thumbnailImage: '/assets/images/content/products/kefir-frutado-fresa/thumbnail.webp',
+
+    hasDifferentOrder: false,
+
+    shortDescription: 'El sabor clásico que cuida de ti.',
+    longDescription: (
+      <>
+        Redescubre el sabor que te encanta, ahora en su versión más saludable y deliciosa. Hemos fusionado la increíble
+        cremosidad de nuestro kéfir de leche con la dulzura natural de <strong>fresas frescas y jugosas</strong>. Cada
+        sorbo es un balance perfecto que te transporta a un postre, pero con todos los beneficios de un superalimento
+        cargado de <strong>probióticos y vitamina C</strong> que cuida tu digestión, fortalece tus defensas y te llena
+        de energía.
+      </>
+    ),
+
+    presentations: [
+      { id: 'kefir-arandanos-300', name: '300 ml', price: 10.0 },
+      { id: 'kefir-arandanos-475', name: '475 ml', price: 15.0 },
+      { id: 'kefir-arandanos-1l', name: '1 Litro', price: 27.0 },
+    ],
+  },
+
+  {
+    id: 'prod_008',
     category: ProductCategory.KEFIR_FRUTADO,
     name: 'kefir-chocolate',
     title: 'Kefir de Leche con Chocolate',
     isNew: true,
     linkUrl: '/productos/kefir-chocolate',
+    tags: ['new'],
 
     bgImageSrc: '/assets/images/content/products/kefir-de-chocolate/bg-card.webp',
     featuredImage: '/assets/images/content/products/kefir-de-chocolate/featured.webp',
@@ -89,14 +242,12 @@ export const allProducts: Product[] = [
 
     presentations: [
       { id: 'kefir-choco-300', name: '350 ml', price: 11.0 },
-      { id: 'kefir-choco-500', name: '500 ml', price: 17.0 },
+      { id: 'kefir-choco-475', name: '475 ml', price: 17.0 },
     ],
-
-    tags: ['new'],
   },
 
   /* {
-    id: 'prod_004',
+    id: 'prod_009',
     category: ProductCategory.TRADICIONALES,
     name: 'mermelada-quito-quito',
     title: 'Mermelada de Quito Quito',
@@ -122,7 +273,7 @@ export const allProducts: Product[] = [
   }, */
 
   {
-    id: 'prod_005',
+    id: 'prod_010',
     category: ProductCategory.LACTEOS,
     name: 'mantequilla-artesanal',
     title: 'Mantequilla Artesanal',
@@ -160,13 +311,13 @@ export const allProducts: Product[] = [
   },
 
   {
-    id: 'prod_006',
+    id: 'prod_011',
     category: ProductCategory.LACTEOS,
     name: 'queso-cuajo-cabra',
     title: 'Queso con Cuajo de Cabra',
     isNew: false,
     linkUrl: '/productos/queso-cuajo-cabra',
-    tags: ['recommended'],
+    tags: ['recommended', 'best-seller'],
 
     bgImageSrc: '/assets/images/content/products/queso-natural/bg-card.webp',
     featuredImage: '/assets/images/content/products/queso-natural/featured.webp',
@@ -188,43 +339,13 @@ export const allProducts: Product[] = [
   },
 
   {
-    id: 'prod_007',
-    category: ProductCategory.KEFIR_FRUTADO,
-    name: 'kefir-arandanos',
-    title: 'Kéfir de Leche con Arándanos',
-    isNew: false,
-    linkUrl: '/productos/kefir-arandanos',
-    tags: ['best-seller', 'recommended'],
-
-    featuredImage: '/assets/images/content/products/kefir-frutado-arandanos/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-frutado-arandanos/thumbnail.webp',
-
-    hasDifferentOrder: false,
-
-    shortDescription: 'Un impulso de antioxidantes y probióticos.',
-    longDescription: (
-      <>
-        Potencia tu bienestar con la combinación perfecta de nuestro cremoso kéfir de leche y{' '}
-        <strong>arándanos silvestres</strong>. Cada sorbo es una explosión de sabor y un impulso para tu salud, cargado
-        de antioxidantes y probióticos que fortalecen tu sistema inmune y cuidan tu digestión.
-      </>
-    ),
-
-    presentations: [
-      { id: 'kefir-arandanos-300', name: '300 ml', price: 10.0 },
-      { id: 'kefir-arandanos-500', name: '500 ml', price: 15.0 },
-      { id: 'kefir-arandanos-1l', name: '1 Litro', price: 27.0 },
-    ],
-  },
-
-  {
-    id: 'prod_008',
+    id: 'prod_012',
     category: ProductCategory.PROBIOTICOS,
     name: 'kefir-de-agua',
     title: 'Kéfir de Agua',
     isNew: false,
     linkUrl: '/productos/kefir-de-agua',
-    tags: ['recommended'],
+    tags: ['recommended', 'best-seller'],
 
     bgImageSrc: '/assets/images/content/products/kefir-de-agua/bg-card.webp',
     featuredImage: '/assets/images/content/products/kefir-de-agua/featured.webp',
@@ -243,43 +364,13 @@ export const allProducts: Product[] = [
     ),
 
     presentations: [
-      { id: 'kefir-agua-500', name: '500 ml', price: 16.0 },
+      { id: 'kefir-agua-475', name: '475 ml', price: 16.0 },
       { id: 'kefir-agua-1l', name: '1 Litro', price: 28.0 },
     ],
   },
 
   {
-    id: 'prod_009',
-    category: ProductCategory.TRADICIONALES,
-    name: 'manteca-de-cerdo',
-    title: 'Manteca de Cerdo Artesanal',
-    isNew: false,
-    linkUrl: '/productos/manteca-de-cerdo',
-    tags: ['recommended', 'best-seller'],
-
-    featuredImage: '/assets/images/content/products/manteca-de-cerdo/featured.webp',
-    thumbnailImage: '/assets/images/content/products/manteca-de-cerdo/thumbnail.webp',
-
-    hasDifferentOrder: true,
-
-    shortDescription: 'El secreto de la cocina tradicional para un sabor inigualable.',
-    longDescription: (
-      <>
-        Vuelve al origen del sabor con nuestra Manteca de Cerdo 100% natural. Ideal para freír, hornear o dar un toque
-        de sabor auténtico a tus guisos, es una <strong>alternativa saludable a los aceites procesados</strong>. Rica en
-        grasas estables al calor, es el secreto de las abuelas para comidas más sabrosas y nutritivas.
-      </>
-    ),
-
-    presentations: [
-      { id: 'manteca-300g', name: '300 g', price: 20.0 },
-      { id: 'manteca-500g', name: '500 g' },
-      { id: 'manteca-1kilo', name: '1 Kilo' },
-    ],
-  },
-
-  {
-    id: 'prod_010',
+    id: 'prod_013',
     category: ProductCategory.PROBIOTICOS,
     name: 'chucrut-morado',
     title: 'Chucrut Morado Fermentado',
@@ -312,66 +403,6 @@ export const allProducts: Product[] = [
     presentations: [
       { id: 'chucrut-170g', name: '170 g' },
       { id: 'chucrut-360g', name: '360 g' },
-    ],
-  },
-
-  {
-    id: 'prod_011',
-    category: ProductCategory.LACTEOS,
-    name: 'kefir-leche-vaca',
-    title: 'Kéfir de Leche de Vaca',
-    isNew: false,
-    linkUrl: '/productos/kefir-leche-vaca',
-    tags: ['best-seller'],
-
-    featuredImage: '/assets/images/content/products/kefir-de-leche/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-de-leche/thumbnail.webp',
-
-    hasDifferentOrder: false,
-
-    shortDescription: 'El clásico probiótico, cremoso y lleno de beneficios.',
-    longDescription: (
-      <>
-        El pilar del bienestar digestivo. Nuestro Kéfir de Leche de Vaca es un probiótico natural, cremoso y de sabor
-        suave, elaborado con <strong>leche fresca de pastoreo</strong>. Cada sorbo está lleno de millones de
-        microorganismos beneficiosos que trabajan para{' '}
-        <strong>fortalecer tu microbiota, mejorar tu digestión y reforzar tu sistema inmune</strong>.
-      </>
-    ),
-
-    presentations: [
-      { id: 'kefir-vaca-500', name: '500 ml', price: 13.0 },
-      { id: 'kefir-vaca-1l', name: '1 Litro', price: 23.0 },
-    ],
-  },
-
-  {
-    id: 'prod_012',
-    category: ProductCategory.LACTEOS,
-    name: 'kefir-leche-cabra',
-    title: 'Kéfir de Leche de Cabra',
-    isNew: false,
-    linkUrl: '/productos/kefir-leche-cabra',
-    tags: ['recommended'],
-
-    featuredImage: '/assets/images/content/products/vinagre-de-manzana/thumbnail.webp',
-    thumbnailImage: '/assets/images/content/products/vinagre-de-manzana/thumbnail.webp',
-
-    hasDifferentOrder: false,
-
-    shortDescription: 'Nutritivo, suave y más fácil de digerir.',
-    longDescription: (
-      <>
-        Para quienes buscan una opción aún más nutritiva y suave. El Kéfir de Leche de Cabra es conocido por ser{' '}
-        <strong>más fácil de digerir</strong> que el de vaca, gracias a sus moléculas de grasa más pequeñas. Disfruta de
-        todos los beneficios probióticos con un <strong>perfil nutricional superior</strong> y un sabor ligeramente más
-        ácido y característico.
-      </>
-    ),
-
-    presentations: [
-      { id: 'kefir-cabra-500', name: '500 ml', price: 14.0 },
-      { id: 'kefir-cabra-1l', name: '1 Litro', price: 24.0 },
     ],
   },
 ];

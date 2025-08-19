@@ -148,7 +148,7 @@ const ProductCardDescription = ({ description }: ProductCardDescriptionProps) =>
 
 const ProductCardAction = ({ href, hasIcon }: ProductCardActionProps) => (
   <Button
-    className='flex w-full items-center justify-center gap-2 px-8 py-3 text-center uppercase'
+    className='flex w-full items-center justify-center gap-2 px-6 py-3 text-center uppercase'
     asChild
     theme='primary'
   >

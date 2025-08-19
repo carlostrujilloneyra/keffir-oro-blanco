@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export const Header = () => {
   return (
-    <header className='container-max grid h-[90px] w-full grid-cols-[36px_1fr_max-content] items-center justify-items-center bg-black px-6 py-6 md:bg-transparent md:px-10 md:py-6 lg:h-[120px] lg:grid-cols-[270px_1fr_max-content] lg:px-18'>
+    <header className='container-max grid h-[90px] w-full grid-cols-[36px_1fr_max-content] items-center justify-items-center bg-black px-6 py-6 tablet:h-[120px] tablet:p-10 md:bg-transparent lg:h-full lg:grid-cols-[270px_1fr_max-content] lg:px-18 lg:py-6'>
       <MainHamburger />
 
       {/* <Logo /> */}

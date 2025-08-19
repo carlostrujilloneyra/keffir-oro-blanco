@@ -1,6 +1,7 @@
 export enum ProductCategory {
   LACTEOS = 'lacteos',
   PROBIOTICOS = 'probioticos',
+  KEFIR = 'kefir',
   KEFIR_FRUTADO = 'kefir-frutado',
   TRADICIONALES = 'tradicionales',
   OTROS = 'otros',
@@ -14,6 +15,10 @@ export const categoryDetails = {
   [ProductCategory.PROBIOTICOS]: {
     title: 'Probióticos',
     slug: 'probioticos',
+  },
+  [ProductCategory.KEFIR]: {
+    title: 'Kéfir',
+    slug: 'kefir',
   },
   [ProductCategory.KEFIR_FRUTADO]: {
     title: 'Kéfir Frutado',

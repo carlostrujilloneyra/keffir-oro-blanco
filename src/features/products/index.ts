@@ -1,6 +1,7 @@
 // --- 1. Exportamos los COMPONENTES y VALORES ---
 //    (Cosas que se usan en el código que se ejecuta)
 export { ProductCard } from './components/ProductCard';
+export { ProductCarousel } from './components/ProductCarousel';
 
 // --- 2.Datos y Colecciones
 export { allProducts } from './data/products';

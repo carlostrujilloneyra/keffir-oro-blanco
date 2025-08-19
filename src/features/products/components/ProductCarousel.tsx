@@ -40,11 +40,11 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (!products) return null;
+  if (!products || products.length === 0) return null;
 
   return (
-    <section className='lg:container-max w-full max-w-full px-6 py-4 tablet:px-10 tablet:py-9 lg:w-full lg:px-18 lg:py-12'>
-      <h2 className='mb-5 text-center text-3xl text-[32px] font-bold text-gray-700 tablet:text-[40px] lg:text-[42px]'>
+    <section className='lg:container-max w-full max-w-full px-6 py-8 tablet:p-10 lg:w-full lg:p-18'>
+      <h2 className='mb-5 text-center text-3xl text-[32px] font-bold text-gray-700 tablet:mb-8 tablet:text-[40px] lg:text-[42px]'>
         {title}
       </h2>
 
@@ -56,6 +56,7 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
+          speed={800}
           className='transition-all duration-300 ease-in-out lg:!static'
           modules={[Navigation, FreeMode, Pagination, Autoplay]}
           slidesPerView={'auto'} // El ancho de cada slide lo define su CSS
@@ -76,12 +77,15 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
         >
           {isLoading
             ? products.map((_, index) => (
-                <SwiperSlide key={`skeleton-${index}`} className='max-w-64 flex-shrink-0 pr-4 tablet:pr-6'>
+                <SwiperSlide
+                  key={`skeleton-${index}`}
+                  className='max-w-64 flex-shrink-0 pr-4 tablet:max-w-[270px] tablet:pr-6'
+                >
                   <ProductCardSkeleton />
                 </SwiperSlide>
               ))
             : products.map((product) => (
-                <SwiperSlide key={product.id} className='max-w-64 flex-shrink-0 pr-4 tablet:pr-6'>
+                <SwiperSlide key={product.id} className='max-w-64 flex-shrink-0 pr-4 tablet:max-w-[270px] tablet:pr-6'>
                   <ProductCard>
                     <ProductCardImage src={product.thumbnailImage} alt={product.title} />
 
@@ -95,7 +99,7 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
                     </CardContent>
 
                     <CardFooter>
-                      <ProductCardAction href={product.linkUrl} />
+                      <ProductCardAction hasIcon href={product.linkUrl} />
                     </CardFooter>
                   </ProductCard>
                 </SwiperSlide>

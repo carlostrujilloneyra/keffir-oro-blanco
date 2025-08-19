@@ -119,19 +119,19 @@ export const Carousel = ({ data, initialScroll = 0 }: CarouselProps) => {
         <div className='flex justify-center gap-2 py-8 lg:py-6'>
           <div className='flex gap-3'>
             <button
-              className='relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50 tablet:h-12 tablet:w-12'
+              className='relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-light-50 disabled:opacity-50 tablet:h-12 tablet:w-12'
               onClick={scrollLeft}
               disabled={!canScrollLeft}
             >
-              <IconArrowNarrowLeft className='h-6 w-6 text-gray-500' />
+              <IconArrowNarrowLeft className='h-6 w-6 text-gray-600' />
             </button>
 
             <button
-              className='relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50 tablet:h-12 tablet:w-12'
+              className='relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-light-50 disabled:opacity-50 tablet:h-12 tablet:w-12'
               onClick={scrollRight}
               disabled={!canScrollRight}
             >
-              <IconArrowNarrowRight className='h-6 w-6 text-gray-500' />
+              <IconArrowNarrowRight className='h-6 w-6 text-gray-600' />
             </button>
           </div>
         </div>
@@ -219,17 +219,17 @@ export const Card = ({ card, index, layout = false }: { card: Card; index: numbe
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
-        className='relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 dark:bg-neutral-900 tablet:h-[32rem] tablet:w-[340px]'
+        className='relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl tablet:h-[32rem] tablet:w-[340px]'
         initial='rest'
         whileHover='hover'
         animate='rest'
       >
         <div className='pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent' />
 
-        <div className='relative z-40 p-6 tablet:px-8 tablet:py-6'>
+        <div className='relative z-40 p-5 tablet:px-8 tablet:py-6'>
           <motion.h4
             layoutId={layout ? `category-${card.category}` : undefined}
-            className='text-left text-sm font-semibold uppercase text-light-200 md:text-base'
+            className='h-6 max-w-max rounded-md bg-gray-800/30 px-2 py-1 text-sm font-semibold uppercase leading-[1.3] text-light-200 backdrop-blur-md tablet:h-7 md:text-base lg:px-3'
           >
             {card.category}
           </motion.h4>

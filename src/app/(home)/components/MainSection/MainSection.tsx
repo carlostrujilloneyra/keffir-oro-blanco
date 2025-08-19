@@ -12,8 +12,8 @@ import { CardContent, CardFooter } from '@/components/ui/Card/card';
 
 export const MainSection = () => {
   return (
-    <main className='container-max grid w-full gap-5 px-6 py-12 tablet:gap-4 tablet:px-10 lg:grid-cols-[1fr_.9fr] lg:px-18 lg:py-12'>
-      <div className='grid gap-5 tablet:gap-4 lg:grid-rows-[repeat(2,minmax(min-content,300px))] min-[1400px]:grid-rows-[repeat(2,minmax(min-content,240px))]'>
+    <main className='container-max grid w-full gap-5 px-6 py-8 tablet:gap-6 tablet:p-10 lg:grid-cols-[1fr_.9fr] lg:p-18'>
+      <div className='grid gap-5 tablet:gap-6 lg:grid-rows-[repeat(2,minmax(min-content,300px))] min-[1400px]:grid-rows-[repeat(2,minmax(min-content,240px))]'>
         <CategoryCard
           name='lacteos-section'
           title='Del campo a tu mesa: lácteos frescos y artesanales'
@@ -32,7 +32,7 @@ export const MainSection = () => {
       </div>
 
       {/* Contenedor para dos cards: Mantequilla, Chucrut */}
-      <div className='grid gap-5 tablet:grid-cols-2 tablet:gap-4'>
+      <div className='grid gap-5 tablet:grid-cols-2 tablet:gap-6'>
         {mainCollection.map((product) => {
           return (
             <ProductCard key={product.id}>

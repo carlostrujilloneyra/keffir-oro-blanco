@@ -1,11 +1,10 @@
-import { ProductCard, recommendedCollection } from '@/features/products';
-import { ProductCarousel } from '@/features/products/components/ProductCarousel';
+import { ProductCarousel, recommendedCollection } from '@/features/products';
 
 export default function ProductsPage() {
   return (
     <>
       <span>Página para productos</span>
-      {/* <ProductCard /> */}
+
       <ProductCarousel title='Productos recomendados' products={recommendedCollection} />
     </>
   );
