@@ -6,7 +6,7 @@ export const allProducts: Product[] = [
     id: 'prod_001',
     category: ProductCategory.OTROS,
     name: 'sal-de-maras',
-    title: 'Sal de Maras, Cusco',
+    title: 'Sal rosada de Maras, Cusco',
     isNew: true,
     linkUrl: '/productos/sal-de-maras',
     tags: ['new'],
@@ -17,7 +17,7 @@ export const allProducts: Product[] = [
 
     hasDifferentOrder: true,
 
-    shortDescription: 'Sal de Maras, Cusco',
+    shortDescription: 'Sal rosada de Maras, Cusco',
     longDescription: (
       <>
         Extraída a mano en las salineras milenarias de <strong>Maras</strong>, esta sal gourmet realza tus comidas y

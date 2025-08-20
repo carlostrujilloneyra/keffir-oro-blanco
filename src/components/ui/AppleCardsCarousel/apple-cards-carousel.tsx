@@ -116,7 +116,7 @@ export const Carousel = ({ data, initialScroll = 0 }: CarouselProps) => {
           </div>
         </div>
 
-        <div className='flex justify-center gap-2 py-8 lg:py-6'>
+        <div className='flex justify-center gap-2 py-8 lg:pb-6 lg:pt-8'>
           <div className='flex gap-3'>
             <button
               className='relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-light-50 disabled:opacity-50 tablet:h-12 tablet:w-12'

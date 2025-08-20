@@ -44,7 +44,7 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
 
   return (
     <section className='lg:container-max w-full max-w-full px-6 py-8 tablet:p-10 lg:w-full lg:p-18'>
-      <h2 className='mb-5 text-center text-3xl text-[32px] font-bold text-gray-700 tablet:mb-8 tablet:text-[40px] lg:text-[42px]'>
+      <h2 className='mb-5 text-center text-3xl text-[32px] font-bold text-gray-800 tablet:mb-8 tablet:text-[40px] lg:text-[42px]'>
         {title}
       </h2>
 

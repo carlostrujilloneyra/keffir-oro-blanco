@@ -2,9 +2,9 @@ import { NewProducts } from './components/NewProducts';
 
 export const NewProductsSection = () => {
   return (
-    <section className='container-max flex w-full flex-col gap-8 overflow-hidden bg-gradient-to-r from-black via-[#1e1e1e] to-[#282626] px-6 pb-0 pt-8 tablet:px-10 tablet:pb-1 tablet:pt-12 lg:w-[calc(100%-90px)] lg:rounded-2xl lg:px-14 lg:pb-12 lg:pt-18 super_desktop:w-[calc(100%-140px)]'>
-      <div className='lg:max-w-2xl'>
-        <h2 className='mb-2 text-[32px] font-semibold leading-[1.1] text-light-100 tablet:mb-1 tablet:text-[40px] lg:text-[42px]'>
+    <section className='container-max flex w-full flex-col gap-8 overflow-hidden bg-gradient-to-r from-black via-[#2d2d2d] to-[#282626] px-6 pb-0 pt-8 tablet:px-10 tablet:pb-1 tablet:pt-12 lg:w-[calc(100%-120px)] lg:rounded-2xl lg:px-16 lg:pb-6 lg:pt-16 super_desktop:w-[calc(100%-135px)]'>
+      <div className='lg:mb-2 lg:max-w-2xl'>
+        <h2 className='mb-2 text-[32px] font-semibold leading-[1.1] text-light-100 tablet:text-[40px] lg:text-[42px]'>
           ¡Recién Salidos del Taller!
         </h2>
 
