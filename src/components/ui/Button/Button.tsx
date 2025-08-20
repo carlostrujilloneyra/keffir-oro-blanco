@@ -6,7 +6,7 @@ import { Slot } from '@radix-ui/react-slot';
 type ActionButton = 'info' | 'promocional' | 'submit';
 
 const themeClass = {
-  primary: 'bg-primary text-gray-100 hover:bg-primary-hover',
+  primary: 'bg-primary text-light-50 hover:bg-primary-hover',
   secondary: 'bg-[#f55947] text-[#F5F5F5]',
   promotional: 'bg-green-500 text-white',
 } as const;

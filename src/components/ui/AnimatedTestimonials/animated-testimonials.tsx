@@ -4,6 +4,9 @@ import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react';
 import { motion, AnimatePresence } from 'motion/react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { Button } from '../Button/Button';
+import Link from 'next/link';
+import { ExternalLink } from 'lucide-react';
 
 interface Testimonial {
   quote: string;
@@ -42,11 +45,12 @@ export const AnimatedTestimonials = ({
   const randomRotateY = () => {
     return Math.floor(Math.random() * 21) - 10;
   };
+
   return (
-    <div className='mx-auto max-w-sm px-4 py-16 antialiased md:max-w-4xl md:px-8 lg:px-12'>
-      <div className='relative grid grid-cols-1 gap-12 md:grid-cols-2 lg:gap-28'>
-        <div>
-          <div className='relative h-[450px] w-full'>
+    <div className='mx-auto px-4 pt-9 antialiased tablet:px-8 lg:px-12'>
+      <div className='relative grid grid-cols-1 gap-7 min-[900px]:grid-cols-2 lg:gap-9'>
+        <div className='flex justify-center'>
+          <div className='relative h-[400px] w-80 lg:h-[480px] lg:w-[360px]'>
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
@@ -61,7 +65,7 @@ export const AnimatedTestimonials = ({
                     opacity: isActive(index) ? 1 : 0.7,
                     scale: isActive(index) ? 1 : 0.95,
                     z: isActive(index) ? 0 : -100,
-                    rotate: isActive(index) ? 0 : randomRotateY(),
+
                     zIndex: isActive(index) ? 40 : testimonials.length + 2 - index,
                     y: isActive(index) ? [0, -80, 0] : 0,
                   }}
@@ -91,7 +95,7 @@ export const AnimatedTestimonials = ({
           </div>
         </div>
 
-        <div className='flex flex-col justify-between py-4'>
+        <div className='flex flex-col justify-center gap-6 tablet:gap-8'>
           <motion.div
             key={active}
             initial={{
@@ -111,7 +115,9 @@ export const AnimatedTestimonials = ({
               ease: 'easeInOut',
             }}
           >
-            <h3 className='mb-1 text-[28px] font-bold text-gray-700 tablet:text-[32px]'>{testimonials[active].name}</h3>
+            <h3 className='text-[28px] font-bold text-gray-700 tablet:text-[32px] lg:mb-2 lg:text-4xl'>
+              {testimonials[active].name}
+            </h3>
 
             <motion.p className='text-justify text-sm leading-[1.4] text-gray-600 lg:text-[15px]'>
               {testimonials[active].quote.split(' ').map((word, index) => (
@@ -140,20 +146,29 @@ export const AnimatedTestimonials = ({
             </motion.p>
           </motion.div>
 
-          <div className='flex gap-4 pt-12'>
-            <button
-              onClick={handlePrev}
-              className='group/button flex h-8 w-8 items-center justify-center rounded-full bg-gray-800'
-            >
-              <IconArrowLeft className='h-5 w-5 text-light-200 transition-transform duration-300 group-hover/button:rotate-12' />
-            </button>
+          <div className='flex items-center justify-between'>
+            <Button asChild theme='primary'>
+              <Link className='flex max-w-max items-center gap-2 px-7 py-3 uppercase' href={''} target='_blank'>
+                <span>Ver tiktok</span>
+                <ExternalLink className='h-4 w-4' />
+              </Link>
+            </Button>
 
-            <button
-              onClick={handleNext}
-              className='group/button flex h-8 w-8 items-center justify-center rounded-full bg-gray-800'
-            >
-              <IconArrowRight className='h-5 w-5 text-light-200 transition-transform duration-300 group-hover/button:-rotate-12' />
-            </button>
+            <div className='order-5 flex gap-4'>
+              <button
+                onClick={handlePrev}
+                className='group/button flex h-8 w-8 items-center justify-center rounded-full bg-gray-800'
+              >
+                <IconArrowLeft className='h-5 w-5 text-light-200 transition-transform duration-300' />
+              </button>
+
+              <button
+                onClick={handleNext}
+                className='group/button flex h-8 w-8 items-center justify-center rounded-full bg-gray-800'
+              >
+                <IconArrowRight className='h-5 w-5 text-light-200 transition-transform duration-300' />
+              </button>
+            </div>
           </div>
         </div>
       </div>
