@@ -43,11 +43,7 @@ export const NewProducts = () => {
               )}
             </FeatureSectionImage>
 
-            <FeatureSectionInformation
-              className={cn(
-                'rounded-3xl bg-gray-800/30 px-6 py-8 text-center backdrop-blur-md tablet:px-8 tablet:py-6 lg:text-left',
-              )}
-            >
+            <FeatureSectionInformation className='rounded-3xl bg-gray-800/30 px-6 py-8 text-center backdrop-blur-md tablet:px-8 tablet:py-6 lg:text-left'>
               <FeatureSectionTitle className='uppercase text-light-100' isNew={product.isNew}>
                 {product.title}
               </FeatureSectionTitle>

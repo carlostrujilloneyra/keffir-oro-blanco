@@ -35,7 +35,7 @@ export const allProducts: Product[] = [
 
   {
     id: 'prod_002',
-    category: ProductCategory.TRADICIONALES,
+    category: ProductCategory.OTROS,
     name: 'manteca-de-cerdo',
     title: 'Manteca de Cerdo Artesanal',
     isNew: false,
@@ -65,7 +65,7 @@ export const allProducts: Product[] = [
 
   {
     id: 'prod_003',
-    category: ProductCategory.PROBIOTICOS,
+    category: ProductCategory.FERMENTOS,
     name: 'vinage-de-manzana',
     title: 'Vinagre de Manzana',
     isNew: true,
@@ -155,7 +155,7 @@ export const allProducts: Product[] = [
 
   {
     id: 'prod_006',
-    category: ProductCategory.KEFIR_FRUTADO,
+    category: ProductCategory.KEFIR,
     name: 'kefir-arandanos',
     title: 'Kéfir de Leche con Arándanos',
     isNew: false,
@@ -185,7 +185,7 @@ export const allProducts: Product[] = [
 
   {
     id: 'prod_007',
-    category: ProductCategory.KEFIR_FRUTADO,
+    category: ProductCategory.KEFIR,
     name: 'kefir-fresa',
     title: 'Kéfir de Leche con Fresa',
     isNew: false,
@@ -217,7 +217,7 @@ export const allProducts: Product[] = [
 
   {
     id: 'prod_008',
-    category: ProductCategory.KEFIR_FRUTADO,
+    category: ProductCategory.KEFIR,
     name: 'kefir-chocolate',
     title: 'Kefir de Leche con Chocolate',
     isNew: true,
@@ -274,7 +274,7 @@ export const allProducts: Product[] = [
 
   {
     id: 'prod_010',
-    category: ProductCategory.LACTEOS,
+    category: ProductCategory.LACTEOS_ARTESANALES,
     name: 'mantequilla-artesanal',
     title: 'Mantequilla Artesanal',
     isNew: false,
@@ -312,7 +312,7 @@ export const allProducts: Product[] = [
 
   {
     id: 'prod_011',
-    category: ProductCategory.LACTEOS,
+    category: ProductCategory.LACTEOS_ARTESANALES,
     name: 'queso-cuajo-cabra',
     title: 'Queso con Cuajo de Cabra',
     isNew: false,
@@ -340,7 +340,7 @@ export const allProducts: Product[] = [
 
   {
     id: 'prod_012',
-    category: ProductCategory.PROBIOTICOS,
+    category: ProductCategory.KEFIR,
     name: 'kefir-de-agua',
     title: 'Kéfir de Agua',
     isNew: false,
@@ -371,7 +371,7 @@ export const allProducts: Product[] = [
 
   {
     id: 'prod_013',
-    category: ProductCategory.PROBIOTICOS,
+    category: ProductCategory.FERMENTOS,
     name: 'chucrut-morado',
     title: 'Chucrut Morado Fermentado',
     isNew: false,

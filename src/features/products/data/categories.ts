@@ -1,36 +1,35 @@
 export enum ProductCategory {
-  LACTEOS = 'lacteos',
-  PROBIOTICOS = 'probioticos',
   KEFIR = 'kefir',
-  KEFIR_FRUTADO = 'kefir-frutado',
-  TRADICIONALES = 'tradicionales',
+  LACTEOS_ARTESANALES = 'lacteos-artesanales',
+  FERMENTOS = 'probioticos',
   OTROS = 'otros',
 }
 
 export const categoryDetails = {
-  [ProductCategory.LACTEOS]: {
-    title: 'Lácteos',
-    slug: 'lacteos',
-  },
-  [ProductCategory.PROBIOTICOS]: {
-    title: 'Probióticos',
-    slug: 'probioticos',
-  },
   [ProductCategory.KEFIR]: {
     title: 'Kéfir',
     slug: 'kefir',
+    description: 'Descripción por completar para los kéfires',
+    imageUrl: '',
   },
-  [ProductCategory.KEFIR_FRUTADO]: {
-    title: 'Kéfir Frutado',
-    slug: 'kefir-frutado',
+  [ProductCategory.LACTEOS_ARTESANALES]: {
+    title: 'Lácteos Artesanales',
+    slug: 'lacteos-artesanales',
+    description: 'Descripción para completar para los lácteos',
+    imageUrl: '',
   },
-  [ProductCategory.TRADICIONALES]: {
-    title: 'Tradicionales',
-    slug: 'tradicionales',
+
+  [ProductCategory.FERMENTOS]: {
+    title: 'Fermentos',
+    slug: 'fermentos',
+    description: 'Descripción para completar para los fermentos',
+    imageUrl: '',
   },
 
   [ProductCategory.OTROS]: {
     title: 'Otros productos',
     slug: 'otros',
+    description: 'Descripción para completar para otros productos',
+    imageUrl: '',
   },
 };
