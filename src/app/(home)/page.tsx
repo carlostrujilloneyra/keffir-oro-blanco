@@ -1,6 +1,7 @@
 import { Categories } from '@/components/sections/Categories/Categories';
 import { BestSellingProducts, HeroCarousel, MainSection, NewProductsSection } from './components';
 import { TestimonialsSection } from '@/features/testimonials';
+import { FaqSection } from '@/features/faqs';
 
 export default function HomePage() {
   return (
@@ -11,6 +12,7 @@ export default function HomePage() {
       <BestSellingProducts />
       <NewProductsSection />
       <TestimonialsSection />
+      <FaqSection />
     </>
   );
 }

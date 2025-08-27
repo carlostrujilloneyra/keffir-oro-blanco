@@ -27,6 +27,7 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', '@next/eslint-plugin-next'], // Incluir el plugin de TypeScript
   rules: {
     'no-unused-vars': 'off', // Desactivar la regla base
+    'react/prop-types': 'off',
     '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: 'wo' }], // Usar la regla de TypeScript
     'no-mixed-spaces-and-tabs': 'error',
     'no-useless-escape': 'off',
