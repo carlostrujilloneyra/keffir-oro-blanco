@@ -16,17 +16,17 @@ export const MainSection = () => {
       <div className='grid gap-5 tablet:gap-6 lg:grid-rows-[repeat(2,minmax(min-content,300px))] min-[1400px]:grid-rows-[repeat(2,minmax(min-content,240px))]'>
         <CategoryCard
           name='lacteos-section'
-          title='Del campo a tu mesa: lácteos frescos y artesanales'
+          title='Descubre si el Kéfir es para ti'
           linkUrl='/categorias/lacteos'
-          imageSrc='/assets/images/content/products/kefir-de-leche/background.webp'
+          imageSrc='/assets/images/content/products/kefir-de-leche/section-background.webp'
           imageAlt='Productos lácteos artesanales'
         />
 
         <CategoryCard
           name='kefir-section'
-          title='Descubre si el Kéfir es para ti'
+          title='Del campo a tu mesa: lácteos frescos y artesanales'
           linkUrl='/categorias/kefir'
-          imageSrc='/assets/images/categories/kefires.webp'
+          imageSrc='/assets/images/content/products/mantequilla-artesanal/section-background.webp'
           imageAlt='Variedad de kéfires frutados'
         />
       </div>

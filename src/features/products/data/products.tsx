@@ -304,7 +304,6 @@ export const allProducts: Product[] = [
     ),
 
     presentations: [
-      { id: 'mantequilla-200g', name: '200 g' },
       { id: 'mantequilla-250g', name: '250 g' },
       { id: 'mantequilla-500g', name: '500 g' },
     ],
