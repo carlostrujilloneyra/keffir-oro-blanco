@@ -64,6 +64,6 @@
 /* 3. Definiciones de Componentes Personalizados */
 @layer components {
   .container-max {
-    @apply mx-auto max-w-[1500px];
+    @apply mx-auto max-w-[1450px];
   }
 }

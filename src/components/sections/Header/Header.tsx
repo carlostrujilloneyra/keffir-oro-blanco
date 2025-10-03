@@ -2,6 +2,7 @@ import { MainHamburger } from './components/MainHamburger';
 import { Button } from '@/components/ui/Button/Button';
 import { NavBar } from './components/NavBar/NavBar';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const Header = () => {
   return (
@@ -23,8 +24,8 @@ export const Header = () => {
       <NavBar />
 
       {/* Botón de Más información que te manda al wspp de Oro Blanco - SN */}
-      <Button theme='primary' type='button'>
-        Más información
+      <Button asChild className='lg:px-6 lg:py-4' theme='primary' type='button'>
+        <Link href={''}>Contáctanos</Link>
       </Button>
     </header>
   );

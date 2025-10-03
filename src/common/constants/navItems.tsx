@@ -12,7 +12,7 @@ import {
   StrawberryIcon,
 } from '@/components/ui/icons';
 
-export type NavSlug = 'lacteos' | 'kefir-frutado' | 'probioticos' | 'tradicionales' | 'otros';
+export type NavSlug = 'lacteos' | 'probioticos' | 'tradicionales';
 
 interface NavItem {
   label: string;
@@ -44,13 +44,6 @@ export const NAV_ITEMS: NavItem[] = [
   },
 
   {
-    label: 'Kéfir Frutado',
-    href: '/categorias/kefir-frutado', // variedades de kefir frutado
-    slug: 'kefir-frutado',
-    hasSubMenu: true,
-  },
-
-  {
     label: 'Tradicionales',
     href: '/categorias/tradicionales', // manteca de cerdo, mermelada
     slug: 'tradicionales',
@@ -69,7 +62,7 @@ export const SUB_MENUS_ITEMS: Partial<Record<NavSlug, SubMenuItem[]>> = {
     },
 
     {
-      label: 'Queso con cuajo de cabra',
+      label: 'Queso de cabara con cuajo natural',
       href: '/categorias/lacteos#queso',
       description:
         'Queso artesanal hecho con cuajo natural de cabra. Textura cremosa, sin aditivos ni conservantes. Ideal para ensaladas, pastas o disfrutar solo.',
@@ -88,15 +81,23 @@ export const SUB_MENUS_ITEMS: Partial<Record<NavSlug, SubMenuItem[]>> = {
   probioticos: [
     {
       label: 'Kéfir de leche (vaca o cabra)',
-      href: '/categorias/kefir-frutado#fresa',
+      href: '/categorias/kefir-natural',
       description:
         'Kéfir de leche de vaca o cabra. Probiótico natural, cremoso y lleno de beneficios para tu salud intestinal. 100% artesanal, sin aditivos',
       icon: <CowIcon className='h-6 w-6' />,
     },
 
     {
+      label: 'Kéfir de Leche de Sabores',
+      href: '/categorias/kefir-frutado',
+      description:
+        'La cremosidad del kéfir con un toque de sabor. Elige entre fresa, arándanos, aguaymanto y chocolate.',
+      icon: <ChocolateIcon className='h-6 w-6' />,
+    },
+
+    {
       label: 'Kéfir de agua',
-      href: '/categorias/kefir-frutado#maracuya',
+      href: '/categorias/kefir-de-agua',
       description:
         'Refrescante y probiótico natural, fermentado con granos de kéfir para fortalecer tu digestión e inmunidad. Sin conservantes, lleno de beneficios y con un toque burbujeante.',
       icon: <KefirAguaIcon className='h-6 w-6' />,
@@ -108,32 +109,6 @@ export const SUB_MENUS_ITEMS: Partial<Record<NavSlug, SubMenuItem[]>> = {
       description:
         'Bebida ancestral fermentada con té y cultivos vivos. Refrescante, burbujeante y llena de probióticos que nutren tu digestión y elevan tu bienestar de forma natural.',
       icon: <KombuchaIcon className='h-6 w-6' />,
-    },
-  ],
-
-  'kefir-frutado': [
-    {
-      label: 'Kéfir de leche de vaca/cabra - fresa',
-      href: '',
-      description:
-        'Suave y cremoso, fermentado con fresas frescas recolectadas a mano. Un toque dulce y natural que despierta tus sentidos y nutre tu microbiota con cada sorbo.',
-      icon: <StrawberryIcon className='h-6 w-6' />,
-    },
-
-    {
-      label: 'Kéfir de leche de vaca/cabra - arándanos',
-      href: '',
-      description:
-        'Concentrado en antioxidantes: arándanos jugosos que potencian tu salud intestinal de forma natural.',
-      icon: <BlueberryIcon className='h-6 w-6' />,
-    },
-
-    {
-      label: 'Kéfir de leche de vaca/cabra - chocolate',
-      href: '',
-      description:
-        'La fusión perfecta de 100% cacao intenso y probióticos vivos. Cada botella ofrece un placer indulgente que mejora tu estado de ánimo y cuida tu flora intestinal de manera natural.',
-      icon: <ChocolateIcon className='h-6 w-6' />,
     },
   ],
 

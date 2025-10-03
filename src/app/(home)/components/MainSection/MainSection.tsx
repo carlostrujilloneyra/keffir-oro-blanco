@@ -23,10 +23,10 @@ export const MainSection = () => {
         />
 
         <CategoryCard
-          name='kefir-section'
-          title='Del campo a tu mesa: lácteos frescos y artesanales'
+          name='manteca-section'
+          title='Sabor y tradición: Manteca de Cerdo Artesanal'
           linkUrl='/categorias/kefir'
-          imageSrc='/assets/images/content/products/mantequilla-artesanal/section-background.webp'
+          imageSrc='/assets/images/content/products/manteca-de-cerdo/section-background.webp'
           imageAlt='Variedad de kéfires frutados'
         />
       </div>

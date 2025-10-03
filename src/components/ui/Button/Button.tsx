@@ -29,7 +29,7 @@ export const Button = ({ theme = 'primary', className, asChild = false, ...props
   const Comp = asChild ? Slot : 'button';
 
   const base =
-    'text-center font-semibold text-xs rounded-lg order-3 tablet:text-sm transition-all duration-300 ease-in-out tablet:text-[13px]';
+    'text-center font-semibold text-xs rounded-lg order-3 tablet:text-sm transition-all duration-300 ease-in-out tablet:text-[13px] uppercase';
 
   return <Comp className={cn(base, themeClass[theme], className)} {...props} />;
 };

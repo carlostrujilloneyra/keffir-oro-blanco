@@ -1,8 +1,7 @@
 export enum ProductCategory {
   LACTEOS_ARTESANALES = 'lacteos-artesanales',
-  KEFIR = 'kefir',
-  FERMENTOS = 'probioticos',
-  OTROS = 'otros',
+  PROBIOTICOS = 'probioticos',
+  TRADICIONALES = 'otros',
 }
 
 export const categoryDetails = {
@@ -13,23 +12,16 @@ export const categoryDetails = {
     imageUrl: '',
   },
 
-  [ProductCategory.KEFIR]: {
-    title: 'Kéfir',
-    slug: 'kefir',
-    description: 'Descripción por completar para los kéfires',
-    imageUrl: '',
-  },
-
-  [ProductCategory.FERMENTOS]: {
-    title: 'Fermentos',
-    slug: 'fermentos',
+  [ProductCategory.PROBIOTICOS]: {
+    title: 'Probioticos',
+    slug: 'probioticos',
     description: 'Descripción para completar para los fermentos',
     imageUrl: '',
   },
 
-  [ProductCategory.OTROS]: {
-    title: 'Otros productos',
-    slug: 'otros',
+  [ProductCategory.TRADICIONALES]: {
+    title: 'Tradicionales',
+    slug: 'tradicionales',
     description: 'Descripción para completar para otros productos',
     imageUrl: '',
   },
