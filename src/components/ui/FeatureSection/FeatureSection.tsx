@@ -24,7 +24,7 @@ const FeatureSectionContent = ({ className, ...props }: React.HTMLAttributes<HTM
     <div
       {...props}
       className={cn(
-        'grid justify-items-center overflow-hidden rounded-lg lg:grid-cols-2 lg:grid-rows-1',
+        'grid h-full justify-items-center overflow-hidden rounded-lg lg:grid-cols-2 lg:grid-rows-1',
         styles.bgGradient,
         className,
       )}

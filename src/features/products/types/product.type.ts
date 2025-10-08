@@ -19,7 +19,7 @@ export interface Product {
   title: string;
   isNew?: boolean;
   linkUrl: string;
-  tags?: ('new' | 'best-seller' | 'recommended' | 'main-product')[];
+  tags?: ('new' | 'best-seller' | 'recommended' | 'main-product' | 'discover')[];
   hasDifferentOrder?: boolean;
   presentations?: ProductVariant[];
 

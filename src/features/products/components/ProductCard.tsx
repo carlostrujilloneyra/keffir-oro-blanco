@@ -24,8 +24,8 @@ const imageVariants = cva(
   {
     variants: {
       size: {
-        default: 'h-[160px] w-[160px] tablet:h-[190px] tablet:w-[190px]',
-        large: 'h-[230px] w-[230px] tablet:h-[270px] tablet:w-[270px] min-[1400px]:w-[240px] min-[1400px]:h-[270px]',
+        default: 'h-[180px] w-[180px] tablet:h-[220px] tablet:w-[220px]',
+        large: 'h-[240px] w-[240px] tablet:h-[270px] tablet:w-[270px] min-[1400px]:h-[260px]',
       },
     },
     defaultVariants: {
@@ -112,9 +112,9 @@ const ProductCardFeatureList = ({ features, className }: ProductCardFeatureListP
   if (!features) return null;
 
   return (
-    <ul className={cn('mb-2 mt-3 space-y-2 text-[13.5px] text-gray-600', className)}>
+    <ul className={cn('my-2 space-y-2 text-[13.5px] text-gray-600', className)}>
       {features.map((feature, idx) => (
-        <li className='flex items-center gap-2 leading-[1.1]' key={idx}>
+        <li className='flex items-center gap-2 leading-[1.2]' key={idx}>
           <div>
             <CircleCheck className='h-4 w-4' />
           </div>
@@ -153,7 +153,7 @@ const ProductCardAction = ({ href, hasIcon }: ProductCardActionProps) => (
     theme='primary'
   >
     <Link href={href}>
-      Ver Producto
+      Ver más
       {hasIcon && <MoveRight className='h-5 w-5' />}
     </Link>
   </Button>

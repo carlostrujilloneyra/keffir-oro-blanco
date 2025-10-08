@@ -52,11 +52,11 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
         <Swiper
           loop
           autoplay={{
-            delay: 2500,
+            delay: 2300,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
-          speed={800}
+          speed={750}
           className='transition-all duration-300 ease-in-out lg:!static'
           modules={[Navigation, FreeMode, Pagination, Autoplay]}
           slidesPerView={'auto'} // El ancho de cada slide lo define su CSS

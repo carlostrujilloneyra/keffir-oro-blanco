@@ -7,7 +7,7 @@ export const bestSellersCollection = allProducts.filter((p) => p.tags?.includes(
 
 export const recommendedCollection = allProducts.filter((p) => p.tags?.includes('recommended'));
 
-export const mainCollection = allProducts.filter((p) => p.tags?.includes('main-product'));
+export const promotedCollection = allProducts.filter((p) => p.tags?.includes('discover'));
 
 // También puedes exportar colecciones más complejas
 export const featuredHomeProducts = allProducts.slice(0, 4);

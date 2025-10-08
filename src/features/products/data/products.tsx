@@ -8,7 +8,7 @@ export const allProducts: Product[] = [
     name: 'sal-de-maras',
     title: 'Sal rosada de Maras, Cusco',
     isNew: true,
-    linkUrl: '/productos/sal-de-maras',
+    linkUrl: '/products/sal-de-maras',
     tags: ['new'],
 
     bgImageSrc: '/assets/images/content/products/sal-de-maras/bg-card.webp',
@@ -39,11 +39,18 @@ export const allProducts: Product[] = [
     name: 'manteca-de-cerdo',
     title: 'Manteca de Cerdo Artesanal',
     isNew: false,
-    linkUrl: '/productos/manteca-de-cerdo',
+    linkUrl: '/products/manteca-de-cerdo',
     tags: ['recommended', 'best-seller'],
 
     featuredImage: '/assets/images/content/products/manteca-de-cerdo/featured.webp',
     thumbnailImage: '/assets/images/content/products/manteca-de-cerdo/thumbnail.webp',
+    galleryImages: [
+      '/assets/images/content/products/manteca-de-cerdo/gallery-01.webp',
+      '/assets/images/content/products/manteca-de-cerdo/gallery-03.webp',
+      '/assets/images/content/products/manteca-de-cerdo/gallery-02.webp',
+      '/assets/images/content/products/manteca-de-cerdo/gallery-04.webp',
+      '/assets/images/content/products/manteca-de-cerdo/gallery-05.webp',
+    ],
 
     hasDifferentOrder: true,
 
@@ -69,12 +76,19 @@ export const allProducts: Product[] = [
     name: 'vinage-de-manzana',
     title: 'Vinagre de Manzana',
     isNew: true,
-    linkUrl: '/productos/vinagre-de-manzana',
+    linkUrl: '/products/vinagre-de-manzana',
     tags: ['new'],
 
     bgImageSrc: '/assets/images/content/products/vinagre-de-manzana/bg-card.webp',
     featuredImage: '/assets/images/content/products/vinagre-de-manzana/featured.webp',
     thumbnailImage: '/assets/images/content/products/vinagre-de-manzana/thumbnail.webp',
+    galleryImages: [
+      '/assets/images/content/products/vinagre-de-manzana/gallery-01.webp',
+      '/assets/images/content/products/vinagre-de-manzana/gallery-03.webp',
+      '/assets/images/content/products/vinagre-de-manzana/gallery-02.webp',
+      '/assets/images/content/products/vinagre-de-manzana/gallery-04.webp',
+      '/assets/images/content/products/vinagre-de-manzana/gallery-05.webp',
+    ],
 
     hasDifferentOrder: false,
 
@@ -96,13 +110,20 @@ export const allProducts: Product[] = [
     id: 'prod_004',
     category: ProductCategory.PROBIOTICOS,
     name: 'kefir-leche-vaca',
-    title: 'Kéfir de Leche de Vaca',
+    title: 'Kéfir de leche de Vaca',
     isNew: false,
-    linkUrl: '/productos/kefir-leche-vaca',
+    linkUrl: '/products/kefir-leche-vaca',
     tags: ['recommended', 'best-seller'],
 
-    featuredImage: '/assets/images/content/products/kefir-de-leche-vaca/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-de-leche-vaca/thumbnail.webp',
+    featuredImage: '/assets/images/content/products/kefir-de-leche/featured.webp',
+    thumbnailImage: '/assets/images/content/products/kefir-de-leche/thumbnail.webp',
+    galleryImages: [
+      '/assets/images/content/products/kefir-de-leche/gallery-01.webp',
+      '/assets/images/content/products/kefir-de-leche/gallery-03.webp',
+      '/assets/images/content/products/kefir-de-leche/gallery-02.webp',
+      '/assets/images/content/products/kefir-de-leche/gallery-04.webp',
+      '/assets/images/content/products/kefir-de-leche/gallery-05.webp',
+    ],
 
     hasDifferentOrder: false,
 
@@ -129,7 +150,7 @@ export const allProducts: Product[] = [
     name: 'kefir-leche-cabra',
     title: 'Kéfir de Leche de Cabra',
     isNew: false,
-    linkUrl: '/productos/kefir-leche-cabra',
+    linkUrl: '/products/kefir-leche-cabra',
     tags: ['recommended', 'best-seller'],
 
     featuredImage: '/assets/images/content/products/kefir-de-leche-cabra/thumbnail.webp',
@@ -157,9 +178,9 @@ export const allProducts: Product[] = [
     id: 'prod_006',
     category: ProductCategory.PROBIOTICOS,
     name: 'kefir-arandanos',
-    title: 'Kéfir de Leche con Arándanos',
+    title: 'Kéfir de leche de vaca con Arándanos',
     isNew: false,
-    linkUrl: '/productos/kefir-arandanos',
+    linkUrl: '/products/kefir-arandanos',
     tags: ['best-seller', 'recommended'],
 
     featuredImage: '/assets/images/content/products/kefir-frutado-arandanos/featured.webp',
@@ -187,9 +208,9 @@ export const allProducts: Product[] = [
     id: 'prod_007',
     category: ProductCategory.PROBIOTICOS,
     name: 'kefir-fresa',
-    title: 'Kéfir de Leche con Fresa',
+    title: 'Kéfir de leche de vaca con Fresa',
     isNew: false,
-    linkUrl: '/productos/kefir-fresa',
+    linkUrl: '/products/kefir-fresa',
     tags: ['best-seller', 'recommended'],
 
     featuredImage: '/assets/images/content/products/kefir-frutado-fresa/featured.webp',
@@ -219,9 +240,9 @@ export const allProducts: Product[] = [
     id: 'prod_008',
     category: ProductCategory.PROBIOTICOS,
     name: 'kefir-chocolate',
-    title: 'Kefir de Leche con Chocolate',
+    title: 'Kefir de leche de vaca con Chocolate',
     isNew: true,
-    linkUrl: '/productos/kefir-chocolate',
+    linkUrl: '/products/kefir-chocolate',
     tags: ['new'],
 
     bgImageSrc: '/assets/images/content/products/kefir-de-chocolate/bg-card.webp',
@@ -252,7 +273,7 @@ export const allProducts: Product[] = [
     name: 'mermelada-quito-quito',
     title: 'Mermelada de Quito Quito',
     isNew: true,
-    linkUrl: '/productos/mermelada-quito-quito',
+    linkUrl: '/products/mermelada-quito-quito',
 
     bgImageSrc: '/assets/images/content/products/kefir-de-chocolate/bg-card.webp',
     featuredImage: '/assets/images/content/products/kefir-de-chocolate/featured.webp',
@@ -278,7 +299,7 @@ export const allProducts: Product[] = [
     name: 'mantequilla-artesanal',
     title: 'Mantequilla Artesanal',
     isNew: false,
-    linkUrl: '/productos/mantequilla-artesanal',
+    linkUrl: '/products/mantequilla-artesanal',
     tags: ['best-seller', 'main-product'],
 
     featuredImage: '/assets/images/content/products/mantequilla-artesanal/featured.webp',
@@ -313,14 +334,20 @@ export const allProducts: Product[] = [
     id: 'prod_011',
     category: ProductCategory.LACTEOS_ARTESANALES,
     name: 'queso-cuajo-cabra',
-    title: 'Queso con Cuajo de Cabra',
+    title: 'Queso de Cabra con cuajo natural',
     isNew: false,
-    linkUrl: '/productos/queso-cuajo-cabra',
+    linkUrl: '/products/queso-cuajo-cabra',
     tags: ['recommended', 'best-seller'],
 
-    bgImageSrc: '/assets/images/content/products/queso-natural/bg-card.webp',
     featuredImage: '/assets/images/content/products/queso-natural/featured.webp',
-    thumbnailImage: '/assets/images/content/products/sal-de-maras/thumbnail.webp',
+    thumbnailImage: '/assets/images/content/products/queso-natural/thumbnail.webp',
+    galleryImages: [
+      '/assets/images/content/products/queso-natural/gallery-01.webp',
+      '/assets/images/content/products/queso-natural/gallery-03.webp',
+      '/assets/images/content/products/queso-natural/gallery-02.webp',
+      '/assets/images/content/products/queso-natural/gallery-04.webp',
+      '/assets/images/content/products/queso-natural/gallery-05.webp',
+    ],
 
     hasDifferentOrder: false,
 
@@ -343,7 +370,7 @@ export const allProducts: Product[] = [
     name: 'kefir-de-agua',
     title: 'Kéfir de Agua',
     isNew: false,
-    linkUrl: '/productos/kefir-de-agua',
+    linkUrl: '/products/kefir-de-agua',
     tags: ['recommended', 'best-seller'],
 
     bgImageSrc: '/assets/images/content/products/kefir-de-agua/bg-card.webp',
@@ -374,18 +401,25 @@ export const allProducts: Product[] = [
     name: 'chucrut-morado',
     title: 'Chucrut Morado Fermentado',
     isNew: false,
-    linkUrl: '/productos/chucrut-morado',
-    tags: ['recommended', 'main-product'],
+    linkUrl: '/products/chucrut-morado',
+    tags: ['recommended', 'discover'],
 
-    featuredImage: '/assets/images/content/products/vinagre-de-manzana/thumbnail.webp',
-    thumbnailImage: '/assets/images/content/products/vinagre-de-manzana/thumbnail.webp',
+    featuredImage: '/assets/images/content/products/chucrut-morado/featured.webp',
+    thumbnailImage: '/assets/images/content/products/chucrut-morado/thumbnail.png',
+    galleryImages: [
+      '/assets/images/content/products/chucrut-morado/gallery-01.webp',
+      '/assets/images/content/products/chucrut-morado/gallery-03.webp',
+      '/assets/images/content/products/chucrut-morado/gallery-02.webp',
+      '/assets/images/content/products/chucrut-morado/gallery-04.webp',
+      '/assets/images/content/products/chucrut-morado/gallery-05.webp',
+    ],
 
     hasDifferentOrder: false,
 
     shortDescription: 'Un superalimento crujiente para tu salud intestinal.',
     benefits: [
-      'Rico en probióticos y vitaminas.',
-      'Potente fuente de antioxidantes.',
+      'Mejora tu digestión y equilibra tu flora intestinal.',
+      'Potente fuente de antioxidantes que protegen tus células.',
       'Sabor suave y ligeramente dulce.',
       'Fortalece el sistema inmunológico.',
     ],
@@ -403,5 +437,45 @@ export const allProducts: Product[] = [
       { id: 'chucrut-170g', name: '170 g' },
       { id: 'chucrut-360g', name: '360 g' },
     ],
+  },
+
+  {
+    id: 'prod_014',
+    category: ProductCategory.PROBIOTICOS,
+    name: 'crema-de-kefir-aceituna',
+    title: 'Crema de Kéfir con aceitunas',
+    isNew: false,
+    linkUrl: '/products/crema-de-kefir-aceituna',
+    tags: ['recommended', 'discover'],
+
+    featuredImage: '/assets/images/content/products/crema-de-kefir-aceitunas/featured.webp',
+    thumbnailImage: '/assets/images/content/products/crema-de-kefir-aceitunas/thumbnail.png',
+    galleryImages: [
+      '/assets/images/content/products/crema-de-kefir-aceitunas/gallery-01.webp',
+      '/assets/images/content/products/crema-de-kefir-aceitunas/gallery-03.webp',
+      '/assets/images/content/products/crema-de-kefir-aceitunas/gallery-02.webp',
+      '/assets/images/content/products/crema-de-kefir-aceitunas/gallery-04.webp',
+      '/assets/images/content/products/crema-de-kefir-aceitunas/gallery-05.webp',
+    ],
+
+    hasDifferentOrder: false,
+
+    shortDescription: 'Un superalimento crujiente para tu salud intestinal.',
+    benefits: [
+      'Cremosidad irresistible con el auténtico sabor de las aceitunas.',
+      'Textura cremosa y suave, perfecta para untar o acompañar tus comidas.',
+      '100% natural, sin conservantes. Ideal para quienes buscan una opción nutritiva y sabrosa para el día a día.',
+    ],
+
+    longDescription: (
+      <>
+        Nuestra Crema de Kéfir con Aceitunas combina la suavidad del kéfir con el sabor único de las aceitunas. Es una
+        crema natural, fermentada y llena de vida, ideal para untar en pan, acompañar comidas o usar como dip saludable.
+        El kéfir aporta probióticos que cuidan tu digestión, mientras que las aceitunas añaden grasas buenas y un toque
+        mediterráneo delicioso.
+      </>
+    ),
+
+    presentations: [{ id: 'chucrut-170g', name: '250 g' }],
   },
 ];

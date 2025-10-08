@@ -10,7 +10,7 @@ export {
   bestSellersCollection,
   recommendedCollection,
   featuredHomeProducts,
-  mainCollection,
+  promotedCollection,
 } from './data/collections';
 
 // --- 3. Exportamos los TIPOS ---

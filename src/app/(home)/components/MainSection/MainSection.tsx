@@ -1,4 +1,4 @@
-import { mainCollection, ProductCard } from '@/features/products';
+import { promotedCollection, ProductCard } from '@/features/products';
 import { CategoryCard } from './components/CategoryCard';
 import {
   ProductCardAction,
@@ -13,7 +13,7 @@ import { CardContent, CardFooter } from '@/components/ui/Card/card';
 export const MainSection = () => {
   return (
     <main className='container-max grid w-full gap-5 px-6 py-8 tablet:gap-6 tablet:p-10 lg:grid-cols-[1fr_.9fr] lg:p-18'>
-      <div className='grid gap-5 tablet:gap-6 lg:grid-rows-[repeat(2,minmax(min-content,300px))] min-[1400px]:grid-rows-[repeat(2,minmax(min-content,240px))]'>
+      <div className='grid gap-5 tablet:gap-6 min-[1400px]:grid-rows-[repeat(2,minmax(min-content,270px))]'>
         <CategoryCard
           name='lacteos-section'
           title='Descubre si el Kéfir es para ti'
@@ -31,9 +31,9 @@ export const MainSection = () => {
         />
       </div>
 
-      {/* Contenedor para dos cards: Mantequilla, Chucrut */}
+      {/* Contenedor para dos cards: Crema de kéfir, Chucrut */}
       <div className='grid gap-5 tablet:grid-cols-2 tablet:gap-6'>
-        {mainCollection.map((product) => {
+        {promotedCollection.map((product) => {
           return (
             <ProductCard key={product.id}>
               <ProductCardImage src={product.thumbnailImage} alt={product.title} size={'large'} />
@@ -51,7 +51,7 @@ export const MainSection = () => {
               </CardContent>
 
               <CardFooter>
-                <ProductCardAction hasIcon href={product.linkUrl} />
+                <ProductCardAction href={product.linkUrl} />
               </CardFooter>
             </ProductCard>
           );
