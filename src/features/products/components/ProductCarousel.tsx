@@ -85,7 +85,7 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
                 </SwiperSlide>
               ))
             : products.map((product) => (
-                <SwiperSlide key={product.id} className='max-w-64 flex-shrink-0 pr-4 tablet:max-w-[270px] tablet:pr-6'>
+                <SwiperSlide key={product.id} className='max-w-6 flex-shrink-0 pr-4 tablet:max-w-[270px] tablet:pr-6'>
                   <ProductCard>
                     <ProductCardImage src={product.thumbnailImage} alt={product.title} />
 

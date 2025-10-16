@@ -24,8 +24,8 @@ const imageVariants = cva(
   {
     variants: {
       size: {
-        default: 'h-[180px] w-[180px] tablet:h-[220px] tablet:w-[220px]',
-        large: 'h-[240px] w-[240px] tablet:h-[270px] tablet:w-[270px] min-[1400px]:h-[260px]',
+        default: 'h-[190px] w-[190px] tablet:h-[220px] tablet:w-[220px]',
+        large: 'h-[270px] w-[270px] tablet:h-[270px] tablet:w-[270px] min-[1400px]:h-[260px]',
       },
     },
     defaultVariants: {

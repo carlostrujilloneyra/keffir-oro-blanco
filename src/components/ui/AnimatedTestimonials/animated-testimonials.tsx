@@ -43,7 +43,7 @@ export const AnimatedTestimonials = ({
   }, [autoplay]);
 
   const randomRotateY = () => {
-    return Math.floor(Math.random() * 21) - 10;
+    return Math.floor(Math.random() * 21) - 4;
   };
 
   return (
@@ -119,7 +119,7 @@ export const AnimatedTestimonials = ({
               {testimonials[active].name}
             </h3>
 
-            <motion.p className='text-justify text-sm leading-[1.4] text-gray-600 lg:text-[15px]'>
+            <motion.p className='text-justify text-sm leading-[1.4] text-gray-600 lg:text-[16px]'>
               {testimonials[active].quote.split(' ').map((word, index) => (
                 <motion.span
                   key={index}
