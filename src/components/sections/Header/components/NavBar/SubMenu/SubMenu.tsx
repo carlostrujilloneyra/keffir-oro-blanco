@@ -1,4 +1,4 @@
-import { NavSlug, SUB_MENUS_ITEMS } from '@/common/constants/navItems';
+import { NavSlug, SUB_MENUS_ITEMS } from '@/constants/navItems';
 import Link from 'next/link';
 
 interface Props {

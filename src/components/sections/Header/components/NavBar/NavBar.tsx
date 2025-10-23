@@ -3,7 +3,7 @@
 import { SubMenu } from './SubMenu/SubMenu';
 
 import Link from 'next/link';
-import { NAV_ITEMS, SUB_MENUS_ITEMS } from '@/common/constants/navItems';
+import { NAV_ITEMS, SUB_MENUS_ITEMS } from '@/constants/navItems';
 import styles from './styles.module.css';
 import { cn } from '@/lib/utils';
 
