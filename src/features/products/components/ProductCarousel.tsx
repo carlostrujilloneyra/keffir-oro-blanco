@@ -11,7 +11,7 @@ import {
   ProductCardAction,
   ProductCardCategory,
   ProductCardImage,
-  ProductCardPresentations,
+  ProductCardPrice,
   ProductCardTitle,
 } from './ProductCard';
 import 'swiper/css';
@@ -44,7 +44,7 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
 
   return (
     <section className='lg:container-max w-full max-w-full px-6 py-8 tablet:p-10 lg:w-full lg:p-18'>
-      <h2 className='mb-5 text-center text-3xl text-[32px] font-bold text-gray-800 tablet:mb-8 tablet:text-[40px] lg:text-[42px]'>
+      <h2 className='mb-6 text-center text-3xl text-[32px] font-bold text-gray-800 tablet:mb-8 tablet:text-[40px] lg:text-[42px]'>
         {title}
       </h2>
 
@@ -85,21 +85,19 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
                 </SwiperSlide>
               ))
             : products.map((product) => (
-                <SwiperSlide key={product.id} className='max-w-6 flex-shrink-0 pr-4 tablet:max-w-[270px] tablet:pr-6'>
+                <SwiperSlide key={product.id} className='max-w-64 flex-shrink-0 pr-4 tablet:max-w-[270px] tablet:pr-6'>
                   <ProductCard>
                     <ProductCardImage src={product.thumbnailImage} alt={product.title} />
 
                     <CardContent className='mb-3 flex flex-grow flex-col pt-3'>
                       <ProductCardCategory category={product.category} />
-                      <ProductCardTitle className='min-h-12' title={product.title} />
+                      <ProductCardTitle className='mb-1 min-h-12' title={product.title} />
 
-                      <div className='flex-grow'>
-                        <ProductCardPresentations presentations={product?.presentations} />
-                      </div>
+                      <ProductCardPrice price={product.price} />
                     </CardContent>
 
                     <CardFooter>
-                      <ProductCardAction hasIcon href={product.linkUrl} />
+                      <ProductCardAction hasIcon slug={product.slug} />
                     </CardFooter>
                   </ProductCard>
                 </SwiperSlide>

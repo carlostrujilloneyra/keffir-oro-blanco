@@ -1,12 +1,15 @@
 import { Product } from '../types/product.type';
 import { ProductCategory } from './categories';
+import { generateSlug } from '@/lib/generateSlug';
 
 export const allProducts: Product[] = [
   {
     id: 'prod_001',
     category: ProductCategory.TRADICIONALES,
     name: 'sal-de-maras',
+    slug: generateSlug('Sal rosada de Maras, Cusco'),
     title: 'Sal rosada de Maras, Cusco',
+    price: 19,
     isNew: true,
     linkUrl: '/products/sal-de-maras',
     tags: ['new'],
@@ -37,7 +40,9 @@ export const allProducts: Product[] = [
     id: 'prod_002',
     category: ProductCategory.TRADICIONALES,
     name: 'manteca-de-cerdo',
+    slug: generateSlug('Manteca de Cerdo Artesanal'),
     title: 'Manteca de Cerdo Artesanal',
+    price: 25.5,
     isNew: false,
     linkUrl: '/products/manteca-de-cerdo',
     tags: ['recommended', 'best-seller'],
@@ -74,7 +79,9 @@ export const allProducts: Product[] = [
     id: 'prod_003',
     category: ProductCategory.TRADICIONALES,
     name: 'vinage-de-manzana',
+    slug: generateSlug('Vinagre de Manzana'),
     title: 'Vinagre de Manzana',
+    price: 17,
     isNew: true,
     linkUrl: '/products/vinagre-de-manzana',
     tags: ['new'],
@@ -107,16 +114,18 @@ export const allProducts: Product[] = [
   },
 
   {
-    id: 'prod_004',
+    id: 'prod_005',
     category: ProductCategory.PROBIOTICOS,
     name: 'kefir-leche-vaca',
-    title: 'Kéfir de leche de Vaca',
+    slug: generateSlug('Kéfir de leche de Vaca 1 LT'),
+    title: 'Kéfir de leche de Vaca 1 LT',
+    price: 24,
     isNew: false,
-    linkUrl: '/products/kefir-leche-vaca',
+    linkUrl: '/products/kefir-leche-vaca-1LT',
     tags: ['recommended', 'best-seller'],
 
     featuredImage: '/assets/images/content/products/kefir-de-leche/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-de-leche/thumbnail.webp',
+    thumbnailImage: '/assets/images/content/products/kefir-de-leche/featured.webp',
     galleryImages: [
       '/assets/images/content/products/kefir-de-leche/gallery-01.webp',
       '/assets/images/content/products/kefir-de-leche/gallery-03.webp',
@@ -145,16 +154,52 @@ export const allProducts: Product[] = [
   },
 
   {
-    id: 'prod_005',
+    id: 'prod_006',
     category: ProductCategory.PROBIOTICOS,
-    name: 'kefir-leche-cabra',
-    title: 'Kéfir de Leche de Cabra',
+    name: 'kefir-leche-vaca',
+    slug: generateSlug('Kéfir de leche de Vaca 475ml'),
+    title: 'Kéfir de leche de Vaca 475ml',
+    price: 14.5,
     isNew: false,
-    linkUrl: '/products/kefir-leche-cabra',
+    linkUrl: '/products/kefir-leche-vaca-natural-475ml',
     tags: ['recommended', 'best-seller'],
 
-    featuredImage: '/assets/images/content/products/kefir-de-leche-cabra/thumbnail.webp',
-    thumbnailImage: '/assets/images/content/products/vinagre-de-cabra/thumbnail.webp',
+    featuredImage: '/assets/images/content/products/kefir-de-leche-475ml/featured.webp',
+    thumbnailImage: '/assets/images/content/products/kefir-de-leche-475ml/featured.webp',
+    galleryImages: ['/assets/images/content/products/kefir-de-leche/gallery-01.webp'],
+
+    hasDifferentOrder: false,
+
+    shortDescription: 'El clásico probiótico, cremoso y lleno de beneficios.',
+    longDescription: (
+      <>
+        El pilar del bienestar digestivo. Nuestro Kéfir de Leche de Vaca es un probiótico natural, cremoso y de sabor
+        suave, elaborado con <strong>leche fresca de pastoreo</strong>. Cada sorbo está lleno de millones de
+        microorganismos beneficiosos que trabajan para{' '}
+        <strong>fortalecer tu microbiota, mejorar tu digestión y reforzar tu sistema inmune</strong>. Es el punto de
+        partida perfecto para una vida más saludable.
+      </>
+    ),
+
+    presentations: [
+      { id: 'kefir-vaca-475', name: '475 ml', price: 13.0 },
+      { id: 'kefir-vaca-1l', name: '1 Litro', price: 23.0 },
+    ],
+  },
+
+  {
+    id: 'prod_007',
+    category: ProductCategory.PROBIOTICOS,
+    name: 'kefir-leche-cabra',
+    slug: generateSlug('Kéfir de Leche de Cabra 1 LT'),
+    title: 'Kéfir de Leche de Cabra 1 LT',
+    price: 25.5,
+    isNew: false,
+    linkUrl: '/products/kefir-leche-cabra-natural',
+    tags: ['recommended', 'best-seller'],
+
+    featuredImage: '/assets/images/content/products/kefir-de-leche-de-cabra/featured.webp',
+    thumbnailImage: '/assets/images/content/products/kefir-de-leche-de-cabra/featured.webp',
 
     hasDifferentOrder: false,
 
@@ -175,16 +220,18 @@ export const allProducts: Product[] = [
   },
 
   {
-    id: 'prod_006',
+    id: 'prod_008',
     category: ProductCategory.PROBIOTICOS,
-    name: 'kefir-arandanos',
-    title: 'Kéfir de leche de vaca con Arándanos',
+    name: 'kefir-con-arandanos',
+    slug: generateSlug('Kéfir de leche de vaca con Arándanos 475ml'),
+    title: 'Kéfir de leche de vaca con Arándanos 475ml',
+    price: 17,
     isNew: false,
-    linkUrl: '/products/kefir-arandanos',
+    linkUrl: '/products/kefir-con-arandanos',
     tags: ['best-seller', 'recommended'],
 
-    featuredImage: '/assets/images/content/products/kefir-frutado-arandanos/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-frutado-arandanos/thumbnail.webp',
+    featuredImage: '/assets/images/content/products/kefir-con-arandanos/featured.webp',
+    thumbnailImage: '/assets/images/content/products/kefir-con-arandanos/featured.webp',
 
     hasDifferentOrder: false,
 
@@ -198,23 +245,24 @@ export const allProducts: Product[] = [
     ),
 
     presentations: [
-      { id: 'kefir-arandanos-300', name: '300 ml', price: 10.0 },
       { id: 'kefir-arandanos-475', name: '475 ml', price: 15.0 },
       { id: 'kefir-arandanos-1l', name: '1 Litro', price: 27.0 },
     ],
   },
 
   {
-    id: 'prod_007',
+    id: 'prod_009',
     category: ProductCategory.PROBIOTICOS,
-    name: 'kefir-fresa',
-    title: 'Kéfir de leche de vaca con Fresa',
+    name: 'kefir-con-fresa',
+    slug: generateSlug('Kéfir de leche de vaca con Fresa 475ml'),
+    title: 'Kéfir de leche de vaca con Fresa 475ml',
+    price: 17,
     isNew: false,
-    linkUrl: '/products/kefir-fresa',
+    linkUrl: '/products/kefir-con-fresa',
     tags: ['best-seller', 'recommended'],
 
-    featuredImage: '/assets/images/content/products/kefir-frutado-fresa/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-frutado-fresa/thumbnail.webp',
+    featuredImage: '/assets/images/content/products/kefir-con-fresa/featured.webp',
+    thumbnailImage: '/assets/images/content/products/kefir-con-fresa/featured.webp',
 
     hasDifferentOrder: false,
 
@@ -230,24 +278,58 @@ export const allProducts: Product[] = [
     ),
 
     presentations: [
-      { id: 'kefir-arandanos-300', name: '300 ml', price: 10.0 },
       { id: 'kefir-arandanos-475', name: '475 ml', price: 15.0 },
       { id: 'kefir-arandanos-1l', name: '1 Litro', price: 27.0 },
     ],
   },
 
   {
-    id: 'prod_008',
+    id: 'prod_010',
+    category: ProductCategory.PROBIOTICOS,
+    name: 'kefir-con-aguaymanto',
+    slug: generateSlug('Kéfir de leche de vaca con Aguaymanto 475ml'),
+    title: 'Kéfir de leche de vaca con Aguaymanto 475ml',
+    price: 17,
+    isNew: false,
+    linkUrl: '/products/kefir-con-aguaymanto',
+    tags: ['recommended'],
+
+    featuredImage: '/assets/images/content/products/kefir-con-aguaymanto/featured.webp',
+    thumbnailImage: '/assets/images/content/products/kefir-con-aguaymanto/featured.webp',
+
+    hasDifferentOrder: false,
+
+    shortDescription: 'El sabor clásico que cuida de ti.',
+    longDescription: (
+      <>
+        Redescubre el sabor que te encanta, ahora en su versión más saludable y deliciosa. Hemos fusionado la increíble
+        cremosidad de nuestro kéfir de leche con la dulzura natural de <strong>fresas frescas y jugosas</strong>. Cada
+        sorbo es un balance perfecto que te transporta a un postre, pero con todos los beneficios de un superalimento
+        cargado de <strong>probióticos y vitamina C</strong> que cuida tu digestión, fortalece tus defensas y te llena
+        de energía.
+      </>
+    ),
+
+    presentations: [
+      { id: 'kefir-aguaymanto-475', name: '475 ml', price: 15.0 },
+      { id: 'kefir-aguaymanto-1l', name: '1 Litro', price: 27.0 },
+    ],
+  },
+
+  {
+    id: 'prod_011',
     category: ProductCategory.PROBIOTICOS,
     name: 'kefir-chocolate',
+    slug: generateSlug('Kefir de leche de vaca con Chocolate'),
     title: 'Kefir de leche de vaca con Chocolate',
+    price: 18,
     isNew: true,
     linkUrl: '/products/kefir-chocolate',
     tags: ['new'],
 
     bgImageSrc: '/assets/images/content/products/kefir-de-chocolate/bg-card.webp',
     featuredImage: '/assets/images/content/products/kefir-de-chocolate/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-de-chocolate/thumbnail.webp',
+    thumbnailImage: '/assets/images/content/products/kefir-de-chocolate/featured.webp',
 
     hasDifferentOrder: true,
 
@@ -293,7 +375,7 @@ export const allProducts: Product[] = [
     tags: ['new', 'recommended'],
   }, */
 
-  {
+  /*  {
     id: 'prod_010',
     category: ProductCategory.LACTEOS_ARTESANALES,
     name: 'mantequilla-artesanal',
@@ -329,8 +411,8 @@ export const allProducts: Product[] = [
       { id: 'mantequilla-500g', name: '500 g' },
     ],
   },
-
-  {
+ */
+  /*  {
     id: 'prod_011',
     category: ProductCategory.LACTEOS_ARTESANALES,
     name: 'queso-cuajo-cabra',
@@ -362,13 +444,15 @@ export const allProducts: Product[] = [
     ),
 
     presentations: [{ id: 'queso-500g', name: 'Diferentes pesos' }],
-  },
+  }, */
 
   {
     id: 'prod_012',
     category: ProductCategory.PROBIOTICOS,
     name: 'kefir-de-agua',
+    slug: generateSlug('Kéfir de Agua'),
     title: 'Kéfir de Agua',
+    price: 19,
     isNew: false,
     linkUrl: '/products/kefir-de-agua',
     tags: ['recommended', 'best-seller'],
@@ -399,7 +483,9 @@ export const allProducts: Product[] = [
     id: 'prod_013',
     category: ProductCategory.PROBIOTICOS,
     name: 'chucrut-morado',
+    slug: generateSlug('Chucrut Morado Fermentado'),
     title: 'Chucrut Morado Fermentado',
+    price: 14,
     isNew: false,
     linkUrl: '/products/chucrut-morado',
     tags: ['recommended', 'discover'],
@@ -443,7 +529,9 @@ export const allProducts: Product[] = [
     id: 'prod_014',
     category: ProductCategory.PROBIOTICOS,
     name: 'crema-de-kefir-aceituna',
+    slug: generateSlug('Crema de Kéfir con aceitunas'),
     title: 'Crema de Kéfir con aceitunas',
+    price: 15,
     isNew: false,
     linkUrl: '/products/crema-de-kefir-aceituna',
     tags: ['recommended', 'discover'],

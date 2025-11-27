@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react'; // React es necesario para React.ReactNode
+import React from 'react';
 import { Card, CardHeader, CardTitle } from '@/components/ui/Card/card';
 import { Button } from '@/components/ui/Button/Button';
 import { Badge } from '@/components/ui/Badge/badge';
@@ -10,6 +10,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
+import { formatPrice } from '@/lib/formatPrice';
+import { getProductUrl } from '@/lib/getProductUrl';
 import { CircleCheck, MoveRight } from 'lucide-react';
 
 // --- Definiciones de los Tipos para los Props ---
@@ -69,7 +71,7 @@ interface ProductCardFeatureListProps {
 }
 
 interface ProductCardActionProps {
-  href: string;
+  slug: string;
   hasIcon?: boolean;
 }
 
@@ -94,7 +96,7 @@ const ProductCardImage = ({ className, size, src, alt, ...props }: ProductCardIm
 
 const ProductCardCategory = ({ category }: ProductCardCategoryProps) => {
   return (
-    <p className='mb-1 text-xs font-bold uppercase tracking-wide text-gray-500 tablet:text-sm'>
+    <p className='mb-2 text-xs font-bold uppercase tracking-wide text-gray-500 tablet:text-sm'>
       {categoryDetails[category]?.title || 'Categoría'}
     </p>
   );
@@ -146,13 +148,25 @@ const ProductCardDescription = ({ description }: ProductCardDescriptionProps) =>
   return <p className='mt-1 text-justify text-sm leading-tight text-gray-600'>{description}</p>;
 };
 
-const ProductCardAction = ({ href, hasIcon }: ProductCardActionProps) => (
+const ProductCardPrice = ({
+  price,
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLSpanElement> & { price: number }) => {
+  return (
+    <span className={cn('text-base font-bold text-gray-600', className)} {...props}>
+      S/ {formatPrice(price)}
+    </span>
+  );
+};
+
+const ProductCardAction = ({ slug, hasIcon }: ProductCardActionProps) => (
   <Button
     className='flex w-full items-center justify-center gap-2 px-6 py-3 text-center uppercase'
     asChild
     theme='primary'
   >
-    <Link href={href}>
+    <Link href={getProductUrl(slug)}>
       Ver más
       {hasIcon && <MoveRight className='h-5 w-5' />}
     </Link>
@@ -167,5 +181,6 @@ export {
   ProductCardPresentations,
   ProductCardDescription,
   ProductCardFeatureList,
+  ProductCardPrice,
   ProductCardAction,
 };

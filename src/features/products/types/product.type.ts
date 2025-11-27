@@ -15,11 +15,31 @@ interface ProductVariant {
 export interface Product {
   id: string;
   category: ProductCategory;
-  name: string; // El slug
+  price: number;
+  name: string; // El slug (nombre URL-friendly)
+  slug: string; // Slug generado automáticamente
   title: string;
   isNew?: boolean;
   linkUrl: string;
-  tags?: ('new' | 'best-seller' | 'recommended' | 'main-product' | 'discover')[];
+  tags?: (
+    | 'new'
+    | 'best-seller'
+    | 'recommended'
+    | 'main-product'
+    | 'discover'
+    | 'fresh'
+    | 'probiotic'
+    | 'healthy'
+    | 'natural'
+    | 'organic'
+    | 'sugar-free'
+    | 'lactose-free'
+    | 'vegan'
+    | 'artisan'
+    | 'local'
+    | 'limited'
+    | 'seasonal'
+  )[];
   hasDifferentOrder?: boolean;
   presentations?: ProductVariant[];
 

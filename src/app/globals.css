@@ -66,4 +66,21 @@
   .container-max {
     @apply mx-auto max-w-[1450px];
   }
+
+  /* Estilos para la galería de productos */
+  .product-image-gallery .swiper-pagination {
+    bottom: 12px;
+  }
+
+  .product-image-gallery .swiper-pagination-bullet {
+    background: white;
+    opacity: 0.7;
+    width: 8px;
+    height: 8px;
+  }
+
+  .product-image-gallery .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: white;
+  }
 }
