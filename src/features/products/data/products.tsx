@@ -122,7 +122,7 @@ export const allProducts: Product[] = [
     price: 24,
     isNew: false,
     linkUrl: '/products/kefir-leche-vaca-1LT',
-    tags: ['recommended', 'best-seller'],
+    tags: ['probiotic', 'lactose-free', 'best-seller'],
 
     featuredImage: '/assets/images/content/products/kefir-de-leche/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-leche/featured.webp',
@@ -148,9 +148,20 @@ export const allProducts: Product[] = [
     ),
 
     presentations: [
-      { id: 'kefir-vaca-475', name: '475 ml', price: 13.0 },
-      { id: 'kefir-vaca-1l', name: '1 Litro', price: 23.0 },
+      { id: 'kefir-vaca-250', name: '250 ml', price: 9.9 },
+      { id: 'kefir-vaca-475', name: '475 ml', price: 14.0 },
+      { id: 'kefir-vaca-1l', name: '1 Litro', price: 24.0 },
     ],
+
+    benefits: [
+      'Refuerza la <strong>flora intestinal</strong> con bacterias buenas.',
+      'Mantiene tu sistema digestivo <strong>saludable</strong> y apoya el tránsito intestinal.',
+      'Refuerza el <strong>sistema inmunológico</strong> naturalmente.',
+      'Producto 100% natural, sin conservantes ni aditivos.',
+      'Apto para personas que tienen <strong>intolerancia a la lactosa</strong> debido a que el Kéfir cuenta con un % bajo de lactosa.',
+    ],
+
+    howToUse: 'Puedes combinarlo con frutas como.... agregando miel y algarrobina...',
   },
 
   {
@@ -162,7 +173,7 @@ export const allProducts: Product[] = [
     price: 14.5,
     isNew: false,
     linkUrl: '/products/kefir-leche-vaca-natural-475ml',
-    tags: ['recommended', 'best-seller'],
+    tags: ['probiotic', 'lactose-free'],
 
     featuredImage: '/assets/images/content/products/kefir-de-leche-475ml/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-leche-475ml/featured.webp',
@@ -182,9 +193,20 @@ export const allProducts: Product[] = [
     ),
 
     presentations: [
-      { id: 'kefir-vaca-475', name: '475 ml', price: 13.0 },
-      { id: 'kefir-vaca-1l', name: '1 Litro', price: 23.0 },
+      { id: 'kefir-vaca-250', name: '250 ml', price: 9.9 },
+      { id: 'kefir-vaca-475', name: '475 ml', price: 14.0 },
+      { id: 'kefir-vaca-1l', name: '1 Litro', price: 24.0 },
     ],
+
+    benefits: [
+      'Refuerza la <strong>flora intestinal</strong> con bacterias buenas.',
+      'Mantiene tu sistema digestivo <strong>saludable</strong> y apoya el tránsito intestinal.',
+      'Refuerza el <strong>sistema inmunológico</strong> naturalmente.',
+      'Producto 100% natural, sin conservantes ni aditivos.',
+      'Apto para personas que tienen <strong>intolerancia a la lactosa</strong> debido a que el Kéfir cuenta con un % bajo de lactosa.',
+    ],
+
+    howToUse: 'Puedes combinarlo con frutas como.... agregando miel y algarrobina...',
   },
 
   {
@@ -196,7 +218,7 @@ export const allProducts: Product[] = [
     price: 25.5,
     isNew: false,
     linkUrl: '/products/kefir-leche-cabra-natural',
-    tags: ['recommended', 'best-seller'],
+    tags: ['probiotic', 'lactose-free', 'best-seller'],
 
     featuredImage: '/assets/images/content/products/kefir-de-leche-de-cabra/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-leche-de-cabra/featured.webp',
@@ -214,9 +236,12 @@ export const allProducts: Product[] = [
     ),
 
     presentations: [
-      { id: 'kefir-cabra-475', name: '475 ml', price: 14.0 },
-      { id: 'kefir-cabra-1l', name: '1 Litro', price: 24.0 },
+      { id: 'kefir-cabra-250', name: '250 ml', price: 15.0 },
+      { id: 'kefir-cabra-475', name: '475 ml', price: 15.0 },
+      { id: 'kefir-cabra-1l', name: '1 Litro', price: 25 },
     ],
+
+    howToUse: 'Puedes combinarlo con frutas como.... agregando miel y algarrobina...',
   },
 
   {

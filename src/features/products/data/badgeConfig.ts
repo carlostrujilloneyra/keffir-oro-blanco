@@ -24,7 +24,7 @@ export type BadgeType =
 
 export interface BadgeConfig {
   label: string;
-  variant?: 'default' | 'secondary' | 'destructive' | 'outline' | 'stone';
+  variant?: 'default' | 'secondary' | 'destructive' | 'outline' | 'stone' | 'lactose-free' | 'probiotic';
   description?: string;
 }
 
@@ -64,7 +64,7 @@ export const badgeConfig: Record<BadgeType, BadgeConfig> = {
   },
   probiotic: {
     label: 'Alto en Probióticos',
-    variant: 'secondary', // Azul
+    variant: 'probiotic', // Azul
     description: 'Rico en probióticos beneficiosos',
   },
   healthy: {
@@ -88,8 +88,8 @@ export const badgeConfig: Record<BadgeType, BadgeConfig> = {
     description: 'Sin azúcares añadidos',
   },
   'lactose-free': {
-    label: 'Sin Lactosa',
-    variant: 'outline', // Púrpura suave
+    label: 'Fácil digestión',
+    variant: 'secondary',
     description: 'Apto para intolerantes a la lactosa',
   },
   vegan: {

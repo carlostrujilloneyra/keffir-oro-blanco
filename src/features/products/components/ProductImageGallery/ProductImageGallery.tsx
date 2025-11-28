@@ -9,6 +9,7 @@ import type { Swiper as SwiperType } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import './ProductImageGallery.css';
 
 interface ProductImageGalleryProps {
   images: string[];
@@ -40,21 +41,21 @@ export function ProductImageGallery({ images, productTitle }: ProductImageGaller
   };
 
   return (
-    <div className='flex flex-col gap-6'>
+    <div className='flex flex-col gap-8 tablet:gap-12'>
       {/* Carrusel principal */}
       <div className='relative'>
         <Swiper
           loop
           autoplay={{
-            delay: 3000,
+            delay: 3200,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
-          speed={500}
+          speed={520}
           modules={[Navigation, FreeMode, Pagination, Autoplay]}
           pagination={{
             clickable: true,
-            dynamicBullets: true,
+            dynamicBullets: false,
           }}
           onSwiper={setSwiperInstance}
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
@@ -81,7 +82,7 @@ export function ProductImageGallery({ images, productTitle }: ProductImageGaller
         <button
           type='button'
           onClick={() => swiperInstance?.slidePrev()}
-          className='absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-primary shadow-lg transition-all hover:scale-110 hover:bg-primary-hover active:scale-95'
+          className='absolute left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-primary shadow-lg transition-all hover:scale-110 hover:bg-primary-hover active:scale-95 tablet:h-10 tablet:w-10'
           aria-label='Imagen anterior'
         >
           <ChevronLeft className='h-6 w-6 text-gray-100' />
@@ -90,7 +91,7 @@ export function ProductImageGallery({ images, productTitle }: ProductImageGaller
         <button
           type='button'
           onClick={() => swiperInstance?.slideNext()}
-          className='absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-primary shadow-lg transition-all hover:scale-110 hover:bg-primary-hover active:scale-95'
+          className='absolute right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-primary shadow-lg transition-all hover:scale-110 hover:bg-primary-hover active:scale-95 tablet:h-10 tablet:w-10'
           aria-label='Imagen siguiente'
         >
           <ChevronRight className='h-6 w-6 text-gray-100' />

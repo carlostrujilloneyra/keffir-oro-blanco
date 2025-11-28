@@ -10,7 +10,7 @@ const badgeVariants = cva(
       variant: {
         // Variantes base
         default: 'border-transparent bg-orange-500 text-white shadow-md hover:bg-orange-600',
-        secondary: 'border-transparent bg-emerald-100 text-emerald-800 hover:bg-emerald-200',
+        secondary: 'border-transparent bg-emerald-200 text-emerald-800 hover:bg-emerald-200',
         destructive: 'border-transparent bg-red-500 text-white shadow-md hover:bg-red-600',
         outline: 'border-emerald-300 text-emerald-700 hover:bg-emerald-50',
         stone: 'border-transparent bg-stone-100 text-stone-700 hover:bg-stone-200',
@@ -22,7 +22,7 @@ const badgeVariants = cva(
 
         // Badges de salud - Colores frescos y naturales
         fresh: 'border-transparent bg-cyan-500 text-white shadow-md hover:bg-cyan-600',
-        probiotic: 'border-transparent bg-blue-600 text-white shadow-md hover:bg-blue-700',
+        probiotic: 'border-transparent bg-sky-400 text-white hover:bg-sky-500',
         healthy: 'border-transparent bg-green-600 text-white shadow-md hover:bg-green-700',
 
         // Badges de naturaleza - Verdes vibrantes
@@ -36,7 +36,7 @@ const badgeVariants = cva(
 
         // Badges especiales - Colores suaves
         'sugar-free': 'border-transparent bg-pink-100 text-pink-800 hover:bg-pink-200',
-        'lactose-free': 'border-transparent bg-purple-100 text-purple-800 hover:bg-purple-200',
+        'lactose-free': 'border-transparent bg-emerald-300 text-emerald-900 hover:bg-emerald-400',
         limited: 'border-transparent bg-red-600 text-white shadow-md hover:bg-red-700',
         seasonal: 'border-transparent bg-orange-100 text-orange-800 hover:bg-orange-200',
       },

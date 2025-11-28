@@ -1,4 +1,5 @@
 import { ProductCategory } from '@/features/products';
+import { BadgeType } from '../data/badgeConfig';
 
 export interface ProductTab {
   id: string;
@@ -21,25 +22,7 @@ export interface Product {
   title: string;
   isNew?: boolean;
   linkUrl: string;
-  tags?: (
-    | 'new'
-    | 'best-seller'
-    | 'recommended'
-    | 'main-product'
-    | 'discover'
-    | 'fresh'
-    | 'probiotic'
-    | 'healthy'
-    | 'natural'
-    | 'organic'
-    | 'sugar-free'
-    | 'lactose-free'
-    | 'vegan'
-    | 'artisan'
-    | 'local'
-    | 'limited'
-    | 'seasonal'
-  )[];
+  tags?: BadgeType[];
   hasDifferentOrder?: boolean;
   presentations?: ProductVariant[];
 
@@ -53,6 +36,7 @@ export interface Product {
   shortDescription: string; // Para tarjetas
   longDescription?: React.ReactNode; // El JSX para la vista de detalle
   benefits?: string[];
+  howToUse?: string;
 
   details?: ProductTab[];
 }
