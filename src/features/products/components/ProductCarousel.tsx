@@ -43,7 +43,7 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
   if (!products || products.length === 0) return null;
 
   return (
-    <section className='lg:container-max w-full max-w-full px-6 py-8 tablet:p-10 lg:w-full lg:p-18'>
+    <div className='w-full'>
       <h2 className='mb-6 text-center text-3xl text-[32px] font-bold text-gray-800 tablet:mb-8 tablet:text-[40px] lg:text-[42px]'>
         {title}
       </h2>
@@ -52,11 +52,11 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
         <Swiper
           loop
           autoplay={{
-            delay: 2300,
+            delay: 1200,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
-          speed={750}
+          speed={550}
           className='transition-all duration-300 ease-in-out lg:!static'
           modules={[Navigation, FreeMode, Pagination, Autoplay]}
           slidesPerView={'auto'} // El ancho de cada slide lo define su CSS
@@ -106,6 +106,6 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
           <SwiperNavButtons />
         </Swiper>
       </div>
-    </section>
+    </div>
   );
 };

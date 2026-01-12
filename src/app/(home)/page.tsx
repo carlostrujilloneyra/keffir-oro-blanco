@@ -1,4 +1,3 @@
-import { Categories } from '@/components/sections/Categories/Categories';
 import { BestSellingProducts, HeroCarousel, MainSection, NewProductsSection } from './components';
 import { TestimonialsSection } from '@/features/testimonials';
 import { FaqSection } from '@/features/faqs';
@@ -11,7 +10,9 @@ export default function HomePage() {
       <MainSection />
       {/* <Categories /> */}
       <CategoriesSection />
+
       <BestSellingProducts />
+
       <NewProductsSection />
       <TestimonialsSection />
       <FaqSection />

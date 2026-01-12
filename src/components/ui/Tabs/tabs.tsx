@@ -40,7 +40,7 @@ export const Tabs = ({
     <>
       <div
         className={cn(
-          'no-visible-scrollbar relative flex w-full max-w-full flex-row items-center justify-start overflow-auto [perspective:1000px] sm:overflow-visible',
+          'no-visible-scrollbar relative flex w-full max-w-full flex-row items-center justify-start overflow-auto px-6 [perspective:1000px] tablet:px-10 sm:overflow-visible lg:px-0',
           containerClassName,
         )}
       >
@@ -75,7 +75,7 @@ export const Tabs = ({
         active={active}
         key={active.value}
         hovering={hovering}
-        className={cn('mt-14', contentClassName)}
+        className={cn('mt-9', contentClassName)}
       />
     </>
   );

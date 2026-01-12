@@ -63,8 +63,8 @@ const FeatureSectionTitle = ({ isNew = false, className, children, ...props }: F
 };
 FeatureSectionTitle.displayName = 'FeatureSectionTitle';
 
-const FeatureSectionDescription = ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
-  <p className={cn('text-sm leading-[1.5] lg:text-[16px] lg:leading-[1.3]', className)} {...props} />
+const FeatureSectionDescription = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+  <div className={cn('text-sm leading-[1.5] lg:text-[16px] lg:leading-[1.3]', className)} {...props} />
 );
 FeatureSectionDescription.displayName = 'FeatureSectionDescription';
 

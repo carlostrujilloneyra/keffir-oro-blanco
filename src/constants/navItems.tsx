@@ -1,7 +1,5 @@
 import {
   BlueberryIcon,
-  ButterIcon,
-  CheeseIcon,
   ChocolateIcon,
   CowIcon,
   FruitIcon,
@@ -12,7 +10,7 @@ import {
   StrawberryIcon,
 } from '@/components/ui/icons';
 
-export type NavSlug = 'lacteos' | 'probioticos' | 'tradicionales';
+export type NavSlug = 'probioticos' | 'tradicionales';
 
 interface NavItem {
   label: string;
@@ -30,13 +28,6 @@ interface SubMenuItem {
 
 export const NAV_ITEMS: NavItem[] = [
   {
-    label: 'Lácteos',
-    href: '/categorias/lacteos', //leche, mantequilla, queso
-    slug: 'lacteos',
-    hasSubMenu: true,
-  },
-
-  {
     label: 'Probióticos',
     href: '/categorias/probioticos', //kefir de agua, kefir de leche, kombucha
     slug: 'probioticos',
@@ -52,32 +43,6 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const SUB_MENUS_ITEMS: Partial<Record<NavSlug, SubMenuItem[]>> = {
-  lacteos: [
-    {
-      label: 'Leche de Cabra',
-      href: '/categorias/lacteos#leche',
-      description:
-        'Nutritiva y suave para la digestión. Ideal para personas con intolerancia a la lactosa. 100% natural y fresca, de cabras de libre pastoreo de Canta.',
-      icon: <GoatIcon className='h-6 w-6' />,
-    },
-
-    {
-      label: 'Queso de cabara con cuajo natural',
-      href: '/categorias/lacteos#queso',
-      description:
-        'Queso artesanal hecho con cuajo natural de cabra. Textura cremosa, sin aditivos ni conservantes. Ideal para ensaladas, pastas o disfrutar solo.',
-      icon: <CheeseIcon className='h-6 w-6' />,
-    },
-
-    {
-      label: 'Mantequilla artesanal',
-      href: '/categorias/lacteos#mantequilla',
-      description:
-        'Mantequilla 100% natural, elaborada de forma artesanal con nata de leche fresca. Sin aditivos ni conservantes, con un sabor auténtico y una textura cremosa.',
-      icon: <ButterIcon className='h-6 w-6' />,
-    },
-  ],
-
   probioticos: [
     {
       label: 'Kéfir de leche (vaca o cabra)',

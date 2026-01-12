@@ -36,7 +36,8 @@ export interface Product {
   shortDescription: string; // Para tarjetas
   longDescription?: React.ReactNode; // El JSX para la vista de detalle
   benefits?: string[];
-  howToUse?: string;
+  howToUse?: React.ReactNode; // Cambiar de string a React.ReactNode
+  shelfLife?: string; // Tiempo de vida del producto
 
   details?: ProductTab[];
 }

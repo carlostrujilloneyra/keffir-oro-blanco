@@ -122,7 +122,7 @@ export const allProducts: Product[] = [
     price: 24,
     isNew: false,
     linkUrl: '/products/kefir-leche-vaca-1LT',
-    tags: ['probiotic', 'lactose-free', 'best-seller'],
+    tags: ['probiotic', 'best-seller'],
 
     featuredImage: '/assets/images/content/products/kefir-de-leche/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-leche/featured.webp',
@@ -139,11 +139,16 @@ export const allProducts: Product[] = [
     shortDescription: 'El clásico probiótico, cremoso y lleno de beneficios.',
     longDescription: (
       <>
-        El pilar del bienestar digestivo. Nuestro Kéfir de Leche de Vaca es un probiótico natural, cremoso y de sabor
-        suave, elaborado con <strong>leche fresca de pastoreo</strong>. Cada sorbo está lleno de millones de
-        microorganismos beneficiosos que trabajan para{' '}
-        <strong>fortalecer tu microbiota, mejorar tu digestión y reforzar tu sistema inmune</strong>. Es el punto de
-        partida perfecto para una vida más saludable.
+        <p>
+          Bebida fermentada, cremosa y de sabor suave, elaborada con leche fresca de <strong>vaca de establo</strong>.
+          Gracias a su proceso de fermentación natural, contiene cultivos vivos propios del <strong>kéfir</strong>, que
+          le aportan su textura característica y un sabor ligeramente ácido.
+        </p>
+
+        <p>
+          Es una opción ideal para quienes buscan incorporar alimentos fermentados de manera habitual en su alimentación
+          diaria.
+        </p>
       </>
     ),
 
@@ -156,12 +161,22 @@ export const allProducts: Product[] = [
     benefits: [
       'Refuerza la <strong>flora intestinal</strong> con bacterias buenas.',
       'Mantiene tu sistema digestivo <strong>saludable</strong> y apoya el tránsito intestinal.',
-      'Refuerza el <strong>sistema inmunológico</strong> naturalmente.',
+      'Apoya tu <strong>sistema inmunológico</strong> naturalmente.',
       'Producto 100% natural, sin conservantes ni aditivos.',
       'Apto para personas que tienen <strong>intolerancia a la lactosa</strong> debido a que el Kéfir cuenta con un % bajo de lactosa.',
     ],
 
-    howToUse: 'Puedes combinarlo con frutas como.... agregando miel y algarrobina...',
+    howToUse: (
+      <>
+        <p>Listo para consumir. Puede tomarse solo o acompañar frutas, cereales y otras preparaciones frías.</p>
+        <p>
+          Para personas que lo consumen por <strong>primera vez</strong>, se sugiere iniciar con porciones pequeñas{' '}
+          <strong>(shots de 30 ml)</strong> e incrementar gradualmente según tolerancia.
+        </p>
+      </>
+    ),
+
+    shelfLife: '15 días',
   },
 
   {
@@ -206,7 +221,7 @@ export const allProducts: Product[] = [
       'Apto para personas que tienen <strong>intolerancia a la lactosa</strong> debido a que el Kéfir cuenta con un % bajo de lactosa.',
     ],
 
-    howToUse: 'Puedes combinarlo con frutas como.... agregando miel y algarrobina...',
+    howToUse: <>Puedes combinarlo con frutas como.... agregando miel y algarrobina...</>,
   },
 
   {
@@ -228,20 +243,52 @@ export const allProducts: Product[] = [
     shortDescription: 'Nutritivo, suave y más fácil de digerir.',
     longDescription: (
       <>
-        Para quienes buscan una opción aún más nutritiva y suave. El Kéfir de Leche de Cabra es conocido por ser{' '}
-        <strong>más fácil de digerir</strong> que el de vaca, gracias a sus moléculas de grasa más pequeñas. Disfruta de
-        todos los beneficios probióticos con un <strong>perfil nutricional superior</strong> y un sabor ligeramente más
-        ácido y característico.
+        <p>
+          Bebida fermentada elaborada con leche de cabra de <strong>libre pastoreo</strong>, de sabor característico y
+          ligeramente ácido. Gracias a su proceso de fermentación natural, contiene cultivos vivos propios del kéfir y
+          se presenta como una alternativa al kéfir de leche de vaca.
+        </p>
+
+        <p>
+          {' '}
+          La leche de cabra contiene principalmente <strong>caseína A2</strong> y, al tratarse de un producto
+          fermentado, es preferida por personas que buscan opciones elaboradas con{' '}
+          <strong>menor contenido de lactosa</strong>, así como sabores y texturas diferentes.
+        </p>
       </>
     ),
 
     presentations: [
-      { id: 'kefir-cabra-250', name: '250 ml', price: 15.0 },
+      { id: 'kefir-cabra-250', name: '250 ml', price: 9.9 },
       { id: 'kefir-cabra-475', name: '475 ml', price: 15.0 },
-      { id: 'kefir-cabra-1l', name: '1 Litro', price: 25 },
+      { id: 'kefir-cabra-1l', name: '1 Litro', price: 25.5 },
     ],
 
-    howToUse: 'Puedes combinarlo con frutas como.... agregando miel y algarrobina...',
+    benefits: [
+      'Aporta <strong>cultivos vivos</strong> propios del kéfir.',
+      'Producto fermentado de sabor característico y textura ligera.',
+      'Elaborado con <strong>leche de cabra</strong>, una alternativa al kéfir de leche de vaca.',
+      'Producto 100% natural, sin conservantes ni aditivos.',
+      'Durante la fermentación, el contenido de <strong>lactosa se reduce de forma natural</strong>.',
+    ],
+
+    howToUse: (
+      <>
+        <p>
+          Listo para consumir. Puede tomarse solo o acompañar{' '}
+          <strong>frutas, cereales y otras preparaciones frías</strong>. Para personas que lo consumen por primera vez,
+          se sugiere iniciar con <strong>porciones pequeñas (shots de 30 ml)</strong> e incrementar gradualmente según
+          tolerancia.
+        </p>
+
+        <p>
+          En el caso de niños a partir de los 2 años, puede incorporarse en pequeñas cantidades, por ejemplo 5
+          cucharaditas, como parte de su alimentación habitual.
+        </p>
+      </>
+    ),
+
+    shelfLife: '15 días',
   },
 
   {
@@ -374,103 +421,6 @@ export const allProducts: Product[] = [
     ],
   },
 
-  /* {
-    id: 'prod_009',
-    category: ProductCategory.TRADICIONALES,
-    name: 'mermelada-quito-quito',
-    title: 'Mermelada de Quito Quito',
-    isNew: true,
-    linkUrl: '/products/mermelada-quito-quito',
-
-    bgImageSrc: '/assets/images/content/products/kefir-de-chocolate/bg-card.webp',
-    featuredImage: '/assets/images/content/products/kefir-de-chocolate/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-de-chocolate/thumbnail.webp',
-
-    hasDifferentOrder: true,
-
-    shortDescription: 'Sal de Maras, Cusco',
-    longDescription: (
-      <>
-        Descubre la explosión de sabor andino con nuestra mermelada de Quito Quito, elaborada con frutos frescos traídos
-        directamente de <strong>Oxapampa</strong>. Su textura suave y su dulzura natural la hacen perfecta para
-        acompañar tus desayunos o snacks. Disponible con <strong>azúcar o stevia</strong>, para que elijas cómo
-        disfrutarla.
-      </>
-    ),
-    tags: ['new', 'recommended'],
-  }, */
-
-  /*  {
-    id: 'prod_010',
-    category: ProductCategory.LACTEOS_ARTESANALES,
-    name: 'mantequilla-artesanal',
-    title: 'Mantequilla Artesanal',
-    isNew: false,
-    linkUrl: '/products/mantequilla-artesanal',
-    tags: ['best-seller', 'main-product'],
-
-    featuredImage: '/assets/images/content/products/mantequilla-artesanal/featured.webp',
-    thumbnailImage: '/assets/images/content/products/mantequilla-artesanal/thumbnail.webp',
-
-    hasDifferentOrder: false,
-
-    shortDescription: 'Sabor y cremosidad 100% natural, sin aditivos.',
-    benefits: [
-      '100% Natural, sin conservantes.',
-      'Elaborada con pura nata de leche.',
-      'Sabor y cremosidad incomparables.',
-      'Duración: 15 días.',
-    ],
-
-    longDescription: (
-      <>
-        Descubre el auténtico sabor de la mantequilla de verdad. Elaborada artesanalmente con{' '}
-        <strong>nata de leche fresca de Canta</strong>, nuestra mantequilla no contiene aditivos ni conservantes. Su
-        textura cremosa y su sabor puro son ideales para tus desayunos, postres o para darle un toque gourmet a
-        cualquier platillo.
-      </>
-    ),
-
-    presentations: [
-      { id: 'mantequilla-250g', name: '250 g' },
-      { id: 'mantequilla-500g', name: '500 g' },
-    ],
-  },
- */
-  /*  {
-    id: 'prod_011',
-    category: ProductCategory.LACTEOS_ARTESANALES,
-    name: 'queso-cuajo-cabra',
-    title: 'Queso de Cabra con cuajo natural',
-    isNew: false,
-    linkUrl: '/products/queso-cuajo-cabra',
-    tags: ['recommended', 'best-seller'],
-
-    featuredImage: '/assets/images/content/products/queso-natural/featured.webp',
-    thumbnailImage: '/assets/images/content/products/queso-natural/thumbnail.webp',
-    galleryImages: [
-      '/assets/images/content/products/queso-natural/gallery-01.webp',
-      '/assets/images/content/products/queso-natural/gallery-03.webp',
-      '/assets/images/content/products/queso-natural/gallery-02.webp',
-      '/assets/images/content/products/queso-natural/gallery-04.webp',
-      '/assets/images/content/products/queso-natural/gallery-05.webp',
-    ],
-
-    hasDifferentOrder: false,
-
-    shortDescription: 'Queso fresco y artesanal de sabor único.',
-    longDescription: (
-      <>
-        Nuestro queso fresco se elabora siguiendo la tradición, utilizando{' '}
-        <strong>leche fresca de cabras de libre pastoreo y cuajo natural</strong>. El resultado es un queso de textura
-        suave y sabor delicado, perfecto para ensaladas, piqueos o simplemente para disfrutar de un producto 100%
-        natural y lleno de carácter.
-      </>
-    ),
-
-    presentations: [{ id: 'queso-500g', name: 'Diferentes pesos' }],
-  }, */
-
   {
     id: 'prod_012',
     category: ProductCategory.PROBIOTICOS,
@@ -591,4 +541,30 @@ export const allProducts: Product[] = [
 
     presentations: [{ id: 'chucrut-170g', name: '250 g' }],
   },
+
+  /* {
+    id: 'prod_009',
+    category: ProductCategory.TRADICIONALES,
+    name: 'mermelada-quito-quito',
+    title: 'Mermelada de Quito Quito',
+    isNew: true,
+    linkUrl: '/products/mermelada-quito-quito',
+
+    bgImageSrc: '/assets/images/content/products/kefir-de-chocolate/bg-card.webp',
+    featuredImage: '/assets/images/content/products/kefir-de-chocolate/featured.webp',
+    thumbnailImage: '/assets/images/content/products/kefir-de-chocolate/thumbnail.webp',
+
+    hasDifferentOrder: true,
+
+    shortDescription: 'Sal de Maras, Cusco',
+    longDescription: (
+      <>
+        Descubre la explosión de sabor andino con nuestra mermelada de Quito Quito, elaborada con frutos frescos traídos
+        directamente de <strong>Oxapampa</strong>. Su textura suave y su dulzura natural la hacen perfecta para
+        acompañar tus desayunos o snacks. Disponible con <strong>azúcar o stevia</strong>, para que elijas cómo
+        disfrutarla.
+      </>
+    ),
+    tags: ['new', 'recommended'],
+  }, */
 ];

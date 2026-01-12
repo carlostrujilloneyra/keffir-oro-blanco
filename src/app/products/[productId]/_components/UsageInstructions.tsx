@@ -1,11 +1,11 @@
 import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/Accordion/accordion';
 
 interface UsageInstructionsProps {
-  howToUse: string;
+  howToUse: React.ReactNode;
 }
 
 export const UsageInstructions = ({ howToUse }: UsageInstructionsProps) => {
-  if (!howToUse || howToUse.trim() === '') return null;
+  if (!howToUse) return null;
 
   return (
     <AccordionItem value='usage'>
@@ -14,7 +14,9 @@ export const UsageInstructions = ({ howToUse }: UsageInstructionsProps) => {
       </AccordionTrigger>
 
       <AccordionContent>
-        <p className='text-justify text-sm text-gray-600 tablet:text-base'>{howToUse}</p>
+        <div className='flex flex-col gap-3 text-justify text-sm text-gray-600 tablet:gap-4 tablet:text-base'>
+          {howToUse}
+        </div>
       </AccordionContent>
     </AccordionItem>
   );

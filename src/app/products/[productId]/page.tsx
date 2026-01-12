@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import { ProductCardPrice } from '@/features/products/components/ProductCard';
 import { ProductImageGallery } from '@/features/products/components/ProductImageGallery/ProductImageGallery';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/Accordion/accordion';
-import { Benefits, Presentations, ProductTags, UsageInstructions } from './_components';
+import { Benefits, Presentations, ProductTags, UsageInstructions, ShelfLife } from './_components';
 
 interface ProductPageProps {
   params: {
@@ -60,7 +60,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           <ProductImageGallery images={galleryImages} productTitle={product.title} />
         </div>
 
-        <div>
+        <div className='flex flex-col gap-5'>
           <ProductTags isNew={product.isNew} tags={product.tags} />
 
           <div className='flex flex-col gap-3 tablet:gap-5'>
@@ -68,7 +68,7 @@ export default function ProductPage({ params }: ProductPageProps) {
 
             <ProductCardPrice
               price={product.price}
-              className='inline-block text-xl font-bold text-gray-900 lg:text-3xl'
+              className='inline-block text-xl font-bold text-gray-700 lg:text-3xl'
             />
 
             <Accordion type='single' collapsible defaultValue='description'>
@@ -80,8 +80,8 @@ export default function ProductPage({ params }: ProductPageProps) {
                   </AccordionTrigger>
 
                   <AccordionContent>
-                    <div className='text-justify text-gray-600'>
-                      <p className='text-sm tablet:text-base'>{product.longDescription}</p>
+                    <div className='flex flex-col gap-3 text-justify text-sm text-gray-600 tablet:gap-4 tablet:text-base'>
+                      {product.longDescription}
                     </div>
                   </AccordionContent>
                 </AccordionItem>
@@ -92,6 +92,8 @@ export default function ProductPage({ params }: ProductPageProps) {
               <Benefits benefits={product.benefits || []} />
 
               <UsageInstructions howToUse={product.howToUse || ''} />
+
+              <ShelfLife shelfLife={product.shelfLife || ''} />
             </Accordion>
           </div>
         </div>
