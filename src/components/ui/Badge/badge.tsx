@@ -35,7 +35,7 @@ const badgeVariants = cva(
         local: 'border-transparent bg-yellow-600 text-white shadow-md hover:bg-yellow-700',
 
         // Badges especiales - Colores suaves
-        'sugar-free': 'border-transparent bg-pink-100 text-pink-800 hover:bg-pink-200',
+        'sugar-free': 'border-emerald-400 text-emerald-700 bg-transparent hover:bg-emerald-50',
         'lactose-free': 'border-transparent bg-emerald-300 text-emerald-900 hover:bg-emerald-400',
         limited: 'border-transparent bg-red-600 text-white shadow-md hover:bg-red-700',
         seasonal: 'border-transparent bg-orange-100 text-orange-800 hover:bg-orange-200',

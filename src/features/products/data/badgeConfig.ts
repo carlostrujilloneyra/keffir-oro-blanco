@@ -1,34 +1,16 @@
-/**
- * Configuración de badges para productos
- * Define las etiquetas en español y variantes de estilo para cada badge
- */
+import { badgeVariants } from '@/components/ui/Badge/badge';
+import type { VariantProps } from 'class-variance-authority';
 
-export type BadgeType =
-  | 'new'
-  | 'best-seller'
-  | 'recommended'
-  | 'main-product'
-  | 'discover'
-  | 'fresh'
-  | 'probiotic'
-  | 'healthy'
-  | 'natural'
-  | 'organic'
-  | 'sugar-free'
-  | 'lactose-free'
-  | 'vegan'
-  | 'artisan'
-  | 'local'
-  | 'limited'
-  | 'seasonal';
+// Inferir el tipo de variante desde el Badge component para sincronización automática
+type BadgeVariant = VariantProps<typeof badgeVariants>['variant'];
 
 export interface BadgeConfig {
   label: string;
-  variant?: 'default' | 'secondary' | 'destructive' | 'outline' | 'stone' | 'lactose-free' | 'probiotic';
+  variant?: BadgeVariant;
   description?: string;
 }
 
-export const badgeConfig: Record<BadgeType, BadgeConfig> = {
+export const badgeConfig = {
   // Badges de popularidad - Colores cálidos
   new: {
     label: 'Nuevo',
@@ -37,12 +19,12 @@ export const badgeConfig: Record<BadgeType, BadgeConfig> = {
   },
   'best-seller': {
     label: 'Más vendido',
-    variant: 'default', // Ámbar
+    variant: 'default',
     description: 'Uno de nuestros productos más populares',
   },
   recommended: {
     label: 'Recomendado',
-    variant: 'secondary', // Verde esmeralda
+    variant: 'recommended', // Verde esmeralda
     description: 'Recomendado por nuestros expertos',
   },
   'main-product': {
@@ -84,7 +66,7 @@ export const badgeConfig: Record<BadgeType, BadgeConfig> = {
   },
   'sugar-free': {
     label: 'Sin Azúcar Añadida',
-    variant: 'outline', // Rosa suave
+    variant: 'sugar-free', // Rosa suave
     description: 'Sin azúcares añadidos',
   },
   'lactose-free': {
@@ -119,7 +101,10 @@ export const badgeConfig: Record<BadgeType, BadgeConfig> = {
     variant: 'outline', // Naranja suave
     description: 'Producto de temporada',
   },
-};
+} as const satisfies Record<string, BadgeConfig>;
+
+// Inferir BadgeType automáticamente desde las keys de badgeConfig
+export type BadgeType = keyof typeof badgeConfig;
 
 /**
  * Obtiene la configuración de un badge

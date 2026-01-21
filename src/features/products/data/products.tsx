@@ -300,7 +300,7 @@ export const allProducts: Product[] = [
     price: 17,
     isNew: false,
     linkUrl: '/products/kefir-con-arandanos',
-    tags: ['best-seller', 'recommended'],
+    tags: ['best-seller', 'recommended', 'sugar-free'],
 
     featuredImage: '/assets/images/content/products/kefir-con-arandanos/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-con-arandanos/featured.webp',
@@ -310,16 +310,43 @@ export const allProducts: Product[] = [
     shortDescription: 'Un impulso de antioxidantes y probióticos.',
     longDescription: (
       <>
-        Potencia tu bienestar con la combinación perfecta de nuestro cremoso kéfir de leche y{' '}
-        <strong>arándanos silvestres</strong>. Cada sorbo es una explosión de sabor y un impulso para tu salud, cargado
-        de antioxidantes y probióticos que fortalecen tu sistema inmune y cuidan tu digestión.
+        <p>
+          Potencia tu bienestar con la combinación perfecta de nuestro cremoso kéfir de leche y{' '}
+          <strong>arándanos silvestres</strong>.
+        </p>
+
+        <p>
+          Cada sorbo es una explosión de sabor y un impulso para tu salud, cargado de antioxidantes y probióticos que
+          fortalecen tu sistema inmune y cuidan tu digestión.
+        </p>
       </>
     ),
 
     presentations: [
-      { id: 'kefir-arandanos-475', name: '475 ml', price: 15.0 },
-      { id: 'kefir-arandanos-1l', name: '1 Litro', price: 27.0 },
+      { id: 'kefir-arandanos-475', name: '475 ml', price: 17.0 },
+      { id: 'kefir-arandanos-1l', name: '1 Litro', price: 29.0 },
     ],
+
+    benefits: [
+      'Refuerza la <strong>flora intestinal</strong> con bacterias buenas.',
+      'Mantiene tu sistema digestivo <strong>saludable</strong> y apoya el tránsito intestinal.',
+      'Apoya tu <strong>sistema inmunológico</strong> naturalmente.',
+      'Rico en <strong>antioxidantes</strong> gracias a los arándanos silvestres.',
+      'Producto 100% natural, sin conservantes ni aditivos.',
+      'Apto para personas que tienen <strong>intolerancia a la lactosa</strong> debido a que el Kéfir cuenta con un % bajo de lactosa.',
+    ],
+
+    howToUse: (
+      <>
+        <p>Listo para consumir. Puede tomarse solo o acompañar frutas, cereales y otras preparaciones frías.</p>
+        <p>
+          Para personas que lo consumen por <strong>primera vez</strong>, se sugiere iniciar con porciones pequeñas{' '}
+          <strong>(shots de 30 ml)</strong> e incrementar gradualmente según tolerancia.
+        </p>
+      </>
+    ),
+
+    shelfLife: '19 días',
   },
 
   {
@@ -331,7 +358,7 @@ export const allProducts: Product[] = [
     price: 17,
     isNew: false,
     linkUrl: '/products/kefir-con-fresa',
-    tags: ['best-seller', 'recommended'],
+    tags: ['sugar-free', 'recommended', 'best-seller', 'probiotic'],
 
     featuredImage: '/assets/images/content/products/kefir-con-fresa/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-con-fresa/featured.webp',
@@ -341,18 +368,45 @@ export const allProducts: Product[] = [
     shortDescription: 'El sabor clásico que cuida de ti.',
     longDescription: (
       <>
-        Redescubre el sabor que te encanta, ahora en su versión más saludable y deliciosa. Hemos fusionado la increíble
-        cremosidad de nuestro kéfir de leche con la dulzura natural de <strong>fresas frescas y jugosas</strong>. Cada
-        sorbo es un balance perfecto que te transporta a un postre, pero con todos los beneficios de un superalimento
-        cargado de <strong>probióticos y vitamina C</strong> que cuida tu digestión, fortalece tus defensas y te llena
-        de energía.
+        <p>
+          Redescubre el sabor que te encanta, ahora en su versión más saludable y deliciosa. Hemos fusionado la
+          increíble cremosidad de nuestro kéfir de leche con la dulzura natural de{' '}
+          <strong>fresas frescas y jugosas</strong>.
+        </p>
+
+        <p>
+          Cada sorbo es un balance perfecto que te transporta a un postre, pero con todos los beneficios de un
+          superalimento cargado de <strong>probióticos y vitamina C</strong> que cuida tu digestión, fortalece tus
+          defensas y te llena de energía.
+        </p>
       </>
     ),
 
     presentations: [
-      { id: 'kefir-arandanos-475', name: '475 ml', price: 15.0 },
-      { id: 'kefir-arandanos-1l', name: '1 Litro', price: 27.0 },
+      { id: 'kefir-fresa-475', name: '475 ml', price: 17.0 },
+      { id: 'kefir-fresa-1l', name: '1 Litro', price: 29.0 },
     ],
+
+    benefits: [
+      'Refuerza la <strong>flora intestinal</strong> con bacterias buenas.',
+      'Mantiene tu sistema digestivo <strong>saludable</strong> y apoya el tránsito intestinal.',
+      'Apoya tu <strong>sistema inmunológico</strong> naturalmente.',
+      'Rico en <strong>vitamina C</strong> gracias a las fresas naturales.',
+      'Producto 100% natural, sin conservantes ni aditivos.',
+      'Apto para personas que tienen <strong>intolerancia a la lactosa</strong> debido a que el Kéfir cuenta con un % bajo de lactosa.',
+    ],
+
+    howToUse: (
+      <>
+        <p>Listo para consumir. Puede tomarse solo o acompañar frutas, cereales y otras preparaciones frías.</p>
+        <p>
+          Para personas que lo consumen por <strong>primera vez</strong>, se sugiere iniciar con porciones pequeñas{' '}
+          <strong>(shots de 30 ml)</strong> e incrementar gradualmente según tolerancia.
+        </p>
+      </>
+    ),
+
+    shelfLife: '19 días',
   },
 
   {
@@ -364,28 +418,54 @@ export const allProducts: Product[] = [
     price: 17,
     isNew: false,
     linkUrl: '/products/kefir-con-aguaymanto',
-    tags: ['recommended'],
+    tags: ['sugar-free', 'recommended', 'probiotic', 'best-seller'],
 
     featuredImage: '/assets/images/content/products/kefir-con-aguaymanto/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-con-aguaymanto/featured.webp',
 
     hasDifferentOrder: false,
 
-    shortDescription: 'El sabor clásico que cuida de ti.',
+    shortDescription: 'Un tesoro andino lleno de vitaminas y probióticos.',
     longDescription: (
       <>
-        Redescubre el sabor que te encanta, ahora en su versión más saludable y deliciosa. Hemos fusionado la increíble
-        cremosidad de nuestro kéfir de leche con la dulzura natural de <strong>fresas frescas y jugosas</strong>. Cada
-        sorbo es un balance perfecto que te transporta a un postre, pero con todos los beneficios de un superalimento
-        cargado de <strong>probióticos y vitamina C</strong> que cuida tu digestión, fortalece tus defensas y te llena
-        de energía.
+        <p>
+          Disfruta la combinación perfecta entre la cremosidad del kéfir de leche y el sabor natural del{' '}
+          <strong>aguaymanto</strong>.
+        </p>
+
+        <p>
+          Cada sorbo es una experiencia exótica que te transporta a los Andes, cargado de{' '}
+          <strong>probióticos, vitamina A y antioxidantes</strong> que fortalecen tu sistema inmune, cuidan tu digestión
+          y protegen tu visión.
+        </p>
       </>
     ),
 
     presentations: [
-      { id: 'kefir-aguaymanto-475', name: '475 ml', price: 15.0 },
-      { id: 'kefir-aguaymanto-1l', name: '1 Litro', price: 27.0 },
+      { id: 'kefir-aguaymanto-475', name: '475 ml', price: 17.0 },
+      { id: 'kefir-aguaymanto-1l', name: '1 Litro', price: 29.0 },
     ],
+
+    benefits: [
+      'Refuerza la <strong>flora intestinal</strong> con bacterias buenas.',
+      'Mantiene tu sistema digestivo <strong>saludable</strong> y apoya el tránsito intestinal.',
+      'Apoya tu <strong>sistema inmunológico</strong> naturalmente.',
+      'Rico en <strong>vitamina A y antioxidantes</strong> gracias al aguaymanto andino.',
+      'Producto 100% natural, sin conservantes ni aditivos.',
+      'Apto para personas que tienen <strong>intolerancia a la lactosa</strong> debido a que el Kéfir cuenta con un % bajo de lactosa.',
+    ],
+
+    howToUse: (
+      <>
+        <p>Listo para consumir. Puede tomarse solo o acompañar frutas, cereales y otras preparaciones frías.</p>
+        <p>
+          Para personas que lo consumen por <strong>primera vez</strong>, se sugiere iniciar con porciones pequeñas{' '}
+          <strong>(shots de 30 ml)</strong> e incrementar gradualmente según tolerancia.
+        </p>
+      </>
+    ),
+
+    shelfLife: '19 días',
   },
 
   {

@@ -9,7 +9,6 @@ import type { Swiper as SwiperType } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
-import './ProductImageGallery.css';
 
 interface ProductImageGalleryProps {
   images: string[];
@@ -41,7 +40,7 @@ export function ProductImageGallery({ images, productTitle }: ProductImageGaller
   };
 
   return (
-    <div className='flex flex-col gap-8 tablet:gap-12'>
+    <div className='flex flex-col gap-8 tablet:gap-10'>
       {/* Carrusel principal */}
       <div className='relative'>
         <Swiper
