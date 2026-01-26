@@ -9,13 +9,14 @@ import {
   FeatureSectionImage,
   FeatureSectionInformation,
   FeatureSectionTitle,
+  type FeatureSectionName,
 } from '@/components/ui/FeatureSection/FeatureSection';
 
 interface CategoryCardProps {
   imageAlt: string;
   imageSrc: string;
   linkUrl: string;
-  name: string;
+  name: FeatureSectionName;
   title: string;
 }
 
