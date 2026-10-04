@@ -1,5 +1,8 @@
-/* URL base del sitio (producción). Se usa en metadata, sitemap, robots y JSON-LD. */
-export const SITE_URL = 'https://trialferi.com';
+/* URL base del sitio. Se usa en metadata, sitemap, robots y JSON-LD.
+  En Vercel sale de VERCEL_PROJECT_PRODUCTION_URL: hoy trialferi.vercel.app y,
+  al conectar un dominio propio, ese dominio (sin tocar código). */
+const PRODUCTION_HOST = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+export const SITE_URL = PRODUCTION_HOST ? `https://${PRODUCTION_HOST}` : 'http://localhost:3000';
 
 export const SITE_NAME = 'TRIALFERI';
 export const CURRENCY = 'PEN';
