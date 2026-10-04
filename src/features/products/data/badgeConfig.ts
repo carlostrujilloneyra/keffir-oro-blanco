@@ -10,112 +10,100 @@ export interface BadgeConfig {
   description?: string;
 }
 
+/* Variantes reducidas a 3 (ver Badge): 'alert' para urgencia/novedad,
+ * 'category' para curaduría, 'neutral' para atributos descriptivos. */
 export const badgeConfig = {
-  // Badges de popularidad - Colores cálidos
+  // Novedad / urgencia → alert (fucsia, con moderación)
   new: {
     label: 'Nuevo',
-    variant: 'default', // Naranja
+    variant: 'alert',
     description: 'Producto recién agregado',
   },
+  limited: {
+    label: 'Edición Limitada',
+    variant: 'alert',
+    description: 'Disponibilidad limitada',
+  },
+
+  // Curaduría / categoría → category (acento verde)
   'best-seller': {
     label: 'Más vendido',
-    variant: 'default',
+    variant: 'category',
     description: 'Uno de nuestros productos más populares',
   },
   recommended: {
     label: 'Recomendado',
-    variant: 'recommended', // Verde esmeralda
+    variant: 'category',
     description: 'Recomendado por nuestros expertos',
   },
   'main-product': {
     label: 'Destacado',
-    variant: 'default', // Naranja
+    variant: 'category',
     description: 'Producto destacado',
   },
   discover: {
     label: 'Descubre',
-    variant: 'outline', // Borde verde
+    variant: 'category',
     description: 'Descubre este producto',
   },
 
-  // Badges de salud y beneficios - Colores frescos
+  // Atributos descriptivos → neutral (chip discreto)
   fresh: {
     label: 'Producto Fresco',
-    variant: 'secondary', // Cyan
+    variant: 'neutral',
     description: 'Producto fresco y de calidad',
   },
   probiotic: {
     label: 'Alto en Probióticos',
-    variant: 'probiotic', // Azul
+    variant: 'neutral',
     description: 'Rico en probióticos beneficiosos',
   },
   healthy: {
     label: 'Saludable',
-    variant: 'secondary', // Verde
+    variant: 'neutral',
     description: 'Opción saludable y nutritiva',
   },
   natural: {
     label: '100% Natural',
-    variant: 'stone', // Lima
+    variant: 'neutral',
     description: 'Sin aditivos ni conservantes',
   },
   organic: {
     label: 'Orgánico',
-    variant: 'stone', // Verde oscuro
+    variant: 'neutral',
     description: 'Certificado orgánico',
   },
   'sugar-free': {
     label: 'Sin Azúcar Añadida',
-    variant: 'sugar-free', // Rosa suave
+    variant: 'neutral',
     description: 'Sin azúcares añadidos',
   },
   'lactose-free': {
     label: 'Fácil digestión',
-    variant: 'secondary',
+    variant: 'neutral',
     description: 'Apto para intolerantes a la lactosa',
   },
   vegan: {
     label: 'Vegano',
-    variant: 'stone', // Verde esmeralda oscuro
+    variant: 'neutral',
     description: 'Producto 100% vegano',
   },
-
-  // Badges de características - Colores tierra
   artisan: {
     label: 'Artesanal',
-    variant: 'stone', // Ámbar oscuro
+    variant: 'neutral',
     description: 'Elaborado artesanalmente',
   },
   local: {
     label: 'Producto Local',
-    variant: 'outline', // Amarillo
+    variant: 'neutral',
     description: 'Producido localmente',
-  },
-  limited: {
-    label: 'Edición Limitada',
-    variant: 'destructive', // Rojo
-    description: 'Disponibilidad limitada',
   },
   seasonal: {
     label: 'De Temporada',
-    variant: 'outline', // Naranja suave
+    variant: 'neutral',
     description: 'Producto de temporada',
   },
 } as const satisfies Record<string, BadgeConfig>;
 
 // Inferir BadgeType automáticamente desde las keys de badgeConfig
 export type BadgeType = keyof typeof badgeConfig;
-
-/**
- * Obtiene la configuración de un badge
- */
-export function getBadgeConfig(type: BadgeType): BadgeConfig {
-  return badgeConfig[type];
-}
-
-/**
- * Obtiene la etiqueta en español de un badge
- */
-export function getBadgeLabel(type: BadgeType): string {
-  return badgeConfig[type]?.label || type;
-}

@@ -3,7 +3,7 @@ import { FaqItem } from '../types/question.type';
 export const questionsData: FaqItem[] = [
   {
     value: 'q1',
-    question: 'Qué es el kéfir y por qué es bueno para mí',
+    question: '¿Qué es el kéfir y por qué es bueno para mí?',
     answer: (
       <>
         El Kéfir es una bebida probiótica milenaria, fermentada de forma natural. Está lleno de{' '}
@@ -18,7 +18,7 @@ export const questionsData: FaqItem[] = [
     question: '¿Es 100% kéfir o yogurt sabor a kéfir?',
     answer: (
       <>
-        Nuestro kéfir de Oro Blanco - SN, se diferencia de otras marcas al usar 30-40 próbioticos y prebióticos en su
+        Nuestro kéfir de TRIALFERI, se diferencia de otras marcas al usar 30-40 próbioticos y prebióticos en su
         preparación. Es por ello que la duración no es tan extensa porque no usamos conservantes ni preservantes para
         mantener nuestro <strong>producto artesanal.</strong>
       </>

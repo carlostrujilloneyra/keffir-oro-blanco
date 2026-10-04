@@ -27,7 +27,12 @@ const FeatureSection = ({ name, className, asChild = false, ...props }: FeatureS
 };
 FeatureSection.displayName = 'FeatureSection';
 
-const FeatureSectionContent = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+const FeatureSectionContent = ({
+  className,
+  accent,
+  style,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement> & { accent?: string }) => {
   return (
     <div
       className={cn(
@@ -35,6 +40,7 @@ const FeatureSectionContent = ({ className, ...props }: React.HTMLAttributes<HTM
         styles.bgGradient,
         className,
       )}
+      style={accent ? ({ '--fs-accent': accent, ...style } as React.CSSProperties) : style}
       {...props}
     />
   );
@@ -54,15 +60,21 @@ FeatureSectionInformation.displayName = 'FeatureSectionInformation';
 const FeatureSectionTitle = ({ isNew = false, className, children, ...props }: FeatureSectionTitleProps) => {
   return (
     <>
+      {/* "Nuevo producto" es una etiqueta, no un encabezado → <p>, no <h4>. */}
       {isNew && (
-        <h4 className='mb-2 text-sm font-medium uppercase tracking-widest text-light-500 lg:mb-3'>Nuevo producto</h4>
+        <p className='mb-2 text-sm font-medium uppercase tracking-widest text-light-500 lg:mb-3'>Nuevo producto</p>
       )}
-      <h2
+
+      {/*
+        H3: este título vive dentro de la sección "Novedades", que ya aporta el
+        H2. Los niveles bajan de uno en uno, sin saltos.
+      */}
+      <h3
         className={cn('text-[28px] font-medium leading-[1] tablet:text-[36px] lg:text-5xl lg:leading-[1]', className)}
         {...props}
       >
         {children}
-      </h2>
+      </h3>
     </>
   );
 };

@@ -11,11 +11,12 @@ import {
   FeatureSectionImage,
   FeatureSectionInformation,
   FeatureSectionTitle,
+  type FeatureSectionName,
 } from '@/components/ui/FeatureSection/FeatureSection';
 import { Button } from '@/components/ui/Button/Button';
 import { MoveRight } from 'lucide-react';
 import { allProducts, type Product } from '@/features/products';
-import { cn } from '@/lib/utils';
+import { accentGlow } from '@/features/products/lib/productAccent';
 
 // --- COMPONENTE PRINCIPAL ---
 export const NewProducts = () => {
@@ -26,12 +27,15 @@ export const NewProducts = () => {
   // --- 👇 CAMBIO #3: Mapeamos sobre la lista filtrada y usamos los nuevos nombres de props 👇 ---
   const cardData = newProductsToShow.map((product: Product) => {
     const cardContent = (
-      <FeatureSection name={product.name} asChild>
+      <FeatureSection name={product.name as FeatureSectionName} asChild>
         <article>
-          <FeatureSectionContent className='grid-rows-none items-center gap-6 p-6 tablet:py-10 lg:grid-cols-2 lg:gap-12 lg:px-12 lg:py-5'>
-            <FeatureSectionImage
-              className={cn('h-[280px] w-full lg:h-[480px]', product.hasDifferentOrder && 'lg:order-1')}
-            >
+          <FeatureSectionContent
+            accent={accentGlow(product)}
+            className='grid-rows-none items-center gap-6 p-6 tablet:py-10 lg:grid-cols-2 lg:gap-12 lg:px-12 lg:py-5'
+          >
+            {/* Antes alternaba el orden con product.hasDifferentOrder, un flag de
+                layout que vivía en el catálogo y que ningún producto asignaba. */}
+            <FeatureSectionImage className='h-[280px] w-full lg:h-[480px]'>
               {product.featuredImage && (
                 <Image
                   className='object-contain lg:translate-y-12 lg:scale-125'
@@ -48,7 +52,7 @@ export const NewProducts = () => {
                 {product.title}
               </FeatureSectionTitle>
 
-              <FeatureSectionDescription className='text-center text-light-400 lg:text-justify'>
+              <FeatureSectionDescription className='text-center text-white/85 lg:text-justify'>
                 {product.longDescription} {/* Antes: description, AHORA: longDescription */}
               </FeatureSectionDescription>
 

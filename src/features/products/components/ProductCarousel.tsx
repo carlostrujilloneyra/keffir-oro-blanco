@@ -1,19 +1,12 @@
 'use client';
 
-import { ProductCard, type Product } from '@/features/products';
+import { type Product } from '@/features/products';
 import { Autoplay, FreeMode, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { SliderNextButton, SliderPrevButton } from './SliderButtons';
 import { useEffect, useState } from 'react';
 import { ProductCardSkeleton } from './ProductCardSkeleton';
-import { CardContent, CardFooter } from '@/components/ui/Card/card';
-import {
-  ProductCardAction,
-  ProductCardCategory,
-  ProductCardImage,
-  ProductCardPrice,
-  ProductCardTitle,
-} from './ProductCard';
+import { ProductShowcaseCard } from './ProductShowcaseCard';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -42,9 +35,11 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
 
   if (!products || products.length === 0) return null;
 
+  const titleId = `carrusel-${title.replace(/\s+/g, '-').toLowerCase()}`;
+
   return (
-    <div className='w-full'>
-      <h2 className='mb-6 text-center text-3xl text-[32px] font-bold text-gray-800 tablet:mb-8 tablet:text-[40px] lg:text-[42px]'>
+    <section aria-labelledby={titleId} className='w-full'>
+      <h2 id={titleId} className='mb-8 font-display text-4xl leading-[1.05] tracking-tight text-tinta lg:text-5xl'>
         {title}
       </h2>
 
@@ -86,26 +81,13 @@ export const ProductCarousel = ({ title, products }: ProductCarouselProps) => {
               ))
             : products.map((product) => (
                 <SwiperSlide key={product.id} className='max-w-64 flex-shrink-0 pr-4 tablet:max-w-[270px] tablet:pr-6'>
-                  <ProductCard>
-                    <ProductCardImage src={product.thumbnailImage} alt={product.title} />
-
-                    <CardContent className='mb-3 flex flex-grow flex-col pt-3'>
-                      <ProductCardCategory category={product.category} />
-                      <ProductCardTitle className='mb-1 min-h-12' title={product.title} />
-
-                      <ProductCardPrice price={product.price} />
-                    </CardContent>
-
-                    <CardFooter>
-                      <ProductCardAction hasIcon slug={product.slug} />
-                    </CardFooter>
-                  </ProductCard>
+                  <ProductShowcaseCard product={product} />
                 </SwiperSlide>
               ))}
 
           <SwiperNavButtons />
         </Swiper>
       </div>
-    </div>
+    </section>
   );
 };

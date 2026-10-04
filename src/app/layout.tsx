@@ -1,43 +1,104 @@
 import type { Metadata } from 'next';
-import { Inter, League_Spartan } from 'next/font/google';
+import { DM_Sans, Inter } from 'next/font/google';
 import { Header } from '@/components/sections/Header/Header';
+import { Footer } from '@/components/sections/Footer/Footer';
+import { SITE_NAME, SITE_URL } from '@/lib/site';
 import './globals.css';
 
-const league_spartan = League_Spartan({
-  weight: ['400', '500', '600', '700', '800'],
+const dmSans = DM_Sans({
   subsets: ['latin'],
-  variable: '--font-league-spartan',
-  style: ['normal'],
+  variable: '--font-heading',
+  display: 'swap',
 });
 
 const inter = Inter({
-  weight: ['400', '600', '700', '800'],
   subsets: ['latin'],
   variable: '--font-inter',
-  style: ['normal'],
+  display: 'swap',
 });
 
+const keywords = [
+  'TRIALFERI',
+
+  /* Kéfir de leche — el producto ancla */
+  'kéfir natural Perú',
+  'kéfir de leche de vaca',
+  'kéfir de leche de cabra',
+  'kéfir artesanal',
+  'búlgaros de kéfir',
+  'nódulos de kéfir',
+
+  /* Kéfires frutados */
+  'kéfir frutado',
+  'kéfir con fresa',
+  'kéfir con arándanos',
+  'kéfir con aguaymanto',
+  'kéfir con frutos del bosque',
+  'kéfir con chocolate',
+  'crema de kéfir con aceitunas',
+
+  /* Bebidas fermentadas sin lácteos */
+  'kéfir de agua',
+  'kombucha natural',
+  'kombucha artesanal Perú',
+
+  /* Fermentados y tradicionales */
+  'chucrut morado fermentado',
+  'manteca de cerdo artesanal',
+  'mermelada de quito quito Oxapampa',
+  'mermelada de fresa natural',
+  'sal rosada de Maras',
+  'vinagre de manzana artesanal',
+
+  /* Categoría y beneficio */
+  'probióticos naturales',
+  'productos fermentados',
+  'cultivos probióticos vivos',
+  'salud intestinal',
+  'microbiota saludable',
+  'digestión natural',
+
+  /* Marca y procedencia */
+  'kéfir artesanal Perú',
+  'leche de cabra del valle de Canta',
+  'alimentación natural Perú',
+  'sin conservantes',
+  'productos naturales Lima',
+  'Silvia Neyra',
+];
+
 export const metadata: Metadata = {
-  title: 'Oro Blanco - SN | Productos Artesanales y Probióticos Naturales en Perú',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'TRIALFERI | Cuida tu salud con nosotros',
+    template: '%s | TRIALFERI',
+  },
+  /* Máximo ~160 caracteres: Google recorta el resto en los resultados. */
   description:
-    'Descubre la auténtica alimentación natural con Oro Blanco - SN. Ofrecemos kéfir de leche y agua, queso de cabra artesanal, mantequilla casera, manteca de cerdo tradicional, kombucha fermentada y mermelada de quito quito. Productos 100% artesanales sin conservantes, elaborados en Canta para nutrir tu familia con lo mejor de la naturaleza peruana.',
-  keywords:
-    'Oro Blanco - SN, kéfir natural Perú, kéfir de agua, kéfir de leche vaca cabra, búlgaros de kéfir, hongos de kéfir, gránulos de kéfir, cultivos probióticos, queso de cabra artesanal, mantequilla artesanal, manteca de cerdo natural, kombucha probióticos, mermelada quito quito Oxapampa, productos fermentados, probióticos naturales, lácteos artesanales, salud intestinal, microorganismos beneficiosos, fermentación natural, productos tradicionales Canta, alimentación natural Perú, sin conservantes, productos orgánicos Lima, Silvia Neyra, microbiota saludable, digestión natural',
-  creator: 'Carlos Trujillo',
-  authors: [{ name: 'Carlos Trujillo', url: 'https://portfolio-carlos-trujillo.vercel.app/' }],
-  applicationName: 'Oro Blanco - SN | Productos Artesanales Naturales',
+    'Kéfir de leche de vaca y cabra, kéfires frutados, kéfir de agua, kombucha, chucrut y mermeladas. Fermentos vivos artesanales del Perú, sin conservantes.',
+  keywords,
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  applicationName: 'TRIALFERI | Productos Artesanales Naturales',
+  category: 'food',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
+  },
   openGraph: {
-    title: 'Oro Blanco - SN | Productos Artesanales y Probióticos Naturales',
+    title: 'TRIALFERI | Cuida tu salud con nosotros',
     description:
-      'Kéfir natural, queso de cabra, mantequilla artesanal y más productos 100% naturales elaborados en Canta, Perú.',
-    url: 'https://oro-blanco-sn.com',
-    siteName: 'Oro Blanco - SN',
+      'Kéfir de leche, kéfires frutados (fresa, arándanos, frutos del bosque, chocolate y aguaymanto), kéfir de agua, kombucha y tradicionales. Fermentos vivos elaborados a mano, lote a lote.',
+    url: SITE_URL,
+    siteName: SITE_NAME,
     images: [
       {
         url: '/og-image.png',
         width: 1080,
         height: 1080,
-        alt: 'Logo Oro Blanco - SN: Productos naturales y probióticos artesanales',
+        alt: 'Logo TRIALFERI: Productos naturales y probióticos artesanales',
         type: 'image/png',
       },
     ],
@@ -46,8 +107,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Oro Blanco - SN | Productos Naturales',
-    description: 'Kéfir natural, queso de cabra y productos artesanales 100% naturales de Canta, Perú.',
+    title: 'TRIALFERI | Cuida tu salud con nosotros',
+    description: 'Kéfir de leche, kéfires frutados, kombucha y tradicionales. 100% artesanal, sin conservantes.',
     images: ['/og-image.png'],
   },
 };
@@ -59,9 +120,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='es'>
-      <body className={`${league_spartan.variable} ${inter.variable}`}>
+      <body className={`${dmSans.variable} ${inter.variable}`}>
         <Header />
-        {children}
+        <main className='container-max w-full px-4 tablet:p-8 lg:px-12'>{children}</main>
+        <Footer />
       </body>
     </html>
   );

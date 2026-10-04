@@ -1,62 +1,81 @@
-import { promotedCollection, ProductCard } from '@/features/products';
+'use client';
+
+import { motion, useReducedMotion, type Variants } from 'motion/react';
+import { promotedCollection } from '@/features/products';
+import { PromoProductCard } from '@/features/products/components/PromoProductCard';
+import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { CategoryCard } from './components/CategoryCard';
-import {
-  ProductCardAction,
-  ProductCardCategory,
-  ProductCardFeatureList,
-  ProductCardImage,
-  ProductCardPresentations,
-  ProductCardTitle,
-} from '@/features/products/components/ProductCard';
-import { CardContent, CardFooter } from '@/components/ui/Card/card';
+
+const EASE = [0.32, 0.72, 0, 1] as const;
 
 export const MainSection = () => {
+  const reduce = useReducedMotion();
+
+  const container: Variants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: reduce ? 0 : 0.12, delayChildren: reduce ? 0 : 0.05 } },
+  };
+
+  const item: Variants = reduce
+    ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
+    : { hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } } };
+
   return (
-    <main className='container-max grid w-full gap-5 px-6 py-8 tablet:gap-6 tablet:p-10 lg:grid-cols-[1fr_.9fr] lg:p-18'>
-      <div className='grid gap-5 tablet:gap-6 min-[1400px]:grid-rows-[repeat(2,minmax(min-content,270px))]'>
-        <CategoryCard
-          name='lacteos-section'
-          title='Descubre si el Kéfir es para ti'
-          linkUrl='/categorias/lacteos'
-          imageSrc='/assets/images/content/products/kefir-de-leche/section-background.webp'
-          imageAlt='Productos lácteos artesanales'
-        />
+    <motion.section
+      aria-labelledby='destacados-titulo'
+      variants={container}
+      initial='hidden'
+      whileInView='visible'
+      viewport={{ once: true, margin: '-80px' }}
+      className='w-full py-6 tablet:py-8 lg:py-10'
+    >
+      <motion.div variants={item} className='mb-6 flex flex-col gap-2 tablet:mb-8 lg:mb-10'>
+        <Eyebrow className='text-xs tracking-[0.18em]' dotClassName='h-2 w-2'>
+          Nuestra selección
+        </Eyebrow>
 
-        <CategoryCard
-          name='manteca-section'
-          title='Sabor y tradición: Manteca de Cerdo Artesanal'
-          linkUrl='/categorias/kefir'
-          imageSrc='/assets/images/content/products/manteca-de-cerdo/section-background.webp'
-          imageAlt='Variedad de kéfires frutados'
-        />
+        <h2
+          id='destacados-titulo'
+          className='font-display text-3xl font-semibold leading-[1.05] tracking-tight text-tinta tablet:text-4xl lg:text-5xl'
+        >
+          Por dónde empezar
+        </h2>
+      </motion.div>
+
+      <div className='grid gap-5 tablet:gap-6 lg:grid-cols-[1fr_.9fr]'>
+        <ul className='grid gap-5 tablet:gap-6'>
+          <motion.li variants={item}>
+            <CategoryCard
+              eyebrow='Probióticos'
+              title='Descubre si el Kéfir es para ti'
+              linkUrl='/categorias/probioticos'
+              imageSrc='/assets/images/content/products/kefir-de-leche/featured.webp'
+              imageAlt='Kéfir de leche artesanal'
+              theme='verde'
+            />
+          </motion.li>
+
+          <motion.li variants={item}>
+            <CategoryCard
+              eyebrow='Tradicional'
+              title='Sabor y tradición: Manteca de Cerdo Artesanal'
+              linkUrl='/categorias/tradicionales'
+              imageSrc='/assets/images/categories/manteca-de-cerdo.webp'
+              imageAlt='Manteca de cerdo artesanal'
+              theme='miel'
+            />
+          </motion.li>
+        </ul>
+
+        {/* Productos destacados (derecha) */}
+        <ul className='grid gap-5 tablet:grid-cols-2 tablet:gap-6'>
+          {promotedCollection.map((product) => (
+            <motion.li key={product.id} variants={item} className='h-full'>
+              <PromoProductCard product={product} />
+            </motion.li>
+          ))}
+        </ul>
       </div>
-
-      {/* Contenedor para dos cards: Crema de kéfir, Chucrut */}
-      <div className='grid gap-5 tablet:grid-cols-2 tablet:gap-6'>
-        {promotedCollection.map((product) => {
-          return (
-            <ProductCard key={product.id}>
-              <ProductCardImage src={product.thumbnailImage} alt={product.title} size={'large'} />
-
-              <CardContent className='mb-3 flex flex-grow flex-col pt-3'>
-                <ProductCardCategory category={product.category} />
-
-                <ProductCardTitle className='text-[22px] lg:leading-[1]' title={product.title} />
-
-                <ProductCardFeatureList features={product.benefits} />
-
-                <div className='mt-2 flex flex-col gap-1'>
-                  <ProductCardPresentations presentations={product?.presentations} />
-                </div>
-              </CardContent>
-
-              <CardFooter>
-                <ProductCardAction href={product.linkUrl} />
-              </CardFooter>
-            </ProductCard>
-          );
-        })}
-      </div>
-    </main>
+    </motion.section>
   );
 };

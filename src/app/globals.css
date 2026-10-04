@@ -2,32 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes heroMediaIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroTextIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.swiper-slide-active .hero-media {
+  animation: heroMediaIn 1000ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+.swiper-slide-active .hero-text > * {
+  animation: heroTextIn 750ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+.swiper-slide-active .hero-text > *:nth-child(1) {
+  animation-delay: 60ms;
+}
+.swiper-slide-active .hero-text > *:nth-child(2) {
+  animation-delay: 140ms;
+}
+.swiper-slide-active .hero-text > *:nth-child(3) {
+  animation-delay: 220ms;
+}
+.swiper-slide-active .hero-text > *:nth-child(4) {
+  animation-delay: 300ms;
+}
+
+/* Sin movimiento: se ve el estado final, sin desplazamiento ni cascada. */
+@media (prefers-reduced-motion: reduce) {
+  .swiper-slide-active .hero-media,
+  .swiper-slide-active .hero-text > * {
+    animation: none;
+  }
+}
+
 @layer base {
-  /*
-   * VARIABLES CSS GLOBALES
-   * La "receta maestra" de tu sistema de diseño.
-   */
   :root {
-    --background: 0 0% 100%;
-    --foreground: 20 14.3% 4.1%;
-    --card: 0 0% 100%;
-    --card-foreground: 20 14.3% 4.1%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 20 14.3% 4.1%;
-    --primary: 24 9.8% 10%;
-    --primary-foreground: 60 9.1% 97.8%;
-    --secondary: 60 4.8% 95.9%;
-    --secondary-foreground: 24 9.8% 10%;
-    --muted: 60 4.8% 95.9%;
-    --muted-foreground: 25 5.3% 44.7%;
-    --accent: 60 4.8% 95.9%;
-    --accent-foreground: 24 9.8% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 60 9.1% 97.8%;
-    --border: 20 5.9% 90%;
-    --input: 20 5.9% 90%;
-    --ring: 20 14.3% 4.1%;
-    --radius: 0.5rem;
+    /* Paleta "Fermento vivo" en HSL (equivalentes a los hex de tailwind.config). */
+    --background: 45 33% 95%; /* papel  #F7F5EF */
+    --foreground: 144 18% 11%; /* tinta  #16201A */
+    --card: 44 32% 91%; /* papel-hueso #EFEBE0 */
+    --card-foreground: 144 18% 11%;
+    --popover: 45 33% 95%;
+    --popover-foreground: 144 18% 11%;
+    --primary: 147 45% 34%; /* verde  #2F7D52 */
+    --primary-foreground: 45 33% 95%; /* papel sobre verde */
+    --secondary: 41 26% 84%; /* papel-sombra #E0D9CA */
+    --secondary-foreground: 144 18% 11%;
+    --muted: 44 32% 91%;
+    --muted-foreground: 98 5% 44%; /* tinta-suave #6E756A */
+    --accent: 41 26% 84%;
+    --accent-foreground: 144 18% 11%;
+    --destructive: 335 75% 47%; /* fucsia #D11E82 (novedad / alerta de marca) */
+    --destructive-foreground: 45 33% 95%;
+    --border: 41 26% 84%; /* papel-sombra */
+    --input: 41 26% 84%;
+    --ring: 147 45% 34%; /* verde */
+    --radius: 0.1875rem; /* 3px */
   }
 
   /*
@@ -42,14 +90,14 @@
   }
 
   body {
-    @apply flex flex-col items-center bg-background text-foreground;
+    @apply flex flex-col items-center bg-background font-sans text-tinta antialiased;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    @apply font-league_spartan;
+    @apply font-display leading-[1.1] tracking-tight text-tinta;
   }
 
   p,
@@ -57,30 +105,18 @@
   a,
   li,
   button {
-    @apply font-inter;
+    @apply font-sans;
   }
 }
 
 /* 3. Definiciones de Componentes Personalizados */
 @layer components {
+  /* Ancho máximo del contenido en toda la web (coincide con el breakpoint super_desktop). */
   .container-max {
-    @apply mx-auto max-w-[1450px];
+    @apply mx-auto w-full max-w-[1400px];
   }
 
-  /* Estilos para la galería de productos */
-  .product-image-gallery .swiper-pagination {
-    bottom: 12px;
-  }
-
-  .product-image-gallery .swiper-pagination-bullet {
-    background: white;
-    opacity: 0.7;
-    width: 8px;
-    height: 8px;
-  }
-
-  .product-image-gallery .swiper-pagination-bullet-active {
-    opacity: 1;
-    background: white;
+  .measure {
+    @apply max-w-measure;
   }
 }

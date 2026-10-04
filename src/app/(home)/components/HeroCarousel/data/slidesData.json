@@ -1,18 +1,18 @@
 [
   {
     "isNew": false,
-    "title": "Manteca de cerdo",
-    "description": "¡Regresa a lo natural! Nuestra manteca 100% artesanal realza el sabor de tus comidas con un toque auténtico y saludable. Perfecta para freír, hornear y cocinar sin químicos.",
-    "image": "/assets/images/content/products/manteca-de-cerdo/background.webp",
-    "slug": "manteca-de-cerdo"
+    "title": "Kéfir de Leche de Vaca",
+    "description": "Refuerza tu salud desde el interior. Este probiótico natural, cremoso y artesanal cuida tu digestión y fortalece tu sistema inmune. ¡Tu intestino te lo agradecerá!",
+    "image": "/assets/images/content/products/kefir-de-leche/background.webp",
+    "slug": "kefir-leche-vaca-1lt"
   },
 
   {
-    "isNew": false,
-    "title": "Mantequilla artesanal",
-    "description": "Sabor que enamora. Elaborada con nata fresca, esta mantequilla artesanal es pura, cremosa y sin aditivos. Ideal para tus panes, postres o recetas caseras.",
-    "image": "/assets/images/content/products/mantequilla-artesanal/background.webp",
-    "slug": "mantequilla-artesanal"
+    "isNew": true,
+    "title": "Kéfir con Fresa",
+    "description": "Kéfir de leche fermentado con pulpa de fresa real y endulzado con stevia. Todo el poder probiótico con el sabor que sí te provoca tomar cada día.",
+    "image": "/assets/images/content/products/kefir-con-fresa/featured.webp",
+    "slug": "kefir-pulpa-fresa-475ml"
   },
 
   {
@@ -20,22 +20,14 @@
     "title": "Kéfir de Agua",
     "description": "Refresca tu cuerpo con probióticos naturales. Esta bebida fermentada, ligera y burbujeante, mejora tu digestión y te llena de energía. ¡Hidratación saludable que tu cuerpo ama!",
     "image": "/assets/images/content/products/kefir-de-agua/background.webp",
-    "slug": "kefir-de-agua"
+    "slug": "kefir-agua-1lt"
   },
 
   {
     "isNew": false,
-    "title": "Kéfir de Leche (Vaca o Cabra)",
-    "description": "Refuerza tu salud desde el interior. Este probiótico natural, cremoso y artesanal cuida tu digestión y fortalece tu sistema inmune. ¡Tu intestino te lo agradecerá!",
-    "image": "/assets/images/content/products/kefir-de-leche/background.webp",
-    "slug": "kefir-de-leche"
-  },
-
-  {
-    "isNew": false,
-    "title": "Queso de Cabra",
-    "description": "Delicioso queso de cabra artesanal, 100% natural y lleno de sabor. Suave, cremoso y nutritivo, ideal para ensaladas, pastas o simplemente disfrutar solo.",
-    "image": "/assets/images/content/products/queso-natural/background.webp",
-    "slug": "queso-de-cabra"
+    "title": "Manteca de cerdo",
+    "description": "¡Regresa a lo natural! Nuestra manteca 100% artesanal realza el sabor de tus comidas con un toque auténtico y saludable. Perfecta para freír, hornear y cocinar sin químicos.",
+    "image": "/assets/images/content/products/manteca-de-cerdo/background.png",
+    "slug": "manteca-de-cerdo-500ml"
   }
 ]

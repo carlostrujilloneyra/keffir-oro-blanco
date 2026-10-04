@@ -219,36 +219,45 @@ export const Card = ({ card, index, layout = false }: { card: Card; index: numbe
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
-        className='relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl tablet:h-[32rem] tablet:w-[340px]'
+        className='group relative z-10 flex h-80 w-56 flex-col items-start justify-end overflow-hidden rounded-[20px] text-left tablet:h-[32rem] tablet:w-[340px]'
         initial='rest'
         whileHover='hover'
         animate='rest'
       >
-        <div className='pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent' />
+        {/* Imagen (hace zoom en hover) */}
+        <motion.div
+          className='absolute inset-0 z-10'
+          variants={imageVariants}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+        >
+          <BlurImage src={card.src} alt={card.title} fill className='absolute inset-0 z-10 object-cover' />
+        </motion.div>
 
-        <div className='relative z-40 p-5 tablet:px-8 tablet:py-6'>
+        {/* Scrim de abajo hacia arriba: el título siempre legible */}
+        <div className='pointer-events-none absolute inset-0 z-20 bg-gradient-to-t from-tinta via-tinta/40 to-transparent' />
+
+        {/* Afización de "expandir" */}
+        <span className='absolute right-4 top-4 z-40 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-papel backdrop-blur-md transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5'>
+          <IconArrowNarrowRight className='h-5 w-5 -rotate-45' />
+        </span>
+
+        {/* Texto (abajo) */}
+        <div className='relative z-40 p-5 tablet:px-7 tablet:py-7'>
           <motion.h4
             layoutId={layout ? `category-${card.category}` : undefined}
-            className='h-6 max-w-max rounded-md bg-gray-800/30 px-2 py-1 text-sm font-semibold uppercase leading-[1.3] text-light-200 backdrop-blur-md tablet:h-7 md:text-base lg:px-3'
+            className='inline-flex max-w-max items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase leading-none tracking-[0.14em] text-papel backdrop-blur-md tablet:text-xs'
           >
+            <span className='h-1.5 w-1.5 rounded-full bg-miel' />
             {card.category}
           </motion.h4>
 
           <motion.p
             layoutId={layout ? `title-${card.title}` : undefined}
-            className='mt-2 max-w-xs text-left text-xl font-semibold text-light-300 [text-wrap:balance] md:text-3xl'
+            className='mt-3 max-w-xs font-display text-2xl font-semibold leading-[1.1] tracking-tight text-papel [text-wrap:balance] md:text-3xl'
           >
             {card.title}
           </motion.p>
         </div>
-
-        <motion.div
-          className='absolute inset-0 z-10'
-          variants={imageVariants} // <-- Le asignamos nuestras variantes
-          transition={{ duration: 0.4, ease: 'easeOut' }}
-        >
-          <BlurImage src={card.src} alt={card.title} fill className='absolute inset-0 z-10 object-cover' />
-        </motion.div>
       </motion.button>
     </>
   );

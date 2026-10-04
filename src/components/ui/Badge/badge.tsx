@@ -3,46 +3,23 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
 
+/* Sistema de badges reducido a 3 variantes visuales (Editorial Andino):
+    neutral  → chip discreto para atributos secundarios (default)
+    category → acento verde para curaduría / categoría
+    alert    → fucsia sólido para "nuevo" / urgencia (con moderación)
+ */
 const badgeVariants = cva(
-  'inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs tablet:text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+  'inline-flex items-center rounded-sm px-2.5 py-0.5 font-sans text-xs font-semibold uppercase tracking-[0.1em] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-verde focus-visible:ring-offset-1 focus-visible:ring-offset-papel',
   {
     variants: {
       variant: {
-        // Variantes base
-        default: 'border-transparent bg-orange-500 text-white shadow-md hover:bg-orange-600',
-        secondary: 'border-transparent bg-emerald-200 text-emerald-800 hover:bg-emerald-200',
-        destructive: 'border-transparent bg-red-500 text-white shadow-md hover:bg-red-600',
-        outline: 'border-emerald-300 text-emerald-700 hover:bg-emerald-50',
-        stone: 'border-transparent bg-stone-100 text-stone-700 hover:bg-stone-200',
-
-        // Badges de popularidad - Colores cálidos y llamativos
-        bestseller: 'border-transparent bg-amber-500 text-white shadow-md hover:bg-amber-600',
-        recommended: 'border-transparent bg-emerald-600 text-white shadow-md hover:bg-emerald-700',
-        new: 'border-transparent bg-orange-500 text-white shadow-md hover:bg-orange-600',
-
-        // Badges de salud - Colores frescos y naturales
-        fresh: 'border-transparent bg-cyan-500 text-white shadow-md hover:bg-cyan-600',
-        probiotic: 'border-transparent bg-sky-400 text-white hover:bg-sky-500',
-        healthy: 'border-transparent bg-green-600 text-white shadow-md hover:bg-green-700',
-
-        // Badges de naturaleza - Verdes vibrantes
-        natural: 'border-transparent bg-lime-600 text-white shadow-md hover:bg-lime-700',
-        organic: 'border-transparent bg-green-700 text-white shadow-md hover:bg-green-800',
-        vegan: 'border-transparent bg-emerald-700 text-white shadow-md hover:bg-emerald-800',
-
-        // Badges de características - Colores tierra y artesanales
-        artisan: 'border-transparent bg-amber-700 text-white shadow-md hover:bg-amber-800',
-        local: 'border-transparent bg-yellow-600 text-white shadow-md hover:bg-yellow-700',
-
-        // Badges especiales - Colores suaves
-        'sugar-free': 'border-emerald-400 text-emerald-700 bg-transparent hover:bg-emerald-50',
-        'lactose-free': 'border-transparent bg-emerald-300 text-emerald-900 hover:bg-emerald-400',
-        limited: 'border-transparent bg-red-600 text-white shadow-md hover:bg-red-700',
-        seasonal: 'border-transparent bg-orange-100 text-orange-800 hover:bg-orange-200',
+        neutral: 'border border-papel-sombra bg-transparent text-tinta-media',
+        category: 'border border-verde/40 bg-verde/10 text-bosque',
+        alert: 'border-transparent bg-fucsia text-white',
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: 'neutral',
     },
   },
 );

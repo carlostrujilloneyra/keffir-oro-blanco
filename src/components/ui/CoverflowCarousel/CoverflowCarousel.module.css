@@ -1,0 +1,133 @@
+/* El ancho se fija inline (getContentWidth) y se centra; así las flechas quedan pegadas al contenido. */
+.coverflow {
+  position: relative;
+  margin: 0 auto;
+}
+
+.stage {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  /* Deja pasar el scroll vertical de la página; los gestos horizontales los maneja el swipe. */
+  touch-action: pan-y;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+}
+
+/* Cada card. AQUÍ vive la transición de scale + movimiento (el efecto suave). */
+.slot {
+  cursor: pointer;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  will-change: transform, opacity;
+  transition:
+    transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.6s ease;
+}
+
+/* La card central no invita a "hacer clic para centrar" (ya está centrada). */
+.slotActive {
+  cursor: default;
+}
+
+/* Flechas (solo desktop): aparecen al hacer hover en el carrusel. */
+.navigation {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.arrow {
+  align-items: center;
+  background: #1e3a2f; /* bosque */
+  border: none;
+  border-radius: 9999px;
+  color: #f7f5ef; /* papel */
+  cursor: pointer;
+  display: flex;
+  height: 48px;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: auto;
+  transform: scale(0.85);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    background 0.2s ease;
+  width: 48px;
+}
+
+.arrowPrev {
+  margin-left: -14px;
+}
+.arrowNext {
+  margin-right: -14px;
+}
+
+.coverflow:hover .arrow {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.arrow:hover {
+  background: #16201a; /* tinta */
+}
+
+.arrow:disabled {
+  cursor: default;
+  opacity: 0.35;
+}
+
+.arrow:disabled:hover {
+  background: #1e3a2f; /* sin cambio de color cuando está deshabilitada */
+}
+
+/* Dots de paginación */
+.dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.dot {
+  background: #e0d9ca; /* papel-sombra */
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  height: 8px;
+  padding: 0;
+  transition:
+    width 0.3s ease,
+    background 0.3s ease;
+  width: 8px;
+}
+
+.dot:hover {
+  background: #a7a295;
+}
+
+.dotActive {
+  background: #2f7d52; /* verde */
+  width: 26px;
+}
+
+.dot:focus-visible {
+  outline: 2px solid #2f7d52;
+  outline-offset: 2px;
+}
+
+.arrow:focus-visible {
+  opacity: 1;
+  outline: 2px solid #2f7d52;
+  outline-offset: 2px;
+  transform: scale(1);
+}

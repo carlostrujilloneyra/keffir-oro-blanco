@@ -9,12 +9,12 @@ export const UsageInstructions = ({ howToUse }: UsageInstructionsProps) => {
 
   return (
     <AccordionItem value='usage'>
-      <AccordionTrigger className='text-base font-semibold text-gray-800 hover:no-underline tablet:text-[18px]'>
+      <AccordionTrigger className='font-display text-base font-semibold text-tinta hover:no-underline tablet:text-lg'>
         Modo de uso
       </AccordionTrigger>
 
       <AccordionContent>
-        <div className='flex flex-col gap-3 text-justify text-sm text-gray-600 tablet:gap-4 tablet:text-base'>
+        <div className='flex flex-col gap-3 text-sm leading-relaxed text-tinta-media tablet:gap-4 tablet:text-base'>
           {howToUse}
         </div>
       </AccordionContent>

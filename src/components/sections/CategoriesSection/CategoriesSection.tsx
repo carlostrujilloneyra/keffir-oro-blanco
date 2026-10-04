@@ -1,93 +1,161 @@
-import React from 'react';
-import { Tabs } from '../../ui/Tabs/tabs';
 import Image from 'next/image';
-import { Button } from '@/components/ui/Button/Button';
 import Link from 'next/link';
+import { ArrowUpRight, Leaf, Sparkles, type LucideIcon } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 
-interface TabConfig {
-  title: string;
-  value: string;
-  content: React.ReactNode;
+type Theme = 'green' | 'miel';
+
+interface CategoryThemeStyle {
+  gradient: string;
+  dot: string;
+  halo: string;
+  button: string;
 }
 
-interface CategoryContentProps {
+const themeStyles: Record<Theme, CategoryThemeStyle> = {
+  green: {
+    // base tinta + glows verdes en esquinas opuestas + veladura negra.
+    gradient:
+      'linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),' +
+      'radial-gradient(80% 130% at 100% 0%, rgba(47,125,82,0.55), rgba(47,125,82,0.28) 34%, rgba(22,32,26,0) 76%),' +
+      'radial-gradient(85% 150% at 0% 100%, rgba(47,125,82,0.40), rgba(30,58,47,0.22) 42%, rgba(22,32,26,0) 82%),' +
+      '#16201A',
+    dot: 'bg-miel',
+    halo: 'bg-verde/40',
+    button: 'bg-papel text-bosque hover:bg-papel/90',
+  },
+  miel: {
+    // base tinta + glows miel en esquinas opuestas + veladura negra.
+    gradient:
+      'linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),' +
+      'radial-gradient(80% 130% at 100% 0%, rgba(242,183,5,0.45), rgba(242,183,5,0.24) 34%, rgba(22,32,26,0) 76%),' +
+      'radial-gradient(85% 150% at 0% 100%, rgba(201,134,14,0.38), rgba(201,134,14,0.20) 42%, rgba(22,32,26,0) 82%),' +
+      '#16201A',
+    dot: 'bg-miel',
+    halo: 'bg-miel/30',
+    button: 'bg-gradient-miel text-tinta hover:brightness-110',
+  },
+};
+
+type CategoryCard = {
+  eyebrow: string;
   title: string;
   description: string;
+  tag: string;
+  tagIcon: LucideIcon;
   href: string;
-  image: {
-    src: string;
-    alt: string;
-  };
-}
+  image: { src: string; alt: string };
+  theme: Theme;
+};
 
-const categoryData: (CategoryContentProps & { tabTitle: string; value: string })[] = [
+const categories: CategoryCard[] = [
   {
-    tabTitle: 'Probióticos',
-    value: 'probioticos',
-    title: 'Probióticos: Fermentación Natural y Vida',
+    eyebrow: 'Fermentación viva',
+    title: 'Probióticos',
     description:
-      'Bebidas y alimentos elaborados mediante fermentación natural, como kéfir de leche de <strong>vaca y cabra</strong>, kéfir frutado y otros fermentos artesanales. Procesos vivos y tradicionales que aportan sabores únicos y una experiencia auténtica.',
+      'Kéfir de leche de <strong>vaca y cabra</strong>, kéfires frutados y otros fermentos artesanales. Procesos vivos que aportan sabores únicos y una experiencia auténtica.',
+    tag: 'Alto en probióticos',
+    tagIcon: Sparkles,
     href: '/categorias/probioticos',
-    image: {
-      src: '/assets/images/categories/kefires.png',
-      alt: 'Imagen de categoría de probióticos',
-    },
+    image: { src: '/assets/images/categories/kefires.png', alt: 'Kéfires artesanales TRIALFERI' },
+    theme: 'green',
   },
   {
-    tabTitle: 'Tradicionales',
-    value: 'tradicionales',
-    title: 'Tradicionales: Saberes Ancestrales',
+    eyebrow: 'Saberes ancestrales',
+    title: 'Tradicionales',
     description:
-      'Productos elaborados siguiendo métodos tradicionales, como <strong>manteca de cerdo artesanal</strong>, mermelada de quito quito y otras preparaciones caseras. Recetas simples que respetan ingredientes y procesos originales.',
+      '<strong>Manteca de cerdo artesanal</strong>, mermelada de quito quito y otras preparaciones caseras. Recetas simples que respetan los ingredientes y los procesos de siempre.',
+    tag: '100% artesanal',
+    tagIcon: Leaf,
     href: '/categorias/tradicionales',
-    image: {
-      src: '/assets/images/categories/manteca-de-cerdo.webp',
-      alt: 'Imagen de categoría de productos tradicionales',
-    },
+    image: { src: '/assets/images/categories/manteca-de-cerdo.webp', alt: 'Productos tradicionales TRIALFERI' },
+    theme: 'miel',
   },
 ];
 
-const CategoryContent = ({ title, description, href, image }: CategoryContentProps) => {
-  return (
-    <div className='relative grid h-full w-full grid-rows-[320px_1fr] gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-black via-[#2d2d2d] to-[#181717] px-6 py-8 text-xl text-white tablet:gap-6 tablet:px-10 lg:grid-cols-2 lg:grid-rows-1 lg:px-20 lg:py-10'>
-      <div className='flex flex-col justify-center gap-5'>
-        <h2 className='text-[28px] font-semibold tablet:text-4xl xl:text-[34px]'>{title}</h2>
-
-        <p className='text-justify text-base lg:w-10/12' dangerouslySetInnerHTML={{ __html: description }} />
-
-        <Button
-          asChild
-          className='max-w-[200px] bg-white px-5 py-4 !text-sm font-bold uppercase text-black tablet:px-6'
-          theme='primary'
-        >
-          <Link href={href}>Ver categoría</Link>
-        </Button>
-      </div>
-
-      {/* Imagen */}
-      <div className='relative flex w-full items-center justify-center tablet:justify-end'>
-        <Image
-          className='rounded-lg lg:object-cover'
-          fill
-          sizes='(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 400px'
-          src={image.src}
-          alt={image.alt}
-        />
-      </div>
-    </div>
-  );
-};
-
-const tabs: TabConfig[] = categoryData.map((category) => ({
-  title: category.tabTitle,
-  value: category.value,
-  content: <CategoryContent {...category} />,
-}));
-
 export const CategoriesSection = () => {
   return (
-    <section className='container-max relative h-[780px] w-full tablet:h-[860px] lg:h-[800px] lg:p-18'>
-      <Tabs tabs={tabs} />
+    <section aria-labelledby='categorias-titulo' className='w-full py-8 lg:py-10'>
+      <div className='mb-10 flex flex-col gap-2 lg:mb-12'>
+        <Eyebrow className='text-xs tracking-[0.18em]' dotClassName='h-2 w-2'>
+          Explora por categoría
+        </Eyebrow>
+
+        <h2
+          id='categorias-titulo'
+          className='font-display text-4xl font-semibold leading-[1.05] tracking-tight text-tinta lg:text-5xl'
+        >
+          Dos mundos, un mismo cuidado
+        </h2>
+      </div>
+
+      {/* Las categorías son un conjunto de hermanas equivalentes → lista. */}
+      <ul className='grid gap-5 tablet:gap-6 lg:grid-cols-2'>
+        {categories.map((cat) => {
+          const t = themeStyles[cat.theme];
+          const TagIcon = cat.tagIcon;
+
+          return (
+            <li
+              key={cat.title}
+              style={{ background: t.gradient }}
+              className='group relative flex flex-col overflow-hidden rounded-[28px] transition-transform duration-300 ease-out hover:-translate-y-1'
+            >
+              {/* Imagen con halo de fermento (más grande en desktop) */}
+              <div className='relative h-80 overflow-hidden tablet:h-[360px] lg:h-[480px]'>
+                <div
+                  className={cn(
+                    'absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl transition-transform duration-500 ease-out group-hover:scale-110',
+                    t.halo,
+                  )}
+                />
+                <Image
+                  src={cat.image.src}
+                  alt={cat.image.alt}
+                  fill
+                  sizes='(min-width: 1024px) 45vw, 92vw'
+                  className='object-contain p-6 pt-20 transition-transform duration-500 ease-out group-hover:scale-105'
+                />
+
+                {/* Sello glass */}
+                <span className='absolute left-5 top-5 z-10 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-papel shadow-sm backdrop-blur-md'>
+                  <TagIcon className='h-3.5 w-3.5' />
+                  {cat.tag}
+                </span>
+              </div>
+
+              {/* Contenido */}
+              <div className='flex flex-1 flex-col gap-4 px-6 py-8 lg:p-10'>
+                <span className='inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-papel'>
+                  <span className={cn('h-2 w-2 rounded-full', t.dot)} />
+                  {cat.eyebrow}
+                </span>
+
+                <h3 className='font-display text-3xl font-semibold leading-[1.05] tracking-tight text-papel lg:text-[40px]'>
+                  {cat.title}
+                </h3>
+
+                <p
+                  className='max-w-prose text-justify text-papel/85 md:text-[17px]'
+                  dangerouslySetInnerHTML={{ __html: cat.description }}
+                />
+
+                <Link
+                  href={cat.href}
+                  className={cn(
+                    'mt-2 inline-flex w-fit items-center gap-2 rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-[0.08em] transition-all duration-200 ease-out active:scale-[0.98]',
+                    t.button,
+                  )}
+                >
+                  Ver categoría
+                  <ArrowUpRight className='h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5' />
+                </Link>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 };

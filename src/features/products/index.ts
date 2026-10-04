@@ -11,8 +11,20 @@ export {
   recommendedCollection,
   featuredHomeProducts,
   promotedCollection,
+  getSizeVariants,
+  getRelatedProducts,
 } from './data/collections';
+
+export {
+  subcategoryDetails,
+  getSubcategoryProducts,
+  getSubcategoriesOf,
+  getSubcategoryImage,
+  getSubcategoryUrl,
+  resolveSubcategory,
+} from './data/subcategories';
 
 // --- 3. Exportamos los TIPOS ---
 export type { Product, ProductTab } from './types/product.type';
+export type { SubcategoryDetail, SubcategoryTone } from './data/subcategories';
 export { ProductCategory, categoryDetails } from './data/categories';

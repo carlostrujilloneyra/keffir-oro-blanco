@@ -13,7 +13,7 @@ export function ProductTags({ isNew, tags }: ProductTagsProps) {
 
   return (
     <div className='flex flex-wrap gap-2'>
-      {isNew && <Badge variant='default'>Nuevo</Badge>}
+      {isNew && <Badge variant='alert'>Nuevo</Badge>}
       {tags?.map((tag) => {
         const config = badgeConfig[tag];
 

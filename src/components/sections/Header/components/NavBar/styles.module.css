@@ -1,8 +1,0 @@
-.item:hover .root {
-  color: #f55947;
-  transition: all 0.3s;
-}
-
-.root {
-  transition: all 0.4s;
-}

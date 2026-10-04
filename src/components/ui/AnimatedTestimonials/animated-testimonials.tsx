@@ -1,12 +1,9 @@
 'use client';
 
-import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { Button } from '../Button/Button';
-import Link from 'next/link';
-import { ExternalLink } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 interface Testimonial {
   quote: string;
@@ -23,62 +20,43 @@ export const AnimatedTestimonials = ({
 }) => {
   const [active, setActive] = useState(0);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setActive((prev) => (prev + 1) % testimonials.length);
-  };
+  }, [testimonials.length]);
 
-  const handlePrev = () => {
-    setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+  const handlePrev = () => setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
-  const isActive = (index: number) => {
-    return index === active;
-  };
+  const isActive = (index: number) => index === active;
 
   useEffect(() => {
-    if (autoplay) {
-      const interval = setInterval(handleNext, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [autoplay]);
+    if (!autoplay) return;
+    const interval = setInterval(handleNext, 6000);
+    return () => clearInterval(interval);
+  }, [autoplay, handleNext]);
 
-  const randomRotateY = () => {
-    return Math.floor(Math.random() * 21) - 4;
-  };
+  // Rotación leve y estable por card (no aleatoria en cada render).
+  const rotateFor = (index: number) => [-4, 3, -2, 5, -3][index % 5];
 
   return (
-    <div className='mx-auto px-4 pt-9 antialiased tablet:px-8 lg:px-12'>
-      <div className='relative grid grid-cols-1 gap-7 min-[900px]:grid-cols-2 lg:gap-9'>
+    <div className='container-max mx-auto pt-12 antialiased'>
+      <div className='relative grid grid-cols-1 items-center gap-10 min-[900px]:grid-cols-[0.9fr_1.1fr] lg:gap-16'>
+        {/* Pila de fotos */}
         <div className='flex justify-center'>
-          <div className='relative h-[400px] w-80 lg:h-[480px] lg:w-[360px]'>
+          <div className='relative h-[320px] w-60 tablet:h-[380px] tablet:w-72 lg:h-[460px] lg:w-[360px]'>
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
                   key={testimonial.src}
-                  initial={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: -100,
-                    rotate: randomRotateY(),
-                  }}
+                  initial={{ opacity: 0, scale: 0.9, rotate: rotateFor(index) }}
                   animate={{
-                    opacity: isActive(index) ? 1 : 0.7,
-                    scale: isActive(index) ? 1 : 0.95,
-                    z: isActive(index) ? 0 : -100,
-
+                    opacity: isActive(index) ? 1 : 0.6,
+                    scale: isActive(index) ? 1 : 0.94,
+                    rotate: isActive(index) ? 0 : rotateFor(index),
                     zIndex: isActive(index) ? 40 : testimonials.length + 2 - index,
-                    y: isActive(index) ? [0, -80, 0] : 0,
+                    y: isActive(index) ? [0, -16, 0] : 0,
                   }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: 100,
-                    rotate: randomRotateY(),
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    ease: 'easeInOut',
-                  }}
+                  exit={{ opacity: 0, scale: 0.9, rotate: rotateFor(index) }}
+                  transition={{ duration: 0.45, ease: [0.32, 0.72, 0, 1] }}
                   className='absolute inset-0 origin-bottom'
                 >
                   <Image
@@ -87,7 +65,7 @@ export const AnimatedTestimonials = ({
                     width={500}
                     height={500}
                     draggable={false}
-                    className='h-full w-full rounded-3xl object-cover object-center'
+                    className='h-full w-full rounded-[24px] object-cover object-center shadow-hard'
                   />
                 </motion.div>
               ))}
@@ -95,78 +73,65 @@ export const AnimatedTestimonials = ({
           </div>
         </div>
 
-        <div className='flex flex-col justify-center gap-6 tablet:gap-8'>
+        {/* Contenido */}
+        <div className='flex flex-col justify-center gap-8'>
           <motion.div
             key={active}
-            initial={{
-              y: 20,
-              opacity: 0,
-            }}
-            animate={{
-              y: 0,
-              opacity: 1,
-            }}
-            exit={{
-              y: -20,
-              opacity: 0,
-            }}
-            transition={{
-              duration: 0.2,
-              ease: 'easeInOut',
-            }}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
           >
-            <h3 className='text-[28px] font-bold text-gray-700 tablet:text-[32px] lg:mb-2 lg:text-4xl'>
-              {testimonials[active].name}
-            </h3>
+            <span aria-hidden className='block font-display text-7xl leading-[0.4] text-verde/25'>
+              &ldquo;
+            </span>
 
-            <motion.p className='text-justify text-sm leading-[1.4] text-gray-600 lg:text-[16px]'>
+            <motion.p className='mt-5 text-justify text-base leading-relaxed text-tinta-media lg:text-lg'>
               {testimonials[active].quote.split(' ').map((word, index) => (
                 <motion.span
                   key={index}
-                  initial={{
-                    filter: 'blur(10px)',
-                    opacity: 0,
-                    y: 5,
-                  }}
-                  animate={{
-                    filter: 'blur(0px)',
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.2,
-                    ease: 'easeInOut',
-                    delay: 0.02 * index,
-                  }}
+                  initial={{ filter: 'blur(10px)', opacity: 0, y: 5 }}
+                  animate={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2, ease: 'easeInOut', delay: 0.015 * index }}
                   className='inline-block'
                 >
                   {word}&nbsp;
                 </motion.span>
               ))}
             </motion.p>
+
+            <div className='mt-6'>
+              <h3 className='font-display text-xl font-semibold tracking-tight text-tinta lg:text-2xl'>
+                {testimonials[active].name}
+              </h3>
+              <div className='mt-1.5 flex gap-0.5'>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className='h-4 w-4 fill-miel text-miel' />
+                ))}
+              </div>
+            </div>
           </motion.div>
 
           <div className='flex items-center justify-between'>
-            <Button asChild theme='primary'>
-              <Link className='flex max-w-max items-center gap-2 px-7 py-3 uppercase' href={''} target='_blank'>
-                <span>Ver tiktok</span>
-                <ExternalLink className='h-4 w-4' />
-              </Link>
-            </Button>
+            <span className='text-xs font-semibold uppercase tracking-[0.14em] text-tinta-suave'>
+              {active + 1} / {testimonials.length}
+            </span>
 
-            <div className='order-5 flex gap-4'>
+            <div className='flex gap-3'>
               <button
+                type='button'
+                aria-label='Testimonio anterior'
                 onClick={handlePrev}
-                className='group/button flex h-8 w-8 items-center justify-center rounded-full bg-gray-800'
+                className='flex h-11 w-11 items-center justify-center rounded-full bg-bosque text-papel transition-colors duration-200 hover:bg-tinta'
               >
-                <IconArrowLeft className='h-5 w-5 text-light-200 transition-transform duration-300' />
+                <ChevronLeft className='h-5 w-5' />
               </button>
-
               <button
+                type='button'
+                aria-label='Testimonio siguiente'
                 onClick={handleNext}
-                className='group/button flex h-8 w-8 items-center justify-center rounded-full bg-gray-800'
+                className='flex h-11 w-11 items-center justify-center rounded-full bg-bosque text-papel transition-colors duration-200 hover:bg-tinta'
               >
-                <IconArrowRight className='h-5 w-5 text-light-200 transition-transform duration-300' />
+                <ChevronRight className='h-5 w-5' />
               </button>
             </div>
           </div>

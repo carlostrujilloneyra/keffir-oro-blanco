@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Card, CardHeader, CardTitle } from '@/components/ui/Card/card';
+import { Card, CardHeader } from '@/components/ui/Card/card';
 import { Button } from '@/components/ui/Button/Button';
 import { Badge } from '@/components/ui/Badge/badge';
 import { type Product } from '../types/product.type';
@@ -21,24 +21,23 @@ type ProductCardRootProps = {
   className?: string;
 };
 
-const imageVariants = cva(
-  'relative aspect-square overflow-hidden rounded-md', // Clases base que se aplican siempre
-  {
-    variants: {
-      size: {
-        default: 'h-[190px] w-[190px] tablet:h-[220px] tablet:w-[220px]',
-        large: 'h-[270px] w-[270px] tablet:h-[270px] tablet:w-[270px] min-[1400px]:h-[260px]',
-      },
-    },
-    defaultVariants: {
-      size: 'default',
+// La imagen ocupa todo el ancho de la tarjeta sobre un panel papel-hueso.
+// El prop `size` se conserva por compatibilidad de API (no altera dimensiones).
+const imageVariants = cva('relative aspect-square w-full overflow-hidden rounded-sm bg-papel-hueso', {
+  variants: {
+    size: {
+      default: '',
+      large: '',
     },
   },
-);
+  defaultVariants: {
+    size: 'default',
+  },
+});
 
 const imageSizesPropVariants = {
-  default: '(min-width: 768px) 190px, 160px',
-  large: '(min-width: 768px) 270px, 160px',
+  default: '(min-width: 768px) 260px, 45vw',
+  large: '(min-width: 1024px) 340px, 90vw',
 };
 export interface ProductCardImageProps
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -66,7 +65,7 @@ interface ProductCardDescriptionProps {
 }
 
 interface ProductCardFeatureListProps {
-  features?: string[];
+  features?: React.ReactNode[];
   className?: string;
 }
 
@@ -75,20 +74,29 @@ interface ProductCardActionProps {
   hasIcon?: boolean;
 }
 
+// Máximo de beneficios visibles en la tarjeta; el resto vive en la ficha de detalle.
+const MAX_CARD_FEATURES = 3;
+
 // --- Definiciones de los Subcomponentes (con tipos explícitos) ---
 
 const ProductCard = ({ children, className }: ProductCardRootProps) => (
-  <Card className={`flex h-full w-full flex-col gap-2 px-3 py-4 tablet:gap-3 ${className || ''}`}>{children}</Card>
+  <Card
+    className={cn(
+      'group h-full w-full gap-3 p-3 transition-[transform,border-color] duration-200 ease-out hover:-translate-y-1 hover:border-tinta/25',
+      className,
+    )}
+  >
+    {children}
+  </Card>
 );
 
 const ProductCardImage = ({ className, size, src, alt, ...props }: ProductCardImageProps) => {
-  // Aseguramos que 'sizeKey' siempre tenga un valor válido para el objeto de 'sizes'
   const sizeKey = size || 'default';
 
   return (
-    <CardHeader className='flex items-center justify-center p-0'>
+    <CardHeader className='p-0'>
       <div className={cn(imageVariants({ size }), className)} {...props}>
-        <Image className='object-contain' fill sizes={imageSizesPropVariants[sizeKey]} src={src} alt={alt} priority />
+        <Image className='object-contain p-4' fill sizes={imageSizesPropVariants[sizeKey]} src={src} alt={alt} />
       </div>
     </CardHeader>
   );
@@ -96,30 +104,24 @@ const ProductCardImage = ({ className, size, src, alt, ...props }: ProductCardIm
 
 const ProductCardCategory = ({ category }: ProductCardCategoryProps) => {
   return (
-    <p className='mb-2 text-xs font-bold uppercase tracking-wide text-gray-500 tablet:text-sm'>
+    <p className='font-sans text-eyebrow uppercase text-tinta-suave'>
       {categoryDetails[category]?.title || 'Categoría'}
     </p>
   );
 };
 
 const ProductCardTitle = ({ title, className }: ProductCardTitleProps) => {
-  return (
-    <CardTitle asChild className={className}>
-      <h3 className='inline-block leading-[1.22] text-gray-700 tablet:leading-[1]'>{title}</h3>
-    </CardTitle>
-  );
+  return <h3 className={cn('font-display text-xl leading-tight text-tinta tablet:text-[22px]', className)}>{title}</h3>;
 };
 
 const ProductCardFeatureList = ({ features, className }: ProductCardFeatureListProps) => {
-  if (!features) return null;
+  if (!features || features.length === 0) return null;
 
   return (
-    <ul className={cn('my-2 space-y-2 text-[13.5px] text-gray-600', className)}>
-      {features.map((feature, idx) => (
-        <li className='flex items-center gap-2 leading-[1.2]' key={idx}>
-          <div>
-            <CircleCheck className='h-4 w-4' />
-          </div>
+    <ul className={cn('space-y-1.5 text-sm leading-snug text-tinta-media', className)}>
+      {features.slice(0, MAX_CARD_FEATURES).map((feature, idx) => (
+        <li className='flex items-start gap-2' key={idx}>
+          <CircleCheck className='mt-0.5 h-4 w-4 shrink-0 text-verde' />
           <span>{feature}</span>
         </li>
       ))}
@@ -132,9 +134,9 @@ const ProductCardPresentations = ({ className, presentations }: ProductCardPrese
     return null;
   }
   return (
-    <div className={cn('mt-2 flex flex-wrap gap-2', className)}>
+    <div className={cn('flex flex-wrap gap-2', className)}>
       {presentations.map((variant) => (
-        <Badge key={variant.id} variant='stone'>
+        <Badge key={variant.id} variant='neutral'>
           {variant.name}
         </Badge>
       ))}
@@ -145,7 +147,7 @@ const ProductCardPresentations = ({ className, presentations }: ProductCardPrese
 const ProductCardDescription = ({ description }: ProductCardDescriptionProps) => {
   if (!description) return null;
 
-  return <p className='mt-1 text-justify text-sm leading-tight text-gray-600'>{description}</p>;
+  return <p className='mt-1 text-sm leading-snug text-tinta-media'>{description}</p>;
 };
 
 const ProductCardPrice = ({
@@ -154,21 +156,19 @@ const ProductCardPrice = ({
   ...props
 }: React.HTMLAttributes<HTMLSpanElement> & { price: number }) => {
   return (
-    <span className={cn('text-base font-bold text-gray-600', className)} {...props}>
+    <span className={cn('font-display text-xl text-tinta', className)} {...props}>
       S/ {formatPrice(price)}
     </span>
   );
 };
 
 const ProductCardAction = ({ slug, hasIcon }: ProductCardActionProps) => (
-  <Button
-    className='flex w-full items-center justify-center gap-2 px-6 py-3 text-center uppercase'
-    asChild
-    theme='primary'
-  >
+  <Button className='w-full' asChild variant='primary'>
     <Link href={getProductUrl(slug)}>
       Ver más
-      {hasIcon && <MoveRight className='h-5 w-5' />}
+      {hasIcon && (
+        <MoveRight className='h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1' />
+      )}
     </Link>
   </Button>
 );

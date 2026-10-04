@@ -1,43 +1,11 @@
-@mixin create-themed-gradient($highlight-color, $base-color) {
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)),
-    radial-gradient(80% 60% at 50% 120%, $highlight-color 0%, rgba(30, 30, 35, 0) 100%),
-    radial-gradient(60% 80% at 100% -20%, $highlight-color 0%, rgba(30, 30, 35, 0) 100%), $base-color;
-
-  @media (min-width: 768px) {
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)),
-      radial-gradient(50% 197.34% at 100% 0%, $highlight-color 0%, rgba(30, 30, 35, 0) 100%),
-      radial-gradient(50% 197.34% at 0% 100%, $highlight-color 0%, rgba(30, 30, 35, 0) 100%), $base-color;
-  }
-}
-
-.lacteos-section {
-  @include create-themed-gradient(#a8dadc, #2a3d45);
-}
-
-.manteca-section {
-  @include create-themed-gradient(#f7b733, #4a2c2a);
-}
-
-.kefir-chocolate {
-  .bgGradient {
-    @include create-themed-gradient(#693119, #2d2d31);
-  }
-}
-
-.vinage-de-manzana {
-  .bgGradient {
-    @include create-themed-gradient(#a4161a, #2d2d31);
-  }
-}
-
-.sal-de-maras {
-  .bgGradient {
-    @include create-themed-gradient(#c19d09, #131314);
-  }
-}
-
-.mermelada-quito-quito {
-  .bgGradient {
-    @include create-themed-gradient(#f58723, #131314);
-  }
+/* Gradiente "black-infused" de marca (data-driven): base tinta (#16201A) + glows
+   del acento en esquinas opuestas + veladura negra. El color del acento llega por
+   la CSS var --fs-accent (la define cada producto vía accentGlow); default verde.
+   Así, agregar un producto nuevo no requiere tocar este archivo. */
+.bgGradient {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.28)),
+    radial-gradient(65% 160% at 100% 0%, var(--fs-accent, rgba(47, 125, 82, 0.45)), rgba(22, 32, 26, 0) 60%),
+    radial-gradient(65% 160% at 0% 100%, var(--fs-accent, rgba(47, 125, 82, 0.45)), rgba(22, 32, 26, 0) 62%),
+    #16201a;
 }

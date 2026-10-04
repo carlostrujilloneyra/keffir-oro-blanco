@@ -11,3 +11,5 @@ export { FruitIcon } from './FruitIcon';
 export { ArrowIcon } from './ArrowIcon';
 export { HamburgerIcon } from './HamburgerIcon';
 export { BlueberryIcon } from './BlueberryIcon';
+export { TiktokIcon } from './TiktokIcon';
+export { InstagramIcon } from './InstagramIcon';
