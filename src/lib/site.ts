@@ -5,6 +5,7 @@ const PRODUCTION_HOST = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 export const SITE_URL = PRODUCTION_HOST ? `https://${PRODUCTION_HOST}` : 'http://localhost:3000';
 
 export const SITE_NAME = 'TRIALFERI';
+export const LOGO_PATH = '/assets/images/ui/logos/trialferi-logo.png';
 export const CURRENCY = 'PEN';
 
 export const WHATSAPP_NUMBER = '51923676457';

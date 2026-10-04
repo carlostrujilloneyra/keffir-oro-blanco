@@ -42,6 +42,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     };
   }
 
+  const shareImage = product.shareImage ?? product.thumbnailImage;
+
   return {
     title: product.title,
     description: buildProductMetaDescription(product),
@@ -49,11 +51,11 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     openGraph: {
       title: product.title,
       description: product.shortDescription,
-      images: [product.featuredImage || product.thumbnailImage],
+      images: [shareImage],
     },
     twitter: {
       card: 'summary_large_image',
-      images: [product.featuredImage || product.thumbnailImage],
+      images: [shareImage],
     },
   };
 }

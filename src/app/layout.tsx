@@ -93,15 +93,6 @@ export const metadata: Metadata = {
       'Kéfir de leche, kéfires frutados (fresa, arándanos, frutos del bosque, chocolate y aguaymanto), kéfir de agua, kombucha y tradicionales. Fermentos vivos elaborados a mano, lote a lote.',
     url: SITE_URL,
     siteName: SITE_NAME,
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1080,
-        height: 1080,
-        alt: 'Logo TRIALFERI: Productos naturales y probióticos artesanales',
-        type: 'image/png',
-      },
-    ],
     locale: 'es_PE',
     type: 'website',
   },
@@ -109,7 +100,6 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'TRIALFERI | Cuida tu salud con nosotros',
     description: 'Kéfir de leche, kéfires frutados, kombucha y tradicionales. 100% artesanal, sin conservantes.',
-    images: ['/og-image.png'],
   },
 };
 

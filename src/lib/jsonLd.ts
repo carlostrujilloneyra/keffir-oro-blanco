@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL, SITE_NAME, SITE_URL, WHATSAPP_DISPLAY } from '@/lib/site';
+import { CONTACT_EMAIL, LOGO_PATH, SITE_NAME, SITE_URL, WHATSAPP_DISPLAY } from '@/lib/site';
 
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
@@ -15,11 +15,11 @@ export const organizationJsonLd = {
     'Kéfir de leche de vaca y cabra, kéfires frutados, kéfir de agua, kombucha y productos tradicionales. Fermentos vivos artesanales, sin conservantes.',
   logo: {
     '@type': 'ImageObject',
-    url: `${SITE_URL}/og-image.png`,
-    width: 1080,
-    height: 1080,
+    url: `${SITE_URL}${LOGO_PATH}`,
+    width: 1224,
+    height: 1138,
   },
-  image: `${SITE_URL}/og-image.png`,
+  image: `${SITE_URL}${LOGO_PATH}`,
   email: CONTACT_EMAIL,
   telephone: WHATSAPP_DISPLAY,
   areaServed: {

@@ -50,6 +50,9 @@ export interface Product {
   featuredImage?: string; // La imagen "hero" para el modal
   thumbnailImage: string; // Para tarjetas pequeñas (a futuro)
   galleryImages?: string[]; // Imágenes para la vista detalla del producto
+  /* Imagen para compartir en redes (og:image): horizontal 1200×630, JPG < 300 KB.
+    Convención: <carpeta del producto>/share.jpg. Si falta, se usa thumbnailImage. */
+  shareImage?: string;
 
   /* Descripciones, textos largos o cortos */
   shortDescription: string; // Para tarjetas
