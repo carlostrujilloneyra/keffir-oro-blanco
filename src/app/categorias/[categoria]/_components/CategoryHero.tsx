@@ -99,9 +99,10 @@ export const CategoryHero = ({
         {shortcuts && shortcuts.length > 0 ? (
           <nav aria-label={`Tipos de ${title}`} className='mt-2 flex flex-col gap-2'>
             <p className='text-xs font-medium text-papel/70 md:text-sm'>Elige por tipo · {count} productos</p>
-            {/* Móvil: una fila deslizable (sin barra visible) que se desvanece a la derecha
-              para indicar que hay más; desde tablet, en varias líneas. */}
-            <ul className='flex snap-x gap-2 overflow-x-auto scrollbar-none [mask-image:linear-gradient(to_right,black_80%,transparent)] tablet:flex-wrap tablet:overflow-visible tablet:pr-0 tablet:[mask-image:none]'>
+            {/* Móvil: fila deslizable (sin barra visible) que se desvanece a la derecha para
+              indicar que hay más. El ::after es un espaciador final: deja el último acceso
+              fuera del desvanecido al llegar al final (el padding no siempre suma al scroll). */}
+            <ul className="flex snap-x gap-2 overflow-x-auto scrollbar-none [mask-image:linear-gradient(to_right,black_80%,transparent)] after:w-16 after:shrink-0 after:content-[''] tablet:flex-wrap tablet:overflow-visible tablet:[mask-image:none] tablet:after:hidden">
               {shortcuts.map(({ label, href, fromPrice }) => (
                 <li key={href} className='shrink-0 snap-start'>
                   <Link
