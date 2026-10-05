@@ -20,6 +20,9 @@ export interface Product {
      JSON-LD, así que marcarlo false también lo comunica a Google. */
   available?: boolean;
 
+  /* Lleva leche o derivados. Ausente = sin lácteos (el menú lo usa para guiar a intolerantes). */
+  containsDairy?: boolean;
+
   /* Talla de este SKU (ej. '1 L', '475 ml'). Cada presentación es un producto
      propio; las hermanas se agrupan por el campo `name` (mismo grupo). */
   size?: string;

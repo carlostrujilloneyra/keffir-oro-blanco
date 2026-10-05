@@ -13,6 +13,7 @@ const make = (product: Omit<Product, 'slug'>): Product => ({
 });
 
 const vacaNatural = {
+  containsDairy: true,
   shortDescription: 'El clásico probiótico, cremoso y lleno de beneficios.',
   longDescription: (
     <>
@@ -52,6 +53,7 @@ const vacaNatural = {
 };
 
 const cabraNatural = {
+  containsDairy: true,
   shortDescription: 'Nutritivo, suave y más fácil de digerir.',
   longDescription: (
     <>
@@ -291,6 +293,7 @@ export const allProducts: Product[] = [
   /* ── Probióticos · Kéfires frutados (475 ml, talla única) ────────────── */
   make({
     id: 'kefir-fresa',
+    containsDairy: true,
     category: ProductCategory.PROBIOTICOS,
     name: 'kefir-pulpa-fresa',
     title: 'Kéfir de leche de vaca con pulpa de fresa 475 ml',
@@ -323,6 +326,7 @@ export const allProducts: Product[] = [
   }),
   make({
     id: 'kefir-arandanos',
+    containsDairy: true,
     category: ProductCategory.PROBIOTICOS,
     name: 'kefir-pulpa-arandanos',
     title: 'Kéfir de leche de vaca con pulpa de arándanos 475 ml',
@@ -362,6 +366,7 @@ export const allProducts: Product[] = [
   }),
   make({
     id: 'kefir-aguaymanto',
+    containsDairy: true,
     category: ProductCategory.PROBIOTICOS,
     name: 'kefir-aguaymanto',
     title: 'Kéfir de leche de vaca con aguaymanto 475 ml',
@@ -393,6 +398,7 @@ export const allProducts: Product[] = [
   }),
   make({
     id: 'kefir-frutos-bosque',
+    containsDairy: true,
     category: ProductCategory.PROBIOTICOS,
     name: 'kefir-frutos-bosque',
     title: 'Kéfir de leche de vaca con frutos del bosque 475 ml',
@@ -427,6 +433,7 @@ export const allProducts: Product[] = [
   }),
   make({
     id: 'kefir-chocolate',
+    containsDairy: true,
     category: ProductCategory.PROBIOTICOS,
     name: 'kefir-chocolate',
     title: 'Kéfir de leche de vaca con chocolate 475 ml',
@@ -750,6 +757,7 @@ export const allProducts: Product[] = [
   }),
   make({
     id: 'crema-de-kefir-aceituna',
+    containsDairy: true,
     category: ProductCategory.PROBIOTICOS,
     name: 'crema-de-kefir-aceituna',
     title: 'Crema de Kéfir con aceitunas',
