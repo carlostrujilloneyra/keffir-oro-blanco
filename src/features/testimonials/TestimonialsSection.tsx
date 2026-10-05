@@ -63,7 +63,7 @@ export const TestimonialsSection = () => (
 
     {/* Móvil: fila deslizable (scroll-snap, sin JS) para no apilar una torre.
       Desktop: grilla con el primero destacado a la izquierda. */}
-    <ul className='-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-[1.2fr_1fr] lg:grid-rows-2 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0'>
+    <ul className='-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 scrollbar-none lg:mx-0 lg:grid lg:grid-cols-[1.2fr_1fr] lg:grid-rows-2 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0'>
       {testimonialsArray.map((testimonial, index) => (
         <li
           key={testimonial.name}

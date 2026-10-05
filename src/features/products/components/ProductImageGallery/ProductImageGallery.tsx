@@ -117,7 +117,7 @@ export function ProductImageGallery({ images, productTitle }: ProductImageGaller
       </div>
 
       {/* Miniaturas: también en móvil (fila con scroll), no solo en tablet. */}
-      <div className='-mx-1 flex gap-2.5 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
+      <div className='-mx-1 flex gap-2.5 overflow-x-auto px-1 pb-1 scrollbar-none'>
         {images.map((image, index) => (
           <button
             key={image}

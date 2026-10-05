@@ -188,7 +188,11 @@ const config: Config = {
     require('tailwindcss-animate'),
     /* Container query: `cq` marca el contenedor; `cq-sm:` aplica si mide ≥ 13rem. */
     plugin(({ addUtilities, addVariant }) => {
-      addUtilities({ '.cq': { 'container-type': 'inline-size' } });
+      addUtilities({
+        '.cq': { 'container-type': 'inline-size' },
+        // Oculta la barra de scroll sin quitar el desplazamiento (dedo, trackpad, teclado).
+        '.scrollbar-none': { 'scrollbar-width': 'none', '&::-webkit-scrollbar': { display: 'none' } },
+      });
       addVariant('cq-sm', '@container (min-width: 13rem)');
     }),
   ],
