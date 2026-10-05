@@ -54,21 +54,24 @@ export const CategoryHero = ({ title, eyebrow, description, imageUrl, imageAlt, 
       {/* Panel glass con el contenido */}
       <div className='relative z-10 flex min-h-[320px] max-w-full flex-col justify-center gap-3 rounded-[24px] border border-white/15 bg-white/[0.07] px-4 py-8 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] backdrop-blur-xl tablet:px-10 tablet:py-12 lg:min-h-[380px] lg:max-w-[600px] lg:gap-4 lg:px-14 lg:py-16'>
         {/* Migas de pan */}
-        <nav aria-label='Migas de pan' className='mb-4 flex items-center gap-1.5 text-xs text-papel/70 md:mb-6'>
+        <nav
+          aria-label='Migas de pan'
+          className='mb-4 flex items-center gap-1.5 text-xs text-papel/70 md:mb-6 md:text-sm'
+        >
           <Link href='/' className='transition-colors hover:text-papel'>
             Inicio
           </Link>
 
           {parent && (
             <>
-              <ChevronRight className='h-3.5 w-3.5 text-papel/40' />
+              <ChevronRight className='h-3.5 w-3.5 text-papel/40 md:h-4 md:w-4' />
               <Link href={parent.href} className='transition-colors hover:text-papel'>
                 {parent.title}
               </Link>
             </>
           )}
 
-          <ChevronRight className='h-3.5 w-3.5 text-papel/40' />
+          <ChevronRight className='h-3.5 w-3.5 text-papel/40 md:h-4 md:w-4' />
           <span className='font-medium text-papel'>{title}</span>
         </nav>
 
@@ -95,7 +98,7 @@ export const CategoryHero = ({ title, eyebrow, description, imageUrl, imageAlt, 
         height={460}
         priority
         sizes='(min-width: 1280px) 340px, (min-width: 1024px) 280px, 300px'
-        className='pointer-events-none order-first mx-auto h-60 w-auto select-none object-contain tablet:h-72 lg:absolute lg:right-6 lg:top-1/2 lg:z-0 lg:h-auto lg:w-[280px] lg:-translate-y-1/2 xl:right-16 xl:w-[340px]'
+        className='pointer-events-none order-first mx-auto h-60 w-auto select-none object-contain tablet:h-72 lg:absolute lg:right-6 lg:top-1/2 lg:z-0 lg:h-[85%] lg:w-auto lg:max-w-[280px] lg:-translate-y-1/2 xl:right-16 xl:max-w-[340px]'
       />
     </div>
   );
