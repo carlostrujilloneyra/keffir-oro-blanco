@@ -45,10 +45,7 @@ export const PromoProductCard = ({ product }: { product: Product }) => {
 
       <div className='flex flex-1 flex-col gap-3 p-5'>
         <div className='flex flex-col gap-1'>
-          <span className='inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-suave'>
-            <span className={cn('h-1.5 w-1.5 rounded-full', tone.dot)} />
-            {category}
-          </span>
+          <span className='text-xs font-medium text-tinta-suave'>{category}</span>
           <h3 className='font-display text-xl font-semibold leading-[1.1] tracking-tight text-tinta'>
             {product.title}
           </h3>

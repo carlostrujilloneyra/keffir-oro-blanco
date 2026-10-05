@@ -11,7 +11,6 @@ type Tone = (typeof categoryDetails)[ProductCategory]['tone'];
 
 interface CategoryThemeStyle {
   gradient: string;
-  dot: string;
   halo: string;
   button: string;
 }
@@ -24,7 +23,6 @@ const toneStyles: Record<Tone, CategoryThemeStyle> = {
       'radial-gradient(80% 130% at 100% 0%, rgba(47,125,82,0.55), rgba(47,125,82,0.28) 34%, rgba(22,32,26,0) 76%),' +
       'radial-gradient(85% 150% at 0% 100%, rgba(47,125,82,0.40), rgba(30,58,47,0.22) 42%, rgba(22,32,26,0) 82%),' +
       '#16201A',
-    dot: 'bg-miel',
     halo: 'bg-verde/40',
     button: 'bg-papel text-bosque hover:bg-papel/90',
   },
@@ -35,7 +33,6 @@ const toneStyles: Record<Tone, CategoryThemeStyle> = {
       'radial-gradient(80% 130% at 100% 0%, rgba(242,183,5,0.45), rgba(242,183,5,0.24) 34%, rgba(22,32,26,0) 76%),' +
       'radial-gradient(85% 150% at 0% 100%, rgba(201,134,14,0.38), rgba(201,134,14,0.20) 42%, rgba(22,32,26,0) 82%),' +
       '#16201A',
-    dot: 'bg-miel',
     halo: 'bg-miel/30',
     button: 'bg-gradient-miel text-tinta hover:brightness-110',
   },
@@ -56,9 +53,7 @@ export const CategoriesSection = () => {
   return (
     <section aria-labelledby='categorias-titulo' className='w-full py-8 lg:py-10'>
       <div className='mb-10 flex flex-col gap-2 lg:mb-12'>
-        <Eyebrow className='text-xs tracking-[0.18em]' dotClassName='h-2 w-2'>
-          Explora por categoría
-        </Eyebrow>
+        <Eyebrow>Explora por categoría</Eyebrow>
 
         <h2
           id='categorias-titulo'
@@ -105,10 +100,7 @@ export const CategoriesSection = () => {
 
               {/* Contenido */}
               <div className='flex flex-1 flex-col gap-4 px-6 py-8 lg:p-10'>
-                <span className='inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-papel'>
-                  <span className={cn('h-2 w-2 rounded-full', t.dot)} />
-                  {cat.eyebrow}
-                </span>
+                <Eyebrow variant='light'>{cat.eyebrow}</Eyebrow>
 
                 <h3 className='font-display text-3xl font-semibold leading-[1.05] tracking-tight text-papel lg:text-[40px]'>
                   {cat.title}

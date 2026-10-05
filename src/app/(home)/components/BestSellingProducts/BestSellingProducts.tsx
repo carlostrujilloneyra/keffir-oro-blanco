@@ -10,9 +10,7 @@ export const BestSellingProducts = () => {
     <section aria-labelledby='mas-vendidos-titulo' className='w-full py-6 tablet:py-8 lg:py-10'>
       <div className='flex flex-col items-center'>
         <div className='mb-10 flex flex-col items-center gap-2 text-center lg:mb-12'>
-          <Eyebrow className='text-xs tracking-[0.18em]' dotClassName='h-2 w-2'>
-            Favoritos de la casa
-          </Eyebrow>
+          <Eyebrow>Favoritos de la casa</Eyebrow>
 
           <h2
             id='mas-vendidos-titulo'

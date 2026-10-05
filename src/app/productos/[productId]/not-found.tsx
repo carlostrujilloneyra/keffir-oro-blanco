@@ -8,10 +8,10 @@ export default function ProductNotFound() {
       <h1 className='mb-4 text-4xl font-bold text-gray-900'>Producto no encontrado</h1>
       <p className='mb-8 text-lg text-gray-600'>Lo sentimos, el producto que buscas no existe o ha sido eliminado.</p>
       <div className='flex gap-4'>
-        <Button asChild theme='primary'>
+        <Button asChild>
           <Link href={CATALOG_URL}>Ver todos los productos</Link>
         </Button>
-        <Button asChild theme='secondary'>
+        <Button asChild variant='dark'>
           <Link href='/'>Volver al inicio</Link>
         </Button>
       </div>

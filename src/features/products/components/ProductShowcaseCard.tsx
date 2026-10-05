@@ -108,10 +108,7 @@ export const ProductShowcaseCard = ({ product, highlighted = false, asLink = tru
 
       {/* Contenido */}
       <div className='flex flex-grow flex-col gap-2 p-3 cq-sm:p-4'>
-        <span className='hidden items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-suave cq-sm:inline-flex'>
-          <span className={cn('h-1.5 w-1.5 rounded-full', tone.dot)} />
-          {category}
-        </span>
+        <span className='hidden text-xs font-medium text-tinta-suave cq-sm:block'>{category}</span>
 
         <h3 className='font-display text-[15px] font-semibold leading-[1.2] tracking-tight text-tinta cq-sm:min-h-[2.6em] cq-sm:text-lg cq-sm:leading-[1.1]'>
           {keepUnitsTogether(product.title)}

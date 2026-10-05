@@ -49,10 +49,7 @@ export const Footer = () => {
         <FooterReveal delay={0.08} className='grid grid-cols-2 gap-x-8 gap-y-10 py-12 md:grid-cols-4 lg:gap-x-12'>
           {FOOTER_COLUMNS.map((column) => (
             <nav key={column.title} aria-label={column.title}>
-              <h3 className='flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-papel/50'>
-                <span className='h-1.5 w-1.5 rounded-full bg-fucsia' />
-                {column.title}
-              </h3>
+              <h3 className='text-sm font-semibold text-papel/60'>{column.title}</h3>
               <ul className='mt-5 flex flex-col gap-3'>
                 {column.links.map((link) => (
                   <li key={link.label}>
@@ -70,10 +67,7 @@ export const Footer = () => {
 
           {/* Columna de contacto. */}
           <div>
-            <h3 className='flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-papel/50'>
-              <span className='h-1.5 w-1.5 rounded-full bg-miel' />
-              Contacto
-            </h3>
+            <h3 className='text-sm font-semibold text-papel/60'>Contacto</h3>
             <ul className='mt-5 flex flex-col gap-4 text-sm text-papel/70 lg:text-[15px]'>
               <li>
                 <Link

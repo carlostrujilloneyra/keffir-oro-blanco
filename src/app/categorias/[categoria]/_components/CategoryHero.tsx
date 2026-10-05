@@ -75,9 +75,7 @@ export const CategoryHero = ({ title, eyebrow, description, imageUrl, imageAlt, 
           <span className='font-medium text-papel'>{title}</span>
         </nav>
 
-        <Eyebrow tone='miel' className='tracking-[0.18em] text-papel/80'>
-          {eyebrow}
-        </Eyebrow>
+        <Eyebrow variant='light'>{eyebrow}</Eyebrow>
 
         <h1 className='font-display text-3xl font-semibold leading-[1.03] tracking-tight text-papel lg:text-6xl'>
           {title}

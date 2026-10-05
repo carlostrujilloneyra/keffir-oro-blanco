@@ -32,9 +32,7 @@ export default function CatalogPage() {
   return (
     <div className='flex w-full flex-col gap-12 py-8 lg:gap-16 lg:py-12'>
       <header className='flex flex-col gap-4'>
-        <Eyebrow className='text-xs tracking-[0.18em]' dotClassName='h-2 w-2'>
-          Catálogo
-        </Eyebrow>
+        <Eyebrow>Catálogo</Eyebrow>
 
         <h1 className='font-display text-4xl font-semibold leading-[1.05] tracking-tight text-tinta lg:text-5xl'>
           Nuestros productos

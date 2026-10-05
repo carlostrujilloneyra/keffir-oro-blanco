@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge/badge';
 import { getProductUrl } from '@/lib/routes';
+import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 
 export interface HeroSlideProps {
   description: string;
@@ -28,10 +29,7 @@ export const HeroSlide = ({ description, image, isNew, slug, title }: HeroSlideP
       {/* Texto */}
       <div className='hero-text order-2 flex flex-col items-start gap-4 px-6 pt-6 tablet:px-10 lg:order-1 lg:py-16 lg:pl-16 lg:pr-6'>
         <div className='flex items-center gap-3'>
-          <span className='inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-miel'>
-            <span className='h-1.5 w-1.5 rounded-full bg-miel' />
-            Artesanal · Fermento vivo
-          </span>
+          <Eyebrow variant='light'>Artesanal · Fermento vivo</Eyebrow>
           {isNew && <Badge variant='alert'>Nuevo</Badge>}
         </div>
 

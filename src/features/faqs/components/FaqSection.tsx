@@ -3,6 +3,7 @@ import { ArrowUpRight, ChevronDown } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/Accordion/accordion';
 import { WHATSAPP_URL } from '@/lib/site';
 import { questionsData } from '../data/questions';
+import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 
 export const FaqSection = () => {
   if (!questionsData || questionsData.length === 0) return null;
@@ -16,10 +17,7 @@ export const FaqSection = () => {
       <div className='container-max grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16'>
         {/* Encabezado (sticky en desktop) */}
         <div className='flex flex-col gap-5 lg:sticky lg:top-28 lg:self-start'>
-          <span className='inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-tinta-suave'>
-            <span className='h-2 w-2 rounded-full bg-verde' />
-            Preguntas frecuentes
-          </span>
+          <Eyebrow>Preguntas frecuentes</Eyebrow>
 
           <h2
             id='faq-titulo'

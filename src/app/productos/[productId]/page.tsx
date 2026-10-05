@@ -187,11 +187,7 @@ export default function ProductPage({ params }: ProductPageProps) {
         <Stagger delay={0.1} className='flex flex-col gap-6'>
           {/* Categoría + badges */}
           <div className='flex flex-col gap-4'>
-            {category && (
-              <Eyebrow tone={category.tone} className='tracking-[0.18em]'>
-                {category.title}
-              </Eyebrow>
-            )}
+            {category && <Eyebrow>{category.title}</Eyebrow>}
             <ProductTags isNew={product.isNew} tags={product.tags} />
           </div>
 

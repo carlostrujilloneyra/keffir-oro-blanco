@@ -16,9 +16,7 @@ export const RelatedProducts = ({ products }: RelatedProductsProps) => {
       className='mt-16 border-t border-papel-sombra pt-12 lg:mt-24 lg:pt-16'
     >
       <div className='mb-8 flex flex-col gap-2 lg:mb-10'>
-        <Eyebrow className='text-xs tracking-[0.18em]' dotClassName='h-2 w-2'>
-          También te puede gustar
-        </Eyebrow>
+        <Eyebrow>También te puede gustar</Eyebrow>
         <h2
           id='relacionados-titulo'
           className='font-display text-3xl font-semibold tracking-tight text-tinta lg:text-4xl'

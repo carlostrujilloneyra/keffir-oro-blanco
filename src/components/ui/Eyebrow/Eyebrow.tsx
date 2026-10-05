@@ -1,38 +1,26 @@
 import { cn } from '@/lib/utils';
 
-type Tone = 'verde' | 'miel' | 'fucsia' | 'bosque' | 'papel';
-
-const DOT_COLOR: Record<Tone, string> = {
-  verde: 'bg-verde',
-  miel: 'bg-miel',
-  fucsia: 'bg-fucsia',
-  bosque: 'bg-bosque',
-  papel: 'bg-papel',
-};
+const VARIANT = {
+  dark: 'bg-tinta text-papel',
+  light: 'bg-papel text-tinta',
+} as const;
 
 interface EyebrowProps {
   children: React.ReactNode;
-  /** Color del punto. */
-  tone?: Tone;
-  /** Ajustes de texto (tamaño/color/tracking); se fusionan con el base. */
+  /** `light` sobre fondos oscuros. */
+  variant?: keyof typeof VARIANT;
   className?: string;
-  /** Ajuste del punto (p. ej. tamaño h-2 w-2). */
-  dotClassName?: string;
 }
 
-/*
-  Etiqueta "eyebrow": punto de color + texto en mayúsculas con tracking.
-  Patrón repetido en casi todas las secciones — centralizado aquí.
-  Por defecto: 11px, tracking 0.16em, texto tinta-suave, punto verde.
-*/
-export const Eyebrow = ({ children, tone = 'verde', className, dotClassName }: EyebrowProps) => (
+/* Etiqueta de sección con la forma de la cinta de la etiqueta física ("30 - 40 Probióticos"). */
+export const Eyebrow = ({ children, variant = 'dark', className }: EyebrowProps) => (
   <span
     className={cn(
-      'inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-tinta-suave',
+      'inline-flex w-fit py-1.5 pl-3 pr-6 text-xs font-semibold [clip-path:polygon(0_0,calc(100%-12px)_0,100%_50%,calc(100%-12px)_100%,0_100%)] tablet:text-[13px]',
+      VARIANT[variant],
       className,
     )}
   >
-    <span className={cn('h-1.5 w-1.5 shrink-0 rounded-full', DOT_COLOR[tone], dotClassName)} />
     {children}
   </span>
 );

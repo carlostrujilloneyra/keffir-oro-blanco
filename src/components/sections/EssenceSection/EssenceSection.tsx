@@ -154,9 +154,7 @@ export const EssenceSection = () => {
   return (
     <section aria-labelledby='esencia-titulo' className='container-max bg-papel py-6 tablet:py-8 lg:py-10'>
       <div className='mb-10 flex flex-col gap-4 lg:mb-14'>
-        <Eyebrow className='w-fit text-xs tracking-[0.18em]' dotClassName='h-2 w-2'>
-          Nuestras familias
-        </Eyebrow>
+        <Eyebrow>Nuestras familias</Eyebrow>
         <h2
           id='esencia-titulo'
           className='font-display text-4xl font-semibold leading-[1.05] tracking-tight text-tinta lg:text-6xl'

@@ -32,9 +32,7 @@ export const MainSection = () => {
       className='w-full py-6 tablet:py-8 lg:py-10'
     >
       <motion.div variants={item} className='mb-6 flex flex-col gap-2 tablet:mb-8 lg:mb-10'>
-        <Eyebrow className='text-xs tracking-[0.18em]' dotClassName='h-2 w-2'>
-          Nuestra selección
-        </Eyebrow>
+        <Eyebrow>Nuestra selección</Eyebrow>
 
         <h2
           id='destacados-titulo'

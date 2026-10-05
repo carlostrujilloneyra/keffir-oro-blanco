@@ -153,6 +153,8 @@ const config: Config = {
         xl: '4px',
         '2xl': '4px',
         '3xl': '6px',
+        card: '12px', // Superficies tipo card
+        panel: '28px', // Bloques grandes (heros, secciones oscuras)
         full: '9999px',
       },
       keyframes: {

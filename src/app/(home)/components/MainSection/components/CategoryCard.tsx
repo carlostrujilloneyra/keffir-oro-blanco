@@ -5,16 +5,14 @@ import { cn } from '@/lib/utils';
 
 type Theme = 'verde' | 'miel';
 
-const themes: Record<Theme, { tile: string; dot: string; button: string; ring: string }> = {
+const themes: Record<Theme, { tile: string; button: string; ring: string }> = {
   verde: {
     tile: 'bg-gradient-to-br from-verde/20 via-verde/10 to-transparent',
-    dot: 'bg-verde',
     button: 'bg-gradient-verde text-papel',
     ring: 'group-hover:border-verde/30',
   },
   miel: {
     tile: 'bg-gradient-to-br from-miel/30 via-miel/12 to-transparent',
-    dot: 'bg-miel',
     button: 'bg-gradient-miel text-tinta',
     ring: 'group-hover:border-miel/40',
   },
@@ -51,10 +49,7 @@ export const CategoryCard = ({
     >
       {/* Texto */}
       <div className='flex flex-1 flex-col justify-center gap-4 p-5'>
-        <span className='inline-flex w-fit items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-tinta-suave'>
-          <span className={cn('h-1.5 w-1.5 rounded-full', t.dot)} />
-          {eyebrow}
-        </span>
+        <span className='text-sm font-medium text-tinta-suave'>{eyebrow}</span>
 
         <h3 className='font-display text-2xl font-semibold leading-[1.05] tracking-tight text-tinta xl:text-[30px]'>
           {title}
