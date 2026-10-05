@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowUpRight, ChevronDown } from 'lucide-react';
+import { ArrowUpRight, Plus } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/Accordion/accordion';
 import { WHATSAPP_URL } from '@/lib/site';
 import { questionsData } from '../data/questions';
@@ -24,13 +24,10 @@ export const FaqSection = () => {
             id='faq-titulo'
             className='font-display text-4xl font-semibold leading-[1.05] tracking-tight text-tinta lg:text-5xl'
           >
-            Todo lo que quieres saber
+            Lo que más nos preguntan
           </h2>
 
-          <p className='max-w-md text-tinta-media'>
-            Tu guía para un bienestar natural. Resolvemos lo más consultado sobre nuestros fermentos y productos
-            artesanales.
-          </p>
+          <p className='max-w-md text-tinta-media'>Sobre el kéfir y cómo elaboramos nuestros productos.</p>
 
           <Button asChild variant='primary' className='mt-1'>
             <Link href={WHATSAPP_URL} target='_blank' rel='noopener noreferrer'>
@@ -43,8 +40,7 @@ export const FaqSection = () => {
         {/*
           Lista con separadores finos en vez de cards: sobre el crema de la
           sección, las cajas beige apenas contrastaban y pesaban más que las
-          propias preguntas. El indicador redondo (chevron que gira 180°) es la
-          única pieza con color, y marca el estado sin necesidad de recuadro.
+          propias preguntas.
         */}
         <Accordion
           type='single'
@@ -56,11 +52,12 @@ export const FaqSection = () => {
             <AccordionItem key={value} value={value} className='border-b-0'>
               <AccordionTrigger className='group items-start gap-6 py-6 text-left font-display text-base font-semibold text-tinta transition-colors duration-200 hover:text-verde hover:no-underline tablet:text-lg [&>svg]:hidden'>
                 {question}
+                {/* + que gira a × al abrir. Va en un span: el trigger oculta sus svg directos. */}
                 <span
                   aria-hidden
-                  className='mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-papel-sombra text-tinta-suave transition-all duration-300 group-hover:border-verde/40 group-hover:text-verde group-data-[state=open]:rotate-180 group-data-[state=open]:border-transparent group-data-[state=open]:bg-verde group-data-[state=open]:text-papel'
+                  className='mt-1 shrink-0 text-tinta-suave transition-transform duration-300 group-hover:text-verde group-data-[state=open]:rotate-45 group-data-[state=open]:text-verde'
                 >
-                  <ChevronDown className='h-4 w-4' />
+                  <Plus className='h-5 w-5' />
                 </span>
               </AccordionTrigger>
 
