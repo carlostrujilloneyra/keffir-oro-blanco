@@ -99,18 +99,17 @@ export const CategoryHero = ({
         {shortcuts && shortcuts.length > 0 ? (
           <nav aria-label={`Tipos de ${title}`} className='mt-2 flex flex-col gap-2'>
             <p className='text-xs font-medium text-papel/70 md:text-sm'>Elige por tipo · {count} productos</p>
-            {/* Móvil: fila deslizable (sin barra visible) que se desvanece a la derecha para
-              indicar que hay más. El ::after es un espaciador final: deja el último acceso
-              fuera del desvanecido al llegar al final (el padding no siempre suma al scroll). */}
-            <ul className="flex snap-x gap-2 overflow-x-auto scrollbar-none [mask-image:linear-gradient(to_right,black_80%,transparent)] after:w-16 after:shrink-0 after:content-[''] tablet:flex-wrap tablet:overflow-visible tablet:[mask-image:none] tablet:after:hidden">
+            {/* Sin scroll: todos visibles. En móvil, chips compactos solo con el nombre;
+              desde tablet, con su precio "desde". */}
+            <ul className='flex flex-wrap gap-2'>
               {shortcuts.map(({ label, href, fromPrice }) => (
-                <li key={href} className='shrink-0 snap-start'>
+                <li key={href}>
                   <Link
                     href={href}
-                    className='flex flex-col rounded-[8px] border border-white/15 bg-white/10 px-3 py-2 transition-colors duration-200 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-papel'
+                    className='flex flex-col rounded-[8px] border border-white/15 bg-white/10 px-3 py-1.5 transition-colors duration-200 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-papel tablet:py-2'
                   >
-                    <span className='text-sm font-semibold text-papel'>{label}</span>
-                    <span className='text-xs text-papel/70'>desde S/ {formatPrice(fromPrice)}</span>
+                    <span className='text-[13px] font-semibold text-papel tablet:text-sm'>{label}</span>
+                    <span className='hidden text-xs text-papel/70 tablet:block'>desde S/ {formatPrice(fromPrice)}</span>
                   </Link>
                 </li>
               ))}
