@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
-import { NAV_ITEMS, SUB_MENUS_ITEMS } from '@/constants/navItems';
+import { NAV_ITEMS } from '@/constants/navItems';
 import { SubMenu } from './SubMenu/SubMenu';
 import { cn } from '@/lib/utils';
 
@@ -20,13 +20,14 @@ export const NavBar = ({ className }: { className?: string }) => {
   return (
     /* Un menú es una lista de enlaces: <nav> con nombre + <ul>/<li>. */
     <nav aria-label='Principal' className={className}>
-      <ul className={cn('flex items-center gap-1')}>
+      {/* relative: el submenú se centra respecto de esta lista, no de cada ítem. */}
+      <ul className='relative flex items-center gap-1'>
         {NAV_ITEMS.map(({ label, href, slug, hasSubMenu }) => {
           /* La sección actual queda pintada en verde. */
           const isActive = pathname === href;
 
           return (
-            <li key={slug} className='group relative'>
+            <li key={slug} className='group'>
               <Link
                 href={href}
                 aria-current={isActive ? 'page' : undefined}
@@ -42,7 +43,7 @@ export const NavBar = ({ className }: { className?: string }) => {
                 )}
               </Link>
 
-              {hasSubMenu && SUB_MENUS_ITEMS[slug] && <SubMenu slug={slug} />}
+              {hasSubMenu && <SubMenu slug={slug} />}
             </li>
           );
         })}

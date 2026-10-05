@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion, useReducedMotion, type Variants } from 'motion/react';
 import { ArrowUpRight, ChevronDown, X } from 'lucide-react';
-import { NAV_ITEMS, SUB_MENUS_ITEMS, type NavSlug } from '@/constants/navItems';
+import { NAV_ITEMS, SUB_MENUS, type NavSlug } from '@/constants/navItems';
+import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
+import { PackCard } from '@/features/products/components/PackCard';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button/Button';
 
@@ -117,8 +119,8 @@ export const MobileMenu = ({ open, onClose, whatsappUrl }: Props) => {
               <ul>
                 {NAV_ITEMS.map(({ label, href, slug, hasSubMenu }) => {
                   const isOpen = expanded === slug;
-                  const items = SUB_MENUS_ITEMS[slug];
-                  const hasSub = Boolean(hasSubMenu && items && items.length > 0);
+                  const subMenu = hasSubMenu ? SUB_MENUS[slug] : undefined;
+                  const hasSub = Boolean(subMenu?.groups.some((group) => group.entries.length > 0));
 
                   return (
                     <motion.li key={slug} variants={item} className='border-b border-papel-sombra/50'>
@@ -147,70 +149,81 @@ export const MobileMenu = ({ open, onClose, whatsappUrl }: Props) => {
                         </Link>
                       )}
 
-                      {hasSub && items && (
+                      {hasSub && subMenu && (
                         <div
                           className={cn(
                             'grid transition-[grid-template-rows] duration-300 ease-in-out',
                             isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
                           )}
                         >
-                          <ul className='overflow-hidden pb-2'>
+                          <div className='overflow-hidden pb-3'>
                             {/* Enlace explícito a la categoría (la navegación intencional). */}
-                            <li>
-                              <Link
-                                href={href}
-                                onClick={onClose}
-                                className='flex items-center gap-1.5 rounded-[8px] px-2 py-2.5 text-sm font-semibold text-verde transition-colors hover:bg-papel-hueso'
-                              >
-                                Ver todo en {label}
-                              </Link>
-                            </li>
+                            <Link
+                              href={href}
+                              onClick={onClose}
+                              className='block rounded-[8px] px-2 py-2.5 text-sm font-semibold text-verde underline decoration-verde/30 underline-offset-4'
+                            >
+                              Ver los {subMenu.total} productos de {label}
+                            </Link>
 
-                            {items.map(({ label: subLabel, href: subHref, description, icon, chips }, i) => (
-                              /*
-                                No es un <a> envolvente: los chips son enlaces
-                                propios y anidar anclas es HTML inválido.
-                              */
-                              <li key={i} className='flex items-start gap-3 rounded-[8px] px-2 py-3'>
-                                <span className='flex h-6 w-6 shrink-0 items-center justify-center text-verde'>
-                                  {icon}
-                                </span>
+                            {subMenu.groups.map((group, groupIndex) => (
+                              <div key={group.title ?? groupIndex} className='mt-2'>
+                                {group.title && <Eyebrow className='mb-1 ml-2'>{group.title}</Eyebrow>}
+                                <ul>
+                                  {group.entries.map(({ label: subLabel, href: subHref, description, icon, chips }) => (
+                                    /*
+                                      No es un <a> envolvente: los chips son enlaces
+                                      propios y anidar anclas es HTML inválido.
+                                    */
+                                    <li key={subHref} className='flex items-start gap-3 rounded-[8px] px-2 py-3'>
+                                      <span className='flex h-6 w-6 shrink-0 items-center justify-center text-verde'>
+                                        {icon}
+                                      </span>
 
-                                <div className='min-w-0'>
-                                  <Link
-                                    href={subHref}
-                                    onClick={onClose}
-                                    className='text-sm font-semibold text-tinta transition-colors hover:text-verde'
-                                  >
-                                    {subLabel}
-                                  </Link>
+                                      <div className='min-w-0'>
+                                        <Link
+                                          href={subHref}
+                                          onClick={onClose}
+                                          className='text-sm font-semibold text-tinta transition-colors hover:text-verde'
+                                        >
+                                          {subLabel}
+                                        </Link>
 
-                                  {description && (
-                                    <p className='mt-0.5 line-clamp-2 text-xs leading-snug text-tinta-suave'>
-                                      {description}
-                                    </p>
-                                  )}
+                                        {description && (
+                                          <p className='mt-0.5 line-clamp-2 text-xs leading-snug text-tinta-suave'>
+                                            {description}
+                                          </p>
+                                        )}
 
-                                  {chips && (
-                                    <ul className='mt-2 flex flex-wrap gap-1.5'>
-                                      {chips.map((chip) => (
-                                        <li key={chip.href}>
-                                          <Link
-                                            href={chip.href}
-                                            onClick={onClose}
-                                            /* Mismo velo que en escritorio (ver SubMenu). */
-                                            className='inline-flex rounded-[4px] bg-tinta/[0.06] px-2.5 py-1.5 text-xs font-medium text-tinta-media transition-colors hover:bg-verde/15 hover:text-verde'
-                                          >
-                                            {chip.label}
-                                          </Link>
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  )}
-                                </div>
-                              </li>
+                                        {chips.length > 0 && (
+                                          <ul className='mt-2 flex flex-wrap gap-1.5'>
+                                            {chips.map((chip) => (
+                                              <li key={chip.href}>
+                                                <Link
+                                                  href={chip.href}
+                                                  onClick={onClose}
+                                                  /* Mismo velo que en escritorio (ver SubMenu). */
+                                                  className='inline-flex rounded-[4px] bg-tinta/[0.06] px-2.5 py-1.5 text-xs font-medium text-tinta-media transition-colors hover:bg-verde/15 hover:text-verde'
+                                                >
+                                                  {chip.label}
+                                                </Link>
+                                              </li>
+                                            ))}
+                                          </ul>
+                                        )}
+                                      </div>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
                             ))}
-                          </ul>
+
+                            {subMenu.pack && (
+                              <div className='mt-3'>
+                                <PackCard pack={subMenu.pack} onSelect={onClose} />
+                              </div>
+                            )}
+                          </div>
                         </div>
                       )}
                     </motion.li>

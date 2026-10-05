@@ -19,3 +19,4 @@ export { getCategoryPack, getPackProducts } from './data/packs';
 export type { Pack } from './data/packs';
 
 export type { Product } from './types/product.type';
+export type { SubcategoryDetail } from './data/subcategories';

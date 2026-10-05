@@ -1,73 +1,101 @@
 import Link from 'next/link';
-import { NAV_ITEMS, NavSlug, SUB_MENUS_ITEMS } from '@/constants/navItems';
+import { cn } from '@/lib/utils';
+import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
+import { PackCard } from '@/features/products/components/PackCard';
+import { NAV_ITEMS, NavSlug, SUB_MENUS, type SubMenuEntry } from '@/constants/navItems';
 
-interface Props {
-  slug: NavSlug;
-}
+/* Al clicar, quita el foco: el panel se mantiene abierto por :focus-within. */
+const blur = (e: React.MouseEvent<HTMLElement>) => e.currentTarget.blur();
 
-export const SubMenu = ({ slug }: Props) => {
+const EntryItem = ({ label, href, description, icon, chips }: SubMenuEntry) => (
+  /*
+    La tarjeta no es un <a>: los chips son enlaces propios y anidar
+    anclas es HTML inválido. El hover se pinta sobre el <li>.
+  */
+  <li className='grid grid-cols-[auto_1fr] gap-3 rounded-[8px] p-3 hover:bg-papel-hueso'>
+    <span className='flex h-6 w-6 items-center justify-center text-verde'>{icon}</span>
+
+    <div className='min-w-0'>
+      <Link
+        href={href}
+        onClick={blur}
+        className='text-sm font-semibold text-tinta transition-colors hover:text-verde focus-visible:underline focus-visible:outline-none'
+      >
+        {label}
+      </Link>
+
+      {description && (
+        <p className='mt-0.5 line-clamp-2 text-xs leading-snug text-tinta-suave md:text-[13px]'>{description}</p>
+      )}
+
+      {chips.length > 0 && (
+        /* Atajo directo al producto, sin abrir otro nivel de menú. */
+        <ul className='mt-2 flex flex-wrap gap-1.5'>
+          {chips.map((chip) => (
+            <li key={chip.href}>
+              <Link
+                href={chip.href}
+                onClick={blur}
+                /* Velo de tinta: se apoya igual sobre papel (reposo) y papel-hueso (hover). */
+                className='inline-flex rounded-[4px] bg-tinta/[0.06] px-2.5 py-1 text-xs font-medium text-tinta-media transition-colors hover:bg-verde/15 hover:text-verde focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde'
+              >
+                {chip.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </li>
+);
+
+export const SubMenu = ({ slug }: { slug: NavSlug }) => {
   const parent = NAV_ITEMS.find((item) => item.slug === slug);
+  const { groups, pack, total } = SUB_MENUS[slug];
+  const columns = groups.length + (pack ? 1 : 0);
 
   return (
-    <div className='invisible absolute left-1/2 top-full z-50 w-[460px] -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100'>
-      <ul className='flex flex-col gap-1 rounded-card border border-papel-sombra bg-papel p-3 shadow-[0_18px_45px_-12px_rgba(22,32,26,0.28)]'>
-        {SUB_MENUS_ITEMS[slug]?.map(({ label, href, description, icon, chips }, index) => (
-          /*
-            La tarjeta no es un <a>: los chips son enlaces propios y anidar
-            anclas es HTML inválido. El hover se pinta sobre el <li>.
-          */
-          <li key={index} className='grid grid-cols-[auto_1fr] gap-3 rounded-[8px] p-3 hover:bg-papel-hueso'>
-            <span className='flex h-6 w-6 items-center justify-center text-verde'>{icon}</span>
-
-            <div className='min-w-0'>
-              <Link
-                href={href}
-                onClick={(e) => e.currentTarget.blur()}
-                className='text-sm font-semibold text-tinta transition-colors hover:text-verde focus-visible:underline focus-visible:outline-none'
-              >
-                {label}
-              </Link>
-
-              <p className='mt-0.5 line-clamp-2 text-xs leading-snug text-tinta-suave md:text-[13px]'>{description}</p>
-
-              {chips && (
-                /* Atajo directo al producto, sin abrir otro nivel de menú. */
-                <ul className='mt-2 flex flex-wrap gap-1.5'>
-                  {chips.map((chip) => (
-                    <li key={chip.href}>
-                      <Link
-                        href={chip.href}
-                        onClick={(e) => e.currentTarget.blur()}
-                        /*
-                          Velo de tinta, no bg-papel: el chip se apoya sobre
-                          papel (reposo) o papel-hueso (tarjeta en hover), y un
-                          color sólido coincidía con uno de los dos. Sin borde,
-                          para que pese menos que la descripción de arriba.
-                        */
-                        className='inline-flex rounded-[4px] bg-tinta/[0.06] px-2.5 py-1 text-xs font-medium text-tinta-media transition-colors hover:bg-verde/15 hover:text-verde focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde'
-                      >
-                        {chip.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
+    /* Se centra respecto del <ul> del NavBar (no del ítem) para que un panel ancho no se salga. */
+    <div className='invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100'>
+      <div
+        className={cn(
+          'rounded-card border border-papel-sombra bg-papel shadow-[0_18px_45px_-12px_rgba(22,32,26,0.28)]',
+          columns > 1 ? 'w-[min(960px,calc(100vw-4rem))]' : 'w-[460px]',
+        )}
+      >
+        <div
+          className={cn(
+            'grid gap-6 p-5',
+            columns === 3 && 'grid-cols-[1fr_1fr_0.85fr]',
+            columns === 2 && 'grid-cols-2',
+          )}
+        >
+          {groups.map((group, index) => (
+            <div key={group.title ?? index} className='flex flex-col gap-2'>
+              {group.title && <Eyebrow className='mb-1 ml-3'>{group.title}</Eyebrow>}
+              <ul className='flex flex-col gap-1'>
+                {group.entries.map((entry) => (
+                  <EntryItem key={entry.href} {...entry} />
+                ))}
+              </ul>
             </div>
-          </li>
-        ))}
+          ))}
+
+          {pack && <PackCard pack={pack} />}
+        </div>
 
         {parent && (
-          <li className='mt-1 border-t border-papel-sombra/70 pt-2'>
+          <div className='border-t border-papel-sombra/70 px-5 py-3'>
             <Link
               href={parent.href}
-              onClick={(e) => e.currentTarget.blur()}
-              className='flex items-center justify-center gap-1.5 rounded-[8px] px-3 py-2 text-sm font-semibold text-verde transition-colors hover:bg-verde/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde'
+              onClick={blur}
+              className='text-sm font-semibold text-verde underline decoration-verde/30 underline-offset-4 transition-colors hover:decoration-verde focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde'
             >
-              Ver todo en {parent.label}
+              Ver los {total} productos de {parent.label}
             </Link>
-          </li>
+          </div>
         )}
-      </ul>
+      </div>
     </div>
   );
 };
