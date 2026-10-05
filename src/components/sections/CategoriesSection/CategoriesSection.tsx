@@ -74,7 +74,7 @@ export const CategoriesSection = () => {
             <li
               key={cat.slug}
               style={{ background: t.gradient }}
-              className='group relative flex flex-col overflow-hidden rounded-panel transition-transform duration-300 ease-out hover:-translate-y-1'
+              className='group relative flex flex-col overflow-hidden rounded-panel'
             >
               {/* Imagen con halo de fermento (más grande en desktop) */}
               <div className='relative h-80 overflow-hidden tablet:h-[360px] lg:h-[480px]'>
@@ -107,11 +107,12 @@ export const CategoriesSection = () => {
                   {cat.title}
                 </h3>
 
-                <p className='max-w-prose text-sm leading-relaxed text-papel/85 md:text-justify md:text-[17px]'>
+                <p className='mb-2 max-w-prose text-sm leading-relaxed text-papel/85 md:text-justify md:text-[17px]'>
                   {inlineMarkdown(cat.description)}
                 </p>
 
-                <Button asChild variant={t.button} className='mt-2'>
+                {/* mt-auto: el botón va al fondo, así queda alineado entre cards aunque el texto mida distinto. */}
+                <Button asChild variant={t.button} className='mt-auto'>
                   <Link href={getCategoryUrl(cat.slug)}>Ver categoría</Link>
                 </Button>
               </div>
