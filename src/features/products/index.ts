@@ -1,4 +1,3 @@
-export { ProductCarousel } from './components/ProductCarousel';
 
 export { allProducts } from './data/products';
 export { ProductCategory, categoryDetails, isProductCategory } from './data/categories';

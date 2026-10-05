@@ -6,7 +6,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { buildBreadcrumbJsonLd } from '@/lib/jsonLd';
 import { stripInlineMarkdown } from '@/lib/inlineMarkdown';
 import { CategoryHero } from './_components/CategoryHero';
-import { ProductGrid } from './_components/ProductGrid';
+import { ProductGrid } from '@/features/products/components/ProductGrid';
 import { getCategoryUrl } from '@/lib/routes';
 
 type Params = { categoria: string };

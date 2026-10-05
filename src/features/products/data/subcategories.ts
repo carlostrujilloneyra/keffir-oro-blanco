@@ -1,4 +1,4 @@
-import { ProductCategory, categoryDetails } from './categories';
+import { ProductCategory } from './categories';
 import { allProducts } from './products';
 import type { Product } from '../types/product.type';
 
@@ -131,7 +131,6 @@ export const subcategoryDetails: SubcategoryDetail[] = [
 export const getSubcategoryProducts = (subcategory: SubcategoryDetail): Product[] =>
   allProducts.filter((product) => subcategory.productNames.includes(product.name));
 
-/* Subcategorías de una categoría, para el submenú y los listados. */
 /* Imagen del hero: la propia si se definió, si no la del primer producto. */
 export const getSubcategoryImage = (subcategory: SubcategoryDetail): string => {
   if (subcategory.imageUrl) return subcategory.imageUrl;
@@ -139,8 +138,6 @@ export const getSubcategoryImage = (subcategory: SubcategoryDetail): string => {
   const [first] = getSubcategoryProducts(subcategory);
   return first?.featuredImage || first?.thumbnailImage || '';
 };
-
-/* URL pública de la subcategoría. */
 
 /*
   Resuelve los dos segmentos de la URL. Devuelve null si el par no existe o si
@@ -151,5 +148,5 @@ export const resolveSubcategory = (categoriaSlug: string, subcategoriaSlug: stri
   const found = subcategoryDetails.find((sub) => sub.slug === subcategoriaSlug);
   if (!found) return null;
 
-  return categoryDetails[found.category].slug === categoriaSlug ? found : null;
+  return found.category === categoriaSlug ? found : null;
 };
