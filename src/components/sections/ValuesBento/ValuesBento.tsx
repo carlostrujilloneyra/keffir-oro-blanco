@@ -64,9 +64,7 @@ export const ValuesBento = () => (
                 {ingredient}
               </dt>
               <span aria-hidden className='min-w-6 flex-1 border-b-2 border-dotted border-tinta/25' />
-              <dd className='whitespace-nowrap text-right text-xs font-semibold uppercase tracking-[0.08em] text-tinta-media tablet:text-sm'>
-                {place}
-              </dd>
+              <dd className='whitespace-nowrap text-right text-xs text-tinta-media tablet:text-sm'>{place}</dd>
             </div>
           ))}
         </dl>

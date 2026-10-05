@@ -102,7 +102,7 @@ export const MobileMenu = ({ open, onClose, whatsappUrl }: Props) => {
               variants={item}
               className='flex items-center justify-between border-b border-papel-sombra/60 px-6 py-5'
             >
-              <span className='text-xs font-semibold uppercase tracking-[0.18em] text-tinta-suave'>Menú</span>
+              <span className='text-sm font-semibold text-tinta-suave'>Menú</span>
               <button
                 type='button'
                 onClick={onClose}

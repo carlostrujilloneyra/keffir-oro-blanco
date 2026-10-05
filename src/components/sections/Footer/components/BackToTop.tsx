@@ -15,7 +15,7 @@ export const BackToTop = () => {
     <button
       type='button'
       onClick={scrollToTop}
-      className='group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-papel/60 transition-colors hover:text-papel'
+      className='group inline-flex items-center gap-2 text-sm font-medium text-papel/60 transition-colors hover:text-papel'
     >
       Volver arriba
       <span className='flex h-8 w-8 items-center justify-center rounded-full border border-papel/20 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:border-papel/50'>

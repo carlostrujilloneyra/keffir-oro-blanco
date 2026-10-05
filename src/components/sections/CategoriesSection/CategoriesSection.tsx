@@ -93,7 +93,7 @@ export const CategoriesSection = () => {
                 />
 
                 {/* Sello glass */}
-                <span className='absolute left-5 top-5 z-10 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-papel shadow-sm backdrop-blur-md'>
+                <span className='absolute left-5 top-5 z-10 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-papel shadow-sm backdrop-blur-md'>
                   <TagIcon className='h-3.5 w-3.5' />
                   {cat.tag}
                 </span>

@@ -100,7 +100,7 @@ export const Footer = () => {
             <p className='text-xs text-papel/50 lg:text-sm'>
               © {currentYear} TRIALFERI. Todos los derechos reservados.
             </p>
-            <span className='rounded-full border border-papel/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-papel/60'>
+            <span className='rounded-full border border-papel/20 px-2 py-0.5 text-[11px] font-medium text-papel/60'>
               {SITE_VERSION}
             </span>
           </div>

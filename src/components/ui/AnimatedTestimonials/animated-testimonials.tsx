@@ -112,7 +112,7 @@ export const AnimatedTestimonials = ({
           </motion.div>
 
           <div className='flex items-center justify-between'>
-            <span className='text-xs font-semibold uppercase tracking-[0.14em] text-tinta-suave'>
+            <span className='text-xs font-medium tabular-nums text-tinta-suave'>
               {active + 1} / {testimonials.length}
             </span>
 

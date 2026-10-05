@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
 import { NAV_ITEMS, NavSlug, SUB_MENUS_ITEMS } from '@/constants/navItems';
 
 interface Props {
@@ -64,10 +63,9 @@ export const SubMenu = ({ slug }: Props) => {
             <Link
               href={parent.href}
               onClick={(e) => e.currentTarget.blur()}
-              className='flex items-center justify-center gap-1.5 rounded-[12px] px-3 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-verde transition-colors hover:bg-verde/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde'
+              className='flex items-center justify-center gap-1.5 rounded-[12px] px-3 py-2 text-sm font-semibold text-verde transition-colors hover:bg-verde/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde'
             >
               Ver todo en {parent.label}
-              <ArrowUpRight className='h-3.5 w-3.5' />
             </Link>
           </li>
         )}

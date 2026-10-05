@@ -20,7 +20,7 @@ export const SizeSelector = ({ variants, currentSlug }: Props) => {
 
   return (
     <div>
-      <p className='text-[11px] font-semibold uppercase tracking-[0.16em] text-tinta-suave'>Presentación</p>
+      <p className='text-sm font-semibold text-tinta-suave'>Presentación</p>
 
       <div className='mt-3 flex flex-wrap gap-2.5'>
         {variants.map((variant) => {

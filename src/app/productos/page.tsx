@@ -68,7 +68,7 @@ export default function CatalogPage() {
 
             <Link
               href={getCategoryUrl(category)}
-              className='inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-tinta-media transition-colors hover:text-tinta'
+              className='inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-tinta-media transition-colors hover:text-tinta'
             >
               Ver categoría
               <ArrowUpRight className='h-4 w-4' />
