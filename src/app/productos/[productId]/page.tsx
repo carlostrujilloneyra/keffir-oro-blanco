@@ -7,20 +7,20 @@ import { categoryDetails, getRelatedProducts, getSizeVariants } from '@/features
 import { buildProductMetaDescription } from '@/features/products/lib/productSeo';
 import { ProductImageGallery } from '@/features/products/components/ProductImageGallery/ProductImageGallery';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/Accordion/accordion';
-import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
+import { isAttributeTag } from '@/features/products/data/badgeConfig';
 import { formatPrice } from '@/lib/formatPrice';
 import { buildWhatsAppUrl, CURRENCY, SITE_NAME, SITE_URL } from '@/lib/site';
 import { buildBreadcrumbJsonLd } from '@/lib/jsonLd';
 import { JsonLd } from '@/components/JsonLd';
 import {
   BenefitsList,
+  LabelClaims,
   ProductTags,
   RelatedProducts,
   Reveal,
   ShelfLife,
   SizeSelector,
   Stagger,
-  TrustRow,
   UsageInstructions,
 } from './_components';
 import { getCategoryUrl, getProductUrl } from '@/lib/routes';
@@ -81,6 +81,9 @@ export default function ProductPage({ params }: ProductPageProps) {
   );
 
   const category = categoryDetails[product.category];
+  const tags = product.tags ?? [];
+  const curationTags = tags.filter((tag) => !isAttributeTag(tag));
+  const attributeTags = tags.filter(isAttributeTag);
   const sizeVariants = getSizeVariants(product);
   const relatedProducts = getRelatedProducts(product);
 
@@ -185,23 +188,20 @@ export default function ProductPage({ params }: ProductPageProps) {
         </div>
 
         {/* Columna de información (entrada en cascada) */}
-        <Stagger delay={0.1} className='flex flex-col gap-6'>
-          {/* Categoría + badges */}
+        <Stagger delay={0.1} className='flex flex-col gap-8'>
+          {/* Lo esencial primero: curaduría, nombre, precio y talla. */}
           <div className='flex flex-col gap-4'>
-            {category && <Eyebrow>{category.title}</Eyebrow>}
-            <ProductTags isNew={product.isNew} tags={product.tags} />
+            <ProductTags isNew={product.isNew} tags={curationTags} />
+            <div className='flex flex-col gap-2'>
+              <h1 className='font-display text-3xl font-semibold leading-[1.05] tracking-tight text-tinta lg:text-5xl'>
+                {keepUnitsTogether(product.title)}
+              </h1>
+              <p className='font-display text-3xl font-bold tracking-tight text-tinta'>
+                S/ {formatPrice(product.price)}
+              </p>
+            </div>
+            <SizeSelector variants={sizeVariants} currentSlug={product.slug} />
           </div>
-
-          {/* Título + precio */}
-          <div className='flex flex-col gap-3'>
-            <h1 className='font-display text-3xl font-semibold leading-[1.05] tracking-tight text-tinta lg:text-5xl'>
-              {keepUnitsTogether(product.title)}
-            </h1>
-            <p className='font-display text-3xl font-bold tracking-tight text-tinta'>S/ {formatPrice(product.price)}</p>
-          </div>
-
-          {/* Selector de talla */}
-          <SizeSelector variants={sizeVariants} currentSlug={product.slug} />
 
           {/* CTA principal */}
           {/*
@@ -222,8 +222,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             </p>
           </div>
 
-          {/* Fila de confianza */}
-          <TrustRow />
+          <LabelClaims tags={attributeTags} />
 
           {/* Beneficios (siempre visibles) */}
           <BenefitsList benefits={product.benefits || []} />

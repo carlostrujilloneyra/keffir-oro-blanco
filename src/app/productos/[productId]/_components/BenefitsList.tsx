@@ -1,4 +1,3 @@
-import { CircleCheck } from 'lucide-react';
 import { inlineMarkdown } from '@/lib/inlineMarkdown';
 
 interface BenefitsListProps {
@@ -19,7 +18,9 @@ export const BenefitsList = ({ benefits }: BenefitsListProps) => {
       <ul className='mt-4 space-y-3'>
         {benefits.map((benefit, index) => (
           <li key={index} className='flex items-start gap-3 text-tinta-media'>
-            <CircleCheck className='mt-0.5 h-5 w-5 shrink-0 text-verde' />
+            <span aria-hidden className='shrink-0 text-tinta-suave'>
+              —
+            </span>
             <span className='text-sm leading-relaxed tablet:text-base'>{inlineMarkdown(benefit)}</span>
           </li>
         ))}

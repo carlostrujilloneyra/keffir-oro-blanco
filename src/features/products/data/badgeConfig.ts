@@ -107,3 +107,6 @@ export const badgeConfig = {
 
 // Inferir BadgeType automáticamente desde las keys de badgeConfig
 export type BadgeType = keyof typeof badgeConfig;
+
+/* Atributos del producto (variante neutral): van en la ficha como cintas de etiqueta. */
+export const isAttributeTag = (tag: BadgeType) => badgeConfig[tag].variant === 'neutral';
