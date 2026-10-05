@@ -10,8 +10,8 @@ export interface BadgeConfig {
   description?: string;
 }
 
-/* Variantes reducidas a 3 (ver Badge): 'alert' para urgencia/novedad,
- * 'category' para curaduría, 'neutral' para atributos descriptivos. */
+/* Variantes (ver Badge): 'alert' para urgencia/novedad, 'category' para
+  curaduría, 'neutral' para atributos descriptivos. */
 export const badgeConfig = {
   // Novedad / urgencia → alert (fucsia, con moderación)
   new: {
@@ -20,7 +20,7 @@ export const badgeConfig = {
     description: 'Producto recién agregado',
   },
   limited: {
-    label: 'Edición Limitada',
+    label: 'Edición limitada',
     variant: 'alert',
     description: 'Disponibilidad limitada',
   },
@@ -49,12 +49,12 @@ export const badgeConfig = {
 
   // Atributos descriptivos → neutral (chip discreto)
   fresh: {
-    label: 'Producto Fresco',
+    label: 'Producto fresco',
     variant: 'neutral',
     description: 'Producto fresco y de calidad',
   },
   probiotic: {
-    label: 'Alto en Probióticos',
+    label: 'Alto en probióticos',
     variant: 'neutral',
     description: 'Rico en probióticos beneficiosos',
   },
@@ -64,7 +64,7 @@ export const badgeConfig = {
     description: 'Opción saludable y nutritiva',
   },
   natural: {
-    label: '100% Natural',
+    label: '100% natural',
     variant: 'neutral',
     description: 'Sin aditivos ni conservantes',
   },
@@ -74,7 +74,7 @@ export const badgeConfig = {
     description: 'Certificado orgánico',
   },
   'sugar-free': {
-    label: 'Sin Azúcar Añadida',
+    label: 'Sin azúcar añadida',
     variant: 'neutral',
     description: 'Sin azúcares añadidos',
   },
@@ -94,12 +94,12 @@ export const badgeConfig = {
     description: 'Elaborado artesanalmente',
   },
   local: {
-    label: 'Producto Local',
+    label: 'Producto local',
     variant: 'neutral',
     description: 'Producido localmente',
   },
   seasonal: {
-    label: 'De Temporada',
+    label: 'De temporada',
     variant: 'neutral',
     description: 'Producto de temporada',
   },

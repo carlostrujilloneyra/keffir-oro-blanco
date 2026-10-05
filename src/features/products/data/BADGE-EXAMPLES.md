@@ -20,12 +20,12 @@ tags: ['new', 'best-seller', 'recommended'];
 tags: ['fresh', 'probiotic', 'healthy', 'natural'];
 ```
 
-- **fresh**: "Producto Fresco" - Producto fresco y de calidad
-- **probiotic**: "Alto en Probióticos" - Rico en probióticos
+- **fresh**: "Producto fresco" - Producto fresco y de calidad
+- **probiotic**: "Alto en probióticos" - Rico en probióticos
 - **healthy**: "Saludable" - Opción saludable y nutritiva
-- **natural**: "100% Natural" - Sin aditivos ni conservantes
+- **natural**: "100% natural" - Sin aditivos ni conservantes
 - **organic**: "Orgánico" - Certificado orgánico
-- **sugar-free**: "Sin Azúcar Añadida" - Sin azúcares añadidos
+- **sugar-free**: "Sin azúcar añadida" - Sin azúcares añadidos
 - **lactose-free**: "Sin Lactosa" - Apto para intolerantes
 - **vegan**: "Vegano" - Producto 100% vegano
 
@@ -36,9 +36,9 @@ tags: ['artisan', 'local', 'limited', 'seasonal'];
 ```
 
 - **artisan**: "Artesanal" - Elaborado artesanalmente
-- **local**: "Producto Local" - Producido localmente
-- **limited**: "Edición Limitada" - Disponibilidad limitada
-- **seasonal**: "De Temporada" - Producto de temporada
+- **local**: "Producto local" - Producido localmente
+- **limited**: "Edición limitada" - Disponibilidad limitada
+- **seasonal**: "De temporada" - Producto de temporada
 
 ## 📝 Ejemplos de Productos
 
@@ -53,7 +53,7 @@ tags: ['artisan', 'local', 'limited', 'seasonal'];
 }
 ```
 
-**Resultado**: Muestra badges de "Más vendido", "Recomendado", "Producto Fresco", "Alto en Probióticos", "Saludable"
+**Resultado**: Muestra badges de "Más vendido", "Recomendado", "Producto fresco", "Alto en probióticos", "Saludable"
 
 ### Kéfir de Agua (Vegano)
 
@@ -66,7 +66,7 @@ tags: ['artisan', 'local', 'limited', 'seasonal'];
 }
 ```
 
-**Resultado**: Muestra badges de "Recomendado", "Alto en Probióticos", "Vegano", "Sin Lactosa", "100% Natural"
+**Resultado**: Muestra badges de "Recomendado", "Alto en probióticos", "Vegano", "Sin Lactosa", "100% natural"
 
 ### Sal de Maras
 
@@ -79,7 +79,7 @@ tags: ['artisan', 'local', 'limited', 'seasonal'];
 }
 ```
 
-**Resultado**: Muestra badges de "Nuevo", "100% Natural", "Artesanal", "Producto Local"
+**Resultado**: Muestra badges de "Nuevo", "100% natural", "Artesanal", "Producto local"
 
 ### Vinagre de Manzana Orgánico
 
@@ -92,7 +92,7 @@ tags: ['artisan', 'local', 'limited', 'seasonal'];
 }
 ```
 
-**Resultado**: Muestra badges de "Nuevo", "Orgánico", "100% Natural", "Saludable", "Sin Azúcar Añadida"
+**Resultado**: Muestra badges de "Nuevo", "Orgánico", "100% natural", "Saludable", "Sin azúcar añadida"
 
 ### Chucrut Morado
 
@@ -105,7 +105,7 @@ tags: ['artisan', 'local', 'limited', 'seasonal'];
 }
 ```
 
-**Resultado**: Muestra badges de "Recomendado", "Descubre", "Alto en Probióticos", "100% Natural", "Artesanal"
+**Resultado**: Muestra badges de "Recomendado", "Descubre", "Alto en probióticos", "100% natural", "Artesanal"
 
 ## 🎨 Variantes de Estilo
 

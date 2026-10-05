@@ -20,7 +20,7 @@ export function ProductTags({ isNew, tags }: ProductTagsProps) {
         if (!config) return null;
 
         return (
-          <Badge className='px-3 py-1 tablet:px-4' key={tag} variant={config.variant} title={config.description}>
+          <Badge key={tag} variant={config.variant} title={config.description}>
             <span>{config.label}</span>
           </Badge>
         );
