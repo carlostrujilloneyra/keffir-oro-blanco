@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { inlineMarkdown } from '@/lib/inlineMarkdown';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { categoryDetails, ProductCategory } from '@/features/products';
+import { getCategoryUrl } from '@/lib/routes';
 
 type Tone = (typeof categoryDetails)[ProductCategory]['tone'];
 
@@ -118,7 +119,7 @@ export const CategoriesSection = () => {
                 </p>
 
                 <Link
-                  href={`/categorias/${cat.slug}`}
+                  href={getCategoryUrl(cat.slug)}
                   className={cn(
                     'mt-2 inline-flex w-fit items-center gap-2 rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-[0.08em] transition-all duration-200 ease-out active:scale-[0.98]',
                     t.button,

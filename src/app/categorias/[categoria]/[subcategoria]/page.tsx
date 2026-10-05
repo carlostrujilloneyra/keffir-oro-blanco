@@ -4,7 +4,6 @@ import {
   categoryDetails,
   getSubcategoryImage,
   getSubcategoryProducts,
-  getSubcategoryUrl,
   resolveSubcategory,
   subcategoryDetails,
 } from '@/features/products';
@@ -13,6 +12,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { buildBreadcrumbJsonLd } from '@/lib/jsonLd';
 import { CategoryHero } from '../_components/CategoryHero';
 import { ProductGrid } from '../_components/ProductGrid';
+import { getCategoryUrl, getSubcategoryUrl } from '@/lib/routes';
 
 type Params = { categoria: string; subcategoria: string };
 
@@ -30,7 +30,7 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   return {
     title: sub.title,
     description: sub.description,
-    alternates: { canonical: getSubcategoryUrl(sub) },
+    alternates: { canonical: getSubcategoryUrl(sub.category, sub.slug) },
   };
 }
 
@@ -43,8 +43,8 @@ export default function SubcategoriaPage({ params }: { params: Params }) {
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: 'Inicio', path: '/' },
-    { name: parent.title, path: `/categorias/${parent.slug}` },
-    { name: sub.title, path: getSubcategoryUrl(sub) },
+    { name: parent.title, path: getCategoryUrl(parent.slug) },
+    { name: sub.title, path: getSubcategoryUrl(sub.category, sub.slug) },
   ]);
 
   return (
@@ -59,7 +59,7 @@ export default function SubcategoriaPage({ params }: { params: Params }) {
         imageAlt={sub.title}
         count={products.length}
         tone={sub.tone}
-        parent={{ title: parent.title, href: `/categorias/${parent.slug}` }}
+        parent={{ title: parent.title, href: getCategoryUrl(parent.slug) }}
       />
 
       <section aria-label={`Productos de ${sub.title}`} className='w-full bg-papel py-8 md:py-12'>

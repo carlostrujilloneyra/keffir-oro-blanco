@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
-import { allProducts, categoryDetails, getSubcategoryUrl, subcategoryDetails } from '@/features/products';
+import { allProducts, categoryDetails, subcategoryDetails } from '@/features/products';
+import { CATALOG_URL, getCategoryUrl, getProductUrl, getSubcategoryUrl } from '@/lib/routes';
 import { SITE_URL } from '@/lib/site';
 
 /*
@@ -11,25 +12,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: SITE_URL, lastModified: now, changeFrequency: 'weekly', priority: 1 },
-    { url: `${SITE_URL}/products`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${SITE_URL}${CATALOG_URL}`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
   ];
 
   const categoryRoutes: MetadataRoute.Sitemap = Object.values(categoryDetails).map((category) => ({
-    url: `${SITE_URL}/categorias/${category.slug}`,
+    url: `${SITE_URL}${getCategoryUrl(category.slug)}`,
     lastModified: now,
     changeFrequency: 'weekly',
     priority: 0.7,
   }));
 
   const subcategoryRoutes: MetadataRoute.Sitemap = subcategoryDetails.map((sub) => ({
-    url: `${SITE_URL}${getSubcategoryUrl(sub)}`,
+    url: `${SITE_URL}${getSubcategoryUrl(sub.category, sub.slug)}`,
     lastModified: now,
     changeFrequency: 'weekly',
     priority: 0.65,
   }));
 
   const productRoutes: MetadataRoute.Sitemap = allProducts.map((product) => ({
-    url: `${SITE_URL}/products/${product.slug}`,
+    url: `${SITE_URL}${getProductUrl(product.slug)}`,
     lastModified: now,
     changeFrequency: 'weekly',
     priority: 0.6,

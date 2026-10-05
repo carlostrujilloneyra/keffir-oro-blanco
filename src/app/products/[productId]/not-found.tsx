@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button/Button';
+import { CATALOG_URL } from '@/lib/routes';
 
 export default function ProductNotFound() {
   return (
@@ -8,7 +9,7 @@ export default function ProductNotFound() {
       <p className='mb-8 text-lg text-gray-600'>Lo sentimos, el producto que buscas no existe o ha sido eliminado.</p>
       <div className='flex gap-4'>
         <Button asChild theme='primary'>
-          <Link href='/products'>Ver todos los productos</Link>
+          <Link href={CATALOG_URL}>Ver todos los productos</Link>
         </Button>
         <Button asChild theme='secondary'>
           <Link href='/'>Volver al inicio</Link>

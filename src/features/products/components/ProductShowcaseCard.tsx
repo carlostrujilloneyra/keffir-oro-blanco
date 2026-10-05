@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { formatPrice } from '@/lib/formatPrice';
-import { getProductUrl } from '@/lib/getProductUrl';
+import { getProductUrl } from '@/lib/routes';
 import { keepUnitsTogether } from '@/lib/keepUnitsTogether';
 import { categoryDetails } from '../data/categories';
 import { type Product } from '../types/product.type';

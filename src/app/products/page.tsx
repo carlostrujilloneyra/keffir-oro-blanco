@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import { allProducts, ProductCarousel } from '@/features/products';
+import { CATALOG_URL } from '@/lib/routes';
 
 export const metadata: Metadata = {
   title: 'Nuestros productos',
   description:
     'Catálogo completo de TRIALFERI: kéfir de leche, kéfires frutados, kéfir de agua, kombucha, chucrut y mermeladas artesanales. Sin conservantes.',
-  alternates: { canonical: '/products' },
+  alternates: { canonical: CATALOG_URL },
 };
 
 export default function ProductsPage() {

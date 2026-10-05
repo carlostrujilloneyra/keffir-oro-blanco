@@ -1,5 +1,6 @@
 import { allProducts } from './products';
 import type { Product } from '../types/product.type';
+import { getProductUrl } from '@/lib/routes';
 
 /* Lanza si el id no existe: un enlace a un producto borrado rompe el build, no la web. */
 export const getProductById = (id: string): Product => {
@@ -7,6 +8,8 @@ export const getProductById = (id: string): Product => {
   if (!product) throw new Error(`Producto no encontrado: "${id}"`);
   return product;
 };
+
+export const getProductUrlById = (id: string) => getProductUrl(getProductById(id).slug);
 
 /*
   Tallas hermanas de un producto: todos los SKU que comparten el mismo `name`

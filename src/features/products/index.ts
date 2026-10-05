@@ -6,6 +6,7 @@ export {
   bestSellersCollection,
   promotedCollection,
   getProductById,
+  getProductUrlById,
   getSizeVariants,
   getRelatedProducts,
 } from './data/collections';
@@ -13,7 +14,6 @@ export {
   subcategoryDetails,
   getSubcategoryProducts,
   getSubcategoryImage,
-  getSubcategoryUrl,
   resolveSubcategory,
 } from './data/subcategories';
 

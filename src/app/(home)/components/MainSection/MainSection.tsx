@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { getProductById, promotedCollection } from '@/features/products';
-import { getProductUrl } from '@/lib/getProductUrl';
+import { getProductUrl } from '@/lib/routes';
 import { PromoProductCard } from '@/features/products/components/PromoProductCard';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { CategoryCard } from './components/CategoryCard';

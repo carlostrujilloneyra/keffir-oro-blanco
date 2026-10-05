@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getProductUrl } from '@/lib/getProductUrl';
+import { getProductUrl } from '@/lib/routes';
 import { formatPrice } from '@/lib/formatPrice';
 import { cn } from '@/lib/utils';
 import { type Product } from '@/features/products';

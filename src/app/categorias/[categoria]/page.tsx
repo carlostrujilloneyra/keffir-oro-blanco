@@ -7,6 +7,7 @@ import { buildBreadcrumbJsonLd } from '@/lib/jsonLd';
 import { stripInlineMarkdown } from '@/lib/inlineMarkdown';
 import { CategoryHero } from './_components/CategoryHero';
 import { ProductGrid } from './_components/ProductGrid';
+import { getCategoryUrl } from '@/lib/routes';
 
 type Params = { categoria: string };
 
@@ -23,7 +24,7 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   return {
     title: details.title,
     description: stripInlineMarkdown(details.description),
-    alternates: { canonical: `/categorias/${details.slug}` },
+    alternates: { canonical: getCategoryUrl(details.slug) },
   };
 }
 
@@ -36,7 +37,7 @@ export default function CategoriaPage({ params }: { params: Params }) {
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: 'Inicio', path: '/' },
-    { name: details.title, path: `/categorias/${details.slug}` },
+    { name: details.title, path: getCategoryUrl(details.slug) },
   ]);
 
   return (

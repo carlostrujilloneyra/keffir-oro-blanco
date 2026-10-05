@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge/badge';
-import { getProductUrl } from '@/lib/getProductUrl';
+import { getProductUrl } from '@/lib/routes';
 
 export interface HeroSlideProps {
   description: string;

@@ -1,4 +1,6 @@
 import { InstagramIcon, TiktokIcon } from '@/components/ui/icons';
+import { getProductUrlById, ProductCategory } from '@/features/products';
+import { CATALOG_URL, getCategoryUrl } from '@/lib/routes';
 export { WHATSAPP_NUMBER, WHATSAPP_URL, WHATSAPP_DISPLAY, CONTACT_EMAIL } from '@/lib/site';
 
 export const SITE_VERSION = 'v1';
@@ -17,30 +19,30 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: 'Probióticos',
     links: [
-      { label: 'Kéfir de leche de vaca', href: '/products/kefir-leche-vaca-1lt' },
-      { label: 'Kéfir de leche de cabra', href: '/products/kefir-leche-cabra-1lt' },
-      { label: 'Kéfir con arándanos', href: '/products/kefir-pulpa-arandanos-475ml' },
-      { label: 'Kéfir con fresa', href: '/products/kefir-pulpa-fresa-475ml' },
-      { label: 'Kéfir de agua', href: '/products/kefir-agua-1lt' },
-      { label: 'Kombucha', href: '/products/kombucha-natural-1lt' },
+      { label: 'Kéfir de leche de vaca', href: getProductUrlById('kefir-vaca-1l') },
+      { label: 'Kéfir de leche de cabra', href: getProductUrlById('kefir-cabra-1l') },
+      { label: 'Kéfir con arándanos', href: getProductUrlById('kefir-arandanos') },
+      { label: 'Kéfir con fresa', href: getProductUrlById('kefir-fresa') },
+      { label: 'Kéfir de agua', href: getProductUrlById('kefir-agua-1l') },
+      { label: 'Kombucha', href: getProductUrlById('kombucha-1l') },
     ],
   },
   {
     title: 'Tradicionales',
     links: [
-      { label: 'Manteca de cerdo', href: '/products/manteca-de-cerdo-500ml' },
-      { label: 'Mermelada de Quito Quito', href: '/products/mermelada-quito-quito-200g' },
-      { label: 'Mermelada de fresa', href: '/products/mermelada-fresa-200g' },
-      { label: 'Sal rosada de Maras', href: '/products/sal-de-maras' },
+      { label: 'Manteca de cerdo', href: getProductUrlById('manteca-500') },
+      { label: 'Mermelada de Quito Quito', href: getProductUrlById('mermelada-quito-quito') },
+      { label: 'Mermelada de fresa', href: getProductUrlById('mermelada-fresa') },
+      { label: 'Sal rosada de Maras', href: getProductUrlById('sal-de-maras') },
     ],
   },
   {
     title: 'Explora',
     links: [
       { label: 'Inicio', href: '/' },
-      { label: 'Todos los productos', href: '/products' },
-      { label: 'Probióticos', href: '/categorias/probioticos' },
-      { label: 'Tradicionales', href: '/categorias/tradicionales' },
+      { label: 'Todos los productos', href: CATALOG_URL },
+      { label: 'Probióticos', href: getCategoryUrl(ProductCategory.PROBIOTICOS) },
+      { label: 'Tradicionales', href: getCategoryUrl(ProductCategory.TRADICIONALES) },
     ],
   },
 ];

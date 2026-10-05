@@ -6,6 +6,7 @@ import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { ArrowRight, ArrowUpRight, Leaf, MapPin, ShieldCheck } from 'lucide-react';
 import { WHATSAPP_URL } from '@/lib/site';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
+import { CATALOG_URL } from '@/lib/routes';
 
 const EASE = [0.32, 0.72, 0, 1] as const;
 
@@ -91,7 +92,7 @@ export const ValuesBento = () => {
           </div>
 
           <Link
-            href='/products'
+            href={CATALOG_URL}
             className='relative z-10 mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-gradient-verde px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.08em] text-papel transition-all duration-200 hover:brightness-110 active:scale-[0.98]'
           >
             Ver productos
@@ -176,7 +177,7 @@ export const ValuesBento = () => {
               Ingredientes con origen, fermentos con paciencia
             </h3>
             <Link
-              href='/products'
+              href={CATALOG_URL}
               className='mt-5 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-papel transition-colors hover:text-miel'
             >
               Conócenos
@@ -197,7 +198,7 @@ export const ValuesBento = () => {
               Descubre los productos que más disfrutan nuestras familias.
             </p>
             <Link
-              href='/products'
+              href={CATALOG_URL}
               className='mt-5 inline-flex w-fit items-center gap-1.5 rounded-full bg-bosque px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-papel transition-all duration-200 hover:bg-tinta'
             >
               Ver productos

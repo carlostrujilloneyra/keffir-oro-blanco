@@ -8,6 +8,8 @@ import {
   PigIcon,
   StrawberryIcon,
 } from '@/components/ui/icons';
+import { getProductUrlById, ProductCategory } from '@/features/products';
+import { getCategoryUrl, getSubcategoryUrl } from '@/lib/routes';
 
 export type NavSlug = 'probioticos' | 'tradicionales';
 
@@ -40,14 +42,14 @@ interface SubMenuItem {
 export const NAV_ITEMS: NavItem[] = [
   {
     label: 'Probióticos',
-    href: '/categorias/probioticos',
+    href: getCategoryUrl(ProductCategory.PROBIOTICOS),
     slug: 'probioticos',
     hasSubMenu: true,
   },
 
   {
     label: 'Tradicionales',
-    href: '/categorias/tradicionales',
+    href: getCategoryUrl(ProductCategory.TRADICIONALES),
     slug: 'tradicionales',
     hasSubMenu: true,
   },
@@ -57,47 +59,47 @@ export const SUB_MENUS_ITEMS: Partial<Record<NavSlug, SubMenuItem[]>> = {
   probioticos: [
     {
       label: 'Kéfir de leche natural',
-      href: '/categorias/probioticos/kefir-natural',
+      href: getSubcategoryUrl(ProductCategory.PROBIOTICOS, 'kefir-natural'),
       description: 'De vaca y de cabra, sin fruta ni azúcar añadida. En 1 L, 475 ml y 250 ml.',
       icon: <CowIcon className='h-6 w-6' />,
       chips: [
-        { label: 'Vaca', href: '/products/kefir-leche-vaca-1lt' },
-        { label: 'Cabra', href: '/products/kefir-leche-cabra-1lt' },
+        { label: 'Vaca', href: getProductUrlById('kefir-vaca-1l') },
+        { label: 'Cabra', href: getProductUrlById('kefir-cabra-1l') },
       ],
     },
     {
       label: 'Kéfires frutados',
-      href: '/categorias/probioticos/kefir-frutado',
+      href: getSubcategoryUrl(ProductCategory.PROBIOTICOS, 'kefir-frutado'),
       description: 'La cremosidad del kéfir con pulpa de fruta real, endulzado con stevia.',
       icon: <FruitIcon className='h-6 w-6' />,
       chips: [
-        { label: 'Fresa', href: '/products/kefir-pulpa-fresa-475ml' },
-        { label: 'Arándanos', href: '/products/kefir-pulpa-arandanos-475ml' },
-        { label: 'Aguaymanto', href: '/products/kefir-aguaymanto-475ml' },
-        { label: 'Frutos del bosque', href: '/products/kefir-frutos-bosque-475ml' },
-        { label: 'Chocolate', href: '/products/kefir-chocolate-475ml' },
+        { label: 'Fresa', href: getProductUrlById('kefir-fresa') },
+        { label: 'Arándanos', href: getProductUrlById('kefir-arandanos') },
+        { label: 'Aguaymanto', href: getProductUrlById('kefir-aguaymanto') },
+        { label: 'Frutos del bosque', href: getProductUrlById('kefir-frutos-bosque') },
+        { label: 'Chocolate', href: getProductUrlById('kefir-chocolate') },
       ],
     },
     {
       label: 'Kéfir de agua',
-      href: '/categorias/probioticos/kefir-de-agua',
+      href: getSubcategoryUrl(ProductCategory.PROBIOTICOS, 'kefir-de-agua'),
       description: 'Refrescante, burbujeante y sin lácteos. Probióticos vivos para quien no tolera la leche.',
       icon: <KefirAguaIcon className='h-6 w-6' />,
     },
     {
       label: 'Kombucha',
-      href: '/categorias/probioticos/kombucha',
+      href: getSubcategoryUrl(ProductCategory.PROBIOTICOS, 'kombucha'),
       description: 'Té fermentado con cultivos vivos. Ligera, burbujeante y sin conservantes.',
       icon: <KombuchaIcon className='h-6 w-6' />,
     },
     {
       label: 'Fermentados',
-      href: '/categorias/probioticos/fermentados',
+      href: getSubcategoryUrl(ProductCategory.PROBIOTICOS, 'fermentados'),
       description: 'Fermentados de mesa con probióticos naturales, para acompañar y untar.',
       icon: <CheeseIcon className='h-6 w-6' />,
       chips: [
-        { label: 'Chucrut morado', href: '/products/chucrut-morado' },
-        { label: 'Crema de kéfir', href: '/products/crema-de-kefir-aceituna' },
+        { label: 'Chucrut morado', href: getProductUrlById('chucrut-morado') },
+        { label: 'Crema de kéfir', href: getProductUrlById('crema-de-kefir-aceituna') },
       ],
     },
   ],
@@ -105,28 +107,28 @@ export const SUB_MENUS_ITEMS: Partial<Record<NavSlug, SubMenuItem[]>> = {
   tradicionales: [
     {
       label: 'Manteca de cerdo',
-      href: '/categorias/tradicionales/manteca-de-cerdo',
+      href: getSubcategoryUrl(ProductCategory.TRADICIONALES, 'manteca-de-cerdo'),
       description: '100% natural y artesanal, para cocinar, freír y hornear. En cuatro presentaciones.',
       icon: <PigIcon className='h-6 w-6' />,
     },
     {
       label: 'Mermeladas',
-      href: '/categorias/tradicionales/mermeladas',
+      href: getSubcategoryUrl(ProductCategory.TRADICIONALES, 'mermeladas'),
       description: 'Fruta cocida despacio, sin conservantes. Nada más.',
       icon: <StrawberryIcon className='h-6 w-6' />,
       chips: [
-        { label: 'De fresa', href: '/products/mermelada-fresa-200g' },
-        { label: 'Quito quito', href: '/products/mermelada-quito-quito-200g' },
+        { label: 'De fresa', href: getProductUrlById('mermelada-fresa') },
+        { label: 'Quito quito', href: getProductUrlById('mermelada-quito-quito') },
       ],
     },
     {
       label: 'Despensa',
-      href: '/categorias/tradicionales/despensa',
+      href: getSubcategoryUrl(ProductCategory.TRADICIONALES, 'despensa'),
       description: 'Los básicos de la cocina, con procedencia.',
       icon: <ButterIcon className='h-6 w-6' />,
       chips: [
-        { label: 'Sal de Maras', href: '/products/sal-de-maras' },
-        { label: 'Vinagre de manzana', href: '/products/vinagre-de-manzana' },
+        { label: 'Sal de Maras', href: getProductUrlById('sal-de-maras') },
+        { label: 'Vinagre de manzana', href: getProductUrlById('vinagre-de-manzana') },
       ],
     },
   ],

@@ -141,8 +141,6 @@ export const getSubcategoryImage = (subcategory: SubcategoryDetail): string => {
 };
 
 /* URL pública de la subcategoría. */
-export const getSubcategoryUrl = (subcategory: SubcategoryDetail): string =>
-  `/categorias/${categoryDetails[subcategory.category].slug}/${subcategory.slug}`;
 
 /*
   Resuelve los dos segmentos de la URL. Devuelve null si el par no existe o si

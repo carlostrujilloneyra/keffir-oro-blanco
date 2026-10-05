@@ -24,6 +24,7 @@ import {
   TrustRow,
   UsageInstructions,
 } from './_components';
+import { getCategoryUrl, getProductUrl } from '@/lib/routes';
 
 interface ProductPageProps {
   params: {
@@ -47,7 +48,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   return {
     title: product.title,
     description: buildProductMetaDescription(product),
-    alternates: { canonical: `/products/${product.slug}` },
+    alternates: { canonical: getProductUrl(product.slug) },
     openGraph: {
       title: product.title,
       description: product.shortDescription,
@@ -103,15 +104,15 @@ export default function ProductPage({ params }: ProductPageProps) {
         estaba siempre disponible. Ahora sigue el dato real del catálogo.
       */
       availability: isAvailable ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-      url: `${SITE_URL}/products/${product.slug}`,
+      url: `${SITE_URL}${getProductUrl(product.slug)}`,
     },
   };
 
   /* Refleja las migas visibles de abajo, para que Google muestre la ruta. */
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: 'Inicio', path: '/' },
-    ...(category ? [{ name: category.title, path: `/categorias/${category.slug}` }] : []),
-    { name: product.title, path: `/products/${product.slug}` },
+    ...(category ? [{ name: category.title, path: getCategoryUrl(category.slug) }] : []),
+    { name: product.title, path: getProductUrl(product.slug) },
   ]);
 
   /*
@@ -163,7 +164,7 @@ export default function ProductPage({ params }: ProductPageProps) {
         {category && (
           <>
             <ChevronRight className='h-4 w-4 text-tinta-suave/50' />
-            <Link href={`/categorias/${category.slug}`} className='font-medium transition-colors hover:text-verde'>
+            <Link href={getCategoryUrl(category.slug)} className='font-medium transition-colors hover:text-verde'>
               {category.title}
             </Link>
           </>
