@@ -77,7 +77,7 @@ export const CategoryCard = ({
       {/* Producto sobre tile de acento (doble-bisel) */}
       <div
         className={cn(
-          'relative order-first h-48 w-full shrink-0 overflow-hidden rounded-[16px] tablet:order-none tablet:h-auto tablet:w-[44%]',
+          'relative order-first h-60 w-full shrink-0 overflow-hidden rounded-[16px] tablet:order-none tablet:h-auto tablet:w-[44%]',
           t.tile,
         )}
       >
@@ -85,8 +85,8 @@ export const CategoryCard = ({
           src={imageSrc}
           alt={imageAlt}
           fill
-          sizes='(min-width: 1024px) 320px, 45vw'
-          className='ease-[cubic-bezier(0.32,0.72,0,1)] object-contain p-5 transition-transform duration-500 group-hover:scale-105'
+          sizes='(min-width: 1024px) 320px, (min-width: 600px) 45vw, 90vw'
+          className='ease-[cubic-bezier(0.32,0.72,0,1)] object-contain p-3 transition-transform duration-500 group-hover:scale-105 tablet:p-5'
         />
       </div>
     </Link>

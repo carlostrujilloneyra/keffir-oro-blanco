@@ -67,22 +67,9 @@ export const PromoProductCard = ({ product }: { product: Product }) => {
           </ul>
         )}
 
-        {product.presentations && product.presentations.length > 0 && (
-          <ul className='flex flex-wrap gap-2 pt-1'>
-            {product.presentations.map((variant) => (
-              <li
-                key={variant.id}
-                className='rounded-full border border-papel-sombra bg-papel-hueso/60 px-2.5 py-1 text-xs font-medium text-tinta-media'
-              >
-                {variant.name}
-              </li>
-            ))}
-          </ul>
-        )}
-
         <div className='mt-auto flex items-center justify-between gap-2 pt-3'>
           <span className='text-sm font-medium text-tinta-media transition-colors duration-200 group-hover:text-tinta'>
-            Ver ficha
+            Ver producto
           </span>
           <span
             className={cn(

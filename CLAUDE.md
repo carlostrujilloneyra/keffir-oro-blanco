@@ -32,18 +32,18 @@ Layers:
 
 ### Product catalog (the important part)
 - **Source of truth:** `src/features/products/data/products.tsx` — a single `allProducts` array of `Product` objects. The `Product` type is in `types/product.type.ts`; note fields hold JSX (`React.ReactNode`) for rich descriptions, which is why the file is `.tsx`.
-- **Slugs are the routing key.** Each product's `slug` is generated with `generateSlug(title)` (`src/lib/generateSlug.ts`) — lowercases, strips accents, kebab-cases. `getProductUrl(slug)` builds `/products/<slug>`. The dynamic route `src/app/products/[productId]/page.tsx` matches on `slug` (the `productId` param is really the slug) and pre-renders every product via `generateStaticParams`.
+- **Slugs are the routing key.** Never write a product `slug` by hand: `make()` in `data/products.tsx` derives it from `name` + compact `size` (`manteca-de-cerdo` + `1 L` → `manteca-de-cerdo-1lt`). `getProductUrl(slug)` builds `/products/<slug>`. The dynamic route `src/app/products/[productId]/page.tsx` matches on `slug` (the `productId` param is really the slug) and pre-renders every product via `generateStaticParams`. To link a specific product from code, use `getProductById(id)` (throws at build time if the id doesn't exist) — never a hardcoded URL.
 - **Collections** (`data/collections.ts`) are derived views over `allProducts` filtered by tag (`new`, `best-seller`, `recommended`, `discover`). Don't hand-maintain product lists — add the right tag instead.
 - **Badges/tags** (`data/badgeConfig.ts`): `BadgeType` and its labels/variants are the single config for product badges; variant types are inferred from the `Badge` component's `badgeVariants` so they stay in sync.
-- **Categories** (`data/categories.ts`): `ProductCategory` enum. Note the value mismatch — `TRADICIONALES = 'otros'` while its display slug is `'tradicionales'`; don't assume enum value == slug.
+- **Categories** (`data/categories.ts`): `ProductCategory` enum. Each enum value **is** the URL slug (`/categorias/<value>`); validate URL params with `isProductCategory()` and index `categoryDetails` directly — keep value and slug identical when adding a category.
 
 ### Adding a product
-Append to `allProducts` in `data/products.tsx` with `slug: generateSlug(title)`, set `tags` to place it in the right collections, and add its images under `public/`. The route and SEO metadata are generated automatically on next build. Keep `src/app/products/ROUTES.md` in mind — it's a manually written listing of generated routes.
+Append a `make({...})` entry to `allProducts` in `data/products.tsx` (sizes of the same product share `name`; each size is its own entry), set `tags` to place it in the right collections, and add its images under `public/`. The route and SEO metadata are generated automatically on next build. Keep `src/app/products/ROUTES.md` in mind — it's a manually written listing of generated routes.
 
 ### Styling
-Tailwind (config in `tailwind.config.ts`). Custom breakpoints: `tablet:` (600px) and `super_desktop:` (1400px) — used alongside default `sm/md/lg`. Custom color scales `light-*` and `gray-*` carry inline usage guidance in the config; brand colors are `primary`/`secondary`. Fonts `league_spartan` and `inter` are loaded in `app/layout.tsx` as CSS variables and exposed as font-family utilities. shadcn tokens use CSS variables (`--background`, etc.) defined in `src/app/globals.css`. Component-scoped styles use CSS/SCSS modules (`*.module.css` / `*.module.scss`).
+Tailwind (config in `tailwind.config.ts`). Custom breakpoints: `tablet:` (600px) and `super_desktop:` (1400px) — used alongside default `sm/md/lg`. Custom color scales `light-*` and `gray-*` carry inline usage guidance in the config; brand colors are `primary`/`secondary`. Fonts are loaded in `app/layout.tsx` via `next/font/google` as CSS variables: DM Sans (`--font-heading` → `font-display`, headings) and Inter (`--font-inter` → `font-sans`, body/UI). shadcn tokens use CSS variables (`--background`, etc.) defined in `src/app/globals.css`. Component-scoped styles use CSS/SCSS modules (`*.module.css` / `*.module.scss`).
 
 ## Conventions
 - Prettier + `prettier-plugin-tailwindcss` (auto-sorts classes); single quotes, config in `.prettierrc`.
 - Server Components by default (RSC enabled); add `'use client'` only for interactive components (carousels, accordions, hamburger menu).
-- Several domains ship a co-located `*.md` (`USAGE-EXAMPLES.md`, `BADGE-EXAMPLES.md`, `README-SLUGS.md`) documenting how to use them — check these before changing product data, badges, or slug logic.
+- Several domains ship a co-located `*.md` (e.g. `BADGE-EXAMPLES.md`) documenting how to use them — check these before changing product data, badges, or slug logic.

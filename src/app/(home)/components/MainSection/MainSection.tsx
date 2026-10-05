@@ -1,12 +1,14 @@
 'use client';
 
 import { motion, useReducedMotion, type Variants } from 'motion/react';
-import { promotedCollection } from '@/features/products';
+import { getProductById, promotedCollection } from '@/features/products';
+import { getProductUrl } from '@/lib/getProductUrl';
 import { PromoProductCard } from '@/features/products/components/PromoProductCard';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { CategoryCard } from './components/CategoryCard';
 
 const EASE = [0.32, 0.72, 0, 1] as const;
+const featuredLard = getProductById('manteca-1l');
 
 export const MainSection = () => {
   const reduce = useReducedMotion();
@@ -48,7 +50,8 @@ export const MainSection = () => {
             <CategoryCard
               eyebrow='Probióticos'
               title='Descubre si el Kéfir es para ti'
-              linkUrl='/categorias/probioticos'
+              linkUrl='#faq'
+              ctaLabel='Conoce el kéfir'
               imageSrc='/assets/images/content/products/kefir-de-leche/featured.webp'
               imageAlt='Kéfir de leche artesanal'
               theme='verde'
@@ -59,7 +62,8 @@ export const MainSection = () => {
             <CategoryCard
               eyebrow='Tradicional'
               title='Sabor y tradición: Manteca de Cerdo Artesanal'
-              linkUrl='/categorias/tradicionales'
+              linkUrl={getProductUrl(featuredLard.slug)}
+              ctaLabel='Ver manteca'
               imageSrc='/assets/images/categories/manteca-de-cerdo.webp'
               imageAlt='Manteca de cerdo artesanal'
               theme='miel'

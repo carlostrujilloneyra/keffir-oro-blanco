@@ -4,6 +4,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { formatPrice } from '@/lib/formatPrice';
 import { getProductUrl } from '@/lib/getProductUrl';
+import { keepUnitsTogether } from '@/lib/keepUnitsTogether';
 import { categoryDetails } from '../data/categories';
 import { type Product } from '../types/product.type';
 import { accentFor, toneStyles } from '../lib/productAccent';
@@ -23,11 +24,11 @@ export const ProductShowcaseCard = ({ product, highlighted = false, asLink = tru
   const url = getProductUrl(product.slug);
   const splashes = getProductSplash(product);
 
-  // "Ver ficha" es enlace real solo cuando la card no navega entera pero está centrada.
+  // "Ver producto" es enlace real solo cuando la card no navega entera pero está centrada.
   const ctaIsLink = !asLink && highlighted;
 
   const rootClass = cn(
-    'group flex h-full w-full flex-col overflow-hidden rounded-[6px] border bg-papel transition-all duration-300 ease-out',
+    'group cq flex h-full w-full flex-col overflow-hidden rounded-[6px] border bg-papel transition-all duration-300 ease-out',
     highlighted
       ? cn('border-tinta/25', tone.shadowStatic)
       : cn(
@@ -37,18 +38,21 @@ export const ProductShowcaseCard = ({ product, highlighted = false, asLink = tru
         ),
   );
 
+  /* `cq-sm:` responde al ancho de la card, no de la pantalla: < 13rem = versión compacta. */
+  const footerClass = 'mt-auto flex items-center justify-between gap-2 border-t border-papel-sombra/70 pt-3';
+
   const cta = (
     <>
-      <span className='text-sm font-medium text-tinta-media transition-colors duration-200 group-hover:text-tinta'>
-        Ver ficha
+      <span className='whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.06em] text-tinta-media transition-colors duration-200 group-hover:text-tinta cq-sm:text-xs cq-sm:tracking-[0.12em]'>
+        Ver producto
       </span>
       <span
         className={cn(
-          'flex h-9 w-9 items-center justify-center rounded-full transition-transform duration-200 ease-out group-hover:rotate-45',
+          'flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-transform duration-200 ease-out group-hover:rotate-45 cq-sm:h-9 cq-sm:w-9',
           tone.arrow,
         )}
       >
-        <ArrowUpRight className='h-4 w-4' />
+        <ArrowUpRight className='h-3.5 w-3.5 cq-sm:h-4 cq-sm:w-4' />
       </span>
     </>
   );
@@ -95,34 +99,30 @@ export const ProductShowcaseCard = ({ product, highlighted = false, asLink = tru
           alt={product.title}
           fill
           sizes='(min-width: 768px) 300px, 60vw'
-          className='object-contain p-6 transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-[1.04]'
+          className='object-contain px-4 pb-3 pt-9 transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-[1.04] cq-sm:p-6'
         />
-        <span className='absolute left-3 top-3 rounded-[4px] bg-tinta px-2.5 py-1 font-display text-sm font-semibold tracking-tight text-papel'>
+        <span className='absolute left-2 top-2 rounded-[4px] bg-tinta px-2 py-0.5 font-display text-xs font-semibold tracking-tight text-papel cq-sm:left-3 cq-sm:top-3 cq-sm:px-2.5 cq-sm:py-1 cq-sm:text-sm'>
           S/ {formatPrice(product.price)}
         </span>
       </div>
 
       {/* Contenido */}
-      <div className='flex flex-grow flex-col gap-2 p-4'>
-        <span className='inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-suave'>
+      <div className='flex flex-grow flex-col gap-2 p-3 cq-sm:p-4'>
+        <span className='hidden items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-suave cq-sm:inline-flex'>
           <span className={cn('h-1.5 w-1.5 rounded-full', tone.dot)} />
           {category}
         </span>
 
-        <h3 className='line-clamp-2 min-h-[2.6em] font-display text-lg font-semibold leading-[1.1] tracking-tight text-tinta'>
-          {product.title}
+        <h3 className='font-display text-[15px] font-semibold leading-[1.2] tracking-tight text-tinta cq-sm:min-h-[2.6em] cq-sm:text-lg cq-sm:leading-[1.1]'>
+          {keepUnitsTogether(product.title)}
         </h3>
 
         {ctaIsLink ? (
-          <Link
-            href={url}
-            onClick={(e) => e.stopPropagation()}
-            className='mt-auto flex items-center justify-between pt-2'
-          >
+          <Link href={url} onClick={(e) => e.stopPropagation()} className={footerClass}>
             {cta}
           </Link>
         ) : (
-          <div className='mt-auto flex items-center justify-between pt-2'>{cta}</div>
+          <div className={footerClass}>{cta}</div>
         )}
       </div>
     </>

@@ -1,6 +1,5 @@
 import { Product } from '../types/product.type';
 import { ProductCategory } from './categories';
-import { getProductUrl } from '@/lib/getProductUrl';
 
 const compactSize = (size: string) =>
   size
@@ -8,10 +7,10 @@ const compactSize = (size: string) =>
     .replace(/\s+/g, '')
     .replace(/^(\d+)l$/, '$1lt'); // 1 L → 1lt (475 ml y 200 g quedan igual)
 
-const make = (product: Omit<Product, 'slug' | 'linkUrl'>): Product => {
-  const slug = product.size ? `${product.name}-${compactSize(product.size)}` : product.name;
-  return { ...product, slug, linkUrl: getProductUrl(slug) };
-};
+const make = (product: Omit<Product, 'slug'>): Product => ({
+  ...product,
+  slug: product.size ? `${product.name}-${compactSize(product.size)}` : product.name,
+});
 
 const vacaNatural = {
   shortDescription: 'El clásico probiótico, cremoso y lleno de beneficios.',
@@ -50,7 +49,7 @@ const vacaNatural = {
       </p>
     </>
   ),
-  shelfLife: '15 días',
+  shelfLife: '21 días',
 };
 
 const cabraNatural = {
@@ -89,7 +88,7 @@ const cabraNatural = {
       </p>
     </>
   ),
-  shelfLife: '15 días',
+  shelfLife: '21 días',
 };
 
 const aguaKefir = {
@@ -126,7 +125,7 @@ const aguaKefir = {
       </p>
     </>
   ),
-  shelfLife: '15 días',
+  shelfLife: '30 días',
 };
 
 const kombuchaNatural = {
@@ -433,12 +432,10 @@ export const allProducts: Product[] = [
     id: 'kefir-chocolate',
     category: ProductCategory.PROBIOTICOS,
     name: 'kefir-chocolate',
-    accentColor: 'rgba(150, 92, 52, 0.45)',
     title: 'Kéfir de leche de vaca con chocolate 475 ml',
     size: '475 ml',
     price: 17.9,
     tags: ['probiotic', 'recommended'],
-    bgImageSrc: '/assets/images/content/products/kefir-de-chocolate/bg-card.webp',
     featuredImage: '/assets/images/content/products/kefir-de-chocolate/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-chocolate/featured.webp',
     shortDescription: 'Cremosidad probiótica con el poder del cacao artesanal.',
@@ -473,7 +470,6 @@ export const allProducts: Product[] = [
     size: '1 L',
     price: 19.0,
     tags: ['recommended', 'best-seller', 'vegan'],
-    bgImageSrc: '/assets/images/content/products/kefir-de-agua/background.webp',
     featuredImage: '/assets/images/content/products/kefir-de-agua/background.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-agua/background.webp',
     ...aguaKefir,
@@ -486,7 +482,6 @@ export const allProducts: Product[] = [
     size: '475 ml',
     price: 10.0,
     tags: ['vegan', 'probiotic'],
-    bgImageSrc: '/assets/images/content/products/kefir-de-agua/background.webp',
     featuredImage: '/assets/images/content/products/kefir-de-agua/background.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-agua/background.webp',
     ...aguaKefir,
@@ -526,7 +521,6 @@ export const allProducts: Product[] = [
     id: 'manteca-100',
     category: ProductCategory.TRADICIONALES,
     name: 'manteca-de-cerdo',
-    accentColor: 'rgba(242, 183, 5, 0.4)',
     title: 'Manteca de cerdo artesanal 100 ml',
     size: '100 ml',
     price: 8.0,
@@ -539,7 +533,6 @@ export const allProducts: Product[] = [
     id: 'manteca-300',
     category: ProductCategory.TRADICIONALES,
     name: 'manteca-de-cerdo',
-    accentColor: 'rgba(242, 183, 5, 0.4)',
     title: 'Manteca de cerdo artesanal 300 ml',
     size: '300 ml',
     price: 24.0,
@@ -552,7 +545,6 @@ export const allProducts: Product[] = [
     id: 'manteca-500',
     category: ProductCategory.TRADICIONALES,
     name: 'manteca-de-cerdo',
-    accentColor: 'rgba(242, 183, 5, 0.4)',
     title: 'Manteca de cerdo artesanal 500 ml',
     size: '500 ml',
     price: 32.0,
@@ -565,7 +557,6 @@ export const allProducts: Product[] = [
     id: 'manteca-1l',
     category: ProductCategory.TRADICIONALES,
     name: 'manteca-de-cerdo',
-    accentColor: 'rgba(242, 183, 5, 0.4)',
     title: 'Manteca de cerdo artesanal 1 L',
     size: '1 L',
     price: 60.0,
@@ -580,7 +571,6 @@ export const allProducts: Product[] = [
     id: 'mermelada-fresa',
     category: ProductCategory.TRADICIONALES,
     name: 'mermelada-fresa',
-    accentColor: 'rgba(209, 30, 130, 0.4)',
     title: 'Mermelada de fresa natural 200 g',
     size: '200 g',
     price: 13.5,
@@ -611,7 +601,6 @@ export const allProducts: Product[] = [
     id: 'mermelada-quito-quito',
     category: ProductCategory.TRADICIONALES,
     name: 'mermelada-quito-quito',
-    accentColor: 'rgba(242, 183, 5, 0.4)',
     title: 'Mermelada de Quito Quito 200 g',
     size: '200 g',
     price: 13.5,
@@ -644,12 +633,10 @@ export const allProducts: Product[] = [
     id: 'sal-de-maras',
     category: ProductCategory.TRADICIONALES,
     name: 'sal-de-maras',
-    accentColor: 'rgba(214, 168, 74, 0.4)',
     title: 'Sal rosada de Maras, Cusco',
     price: 19,
     isNew: true,
     tags: ['new', 'natural', 'artisan'],
-    bgImageSrc: '/assets/images/content/products/sal-de-maras/bg-card.webp',
     featuredImage: '/assets/images/content/products/sal-de-maras/featured.webp',
     thumbnailImage: '/assets/images/content/products/sal-de-maras/thumbnail.webp',
     shortDescription: 'Sal gourmet extraída de las salineras milenarias de Maras, Cusco.',
@@ -688,12 +675,10 @@ export const allProducts: Product[] = [
     id: 'vinagre-de-manzana',
     category: ProductCategory.TRADICIONALES,
     name: 'vinagre-de-manzana',
-    accentColor: 'rgba(224, 146, 38, 0.42)',
     title: 'Vinagre de Manzana',
     price: 17,
     isNew: true,
     tags: ['new', 'natural', 'healthy'],
-    bgImageSrc: '/assets/images/content/products/vinagre-de-manzana/bg-card.webp',
     featuredImage: '/assets/images/content/products/vinagre-de-manzana/featured.webp',
     thumbnailImage: '/assets/images/content/products/vinagre-de-manzana/thumbnail.webp',
     galleryImages: [

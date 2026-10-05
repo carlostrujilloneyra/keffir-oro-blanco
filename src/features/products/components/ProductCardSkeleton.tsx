@@ -6,7 +6,6 @@ import { Skeleton } from '@/components/ui/Skeleton/skeleton';
 export const ProductCardSkeleton = () => {
   return (
     <Card className='h-full w-full gap-2 px-3 py-4 tablet:gap-3'>
-      {/* 2. El header y el div de la imagen son idénticos en estructura y tamaño. */}
       <CardHeader className='flex items-center justify-center p-0'>
         <div className='relative aspect-square h-[160px] w-[160px] tablet:h-[190px] tablet:w-[190px]'>
           {/* El Skeleton ahora ocupa el 100% de este div, igual que la imagen. */}

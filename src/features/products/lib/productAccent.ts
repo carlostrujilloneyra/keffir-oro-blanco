@@ -38,14 +38,3 @@ export const accentFor = (product: Product): Tone => {
   if (/ar[aá]ndano|fresa|frut|mora|fruta|bosque/.test(s)) return 'fucsia';
   return 'verde';
 };
-
-/* Glow (rgba) para fondos oscuros (ej. modal de detalle). Usa el color explícito
-   del producto si existe; si no, lo deriva del sabor. Así, un producto nuevo
-   (ej. kéfir de frutos del bosque) obtiene su glow sin tocar SCSS. */
-const toneGlow: Record<Tone, string> = {
-  verde: 'rgba(47, 125, 82, 0.45)',
-  fucsia: 'rgba(209, 30, 130, 0.4)',
-  miel: 'rgba(242, 183, 5, 0.4)',
-};
-
-export const accentGlow = (product: Product): string => product.accentColor ?? toneGlow[accentFor(product)];

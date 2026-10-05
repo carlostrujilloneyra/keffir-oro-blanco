@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
-import { BestSellingProducts, HeroCarousel, MainSection, NewProductsSection } from './components';
+import { BestSellingProducts, HeroCarousel, MainSection } from './components';
 import { TestimonialsSection } from '@/features/testimonials';
 import { FaqSection } from '@/features/faqs';
 import { CategoriesSection } from '@/components/sections/CategoriesSection/CategoriesSection';
-import { EssenceSection } from '@/components/sections/EssenceSection/EssenceSection';
 import { JsonLd } from '@/components/JsonLd';
 import { organizationJsonLd, websiteJsonLd } from '@/lib/jsonLd';
 
@@ -24,11 +23,9 @@ export default function HomePage() {
       <h1 className='sr-only'>TRIALFERI — Kéfir artesanal y fermentos vivos del Perú</h1>
 
       <HeroCarousel />
-      <MainSection />
-      <EssenceSection />
       <CategoriesSection />
+      <MainSection />
       <BestSellingProducts />
-      {/* <NewProductsSection /> */}
       <TestimonialsSection />
       <FaqSection />
     </>

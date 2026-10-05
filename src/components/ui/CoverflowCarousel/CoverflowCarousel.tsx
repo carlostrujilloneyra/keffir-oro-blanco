@@ -92,7 +92,7 @@ export function CoverflowCarousel<T extends { id: number | string }>({ products,
           const shouldAnimate = !(isWrapping && isHidden);
           const style = getCardStyle(offset, shouldAnimate, layout);
 
-          // Card central: contenedor simple (su "Ver ficha" navega al detalle).
+          // Card central: contenedor simple (su "Ver producto" navega al detalle).
           if (isCenter) {
             return (
               <div key={product.id} className={`${styles.slot} ${styles.slotActive}`} style={style}>

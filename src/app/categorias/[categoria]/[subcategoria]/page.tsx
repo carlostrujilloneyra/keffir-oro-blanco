@@ -56,6 +56,7 @@ export default function SubcategoriaPage({ params }: { params: Params }) {
         eyebrow={sub.eyebrow}
         description={sub.description}
         imageUrl={getSubcategoryImage(sub)}
+        imageAlt={sub.title}
         count={products.length}
         tone={sub.tone}
         parent={{ title: parent.title, href: `/categorias/${parent.slug}` }}

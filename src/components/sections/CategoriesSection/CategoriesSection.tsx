@@ -2,9 +2,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, Leaf, Sparkles, type LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { inlineMarkdown } from '@/lib/inlineMarkdown';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
+import { categoryDetails, ProductCategory } from '@/features/products';
 
-type Theme = 'green' | 'miel';
+type Tone = (typeof categoryDetails)[ProductCategory]['tone'];
 
 interface CategoryThemeStyle {
   gradient: string;
@@ -13,8 +15,8 @@ interface CategoryThemeStyle {
   button: string;
 }
 
-const themeStyles: Record<Theme, CategoryThemeStyle> = {
-  green: {
+const toneStyles: Record<Tone, CategoryThemeStyle> = {
+  verde: {
     // base tinta + glows verdes en esquinas opuestas + veladura negra.
     gradient:
       'linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),' +
@@ -38,41 +40,16 @@ const themeStyles: Record<Theme, CategoryThemeStyle> = {
   },
 };
 
-type CategoryCard = {
-  eyebrow: string;
-  title: string;
-  description: string;
-  tag: string;
-  tagIcon: LucideIcon;
-  href: string;
-  image: { src: string; alt: string };
-  theme: Theme;
+/* Solo lo propio de la home (sello). Texto, imagen y tono vienen de categoryDetails. */
+const homeExtras: Record<ProductCategory, { tag: string; tagIcon: LucideIcon }> = {
+  [ProductCategory.PROBIOTICOS]: { tag: 'Alto en probióticos', tagIcon: Sparkles },
+  [ProductCategory.TRADICIONALES]: { tag: '100% artesanal', tagIcon: Leaf },
 };
 
-const categories: CategoryCard[] = [
-  {
-    eyebrow: 'Fermentación viva',
-    title: 'Probióticos',
-    description:
-      'Kéfir de leche de <strong>vaca y cabra</strong>, kéfires frutados y otros fermentos artesanales. Procesos vivos que aportan sabores únicos y una experiencia auténtica.',
-    tag: 'Alto en probióticos',
-    tagIcon: Sparkles,
-    href: '/categorias/probioticos',
-    image: { src: '/assets/images/categories/kefires.png', alt: 'Kéfires artesanales TRIALFERI' },
-    theme: 'green',
-  },
-  {
-    eyebrow: 'Saberes ancestrales',
-    title: 'Tradicionales',
-    description:
-      '<strong>Manteca de cerdo artesanal</strong>, mermelada de quito quito y otras preparaciones caseras. Recetas simples que respetan los ingredientes y los procesos de siempre.',
-    tag: '100% artesanal',
-    tagIcon: Leaf,
-    href: '/categorias/tradicionales',
-    image: { src: '/assets/images/categories/manteca-de-cerdo.webp', alt: 'Productos tradicionales TRIALFERI' },
-    theme: 'miel',
-  },
-];
+const categories = Object.values(ProductCategory).map((category) => ({
+  ...categoryDetails[category],
+  ...homeExtras[category],
+}));
 
 export const CategoriesSection = () => {
   return (
@@ -93,12 +70,12 @@ export const CategoriesSection = () => {
       {/* Las categorías son un conjunto de hermanas equivalentes → lista. */}
       <ul className='grid gap-5 tablet:gap-6 lg:grid-cols-2'>
         {categories.map((cat) => {
-          const t = themeStyles[cat.theme];
+          const t = toneStyles[cat.tone];
           const TagIcon = cat.tagIcon;
 
           return (
             <li
-              key={cat.title}
+              key={cat.slug}
               style={{ background: t.gradient }}
               className='group relative flex flex-col overflow-hidden rounded-[28px] transition-transform duration-300 ease-out hover:-translate-y-1'
             >
@@ -111,8 +88,8 @@ export const CategoriesSection = () => {
                   )}
                 />
                 <Image
-                  src={cat.image.src}
-                  alt={cat.image.alt}
+                  src={cat.imageUrl}
+                  alt={cat.imageAlt}
                   fill
                   sizes='(min-width: 1024px) 45vw, 92vw'
                   className='object-contain p-6 pt-20 transition-transform duration-500 ease-out group-hover:scale-105'
@@ -136,13 +113,12 @@ export const CategoriesSection = () => {
                   {cat.title}
                 </h3>
 
-                <p
-                  className='max-w-prose text-justify text-papel/85 md:text-[17px]'
-                  dangerouslySetInnerHTML={{ __html: cat.description }}
-                />
+                <p className='max-w-prose text-sm leading-relaxed text-papel/85 md:text-justify md:text-[17px]'>
+                  {inlineMarkdown(cat.description)}
+                </p>
 
                 <Link
-                  href={cat.href}
+                  href={`/categorias/${cat.slug}`}
                   className={cn(
                     'mt-2 inline-flex w-fit items-center gap-2 rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-[0.08em] transition-all duration-200 ease-out active:scale-[0.98]',
                     t.button,

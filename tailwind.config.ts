@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 import { fontFamily } from 'tailwindcss/defaultTheme';
+import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
   darkMode: ['class'],
@@ -178,6 +179,13 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+    /* Container query: `cq` marca el contenedor; `cq-sm:` aplica si mide ≥ 13rem. */
+    plugin(({ addUtilities, addVariant }) => {
+      addUtilities({ '.cq': { 'container-type': 'inline-size' } });
+      addVariant('cq-sm', '@container (min-width: 13rem)');
+    }),
+  ],
 };
 export default config;

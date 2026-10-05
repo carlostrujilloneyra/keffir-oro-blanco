@@ -132,9 +132,6 @@ export const getSubcategoryProducts = (subcategory: SubcategoryDetail): Product[
   allProducts.filter((product) => subcategory.productNames.includes(product.name));
 
 /* Subcategorías de una categoría, para el submenú y los listados. */
-export const getSubcategoriesOf = (category: ProductCategory): SubcategoryDetail[] =>
-  subcategoryDetails.filter((sub) => sub.category === category);
-
 /* Imagen del hero: la propia si se definió, si no la del primer producto. */
 export const getSubcategoryImage = (subcategory: SubcategoryDetail): string => {
   if (subcategory.imageUrl) return subcategory.imageUrl;

@@ -2,18 +2,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { inlineMarkdown } from '@/lib/inlineMarkdown';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 
 export type CategoryTone = 'verde' | 'miel';
 
-const toneStyles: Record<CategoryTone, { gradient: string; halo: string; dot: string }> = {
+const toneStyles: Record<CategoryTone, { gradient: string; halo: string }> = {
   verde: {
     gradient:
       'radial-gradient(75% 120% at 100% 0%, rgba(47,125,82,0.55), rgba(47,125,82,0.26) 36%, rgba(22,32,26,0) 74%),' +
       'radial-gradient(90% 140% at 0% 100%, rgba(47,125,82,0.36), rgba(30,58,47,0.20) 44%, rgba(22,32,26,0) 82%),' +
       '#16201A',
     halo: 'bg-verde/40',
-    dot: 'bg-miel',
   },
   miel: {
     gradient:
@@ -21,7 +21,6 @@ const toneStyles: Record<CategoryTone, { gradient: string; halo: string; dot: st
       'radial-gradient(90% 140% at 0% 100%, rgba(201,134,14,0.34), rgba(201,134,14,0.18) 44%, rgba(22,32,26,0) 82%),' +
       '#16201A',
     halo: 'bg-miel/35',
-    dot: 'bg-miel',
   },
 };
 
@@ -30,35 +29,26 @@ type Props = {
   eyebrow: string;
   description: string;
   imageUrl: string;
+  imageAlt: string;
   count: number;
   tone: CategoryTone;
-
   /* Miga intermedia. Solo la usan las subcategorías: Inicio › Padre › Actual. */
   parent?: { title: string; href: string };
 };
 
-export const CategoryHero = ({ title, eyebrow, description, imageUrl, count, tone, parent }: Props) => {
+export const CategoryHero = ({ title, eyebrow, description, imageUrl, imageAlt, count, tone, parent }: Props) => {
   const t = toneStyles[tone];
 
   return (
     <div
       style={{ background: t.gradient }}
-      className='relative overflow-hidden rounded-[32px] px-4 py-5 tablet:p-4 md:p-8 lg:px-8 lg:py-12'
+      className='relative flex flex-col gap-4 overflow-hidden rounded-[32px] px-4 py-5 tablet:p-4 md:p-8 lg:block lg:px-8 lg:py-12'
     >
       <div
         className={cn(
           'pointer-events-none absolute right-4 top-1/2 hidden h-80 w-80 -translate-y-1/2 rounded-full blur-3xl lg:block',
           t.halo,
         )}
-      />
-
-      <Image
-        src={imageUrl}
-        alt=''
-        aria-hidden
-        width={460}
-        height={460}
-        className='pointer-events-none absolute right-6 top-1/2 z-0 hidden w-[280px] -translate-y-1/2 select-none object-contain lg:block xl:right-16 xl:w-[340px]'
       />
 
       {/* Panel glass con el contenido */}
@@ -90,12 +80,23 @@ export const CategoryHero = ({ title, eyebrow, description, imageUrl, count, ton
           {title}
         </h1>
 
-        <p className='max-w-xl text-[13px] text-papel/80 md:text-base lg:text-lg'>{description}</p>
+        <p className='max-w-xl text-[13px] text-papel/80 md:text-base lg:text-lg'>{inlineMarkdown(description)}</p>
 
         <span className='inline-flex w-fit items-center self-start rounded-full border border-white/15 bg-white/10 px-5 py-2 text-xs font-semibold text-papel/85 md:text-base'>
           {count} {count === 1 ? 'producto' : 'productos'}
         </span>
       </div>
+
+      {/* Va después del texto en el DOM; en móvil se muestra arriba con order-first. */}
+      <Image
+        src={imageUrl}
+        alt={imageAlt}
+        width={460}
+        height={460}
+        priority
+        sizes='(min-width: 1280px) 340px, (min-width: 1024px) 280px, 300px'
+        className='pointer-events-none order-first mx-auto h-60 w-auto select-none object-contain tablet:h-72 lg:absolute lg:right-6 lg:top-1/2 lg:z-0 lg:h-auto lg:w-[280px] lg:-translate-y-1/2 xl:right-16 xl:w-[340px]'
+      />
     </div>
   );
 };
