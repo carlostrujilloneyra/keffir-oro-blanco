@@ -5,6 +5,8 @@ const nextConfig = {
     return [
       { source: '/products', destination: '/productos', permanent: true },
       { source: '/products/:slug', destination: '/productos/:slug', permanent: true },
+      // /categorias no tiene índice propio: el catálogo agrupado cumple ese rol.
+      { source: '/categorias', destination: '/productos', permanent: true },
     ];
   },
 };
