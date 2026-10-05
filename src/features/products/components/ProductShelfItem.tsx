@@ -18,7 +18,7 @@ export const ProductShelfItem = ({ product }: { product: Product }) => {
   return (
     <Link
       href={getProductUrl(product.slug)}
-      className='ease-[cubic-bezier(0.32,0.72,0,1)] group flex h-full items-center gap-4 rounded-card bg-papel-hueso p-3 transition-transform duration-300 hover:-translate-y-0.5 tablet:gap-5'
+      className='group flex h-full items-center gap-4 rounded-card bg-papel-hueso p-3 transition-transform duration-300 ease-suave hover:-translate-y-0.5 tablet:gap-5'
     >
       <div className='relative h-24 w-24 shrink-0 overflow-hidden rounded-[8px] bg-papel tablet:h-28 tablet:w-28'>
         <div

@@ -14,7 +14,7 @@ interface FeaturedCardProps {
 export const FeaturedCard = ({ eyebrow, title, linkUrl, imageSrc, imageAlt, ctaLabel }: FeaturedCardProps) => (
   <Link
     href={linkUrl}
-    className='ease-[cubic-bezier(0.32,0.72,0,1)] group flex h-full flex-col gap-2 overflow-hidden rounded-card bg-papel-hueso p-3 transition-all duration-500 hover:-translate-y-1 tablet:min-h-[340px] tablet:flex-row tablet:items-stretch'
+    className='group flex h-full flex-col gap-2 overflow-hidden rounded-card bg-papel-hueso p-3 transition-all duration-500 ease-suave hover:-translate-y-1 tablet:min-h-[340px] tablet:flex-row tablet:items-stretch'
   >
     <div className='flex flex-1 flex-col justify-center gap-4 p-5 lg:p-8'>
       <span className='text-sm font-medium text-tinta-suave'>{eyebrow}</span>
@@ -35,7 +35,7 @@ export const FeaturedCard = ({ eyebrow, title, linkUrl, imageSrc, imageAlt, ctaL
         alt={imageAlt}
         fill
         sizes='(min-width: 1024px) 320px, (min-width: 600px) 45vw, 90vw'
-        className='ease-[cubic-bezier(0.32,0.72,0,1)] object-contain p-3 transition-transform duration-500 group-hover:scale-105 tablet:p-6'
+        className='object-contain p-3 transition-transform duration-500 ease-suave group-hover:scale-105 tablet:p-6'
       />
     </div>
   </Link>

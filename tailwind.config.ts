@@ -157,6 +157,9 @@ const config: Config = {
         panel: '28px', // Bloques grandes (heros, secciones oscuras)
         full: '9999px',
       },
+      transitionTimingFunction: {
+        suave: 'cubic-bezier(0.32, 0.72, 0, 1)', // Salida suave para hovers y entradas
+      },
       keyframes: {
         'accordion-down': {
           from: {
