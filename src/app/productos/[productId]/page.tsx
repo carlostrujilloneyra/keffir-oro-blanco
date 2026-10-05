@@ -25,6 +25,7 @@ import {
 } from './_components';
 import { getCategoryUrl, getProductUrl } from '@/lib/routes';
 import { Button } from '@/components/ui/Button/Button';
+import { keepUnitsTogether } from '@/lib/keepUnitsTogether';
 
 interface ProductPageProps {
   params: {
@@ -194,7 +195,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           {/* Título + precio */}
           <div className='flex flex-col gap-3'>
             <h1 className='font-display text-3xl font-semibold leading-[1.05] tracking-tight text-tinta lg:text-5xl'>
-              {product.title}
+              {keepUnitsTogether(product.title)}
             </h1>
             <p className='font-display text-3xl font-bold tracking-tight text-tinta'>S/ {formatPrice(product.price)}</p>
           </div>
