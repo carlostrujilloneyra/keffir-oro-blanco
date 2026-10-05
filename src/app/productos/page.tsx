@@ -43,7 +43,7 @@ export default function CatalogPage() {
             <a
               key={category}
               href={`#${category}`}
-              className='rounded-full border border-papel-sombra bg-papel-hueso px-4 py-2 text-sm font-semibold text-tinta-media transition-colors hover:border-tinta/25 hover:text-tinta'
+              className='rounded-full bg-papel-hueso px-4 py-2 text-sm font-semibold text-tinta-media transition-colors hover:border-tinta/25 hover:text-tinta'
             >
               {details.title} <span className='font-normal'>({count})</span>
             </a>

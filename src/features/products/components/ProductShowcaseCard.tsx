@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { formatPrice } from '@/lib/formatPrice';
 import { getProductUrl } from '@/lib/routes';
@@ -28,39 +27,23 @@ export const ProductShowcaseCard = ({ product, highlighted = false, asLink = tru
   const ctaIsLink = !asLink && highlighted;
 
   const rootClass = cn(
-    'group cq flex h-full w-full flex-col overflow-hidden rounded-[6px] border bg-papel transition-all duration-300 ease-out',
-    highlighted
-      ? cn('border-tinta/25', tone.shadowStatic)
-      : cn(
-          'border-papel-sombra hover:border-tinta/25',
-          asLink && 'hover:-translate-x-1 hover:-translate-y-1',
-          tone.shadow,
-        ),
+    'group cq flex h-full w-full flex-col overflow-hidden rounded-card bg-papel-hueso transition-all duration-300 ease-out',
+    highlighted ? tone.shadowStatic : cn(asLink && 'hover:-translate-x-1 hover:-translate-y-1', tone.shadow),
   );
 
   /* `cq-sm:` responde al ancho de la card, no de la pantalla: < 13rem = versión compacta. */
-  const footerClass = 'mt-auto flex items-center justify-between gap-2 border-t border-papel-sombra/70 pt-3';
+  const footerClass = 'mt-auto flex items-center border-t border-papel-sombra/70 pt-3';
 
   const cta = (
-    <>
-      <span className='whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.06em] text-tinta-media transition-colors duration-200 group-hover:text-tinta cq-sm:text-xs cq-sm:tracking-[0.12em]'>
-        Ver producto
-      </span>
-      <span
-        className={cn(
-          'flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-transform duration-200 ease-out group-hover:rotate-45 cq-sm:h-9 cq-sm:w-9',
-          tone.arrow,
-        )}
-      >
-        <ArrowUpRight className='h-3.5 w-3.5 cq-sm:h-4 cq-sm:w-4' />
-      </span>
-    </>
+    <span className='text-sm font-semibold text-tinta underline decoration-tinta/30 underline-offset-4 transition-colors duration-200 group-hover:decoration-tinta'>
+      Ver producto
+    </span>
   );
 
   const inner = (
     <>
       {/* Panel de imagen con halo de fermento y sello de precio */}
-      <div className='relative aspect-square overflow-hidden bg-gradient-to-b from-papel-hueso to-papel'>
+      <div className='relative aspect-square overflow-hidden'>
         <div
           className={cn(
             'absolute left-1/2 top-1/2 h-3/5 w-3/5 -translate-x-1/2 -translate-y-1/2 rounded-full blur-xl transition-transform duration-500 ease-out group-hover:scale-110',

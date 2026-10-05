@@ -37,7 +37,7 @@ export const HeroCarousel = () => {
       transition={{ duration: reduce ? 0.3 : 1.0, ease: EASE }}
       className='relative -mx-4 w-auto overflow-x-clip pt-4 tablet:mx-0 tablet:w-full tablet:pt-6 lg:py-10'
     >
-      <div className='relative overflow-hidden rounded-none tablet:rounded-[28px]' style={{ background: HERO_BG }}>
+      <div className='relative overflow-hidden rounded-none tablet:rounded-panel' style={{ background: HERO_BG }}>
         <Swiper
           onSwiper={(s) => {
             swiperRef.current = s;

@@ -59,7 +59,7 @@ export default function CategoriaPage({ params }: { params: Params }) {
           {products.length > 0 ? (
             <ProductGrid products={products} />
           ) : (
-            <div className='rounded-[22px] border border-papel-sombra/60 bg-papel-hueso p-10 text-center'>
+            <div className='rounded-card bg-papel-hueso p-10 text-center'>
               <p className='text-tinta-media'>Pronto tendremos productos en esta categoría.</p>
             </div>
           )}

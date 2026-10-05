@@ -74,7 +74,7 @@ export const CategoriesSection = () => {
             <li
               key={cat.slug}
               style={{ background: t.gradient }}
-              className='group relative flex flex-col overflow-hidden rounded-[28px] transition-transform duration-300 ease-out hover:-translate-y-1'
+              className='group relative flex flex-col overflow-hidden rounded-panel transition-transform duration-300 ease-out hover:-translate-y-1'
             >
               {/* Imagen con halo de fermento (más grande en desktop) */}
               <div className='relative h-80 overflow-hidden tablet:h-[360px] lg:h-[480px]'>

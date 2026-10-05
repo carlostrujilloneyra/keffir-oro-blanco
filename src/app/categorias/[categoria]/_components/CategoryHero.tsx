@@ -42,7 +42,7 @@ export const CategoryHero = ({ title, eyebrow, description, imageUrl, imageAlt, 
   return (
     <div
       style={{ background: t.gradient }}
-      className='relative flex flex-col gap-4 overflow-hidden rounded-[32px] px-4 py-5 tablet:p-4 md:p-8 lg:block lg:px-8 lg:py-12'
+      className='relative flex flex-col gap-4 overflow-hidden rounded-panel px-4 py-5 tablet:p-4 md:p-8 lg:block lg:px-8 lg:py-12'
     >
       <div
         className={cn(

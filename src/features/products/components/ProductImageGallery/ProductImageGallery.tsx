@@ -45,7 +45,7 @@ export function ProductImageGallery({ images, productTitle }: ProductImageGaller
 
   if (images.length === 1) {
     return (
-      <div className='relative aspect-[4/5] w-full overflow-hidden rounded-[22px]' style={{ background: PANEL_BG }}>
+      <div className='relative aspect-[4/5] w-full overflow-hidden rounded-panel' style={{ background: PANEL_BG }}>
         <BlurBackdrop src={images[0]} />
         <div className='absolute inset-0 bg-bosque/60' />
         <ProductPhoto src={images[0]} alt={productTitle} priority />
@@ -56,7 +56,7 @@ export function ProductImageGallery({ images, productTitle }: ProductImageGaller
   return (
     <div className='flex w-full min-w-0 flex-col gap-3 tablet:gap-4'>
       <div
-        className='relative aspect-[4/5] w-full min-w-0 overflow-hidden rounded-[22px]'
+        className='relative aspect-[4/5] w-full min-w-0 overflow-hidden rounded-panel'
         style={{ background: PANEL_BG }}
       >
         {images.map((image, index) => (

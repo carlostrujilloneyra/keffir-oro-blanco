@@ -32,7 +32,7 @@ export const ValuesBento = () => (
       </p>
     </header>
 
-    <div className='grid overflow-hidden rounded-[28px] border border-papel-sombra/70 bg-papel-hueso lg:grid-cols-2'>
+    <div className='grid overflow-hidden rounded-card bg-papel-hueso lg:grid-cols-2'>
       <div className='flex flex-col gap-6 p-6 tablet:p-8 lg:p-12'>
         <div className='flex flex-col gap-2'>
           <h3 className='font-display text-2xl font-semibold tracking-tight text-tinta lg:text-3xl'>
@@ -75,7 +75,7 @@ export const ValuesBento = () => (
 
     <div
       style={{ background: ctaBackground }}
-      className='flex flex-col items-start justify-between gap-6 rounded-[28px] p-6 tablet:p-8 lg:flex-row lg:items-center lg:p-12'
+      className='flex flex-col items-start justify-between gap-6 rounded-panel p-6 tablet:p-8 lg:flex-row lg:items-center lg:p-12'
     >
       <div className='flex flex-col gap-2'>
         <p className='font-display text-2xl font-semibold tracking-tight text-papel lg:text-3xl'>
