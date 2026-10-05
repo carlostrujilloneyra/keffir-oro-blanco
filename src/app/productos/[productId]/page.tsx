@@ -8,7 +8,6 @@ import { buildProductMetaDescription } from '@/features/products/lib/productSeo'
 import { ProductImageGallery } from '@/features/products/components/ProductImageGallery/ProductImageGallery';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/Accordion/accordion';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
-import { cn } from '@/lib/utils';
 import { formatPrice } from '@/lib/formatPrice';
 import { buildWhatsAppUrl, CURRENCY, SITE_NAME, SITE_URL } from '@/lib/site';
 import { buildBreadcrumbJsonLd } from '@/lib/jsonLd';
@@ -25,6 +24,7 @@ import {
   UsageInstructions,
 } from './_components';
 import { getCategoryUrl, getProductUrl } from '@/lib/routes';
+import { Button } from '@/components/ui/Button/Button';
 
 interface ProductPageProps {
   params: {
@@ -208,20 +208,12 @@ export default function ProductPage({ params }: ProductPageProps) {
             página ofrece pedir, Google lee InStock; si no, OutOfStock.
           */}
           <div className='flex flex-col gap-2'>
-            <Link
-              href={isAvailable ? waUrl : consultaStockUrl}
-              target='_blank'
-              rel='noopener noreferrer'
-              className={cn(
-                'inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold uppercase tracking-[0.08em] transition-all duration-200 active:scale-[0.99]',
-                isAvailable
-                  ? 'bg-gradient-verde text-papel hover:brightness-110'
-                  : 'border border-papel-sombra bg-papel-hueso text-tinta hover:bg-papel-sombra/40',
-              )}
-            >
-              {isAvailable ? 'Pedir por WhatsApp' : 'Avísame cuando vuelva'}
-              <ArrowUpRight className='h-4 w-4' />
-            </Link>
+            <Button asChild variant={isAvailable ? 'primary' : 'dark'} className='w-full py-4 text-base'>
+              <Link href={isAvailable ? waUrl : consultaStockUrl} target='_blank' rel='noopener noreferrer'>
+                {isAvailable ? 'Pedir por WhatsApp' : 'Avísame cuando vuelva'}
+                <ArrowUpRight className='h-4 w-4' />
+              </Link>
+            </Button>
             <p className='text-center text-xs text-tinta-suave'>
               {isAvailable
                 ? 'Coordinamos entrega y pago por WhatsApp.'

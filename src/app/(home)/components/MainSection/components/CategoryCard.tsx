@@ -1,19 +1,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button, type ButtonVariant } from '@/components/ui/Button/Button';
 
 type Theme = 'verde' | 'miel';
 
-const themes: Record<Theme, { tile: string; button: string; ring: string }> = {
+const themes: Record<Theme, { tile: string; button: ButtonVariant; ring: string }> = {
   verde: {
     tile: 'bg-gradient-to-br from-verde/20 via-verde/10 to-transparent',
-    button: 'bg-gradient-verde text-papel',
+    button: 'primary',
     ring: 'group-hover:border-verde/30',
   },
   miel: {
     tile: 'bg-gradient-to-br from-miel/30 via-miel/12 to-transparent',
-    button: 'bg-gradient-miel text-tinta',
+    button: 'miel',
     ring: 'group-hover:border-miel/40',
   },
 };
@@ -55,18 +55,10 @@ export const CategoryCard = ({
           {title}
         </h3>
 
-        {/* Botón "button-in-button" (visual; el enlace es la card entera) */}
-        <span
-          className={cn(
-            'ease-[cubic-bezier(0.32,0.72,0,1)] mt-2 inline-flex w-fit items-center gap-3 rounded-full py-1.5 pl-5 pr-1.5 text-xs font-semibold uppercase tracking-[0.08em] transition-transform duration-300 group-active:scale-[0.98]',
-            t.button,
-          )}
-        >
-          {ctaLabel}
-          <span className='ease-[cubic-bezier(0.32,0.72,0,1)] flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5'>
-            <ArrowUpRight className='h-4 w-4' />
-          </span>
-        </span>
+        {/* Solo visual: el enlace es la card entera. */}
+        <Button asChild variant={t.button} className='mt-2'>
+          <span>{ctaLabel}</span>
+        </Button>
       </div>
 
       {/* Producto sobre tile de acento (doble-bisel) */}

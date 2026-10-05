@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { WHATSAPP_URL } from '@/lib/site';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
+import { Button } from '@/components/ui/Button/Button';
 
 /* Solo lo que es cierto para TODOS los productos: esta sección cierra también Tradicionales. */
 const labelClaims = ['100% artesanal', 'Sin conservantes añadidos', 'Hecho en lotes pequeños'];
@@ -83,15 +84,12 @@ export const ValuesBento = () => (
         <p className='text-papel/75 md:text-lg'>Escríbenos y te recomendamos según lo que buscas.</p>
       </div>
 
-      <Link
-        href={WHATSAPP_URL}
-        target='_blank'
-        rel='noopener noreferrer'
-        className='inline-flex shrink-0 items-center gap-2 rounded-full bg-papel px-6 py-3 text-xs font-semibold uppercase tracking-[0.08em] text-bosque transition-colors duration-200 hover:bg-papel/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-papel'
-      >
-        Escribir por WhatsApp
-        <ArrowUpRight className='h-4 w-4' />
-      </Link>
+      <Button asChild variant='light' className='shrink-0'>
+        <Link href={WHATSAPP_URL} target='_blank' rel='noopener noreferrer'>
+          Escribir por WhatsApp
+          <ArrowUpRight className='h-4 w-4' />
+        </Link>
+      </Button>
     </div>
   </section>
 );

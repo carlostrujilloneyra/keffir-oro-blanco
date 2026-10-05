@@ -4,6 +4,7 @@ import { BackToTop } from './components/BackToTop';
 import { FooterReveal } from './components/FooterReveal';
 import { cn } from '@/lib/utils';
 import { CONTACT_EMAIL, FOOTER_COLUMNS, SITE_VERSION, SOCIAL_LINKS, WHATSAPP_DISPLAY, WHATSAPP_URL } from './data';
+import { Button } from '@/components/ui/Button/Button';
 
 const currentYear = new Date().getFullYear();
 
@@ -34,15 +35,12 @@ export const Footer = () => {
             </p>
           </div>
 
-          <Link
-            href={WHATSAPP_URL}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='inline-flex w-fit items-center gap-2 rounded-full bg-papel px-6 py-3 text-xs font-semibold uppercase tracking-[0.08em] text-tinta transition-all duration-200 hover:bg-miel hover:text-tinta active:scale-[0.98] lg:text-sm'
-          >
-            Escríbenos por WhatsApp
-            <ArrowUpRight className='h-4 w-4' />
-          </Link>
+          <Button asChild variant='light'>
+            <Link href={WHATSAPP_URL} target='_blank' rel='noopener noreferrer'>
+              Escríbenos por WhatsApp
+              <ArrowUpRight className='h-4 w-4' />
+            </Link>
+          </Button>
         </FooterReveal>
 
         {/* ── Columnas: enlaces + contacto ──────────────────────────── */}

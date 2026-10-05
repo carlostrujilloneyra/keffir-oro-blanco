@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion, type Variants } from 'motion
 import { ArrowUpRight, ChevronDown, X } from 'lucide-react';
 import { NAV_ITEMS, SUB_MENUS_ITEMS, type NavSlug } from '@/constants/navItems';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/Button/Button';
 
 type Props = {
   open: boolean;
@@ -162,7 +163,6 @@ export const MobileMenu = ({ open, onClose, whatsappUrl }: Props) => {
                                 className='flex items-center gap-1.5 rounded-[12px] px-2 py-2.5 text-sm font-semibold text-verde transition-colors hover:bg-papel-hueso'
                               >
                                 Ver todo en {label}
-                                <ArrowUpRight className='h-4 w-4' />
                               </Link>
                             </li>
 
@@ -220,16 +220,12 @@ export const MobileMenu = ({ open, onClose, whatsappUrl }: Props) => {
             </nav>
 
             <motion.div variants={item} className='border-t border-papel-sombra/60 p-4'>
-              <Link
-                href={whatsappUrl}
-                target='_blank'
-                rel='noopener noreferrer'
-                onClick={onClose}
-                className='flex w-full items-center justify-center gap-2 rounded-full bg-gradient-verde px-5 py-3 text-xs font-semibold uppercase tracking-[0.08em] text-papel transition-all duration-200 hover:brightness-110 active:scale-[0.98]'
-              >
-                Contáctanos
-                <ArrowUpRight className='h-4 w-4' />
-              </Link>
+              <Button asChild variant='primary' className='w-full py-3'>
+                <Link href={whatsappUrl} target='_blank' rel='noopener noreferrer' onClick={onClose}>
+                  Contáctanos
+                  <ArrowUpRight className='h-4 w-4' />
+                </Link>
+              </Button>
             </motion.div>
           </motion.div>
         )}

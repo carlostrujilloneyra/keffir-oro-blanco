@@ -1,18 +1,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, Leaf, Sparkles, type LucideIcon } from 'lucide-react';
+import { Leaf, Sparkles, type LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { inlineMarkdown } from '@/lib/inlineMarkdown';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { categoryDetails, ProductCategory } from '@/features/products';
 import { getCategoryUrl } from '@/lib/routes';
+import { Button, type ButtonVariant } from '@/components/ui/Button/Button';
 
 type Tone = (typeof categoryDetails)[ProductCategory]['tone'];
 
 interface CategoryThemeStyle {
   gradient: string;
   halo: string;
-  button: string;
+  button: ButtonVariant;
 }
 
 const toneStyles: Record<Tone, CategoryThemeStyle> = {
@@ -24,7 +25,7 @@ const toneStyles: Record<Tone, CategoryThemeStyle> = {
       'radial-gradient(85% 150% at 0% 100%, rgba(47,125,82,0.40), rgba(30,58,47,0.22) 42%, rgba(22,32,26,0) 82%),' +
       '#16201A',
     halo: 'bg-verde/40',
-    button: 'bg-papel text-bosque hover:bg-papel/90',
+    button: 'light',
   },
   miel: {
     // base tinta + glows miel en esquinas opuestas + veladura negra.
@@ -34,7 +35,7 @@ const toneStyles: Record<Tone, CategoryThemeStyle> = {
       'radial-gradient(85% 150% at 0% 100%, rgba(201,134,14,0.38), rgba(201,134,14,0.20) 42%, rgba(22,32,26,0) 82%),' +
       '#16201A',
     halo: 'bg-miel/30',
-    button: 'bg-gradient-miel text-tinta hover:brightness-110',
+    button: 'miel',
   },
 };
 
@@ -110,16 +111,9 @@ export const CategoriesSection = () => {
                   {inlineMarkdown(cat.description)}
                 </p>
 
-                <Link
-                  href={getCategoryUrl(cat.slug)}
-                  className={cn(
-                    'mt-2 inline-flex w-fit items-center gap-2 rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-[0.08em] transition-all duration-200 ease-out active:scale-[0.98]',
-                    t.button,
-                  )}
-                >
-                  Ver categoría
-                  <ArrowUpRight className='h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5' />
-                </Link>
+                <Button asChild variant={t.button} className='mt-2'>
+                  <Link href={getCategoryUrl(cat.slug)}>Ver categoría</Link>
+                </Button>
               </div>
             </li>
           );

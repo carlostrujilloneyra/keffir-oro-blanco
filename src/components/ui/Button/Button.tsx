@@ -3,6 +3,7 @@ import { Slot } from '@radix-ui/react-slot';
 
 const VARIANT = {
   primary: 'bg-gradient-verde px-5 py-2.5 text-papel hover:brightness-110',
+  miel: 'bg-gradient-miel px-5 py-2.5 text-tinta hover:brightness-105',
   dark: 'bg-tinta px-5 py-2.5 text-papel hover:bg-bosque',
   light: 'bg-papel px-5 py-2.5 text-bosque hover:bg-papel-hueso',
   link: 'text-tinta underline decoration-tinta/30 underline-offset-4 hover:decoration-tinta',

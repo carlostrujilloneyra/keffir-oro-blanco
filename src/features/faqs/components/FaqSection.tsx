@@ -4,6 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { WHATSAPP_URL } from '@/lib/site';
 import { questionsData } from '../data/questions';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
+import { Button } from '@/components/ui/Button/Button';
 
 export const FaqSection = () => {
   if (!questionsData || questionsData.length === 0) return null;
@@ -31,15 +32,12 @@ export const FaqSection = () => {
             artesanales.
           </p>
 
-          <Link
-            href={WHATSAPP_URL}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='mt-1 inline-flex w-fit items-center gap-2 rounded-full bg-gradient-verde px-5 py-3 text-xs font-semibold uppercase tracking-[0.08em] text-papel transition-all duration-200 hover:brightness-110 active:scale-[0.98]'
-          >
-            ¿Otra pregunta? Escríbenos
-            <ArrowUpRight className='h-4 w-4' />
-          </Link>
+          <Button asChild variant='primary' className='mt-1'>
+            <Link href={WHATSAPP_URL} target='_blank' rel='noopener noreferrer'>
+              ¿Otra pregunta? Escríbenos
+              <ArrowUpRight className='h-4 w-4' />
+            </Link>
+          </Button>
         </div>
 
         {/*

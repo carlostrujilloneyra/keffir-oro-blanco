@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge/badge';
 import { getProductUrl } from '@/lib/routes';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
+import { Button } from '@/components/ui/Button/Button';
 
 export interface HeroSlideProps {
   description: string;
@@ -42,15 +42,9 @@ export const HeroSlide = ({ description, image, isNew, slug, title }: HeroSlideP
         </p>
 
         <div className='mt-3'>
-          <Link
-            href={getProductUrl(slug)}
-            className='group/cta ease-[cubic-bezier(0.32,0.72,0,1)] inline-flex items-center gap-3 rounded-full bg-gradient-miel py-1.5 pl-5 pr-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-tinta transition-all duration-300 hover:brightness-105 active:scale-[0.98]'
-          >
-            Ver producto
-            <span className='ease-[cubic-bezier(0.32,0.72,0,1)] flex h-8 w-8 items-center justify-center rounded-full bg-tinta/10 transition-transform duration-300 group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5'>
-              <ArrowUpRight className='h-4 w-4' />
-            </span>
-          </Link>
+          <Button asChild variant='miel'>
+            <Link href={getProductUrl(slug)}>Ver producto</Link>
+          </Button>
         </div>
       </div>
 

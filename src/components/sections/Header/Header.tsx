@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import { WHATSAPP_URL } from '@/lib/site';
 import { NavBar } from './components/NavBar/NavBar';
 import { MobileMenu } from './components/MobileMenu';
+import { Button } from '@/components/ui/Button/Button';
 
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -79,15 +80,12 @@ export const Header = () => {
         </motion.div>
 
         <motion.div variants={itemV} className='flex items-center gap-3'>
-          <Link
-            href={WHATSAPP_URL}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='hidden items-center gap-2 rounded-full bg-gradient-verde px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.08em] text-papel transition-all duration-200 hover:brightness-110 active:scale-[0.98] lg:inline-flex'
-          >
-            Contáctanos
-            <ArrowUpRight className='h-4 w-4' />
-          </Link>
+          <Button asChild variant='primary' className='hidden lg:inline-flex'>
+            <Link href={WHATSAPP_URL} target='_blank' rel='noopener noreferrer'>
+              Contáctanos
+              <ArrowUpRight className='h-4 w-4' />
+            </Link>
+          </Button>
 
           <motion.button
             type='button'
