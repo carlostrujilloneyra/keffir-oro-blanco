@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { formatPrice } from '@/lib/formatPrice';
 import { inlineMarkdown } from '@/lib/inlineMarkdown';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 
@@ -34,9 +35,21 @@ type Props = {
   tone: CategoryTone;
   /* Miga intermedia. Solo la usan las subcategorías: Inicio › Padre › Actual. */
   parent?: { title: string; href: string };
+  /* Accesos a las subcategorías con su precio "desde". Si faltan, se muestra solo el contador. */
+  shortcuts?: { label: string; href: string; fromPrice: number }[];
 };
 
-export const CategoryHero = ({ title, eyebrow, description, imageUrl, imageAlt, count, tone, parent }: Props) => {
+export const CategoryHero = ({
+  title,
+  eyebrow,
+  description,
+  imageUrl,
+  imageAlt,
+  count,
+  tone,
+  parent,
+  shortcuts,
+}: Props) => {
   const t = toneStyles[tone];
 
   return (
@@ -83,9 +96,29 @@ export const CategoryHero = ({ title, eyebrow, description, imageUrl, imageAlt, 
 
         <p className='max-w-xl text-[13px] text-papel/80 md:text-base lg:text-lg'>{inlineMarkdown(description)}</p>
 
-        <span className='inline-flex w-fit items-center self-start rounded-full border border-white/15 bg-white/10 px-5 py-2 text-xs font-semibold text-papel/85 md:text-base'>
-          {count} {count === 1 ? 'producto' : 'productos'}
-        </span>
+        {shortcuts && shortcuts.length > 0 ? (
+          <nav aria-label={`Tipos de ${title}`} className='mt-2 flex flex-col gap-2'>
+            <p className='text-xs font-medium text-papel/70 md:text-sm'>Elige por tipo · {count} productos</p>
+            {/* Móvil: una fila deslizable para no alargar el hero; desde tablet, en varias líneas. */}
+            <ul className='-mx-4 flex snap-x gap-2 overflow-x-auto px-4 pb-1 tablet:mx-0 tablet:flex-wrap tablet:overflow-visible tablet:px-0'>
+              {shortcuts.map(({ label, href, fromPrice }) => (
+                <li key={href} className='shrink-0 snap-start'>
+                  <Link
+                    href={href}
+                    className='flex flex-col rounded-[8px] border border-white/15 bg-white/10 px-3 py-2 transition-colors duration-200 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-papel'
+                  >
+                    <span className='text-sm font-semibold text-papel'>{label}</span>
+                    <span className='text-xs text-papel/70'>desde S/ {formatPrice(fromPrice)}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ) : (
+          <span className='inline-flex w-fit items-center self-start rounded-full border border-white/15 bg-white/10 px-5 py-2 text-xs font-semibold text-papel/85 md:text-base'>
+            {count} {count === 1 ? 'producto' : 'productos'}
+          </span>
+        )}
       </div>
 
       {/* Va después del texto en el DOM; en móvil se muestra arriba con order-first. */}
