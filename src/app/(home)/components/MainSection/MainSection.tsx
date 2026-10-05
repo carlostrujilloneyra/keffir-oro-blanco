@@ -2,13 +2,12 @@
 
 import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { getProductById, promotedCollection } from '@/features/products';
-import { getProductUrl } from '@/lib/routes';
-import { PromoProductCard } from '@/features/products/components/PromoProductCard';
+import { ProductShelfItem } from '@/features/products/components/ProductShelfItem';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
-import { CategoryCard } from './components/CategoryCard';
+import { FeaturedCard } from './components/FeaturedCard';
 
 const EASE = [0.32, 0.72, 0, 1] as const;
-const featuredLard = getProductById('manteca-1l');
+const shelf = [getProductById('manteca-1l'), ...promotedCollection];
 
 export const MainSection = () => {
   const reduce = useReducedMotion();
@@ -42,38 +41,23 @@ export const MainSection = () => {
         </h2>
       </motion.div>
 
-      <div className='grid gap-5 tablet:gap-6 lg:grid-cols-[1fr_.9fr]'>
-        <ul className='grid gap-5 tablet:gap-6'>
-          <motion.li variants={item}>
-            <CategoryCard
-              eyebrow='Probióticos'
-              title='Descubre si el Kéfir es para ti'
-              linkUrl='#faq'
-              ctaLabel='Conoce el kéfir'
-              imageSrc='/assets/images/content/products/kefir-de-leche/featured.webp'
-              imageAlt='Kéfir de leche artesanal'
-              theme='verde'
-            />
-          </motion.li>
+      {/* 1 destacado (el punto de partida) + estante de 3 productos. */}
+      <div className='grid gap-5 tablet:gap-6 lg:grid-cols-[1.15fr_1fr]'>
+        <motion.div variants={item}>
+          <FeaturedCard
+            eyebrow='Probióticos'
+            title='Descubre si el Kéfir es para ti'
+            linkUrl='#faq'
+            ctaLabel='Conoce el kéfir'
+            imageSrc='/assets/images/content/products/kefir-de-leche/featured.webp'
+            imageAlt='Kéfir de leche artesanal'
+          />
+        </motion.div>
 
-          <motion.li variants={item}>
-            <CategoryCard
-              eyebrow='Tradicional'
-              title='Sabor y tradición: Manteca de Cerdo Artesanal'
-              linkUrl={getProductUrl(featuredLard.slug)}
-              ctaLabel='Ver manteca'
-              imageSrc='/assets/images/categories/manteca-de-cerdo.webp'
-              imageAlt='Manteca de cerdo artesanal'
-              theme='miel'
-            />
-          </motion.li>
-        </ul>
-
-        {/* Productos destacados (derecha) */}
-        <ul className='grid gap-5 tablet:grid-cols-2 tablet:gap-6'>
-          {promotedCollection.map((product) => (
-            <motion.li key={product.id} variants={item} className='h-full'>
-              <PromoProductCard product={product} />
+        <ul className='grid gap-3 tablet:gap-4'>
+          {shelf.map((product) => (
+            <motion.li key={product.id} variants={item}>
+              <ProductShelfItem product={product} />
             </motion.li>
           ))}
         </ul>
