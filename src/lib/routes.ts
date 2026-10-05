@@ -1,5 +1,5 @@
-/* Única fuente de las rutas públicas: no armar '/products/...' ni '/categorias/...' a mano. */
-export const CATALOG_URL = '/products';
+/* Única fuente de las rutas públicas: no armar '/productos/...' ni '/categorias/...' a mano. */
+export const CATALOG_URL = '/productos';
 
 export const getProductUrl = (slug: string) => `${CATALOG_URL}/${slug}`;
 

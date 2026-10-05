@@ -1,4 +1,12 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  // 308 permanentes: conservan enlaces ya compartidos y el posicionamiento de las URLs viejas.
+  async redirects() {
+    return [
+      { source: '/products', destination: '/productos', permanent: true },
+      { source: '/products/:slug', destination: '/productos/:slug', permanent: true },
+    ];
+  },
+};
 
 export default nextConfig;

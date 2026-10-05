@@ -5,6 +5,7 @@ import { getProductUrl } from '@/lib/routes';
 /* Lanza si el id no existe: un enlace a un producto borrado rompe el build, no la web. */
 export const getProductById = (id: string): Product => {
   const product = allProducts.find((p) => p.id === id);
+
   if (!product) throw new Error(`Producto no encontrado: "${id}"`);
   return product;
 };
