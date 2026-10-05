@@ -160,7 +160,7 @@ export const MobileMenu = ({ open, onClose, whatsappUrl }: Props) => {
                               <Link
                                 href={href}
                                 onClick={onClose}
-                                className='flex items-center gap-1.5 rounded-[12px] px-2 py-2.5 text-sm font-semibold text-verde transition-colors hover:bg-papel-hueso'
+                                className='flex items-center gap-1.5 rounded-[8px] px-2 py-2.5 text-sm font-semibold text-verde transition-colors hover:bg-papel-hueso'
                               >
                                 Ver todo en {label}
                               </Link>
@@ -171,8 +171,8 @@ export const MobileMenu = ({ open, onClose, whatsappUrl }: Props) => {
                                 No es un <a> envolvente: los chips son enlaces
                                 propios y anidar anclas es HTML inválido.
                               */
-                              <li key={i} className='flex items-start gap-3 rounded-[12px] px-2 py-3'>
-                                <span className='flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-verde/10 text-verde'>
+                              <li key={i} className='flex items-start gap-3 rounded-[8px] px-2 py-3'>
+                                <span className='flex h-6 w-6 shrink-0 items-center justify-center text-verde'>
                                   {icon}
                                 </span>
 
@@ -199,7 +199,7 @@ export const MobileMenu = ({ open, onClose, whatsappUrl }: Props) => {
                                             href={chip.href}
                                             onClick={onClose}
                                             /* Mismo velo que en escritorio (ver SubMenu). */
-                                            className='inline-flex rounded-full bg-tinta/[0.06] px-2.5 py-1.5 text-xs font-medium text-tinta-media transition-colors hover:bg-verde/15 hover:text-verde'
+                                            className='inline-flex rounded-[4px] bg-tinta/[0.06] px-2.5 py-1.5 text-xs font-medium text-tinta-media transition-colors hover:bg-verde/15 hover:text-verde'
                                           >
                                             {chip.label}
                                           </Link>

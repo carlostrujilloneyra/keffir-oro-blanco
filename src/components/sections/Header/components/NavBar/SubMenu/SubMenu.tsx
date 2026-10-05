@@ -10,16 +10,14 @@ export const SubMenu = ({ slug }: Props) => {
 
   return (
     <div className='invisible absolute left-1/2 top-full z-50 w-[460px] -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100'>
-      <ul className='flex flex-col gap-1 rounded-[18px] border border-papel-sombra bg-papel p-3 shadow-[0_18px_45px_-12px_rgba(22,32,26,0.28)]'>
+      <ul className='flex flex-col gap-1 rounded-card border border-papel-sombra bg-papel p-3 shadow-[0_18px_45px_-12px_rgba(22,32,26,0.28)]'>
         {SUB_MENUS_ITEMS[slug]?.map(({ label, href, description, icon, chips }, index) => (
           /*
             La tarjeta no es un <a>: los chips son enlaces propios y anidar
             anclas es HTML inválido. El hover se pinta sobre el <li>.
           */
-          <li key={index} className='grid grid-cols-[auto_1fr] gap-3 rounded-[12px] p-3 hover:bg-papel-hueso'>
-            <span className='flex h-10 w-10 items-center justify-center rounded-full bg-verde/10 text-verde'>
-              {icon}
-            </span>
+          <li key={index} className='grid grid-cols-[auto_1fr] gap-3 rounded-[8px] p-3 hover:bg-papel-hueso'>
+            <span className='flex h-6 w-6 items-center justify-center text-verde'>{icon}</span>
 
             <div className='min-w-0'>
               <Link
@@ -46,7 +44,7 @@ export const SubMenu = ({ slug }: Props) => {
                           color sólido coincidía con uno de los dos. Sin borde,
                           para que pese menos que la descripción de arriba.
                         */
-                        className='inline-flex rounded-full bg-tinta/[0.06] px-2.5 py-1 text-[11px] font-medium text-tinta-media transition-colors hover:bg-verde/15 hover:text-verde focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde'
+                        className='inline-flex rounded-[4px] bg-tinta/[0.06] px-2.5 py-1 text-xs font-medium text-tinta-media transition-colors hover:bg-verde/15 hover:text-verde focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde'
                       >
                         {chip.label}
                       </Link>
@@ -63,7 +61,7 @@ export const SubMenu = ({ slug }: Props) => {
             <Link
               href={parent.href}
               onClick={(e) => e.currentTarget.blur()}
-              className='flex items-center justify-center gap-1.5 rounded-[12px] px-3 py-2 text-sm font-semibold text-verde transition-colors hover:bg-verde/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde'
+              className='flex items-center justify-center gap-1.5 rounded-[8px] px-3 py-2 text-sm font-semibold text-verde transition-colors hover:bg-verde/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde'
             >
               Ver todo en {parent.label}
             </Link>
