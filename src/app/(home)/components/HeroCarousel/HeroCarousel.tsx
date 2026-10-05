@@ -7,11 +7,18 @@ import type { Swiper as SwiperClass } from 'swiper';
 import { A11y, Autoplay, Pagination } from 'swiper/modules';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { HeroSlide, HeroSlideProps } from './components/HeroSlide';
+import { getProductById } from '@/features/products';
 import rawSlides from './data/slidesData.json';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 const AUTOPLAY_MS = 2800;
+
+/* El JSON enlaza por productId: si el producto cambia o desaparece, falla el build y no la web. */
+const slides: HeroSlideProps[] = rawSlides.map(({ productId, ...slide }) => ({
+  ...slide,
+  slug: getProductById(productId).slug,
+}));
 
 const HERO_BG =
   'radial-gradient(120% 120% at 88% 12%, rgba(47,125,82,0.38), rgba(30,58,47,0) 55%),' +
@@ -24,7 +31,6 @@ const arrowClass =
 const EASE = [0.32, 0.72, 0, 1] as const;
 
 export const HeroCarousel = () => {
-  const slides: HeroSlideProps[] = rawSlides;
   const swiperRef = useRef<SwiperClass | null>(null);
   const reduce = useReducedMotion();
 

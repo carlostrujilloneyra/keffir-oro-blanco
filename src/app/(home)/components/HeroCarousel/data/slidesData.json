@@ -4,7 +4,7 @@
     "title": "Kéfir de Leche de Vaca",
     "description": "Refuerza tu salud desde el interior. Este probiótico natural, cremoso y artesanal cuida tu digestión y fortalece tu sistema inmune. ¡Tu intestino te lo agradecerá!",
     "image": "/assets/images/content/products/kefir-de-leche/background.webp",
-    "slug": "kefir-leche-vaca-1lt"
+    "productId": "kefir-vaca-1l"
   },
 
   {
@@ -12,7 +12,7 @@
     "title": "Kéfir con Fresa",
     "description": "Kéfir de leche fermentado con pulpa de fresa real y endulzado con stevia. Todo el poder probiótico con el sabor que sí te provoca tomar cada día.",
     "image": "/assets/images/content/products/kefir-con-fresa/featured.webp",
-    "slug": "kefir-pulpa-fresa-475ml"
+    "productId": "kefir-fresa"
   },
 
   {
@@ -20,14 +20,14 @@
     "title": "Kéfir de Agua",
     "description": "Refresca tu cuerpo con probióticos naturales. Esta bebida fermentada, ligera y burbujeante, mejora tu digestión y te llena de energía. ¡Hidratación saludable que tu cuerpo ama!",
     "image": "/assets/images/content/products/kefir-de-agua/background.webp",
-    "slug": "kefir-agua-1lt"
+    "productId": "kefir-agua-1l"
   },
 
   {
     "isNew": false,
     "title": "Manteca de cerdo",
     "description": "¡Regresa a lo natural! Nuestra manteca 100% artesanal realza el sabor de tus comidas con un toque auténtico y saludable. Perfecta para freír, hornear y cocinar sin químicos.",
-    "image": "/assets/images/content/products/manteca-de-cerdo/background.png",
-    "slug": "manteca-de-cerdo-500ml"
+    "image": "/assets/images/categories/manteca-de-cerdo.webp",
+    "productId": "manteca-500"
   }
 ]

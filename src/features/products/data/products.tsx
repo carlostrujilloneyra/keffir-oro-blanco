@@ -31,7 +31,6 @@ const vacaNatural = {
     '/assets/images/content/products/kefir-de-leche/gallery-01.webp',
     '/assets/images/content/products/kefir-de-leche/gallery-02.webp',
     '/assets/images/content/products/kefir-de-leche/gallery-03.webp',
-    '/assets/images/content/products/kefir-de-leche/gallery-04.webp',
   ],
   benefits: [
     'Refuerza la **flora intestinal** con bacterias buenas.',
@@ -173,12 +172,10 @@ const mantecaCerdo = {
       </p>
     </>
   ),
-  galleryImages: [
-    '/assets/images/content/products/manteca-de-cerdo/gallery-02.webp',
-    '/assets/images/content/products/manteca-de-cerdo/gallery-03.webp',
-    '/assets/images/content/products/manteca-de-cerdo/gallery-04.webp',
-    '/assets/images/content/products/manteca-de-cerdo/gallery-05.webp',
-  ],
+  /* TEMPORAL: la carpeta manteca-de-cerdo/ está vacía. Volver a featured/thumbnail/gallery
+    propios cuando estén las fotos nuevas. */
+  featuredImage: '/assets/images/categories/manteca-de-cerdo.webp',
+  thumbnailImage: '/assets/images/categories/manteca-de-cerdo.webp',
   benefits: [
     '**100% natural y artesanal**, elaborada de forma tradicional sin aditivos.',
     'Rica en **grasas estables al calor**, ideal para freír a altas temperaturas.',
@@ -525,8 +522,6 @@ export const allProducts: Product[] = [
     size: '100 ml',
     price: 8.0,
     tags: ['artisan'],
-    featuredImage: '/assets/images/content/products/manteca-de-cerdo/gallery-01.webp',
-    thumbnailImage: '/assets/images/content/products/manteca-de-cerdo/thumbnail.webp',
     ...mantecaCerdo,
   }),
   make({
@@ -537,8 +532,6 @@ export const allProducts: Product[] = [
     size: '300 ml',
     price: 24.0,
     tags: ['artisan'],
-    featuredImage: '/assets/images/content/products/manteca-de-cerdo/gallery-01.webp',
-    thumbnailImage: '/assets/images/content/products/manteca-de-cerdo/thumbnail.webp',
     ...mantecaCerdo,
   }),
   make({
@@ -549,8 +542,6 @@ export const allProducts: Product[] = [
     size: '500 ml',
     price: 32.0,
     tags: ['artisan', 'best-seller'],
-    featuredImage: '/assets/images/content/products/manteca-de-cerdo/gallery-01.webp',
-    thumbnailImage: '/assets/images/content/products/manteca-de-cerdo/thumbnail.webp',
     ...mantecaCerdo,
   }),
   make({
@@ -561,8 +552,6 @@ export const allProducts: Product[] = [
     size: '1 L',
     price: 60.0,
     tags: ['artisan'],
-    featuredImage: '/assets/images/content/products/manteca-de-cerdo/gallery-01.webp',
-    thumbnailImage: '/assets/images/content/products/manteca-de-cerdo/thumbnail.webp',
     ...mantecaCerdo,
   }),
 
