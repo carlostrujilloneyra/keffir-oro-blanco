@@ -11,9 +11,6 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  /**
-   *? Remover la sección de NewProductSection?
-   */
   return (
     <>
       {/* Identidad de marca para Google (logo y nombre en los resultados). */}

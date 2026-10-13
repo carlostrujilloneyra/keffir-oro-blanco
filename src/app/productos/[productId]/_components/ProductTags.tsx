@@ -1,5 +1,5 @@
 import { Badge } from '@/components/ui/Badge/badge';
-import { badgeConfig, BadgeType } from '@/features/products/data/badgeConfig';
+import { badgeConfig, type BadgeType } from '@/features/products';
 
 interface ProductTagsProps {
   tags?: BadgeType[];

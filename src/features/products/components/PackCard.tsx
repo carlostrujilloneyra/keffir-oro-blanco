@@ -43,9 +43,9 @@ export const PackCard = ({ pack, onSelect }: PackCardProps) => {
 
       <div className='mt-auto flex flex-col gap-3'>
         <p className='flex items-baseline gap-2'>
-          <span className='font-display text-2xl font-semibold text-tinta'>S/ {formatPrice(pack.price)}</span>
+          <span className='font-display text-2xl font-semibold text-tinta'>{formatPrice(pack.price)}</span>
           {pack.regularPrice && (
-            <span className='text-sm text-tinta-suave line-through'>S/ {formatPrice(pack.regularPrice)}</span>
+            <span className='text-sm text-tinta-suave line-through'>{formatPrice(pack.regularPrice)}</span>
           )}
         </p>
 

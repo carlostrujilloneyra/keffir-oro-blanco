@@ -1,5 +1,5 @@
-import { ProductCategory } from '@/features/products';
-import { BadgeType } from '../data/badgeConfig';
+import type { ProductCategory } from '../data/categories';
+import type { BadgeType } from '../data/badgeConfig';
 
 export interface Product {
   id: string;

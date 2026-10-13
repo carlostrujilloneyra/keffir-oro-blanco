@@ -92,7 +92,7 @@ export default function CatalogPage() {
                         {sub.title}
                       </Link>
                     </h3>
-                    <p className='text-sm text-tinta-media'>Desde S/ {formatPrice(fromPrice)}</p>
+                    <p className='text-sm text-tinta-media'>Desde {formatPrice(fromPrice)}</p>
                   </div>
 
                   {count > MAX_PER_GROUP && (

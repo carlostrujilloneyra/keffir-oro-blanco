@@ -5,11 +5,9 @@ import { cn } from '@/lib/utils';
 import { inlineMarkdown } from '@/lib/inlineMarkdown';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { Reveal, Stagger } from '@/components/ui/Motion/Motion';
-import { categoryDetails, ProductCategory } from '@/features/products';
+import { categoryDetails, ProductCategory, type SectionTone } from '@/features/products';
 import { getCategoryUrl } from '@/lib/routes';
 import { Button, type ButtonVariant } from '@/components/ui/Button/Button';
-
-type Tone = (typeof categoryDetails)[ProductCategory]['tone'];
 
 interface CategoryThemeStyle {
   gradient: string;
@@ -17,7 +15,7 @@ interface CategoryThemeStyle {
   button: ButtonVariant;
 }
 
-const toneStyles: Record<Tone, CategoryThemeStyle> = {
+const toneStyles: Record<SectionTone, CategoryThemeStyle> = {
   verde: {
     // base tinta + glows verdes en esquinas opuestas + veladura negra.
     gradient:

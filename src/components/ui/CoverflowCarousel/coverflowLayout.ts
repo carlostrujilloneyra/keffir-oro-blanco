@@ -55,7 +55,7 @@ export const getCircularOffset = (index: number, activeIndex: number, total: num
   return offset;
 };
 
-/** Posición horizontal (px) del centro de una card según su offset, con gap uniforme. */
+/* Posición horizontal (px) del centro de una card según su offset, con gap uniforme. */
 export const getTranslateX = (offset: number, layout: Layout): number => {
   if (offset === 0) return 0;
 
@@ -76,7 +76,7 @@ export const getContentWidth = (layout: Layout): number => {
   return 2 * (getTranslateX(layout.visibleSideCards, layout) + sideHalf);
 };
 
-/** Estilo inline de cada card según su offset. */
+/* Estilo inline de cada card según su offset. */
 export const getCardStyle = (offset: number, animate: boolean, layout: Layout): CSSProperties => {
   const distance = Math.min(Math.abs(offset), layout.visibleSideCards);
   const clampedOffset = Math.sign(offset) * distance;
@@ -95,7 +95,7 @@ export const getCardStyle = (offset: number, animate: boolean, layout: Layout): 
   };
 };
 
-/** Config final: elige MOBILE/DESKTOP y calcula cuántas laterales mostrar sin dejar huecos. */
+/* Config final: elige MOBILE/DESKTOP y calcula cuántas laterales mostrar sin dejar huecos. */
 export const buildLayout = (isMobile: boolean, total: number): Layout => {
   const base = isMobile ? MOBILE_LAYOUT : DESKTOP_LAYOUT;
   const visibleSideCards = Math.min(base.maxSideCards, Math.floor((total - 1) / 2));

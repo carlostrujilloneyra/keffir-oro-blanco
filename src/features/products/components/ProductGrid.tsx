@@ -1,23 +1,15 @@
 'use client';
 
-import { motion, useReducedMotion, type Variants } from 'motion/react';
-import { ProductShowcaseCard } from '@/features/products/components/ProductShowcaseCard';
-import { type Product, type ProductGroup } from '@/features/products';
-
-const EASE = [0.32, 0.72, 0, 1] as const;
+import { motion } from 'motion/react';
+import { useStaggerVariants } from '@/components/ui/Motion/Motion';
+import { ProductShowcaseCard } from './ProductShowcaseCard';
+import type { Product } from '../types/product.type';
+import type { ProductGroup } from '../data/collections';
 
 type Props = { products: Product[]; groups?: never } | { groups: ProductGroup[]; products?: never };
 
 export const ProductGrid = ({ products, groups }: Props) => {
-  const reduce = useReducedMotion();
-
-  const container: Variants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: reduce ? 0 : 0.1, delayChildren: reduce ? 0 : 0.06 } },
-  };
-  const item: Variants = reduce
-    ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
-    : { hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } } };
+  const { container, item } = useStaggerVariants({ stagger: 0.1, delay: 0.06, y: 28, duration: 0.7 });
 
   const cards = groups
     ? groups.map(({ product, fromPrice, sizes }) => ({

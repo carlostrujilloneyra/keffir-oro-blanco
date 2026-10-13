@@ -3,27 +3,16 @@ import { fontFamily } from 'tailwindcss/defaultTheme';
 import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
-  darkMode: ['class'],
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       spacing: {
         '18': '72px',
         section: '96px',
-        'section-lg': '160px',
       },
 
       screens: {
         tablet: '600px',
-        super_desktop: '1400px',
-      },
-
-      boxShadow: {
-        hard: '4px 4px 0 0 #16201A',
-        'hard-sm': '3px 3px 0 0 #16201A',
-        'hard-fucsia': '4px 4px 0 0 #D11E82',
-        strong: '0 20px 40px -10px rgba(22, 32, 26, 0.28)',
-        'glow-light': '0 25px 50px -12px rgba(255, 255, 255, 0.1)',
       },
 
       backgroundImage: {
@@ -64,70 +53,14 @@ const config: Config = {
           oscuro: '#C9860E', // fin del gradiente miel
         },
 
-        primary: {
-          DEFAULT: 'hsl(var(--primary))', // verde
-          hover: '#1E3A2F',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: '#1E3A2F', // bosque
-          hover: '#16201A',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
-
-        light: {
-          '50': '#FAF9F4',
-          '100': '#F7F5EF',
-          '200': '#EFEBE0',
-          '300': '#E0D9CA',
-          '400': '#C4BEB0',
-          '500': '#A7A295',
-          '600': '#8B877B',
-          '700': '#6E756A',
-          '800': '#3A463D',
-        },
-        gray: {
-          '100': '#EFEBE0',
-          '300': '#E0D9CA',
-          '400': '#9AA093',
-          '500': '#6E756A',
-          '600': '#3A463D',
-          '700': '#2A342C',
-          '800': '#1E2A22',
-          '900': '#16201A',
-        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
         muted: {
           DEFAULT: 'hsl(var(--muted))',
           foreground: 'hsl(var(--muted-foreground))',
         },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
         border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        chart: {
-          '1': 'hsl(var(--chart-1))',
-          '2': 'hsl(var(--chart-2))',
-          '3': 'hsl(var(--chart-3))',
-          '4': 'hsl(var(--chart-4))',
-          '5': 'hsl(var(--chart-5))',
-        },
       },
       fontFamily: {
         // Títulos — DM Sans (variable --font-heading, ver app/layout.tsx).
@@ -136,10 +69,7 @@ const config: Config = {
         sans: ['var(--font-inter)', ...fontFamily.sans],
       },
       fontSize: {
-        eyebrow: ['0.75rem', { lineHeight: '1', letterSpacing: '0.16em' }],
         display: ['clamp(2.75rem, 6vw, 5rem)', { lineHeight: '1.02', letterSpacing: '-0.02em' }],
-        headline: ['clamp(2rem, 4vw, 3.25rem)', { lineHeight: '1.06', letterSpacing: '-0.02em' }],
-        title: ['clamp(1.5rem, 2.5vw, 2rem)', { lineHeight: '1.12', letterSpacing: '-0.01em' }],
       },
       maxWidth: {
         measure: '68ch',
@@ -185,7 +115,6 @@ const config: Config = {
     },
   },
   plugins: [
-    require('tailwindcss-animate'),
     /* Container query: `cq` marca el contenedor; `cq-sm:` aplica si mide ≥ 13rem. */
     plugin(({ addUtilities, addVariant }) => {
       addUtilities({

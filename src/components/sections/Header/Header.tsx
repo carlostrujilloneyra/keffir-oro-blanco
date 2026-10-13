@@ -3,18 +3,18 @@
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, useReducedMotion, type Variants } from 'motion/react';
+import { motion } from 'motion/react';
 import { ArrowUpRight, Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { WHATSAPP_URL } from '@/lib/site';
 import { NavBar } from './components/NavBar/NavBar';
 import { MobileMenu } from './components/MobileMenu';
 import { Button } from '@/components/ui/Button/Button';
+import { useStaggerVariants } from '@/components/ui/Motion/Motion';
 
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const reduce = useReducedMotion();
 
   // Histéresis: con un solo umbral, al encogerse el header el scroll lo reabría en bucle.
   useEffect(() => {
@@ -26,13 +26,13 @@ export const Header = () => {
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
-  const containerV: Variants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: reduce ? 0 : 0.14, delayChildren: reduce ? 0 : 0.12 } },
-  };
-  const itemV: Variants = reduce
-    ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
-    : { hidden: { opacity: 0, y: -14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } } };
+  const { container: containerV, item: itemV } = useStaggerVariants({
+    stagger: 0.14,
+    delay: 0.12,
+    y: -14,
+    duration: 0.7,
+    ease: 'easeOut',
+  });
 
   return (
     <header
@@ -99,7 +99,7 @@ export const Header = () => {
         </motion.div>
       </motion.div>
 
-      <MobileMenu open={menuOpen} onClose={closeMenu} whatsappUrl={WHATSAPP_URL} />
+      <MobileMenu open={menuOpen} onClose={closeMenu} />
     </header>
   );
 };

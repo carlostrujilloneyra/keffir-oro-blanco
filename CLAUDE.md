@@ -22,7 +22,7 @@ There is no test runner configured. "Verifying a change" means `npm run build` +
 ## Architecture
 
 ### Feature-based organization
-Domain code lives in `src/features/<domain>/` (products, faqs, testimonials), each with its own `components/`, `data/`, `types/`, and a barrel `index.ts`. **Import from the feature barrel** (`@/features/products`), not from deep internal paths — the barrel is the public API. `@/*` maps to `src/*` (see `tsconfig.json`).
+Domain code lives in `src/features/<domain>/` (products, faqs, testimonials), each with its own `components/`, `data/`, `types/`, and a barrel `index.ts`. **Import from the feature barrel** (`@/features/products`), not from deep internal paths — the barrel is the public API for data, helpers and types. Components are the exception: import them by path (`@/features/products/components/ProductGrid`) — re-exporting them from the barrel pulled every product component into the header's client bundle (+32 kB). Inside the feature, use relative imports, never the barrel (avoids import cycles). `@/*` maps to `src/*` (see `tsconfig.json`).
 
 Layers:
 - `src/features/*` — domain logic + data (the product catalog is the core domain).
@@ -33,17 +33,17 @@ Layers:
 ### Product catalog (the important part)
 - **Source of truth:** `src/features/products/data/products.tsx` — a single `allProducts` array of `Product` objects. The `Product` type is in `types/product.type.ts`; note fields hold JSX (`React.ReactNode`) for rich descriptions, which is why the file is `.tsx`.
 - **Slugs are the routing key.** Never write a product `slug` by hand: `make()` in `data/products.tsx` derives it from `name` + compact `size` (`manteca-de-cerdo` + `1 L` → `manteca-de-cerdo-1lt`). Routes live in `src/lib/routes.ts` (`getProductUrl(slug)` → `/productos/<slug>`, `getCategoryUrl`, `getSubcategoryUrl`, `CATALOG_URL`); never hand-build these paths. The dynamic route `src/app/productos/[productId]/page.tsx` matches on `slug` (the `productId` param is really the slug) and pre-renders every product via `generateStaticParams`. To link a specific product from code, use `getProductById(id)` (throws at build time if the id doesn't exist) — never a hardcoded URL.
-- **Collections** (`data/collections.ts`) are derived views over `allProducts` filtered by tag (`best-seller`, `discover`). Don't hand-maintain product lists — add the right tag instead. Link a specific product with `getProductUrlById(id)`.
+- **Collections** (`data/collections.ts`) are derived views over `allProducts` filtered by tag (`best-seller`, `discover`). Don't hand-maintain product lists — add the right tag instead. Link a specific product with `getProductUrlById(id)`; look one up by URL with `getProductBySlug(slug)`. Display helpers live in `lib/productDisplay.ts` (`getProductBaseTitle` — title without the size, `getProductImage`).
 - **Subcategories** (`data/subcategories.ts`) group products by `Product.name` (so every size comes along) under `/categorias/<categoria>/<subcategoria>`. Every product group must belong to one subcategory, or it won't appear in the catalog.
 - **Catalog** `/productos` (`src/app/productos/page.tsx`) is generated from categories → subcategories; empty subcategories are hidden. Permanent redirects in `next.config.mjs`: `/products/*` → `/productos/*` and `/categorias` → `/productos`.
-- **Badges/tags** (`data/badgeConfig.ts`): `BadgeType` and its labels/variants are the single config for product badges; variant types are inferred from the `Badge` component's `badgeVariants` so they stay in sync.
+- **Badges/tags** (`data/badgeConfig.ts`): `BadgeType` and its labels/variants are the single config for product badges; variant types are inferred from the `Badge` component's `badgeVariants` so they stay in sync. "Nuevo" comes only from the `'new'` tag (product page, cards and home hero carousel alike).
 - **Categories** (`data/categories.ts`): `ProductCategory` enum. Each enum value **is** the URL slug (`/categorias/<value>`); validate URL params with `isProductCategory()` and index `categoryDetails` directly — keep value and slug identical when adding a category.
 
 ### Adding a product
 Append a `make({...})` entry to `allProducts` in `data/products.tsx` (sizes of the same product share `name`; each size is its own entry), set `tags` to place it in the right collections, and add its images under `public/`. The route and SEO metadata are generated automatically on next build. `/sitemap.xml` lists every generated route.
 
 ### Styling
-Tailwind (config in `tailwind.config.ts`). Custom breakpoints: `tablet:` (600px) and `super_desktop:` (1400px) — used alongside default `sm/md/lg`. Brand color tokens: `papel` (backgrounds), `tinta` (text), `bosque`/`verde`, `miel`, `fucsia` (from the jar labels). The legacy `light-*`/`gray-*` scales are no longer used by any component (pending removal). Fonts are loaded in `app/layout.tsx` via `next/font/google` as CSS variables: DM Sans (`--font-heading` → `font-display`, headings) and Inter (`--font-inter` → `font-sans`, body/UI). shadcn tokens use CSS variables (`--background`, etc.) defined in `src/app/globals.css`.
+Tailwind (config in `tailwind.config.ts`). Custom breakpoint: `tablet:` (600px), used alongside default `sm/md/lg`; content width is capped by `.container-max` (1400px). Brand color tokens: `papel` (backgrounds), `tinta` (text), `bosque`/`verde`, `miel`, `fucsia` (from the jar labels). Fonts are loaded in `app/layout.tsx` via `next/font/google` as CSS variables: DM Sans (`--font-heading` → `font-display`, headings) and Inter (`--font-inter` → `font-sans`, body/UI). Only the shadcn CSS variables actually used are kept (`--background`, `--foreground`, `--muted`, `--border`, `--ring` in `src/app/globals.css`); add more only when a new shadcn component needs them.
 
 ### UI language ("etiqueta de frasco")
 The look comes from the physical jar labels. Reuse these pieces instead of hand-rolling styles:
@@ -54,11 +54,15 @@ The look comes from the physical jar labels. Reuse these pieces instead of hand-
 - **Surfaces:** cards are flat `bg-papel-hueso`, no grey outline, `rounded-card` (12px); large dark blocks use `rounded-panel` (28px) with the dark radial-gradient backgrounds. No icons inside circles.
 - **Product card:** `ProductShowcaseCard` adapts to its own width with the custom container query: the root has `cq`, children use `cq-sm:` (≥ 13rem). Narrow = compact version.
 - **Horizontal scroll rows:** add `scrollbar-none` (custom utility). Prefer wrapping over scrolling when items are few.
-- **Easing:** `ease-suave` token instead of arbitrary `ease-[cubic-bezier(...)]`.
+- **Easing:** `ease-suave` token instead of arbitrary `ease-[cubic-bezier(...)]`; in CSS `theme('transitionTimingFunction.suave')`, in motion `EASE_SUAVE`.
+- **Animations:** `Reveal` / `Stagger` / `useStaggerVariants` from `components/ui/Motion` (they handle reduced motion). Don't redefine variants per component.
+- **Tones:** `Tone` / `SectionTone` and `toneStyles` (`features/products/lib/productAccent.ts`) are the single source for accent colors; `<ToneHalo>` is the blurred halo behind product photos.
+- **Prices:** `formatPrice()` already returns `S/ 12.50` — never prepend `S/` by hand.
+- **SEO:** every page builds its metadata with `buildPageMetadata()` (`src/lib/metadata.ts`); Next replaces `openGraph` instead of merging it, so don't hand-write `openGraph`/`twitter` per page.
 - **Copy:** only verifiable claims (no invented stats, shipping promises or health claims). Testimonials quote customers verbatim (`highlight` is a literal fragment of `quote`).
 
 ### Content flags
-- `Product.containsDairy` drives the "Con lácteos / Sin lácteos" split of the header mega menu (`constants/navItems.tsx`, built from category/subcategory data).
+- `Product.containsDairy` drives the "Con lácteos / Sin lácteos" split of the header mega menu (`components/sections/Header/data/navItems.tsx`, built from category/subcategory data).
 - Packs live in `features/products/data/packs.ts`; `draft: true` shows them only in development (hidden in production builds).
 - `CONTACT_EMAIL` in `lib/site.ts` is `undefined` until a real address exists (then it appears in the footer and JSON-LD).
 

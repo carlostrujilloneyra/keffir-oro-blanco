@@ -7,17 +7,19 @@ import { keepUnitsTogether } from '@/lib/keepUnitsTogether';
 import { categoryDetails } from '../data/categories';
 import { type Product } from '../types/product.type';
 import { accentFor, toneStyles } from '../lib/productAccent';
+import { ToneHalo } from './ToneHalo';
 import { getProductSplash } from '../lib/productSplash';
+import { getProductBaseTitle } from '../lib/productDisplay';
 
 type Props = {
   product: Product;
-  /** Resalta la card (p. ej. la central del coverflow): sombra de acento fija. */
+  /* Resalta la card (p. ej. la central del coverflow): sombra de acento fija. */
   highlighted?: boolean;
-  /** true = toda la card es un enlace al detalle; false = no navega (el padre decide). */
+  /* true = toda la card es un enlace al detalle; false = no navega (el padre decide). */
   asLink?: boolean;
-  /** Card que representa todas las tallas: el sello dice "Desde S/ X". */
+  /* Card que representa todas las tallas: el sello dice "Desde S/ X". */
   fromPrice?: number;
-  /** Quita la talla del final del título. */
+  /* Quita la talla del final del título. */
   hideSize?: boolean;
 };
 
@@ -28,12 +30,9 @@ export const ProductShowcaseCard = ({
   fromPrice,
   hideSize = false,
 }: Props) => {
-  const tone = toneStyles[accentFor(product)];
-  const sizeSuffix = product.size ? ` ${product.size}` : '';
-  const title =
-    hideSize && sizeSuffix && product.title.endsWith(sizeSuffix)
-      ? product.title.slice(0, -sizeSuffix.length)
-      : product.title;
+  const accent = accentFor(product);
+  const tone = toneStyles[accent];
+  const title = hideSize ? getProductBaseTitle(product) : product.title;
   const category = categoryDetails[product.category]?.title ?? 'Producto';
   const url = getProductUrl(product.slug);
   const splashes = getProductSplash(product);
@@ -59,12 +58,7 @@ export const ProductShowcaseCard = ({
     <>
       {/* Panel de imagen con halo de fermento y sello de precio */}
       <div className='relative aspect-square overflow-hidden'>
-        <div
-          className={cn(
-            'absolute left-1/2 top-1/2 h-3/5 w-3/5 -translate-x-1/2 -translate-y-1/2 rounded-full blur-xl transition-transform duration-500 ease-out group-hover:scale-110',
-            tone.halo,
-          )}
-        />
+        <ToneHalo tone={accent} />
 
         {/* Salpicado del sabor: capas izq/der que enmarcan la botella. Aparecen al
             hover, o de forma fija cuando la card está destacada (centro del coverflow). */}
@@ -100,7 +94,7 @@ export const ProductShowcaseCard = ({
           className='object-contain px-4 pb-3 pt-9 transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-[1.04] cq-sm:p-6'
         />
         <span className='absolute left-2 top-2 rounded-[4px] bg-tinta px-2 py-0.5 font-display text-xs font-semibold tracking-tight text-papel cq-sm:left-3 cq-sm:top-3 cq-sm:px-2.5 cq-sm:py-1 cq-sm:text-sm'>
-          {fromPrice !== undefined ? `Desde S/ ${formatPrice(fromPrice)}` : `S/ ${formatPrice(product.price)}`}
+          {fromPrice !== undefined ? `Desde ${formatPrice(fromPrice)}` : `${formatPrice(product.price)}`}
         </span>
       </div>
 

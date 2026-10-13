@@ -6,11 +6,10 @@ import { formatPrice } from '@/lib/formatPrice';
 import { inlineMarkdown } from '@/lib/inlineMarkdown';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { Stagger } from '@/components/ui/Motion/Motion';
+import type { SectionTone } from '@/features/products';
 import styles from './CategoryHero.module.scss';
 
-export type CategoryTone = 'verde' | 'miel';
-
-const toneStyles: Record<CategoryTone, { gradient: string; halo: string }> = {
+const toneStyles: Record<SectionTone, { gradient: string; halo: string }> = {
   verde: {
     gradient:
       'radial-gradient(75% 120% at 100% 0%, rgba(47,125,82,0.55), rgba(47,125,82,0.26) 36%, rgba(22,32,26,0) 74%),' +
@@ -34,7 +33,7 @@ type Props = {
   imageUrl: string;
   imageAlt: string;
   count: number;
-  tone: CategoryTone;
+  tone: SectionTone;
   parent?: { title: string; href: string };
   /* Accesos a las subcategorías con su precio "desde". Si faltan, se muestra solo el contador. */
   shortcuts?: { label: string; href: string; fromPrice: number }[];
@@ -114,7 +113,7 @@ export const CategoryHero = ({
                     className='flex min-h-11 flex-col justify-center rounded-[8px] border border-white/15 bg-white/10 px-3 py-1.5 transition-colors duration-200 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-papel tablet:py-2'
                   >
                     <span className='text-[13px] font-semibold text-papel tablet:text-sm'>{label}</span>
-                    <span className='hidden text-xs text-papel/70 tablet:block'>desde S/ {formatPrice(fromPrice)}</span>
+                    <span className='hidden text-xs text-papel/70 tablet:block'>desde {formatPrice(fromPrice)}</span>
                   </Link>
                 </li>
               ))}

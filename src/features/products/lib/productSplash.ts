@@ -15,14 +15,14 @@ const X_RIGHT = 'right-[-16%]';
 const SIZE = 'h-[72%] w-[74%]'; // tamaño por defecto
 const SIZE_LG = 'h-[96%] w-[98%]'; // un poco más grande (arándanos)
 
-/** Composición de 2 capas grandes: abajo-izquierda y abajo-derecha.
+/* Composición de 2 capas grandes: abajo-izquierda y abajo-derecha.
     `posY` permite bajar/subir el par (por defecto pegado abajo). */
 const leftRight = (left: string, right: string, size: string = SIZE, posY: string = 'bottom-[-4%]'): SplashLayer[] => [
   { src: `${BASE}/${left}`, className: `${posY} ${X_LEFT} ${size}`, delay: '0ms' },
   { src: `${BASE}/${right}`, className: `${posY} ${X_RIGHT} ${size}`, delay: '90ms' },
 ];
 
-/** Un solo splash centrado detrás de la botella (natural/chocolate).
+/* Un solo splash centrado detrás de la botella (natural/chocolate).
     `box` permite agrandarlo (p. ej. `-inset-[16%]` lo hace desbordar y verse más grande). */
 const centered = (src: string, box: string = 'inset-0'): SplashLayer[] => [{ src: `${BASE}/${src}`, className: box }];
 

@@ -7,12 +7,12 @@ import {
   resolveSubcategory,
   subcategoryDetails,
 } from '@/features/products';
+import { ProductGrid } from '@/features/products/components/ProductGrid';
 import { ValuesBento } from '@/components/sections/ValuesBento/ValuesBento';
 import { JsonLd } from '@/components/JsonLd';
 import { buildBreadcrumbJsonLd } from '@/lib/jsonLd';
 import { buildPageMetadata } from '@/lib/metadata';
 import { CategoryHero } from '../_components/CategoryHero';
-import { ProductGrid } from '@/features/products/components/ProductGrid';
 import { getCategoryUrl, getSubcategoryUrl } from '@/lib/routes';
 
 type Params = { categoria: string; subcategoria: string };

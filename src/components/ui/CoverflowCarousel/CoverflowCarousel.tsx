@@ -9,12 +9,12 @@ import {
   getCardStyle,
   getCircularOffset,
   getContentWidth,
-} from './layout';
+} from './coverflowLayout';
 import styles from './CoverflowCarousel.module.css';
 
 type Props<T extends { id: number | string }> = {
   products: T[];
-  /** isCenter = true cuando la card es la central (la grande). */
+  /* isCenter = true cuando la card es la central (la grande). */
   renderCard: (product: T, isCenter: boolean) => ReactNode;
 };
 

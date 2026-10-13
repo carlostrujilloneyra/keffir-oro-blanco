@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
+import { NAV_ITEMS, NavSlug, SUB_MENUS, type SubMenuEntry } from '@/components/sections/Header/data/navItems';
 import { PackCard } from '@/features/products/components/PackCard';
-import { NAV_ITEMS, NavSlug, SUB_MENUS, type SubMenuEntry } from '@/constants/navItems';
 
 type ClickHandler = (e: React.MouseEvent<HTMLElement>) => void;
 

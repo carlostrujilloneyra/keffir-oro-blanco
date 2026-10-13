@@ -10,6 +10,7 @@ import {
   ProductCategory,
   subcategoryDetails,
 } from '@/features/products';
+import { ProductGrid } from '@/features/products/components/ProductGrid';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { Reveal, Stagger } from '@/components/ui/Motion/Motion';
 import { ValuesBento } from '@/components/sections/ValuesBento/ValuesBento';
@@ -18,7 +19,6 @@ import { buildBreadcrumbJsonLd } from '@/lib/jsonLd';
 import { buildPageMetadata } from '@/lib/metadata';
 import { CategoryHero } from './_components/CategoryHero';
 import { SubcategoryCard } from './_components/SubcategoryCard';
-import { ProductGrid } from '@/features/products/components/ProductGrid';
 import { getCategoryUrl, getSubcategoryUrl } from '@/lib/routes';
 import { cn } from '@/lib/utils';
 

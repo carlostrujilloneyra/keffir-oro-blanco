@@ -1,5 +1,5 @@
-import { ProductShowcaseCard } from '@/features/products/components/ProductShowcaseCard';
 import { type Product } from '@/features/products';
+import { ProductShowcaseCard } from '@/features/products/components/ProductShowcaseCard';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 
 interface RelatedProductsProps {

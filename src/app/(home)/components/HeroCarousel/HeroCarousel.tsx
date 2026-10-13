@@ -8,17 +8,19 @@ import { A11y, Autoplay, Pagination } from 'swiper/modules';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { HeroSlide, HeroSlideProps } from './components/HeroSlide';
 import { getProductById } from '@/features/products';
+import { EASE_SUAVE } from '@/components/ui/Motion/Motion';
 import rawSlides from './data/slidesData.json';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 const AUTOPLAY_MS = 2800;
 
-/* El JSON enlaza por productId: si el producto cambia o desaparece, falla el build y no la web. */
-const slides: HeroSlideProps[] = rawSlides.map(({ productId, ...slide }) => ({
-  ...slide,
-  slug: getProductById(productId).slug,
-}));
+/* El JSON enlaza por productId: si el producto cambia o desaparece, falla el build y no la web.
+  "Nuevo" sale del tag del producto, la misma fuente que la ficha. */
+const slides: HeroSlideProps[] = rawSlides.map(({ productId, ...slide }) => {
+  const product = getProductById(productId);
+  return { ...slide, slug: product.slug, isNew: product.tags?.includes('new') ?? false };
+});
 
 const HERO_BG =
   'radial-gradient(120% 120% at 88% 12%, rgba(47,125,82,0.38), rgba(30,58,47,0) 55%),' +
@@ -27,8 +29,6 @@ const HERO_BG =
 
 const arrowClass =
   'flex h-11 w-11 items-center justify-center rounded-[10px] bg-papel/10 text-papel backdrop-blur-sm transition duration-200 hover:bg-papel/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-miel active:scale-90 active:bg-papel active:text-bosque';
-
-const EASE = [0.32, 0.72, 0, 1] as const;
 
 export const HeroCarousel = () => {
   const swiperRef = useRef<SwiperClass | null>(null);
@@ -40,7 +40,7 @@ export const HeroCarousel = () => {
       aria-label='Productos destacados'
       initial={reduce ? { opacity: 0 } : { opacity: 0, y: 120 }}
       animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
-      transition={{ duration: reduce ? 0.3 : 1.0, ease: EASE }}
+      transition={{ duration: reduce ? 0.3 : 1.0, ease: EASE_SUAVE }}
       className='relative -mx-4 w-auto overflow-x-clip pt-4 tablet:mx-0 tablet:w-full tablet:pt-6 lg:py-10'
     >
       <div className='relative overflow-hidden rounded-none tablet:rounded-panel' style={{ background: HERO_BG }}>

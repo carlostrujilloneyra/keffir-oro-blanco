@@ -1,16 +1,10 @@
-import {
-  CheeseIcon,
-  CowIcon,
-  FruitIcon,
-  KombuchaIcon,
-  PigIcon,
-  StrawberryIcon,
-} from '@/components/ui/icons';
+import { CheeseIcon, CowIcon, FruitIcon, KombuchaIcon, PigIcon, StrawberryIcon } from '@/components/ui/icons';
 import {
   allProducts,
   categoryDetails,
   getCategoryPack,
   getProductById,
+  getProductGroups,
   getSubcategoryProducts,
   ProductCategory,
   subcategoryDetails,
@@ -25,7 +19,6 @@ export type NavSlug = ProductCategory;
 interface NavItem {
   label: string;
   href: string;
-  hasSubMenu?: boolean;
   slug: NavSlug;
 }
 
@@ -57,7 +50,7 @@ export interface SubMenuGroup {
 export interface SubMenu {
   groups: SubMenuGroup[];
   pack?: Pack;
-  /* Total de productos de la categoría, para "Ver los N productos". */
+  /* Productos distintos de la categoría (no tallas), para "Ver los N productos". */
   total: number;
 }
 
@@ -65,7 +58,6 @@ export const NAV_ITEMS: NavItem[] = Object.values(ProductCategory).map((category
   label: categoryDetails[category].title,
   href: getCategoryUrl(category),
   slug: category,
-  hasSubMenu: true,
 }));
 
 /* Solo lo propio del menú, por slug de subcategoría. Título y enlace salen de subcategoryDetails. */
@@ -175,7 +167,7 @@ const buildSubMenu = (category: ProductCategory): SubMenu => {
         ]
       : [buildGroup(subs, () => true)],
     pack: getCategoryPack(category),
-    total: products.length,
+    total: getProductGroups(products).length,
   };
 };
 

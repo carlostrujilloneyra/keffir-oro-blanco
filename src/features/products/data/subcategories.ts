@@ -2,8 +2,8 @@ import { ProductCategory } from './categories';
 import { allProducts } from './products';
 import { getProductGroups } from './collections';
 import type { Product } from '../types/product.type';
-
-export type SubcategoryTone = 'verde' | 'miel';
+import type { SectionTone } from '../lib/productAccent';
+import { getProductImage } from '../lib/productDisplay';
 
 export interface SubcategoryDetail {
   slug: string;
@@ -11,7 +11,7 @@ export interface SubcategoryDetail {
   title: string;
   eyebrow: string;
   description: string;
-  tone: SubcategoryTone;
+  tone: SectionTone;
 
   /*
     Grupos de producto que forman la subcategoría, por `Product.name`.
@@ -137,7 +137,7 @@ export const getSubcategoryImage = (subcategory: SubcategoryDetail): string => {
   if (subcategory.imageUrl) return subcategory.imageUrl;
 
   const [first] = getSubcategoryProducts(subcategory);
-  return first?.featuredImage || first?.thumbnailImage || '';
+  return first ? getProductImage(first) : '';
 };
 
 /*

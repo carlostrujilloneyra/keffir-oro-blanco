@@ -2,26 +2,32 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { allProducts } from '@/features/products/data/products';
-import { categoryDetails, getRelatedProducts, getSizeVariants } from '@/features/products';
-import { buildProductMetaDescription } from '@/features/products/lib/productSeo';
+import {
+  allProducts,
+  categoryDetails,
+  getProductBySlug,
+  getRelatedProducts,
+  getSizeVariants,
+  getProductBaseTitle,
+  getProductImage,
+  buildProductMetaDescription,
+  isAttributeTag,
+} from '@/features/products';
 import { ProductImageGallery } from '@/features/products/components/ProductImageGallery/ProductImageGallery';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/Accordion/accordion';
-import { isAttributeTag } from '@/features/products/data/badgeConfig';
 import { formatPrice } from '@/lib/formatPrice';
 import { buildWhatsAppUrl, CURRENCY, SITE_NAME, SITE_URL } from '@/lib/site';
 import { buildBreadcrumbJsonLd } from '@/lib/jsonLd';
 import { buildPageMetadata } from '@/lib/metadata';
 import { JsonLd } from '@/components/JsonLd';
+import { Reveal, Stagger } from '@/components/ui/Motion/Motion';
 import {
   BenefitsList,
   LabelClaims,
   ProductTags,
   RelatedProducts,
-  Reveal,
   ShelfLife,
   SizeSelector,
-  Stagger,
   UsageInstructions,
 } from './_components';
 import { getCategoryUrl, getProductUrl } from '@/lib/routes';
@@ -36,7 +42,7 @@ interface ProductPageProps {
 
 // Generar metadata dinámica para SEO
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const product = allProducts.find((product) => product.slug === params.productId);
+  const product = getProductBySlug(params.productId);
 
   if (!product) {
     return {
@@ -61,15 +67,13 @@ export async function generateStaticParams() {
 }
 
 export default function ProductPage({ params }: ProductPageProps) {
-  const product = allProducts.find((p) => p.slug === params.productId);
+  const product = getProductBySlug(params.productId);
 
   if (!product) {
     notFound();
   }
 
-  const galleryImages = [product.featuredImage || product.thumbnailImage, ...(product.galleryImages || [])].filter(
-    Boolean,
-  );
+  const galleryImages = [getProductImage(product), ...(product.galleryImages || [])].filter(Boolean);
 
   const category = categoryDetails[product.category];
   const tags = product.tags ?? [];
@@ -87,7 +91,7 @@ export default function ProductPage({ params }: ProductPageProps) {
     '@type': 'Product',
     name: product.title,
     description: product.shortDescription,
-    image: `${SITE_URL}${product.featuredImage || product.thumbnailImage}`,
+    image: `${SITE_URL}${getProductImage(product)}`,
     brand: { '@type': 'Brand', name: SITE_NAME },
     ...(category ? { category: category.title } : {}),
     offers: {
@@ -110,34 +114,23 @@ export default function ProductPage({ params }: ProductPageProps) {
     { name: product.title, path: getProductUrl(product.slug) },
   ]);
 
-  /*
-    CTA principal: sin carrito, el pedido es por WhatsApp con el producto
-    precargado. El title ya termina en la talla ("... natural 1 L"), así que se
-    recorta para no repetirla en la línea de Presentación.
-  */
-  const presentacion = product.size;
-  const nombreBase =
-    presentacion && product.title.endsWith(presentacion)
-      ? product.title.slice(0, -presentacion.length).trim()
-      : product.title;
+  /* Sin carrito: el pedido es por WhatsApp con el producto precargado; la talla va en su propia línea. */
+  const { size } = product;
+  const baseTitle = getProductBaseTitle(product);
 
-  const waUrl = buildWhatsAppUrl(
+  const orderUrl = buildWhatsAppUrl(
     [
       'Hola, quisiera pedir:',
       '',
-      `*${nombreBase}*`,
-      presentacion
-        ? `Presentación: ${presentacion} — S/ ${formatPrice(product.price)}`
-        : `Precio: S/ ${formatPrice(product.price)}`,
+      `*${baseTitle}*`,
+      size ? `Presentación: ${size} — ${formatPrice(product.price)}` : `Precio: ${formatPrice(product.price)}`,
       'Cantidad: 1',
       '',
       '¿Me confirmas y coordinamos la entrega?',
     ].join('\n'),
   );
 
-  const consultaStockUrl = buildWhatsAppUrl(
-    `Hola, ¿cuándo vuelve a haber *${nombreBase}*${presentacion ? ` de ${presentacion}` : ''}?`,
-  );
+  const restockUrl = buildWhatsAppUrl(`Hola, ¿cuándo vuelve a haber *${baseTitle}*${size ? ` de ${size}` : ''}?`);
 
   const accordionTrigger = 'font-display text-base font-semibold text-tinta hover:no-underline tablet:text-lg';
 
@@ -194,9 +187,7 @@ export default function ProductPage({ params }: ProductPageProps) {
               <h1 className='font-display text-3xl font-semibold leading-[1.05] tracking-tight text-tinta lg:text-5xl'>
                 {keepUnitsTogether(product.title)}
               </h1>
-              <p className='font-display text-3xl font-bold tracking-tight text-tinta'>
-                S/ {formatPrice(product.price)}
-              </p>
+              <p className='font-display text-3xl font-bold tracking-tight text-tinta'>{formatPrice(product.price)}</p>
             </div>
             <SizeSelector variants={sizeVariants} currentSlug={product.slug} />
           </div>
@@ -208,7 +199,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           */}
           <div className='flex flex-col gap-2'>
             <Button asChild variant={isAvailable ? 'primary' : 'dark'} className='w-full py-4 text-base lg:py-4'>
-              <Link href={isAvailable ? waUrl : consultaStockUrl} target='_blank' rel='noopener noreferrer'>
+              <Link href={isAvailable ? orderUrl : restockUrl} target='_blank' rel='noopener noreferrer'>
                 {isAvailable ? 'Pedir por WhatsApp' : 'Avísame cuando vuelva'}
                 <ArrowUpRight className='h-4 w-4' />
               </Link>

@@ -1,26 +1,17 @@
 'use client';
 
-import { motion, useReducedMotion, type Variants } from 'motion/react';
+import { motion } from 'motion/react';
+import { useStaggerVariants } from '@/components/ui/Motion/Motion';
 import { getProductById, promotedCollection } from '@/features/products';
-import { FAQ_URL } from '@/lib/routes';
 import { ProductShelfItem } from '@/features/products/components/ProductShelfItem';
+import { FAQ_URL } from '@/lib/routes';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { FeaturedCard } from './components/FeaturedCard';
 
-const EASE = [0.32, 0.72, 0, 1] as const;
 const shelf = [getProductById('manteca-1l'), ...promotedCollection];
 
 export const MainSection = () => {
-  const reduce = useReducedMotion();
-
-  const container: Variants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: reduce ? 0 : 0.12, delayChildren: reduce ? 0 : 0.05 } },
-  };
-
-  const item: Variants = reduce
-    ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
-    : { hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } } };
+  const { container, item } = useStaggerVariants({ stagger: 0.12, delay: 0.05, y: 28, duration: 0.6 });
 
   return (
     <motion.section

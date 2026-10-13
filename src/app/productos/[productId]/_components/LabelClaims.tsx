@@ -1,5 +1,5 @@
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
-import { badgeConfig, type BadgeType } from '@/features/products/data/badgeConfig';
+import { badgeConfig, type BadgeType } from '@/features/products';
 
 /* Atributos propios del producto, con la cinta de su etiqueta física. */
 export const LabelClaims = ({ tags }: { tags: BadgeType[] }) => {

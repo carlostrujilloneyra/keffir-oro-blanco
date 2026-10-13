@@ -1,3 +1,2 @@
-export function formatPrice(price: number): string {
-  return price.toFixed(2);
-}
+/* Precio en soles: `S/ 12.50`. */
+export const formatPrice = (price: number): string => `S/ ${price.toFixed(2)}`;

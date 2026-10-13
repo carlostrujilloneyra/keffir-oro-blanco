@@ -1,4 +1,3 @@
-export { Reveal, Stagger } from '@/components/ui/Motion/Motion';
 export { SizeSelector } from './SizeSelector';
 export { BenefitsList } from './BenefitsList';
 export { LabelClaims } from './LabelClaims';

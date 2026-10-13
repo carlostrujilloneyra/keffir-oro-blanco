@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
-import { NAV_ITEMS } from '@/constants/navItems';
+import { NAV_ITEMS } from '@/components/sections/Header/data/navItems';
 import { SubMenu } from './SubMenu/SubMenu';
 import { cn } from '@/lib/utils';
 
@@ -24,7 +24,7 @@ export const NavBar = ({ className }: { className?: string }) => {
     <nav aria-label='Principal' className={className}>
       {/* relative: el submenú se centra respecto de esta lista, no de cada ítem. */}
       <ul className='relative flex items-center gap-1'>
-        {NAV_ITEMS.map(({ label, href, slug, hasSubMenu }) => {
+        {NAV_ITEMS.map(({ label, href, slug }) => {
           /* La sección actual queda pintada en verde. */
           const isActive = pathname === href;
           const isClosed = closedSlug === slug;
@@ -49,14 +49,12 @@ export const NavBar = ({ className }: { className?: string }) => {
                 )}
               >
                 {label}
-                {hasSubMenu && (
-                  <ChevronDown
-                    className={cn('h-4 w-4 transition-transform duration-200', !isClosed && 'group-hover:rotate-180')}
-                  />
-                )}
+                <ChevronDown
+                  className={cn('h-4 w-4 transition-transform duration-200', !isClosed && 'group-hover:rotate-180')}
+                />
               </Link>
 
-              {hasSubMenu && <SubMenu slug={slug} closed={isClosed} onNavigate={() => setClosedSlug(slug)} />}
+              <SubMenu slug={slug} closed={isClosed} onNavigate={() => setClosedSlug(slug)} />
             </li>
           );
         })}

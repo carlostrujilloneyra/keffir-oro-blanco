@@ -7,7 +7,7 @@ const VARIANT = {
 
 interface EyebrowProps {
   children: React.ReactNode;
-  /** `light` sobre fondos oscuros. */
+  /* `light` sobre fondos oscuros. */
   variant?: keyof typeof VARIANT;
   className?: string;
 }

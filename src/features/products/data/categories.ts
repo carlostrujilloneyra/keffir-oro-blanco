@@ -1,3 +1,5 @@
+import type { SectionTone } from '../lib/productAccent';
+
 /* El value de cada categoría es también su slug en la URL (/categorias/<value>). */
 export enum ProductCategory {
   PROBIOTICOS = 'probioticos',
@@ -8,7 +10,17 @@ export const isProductCategory = (value: string): value is ProductCategory =>
   (Object.values(ProductCategory) as string[]).includes(value);
 
 /* `description` usa **negrita** (inlineMarkdown); en metadata, stripInlineMarkdown. */
-export const categoryDetails = {
+interface CategoryDetail {
+  title: string;
+  slug: ProductCategory;
+  eyebrow: string;
+  description: string;
+  imageUrl: string;
+  imageAlt: string;
+  tone: SectionTone;
+}
+
+export const categoryDetails: Record<ProductCategory, CategoryDetail> = {
   [ProductCategory.PROBIOTICOS]: {
     title: 'Probióticos',
     slug: ProductCategory.PROBIOTICOS,
@@ -17,7 +29,7 @@ export const categoryDetails = {
       'Kéfir de leche de **vaca y cabra**, natural o con pulpa de frutos del bosque, fresa, arándanos y aguaymanto. También **kéfir de agua, kombucha y chucrut**, todos con cultivos vivos.',
     imageUrl: '/assets/images/categories/kefires.webp',
     imageAlt: 'Kéfires artesanales TRIALFERI',
-    tone: 'verde' as const,
+    tone: 'verde',
   },
 
   [ProductCategory.TRADICIONALES]: {
@@ -28,6 +40,6 @@ export const categoryDetails = {
       '**Manteca de cerdo artesanal** elaborada con grasa seleccionada y sin aditivos. Además, mermelada de **fresa, durazno, arándanos y quito quito**. Recetas simples que respetan los ingredientes y los procesos de siempre.',
     imageUrl: '/assets/images/categories/manteca-de-cerdo.webp',
     imageAlt: 'Productos tradicionales TRIALFERI',
-    tone: 'miel' as const,
+    tone: 'miel',
   },
 };

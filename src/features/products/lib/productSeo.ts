@@ -7,8 +7,8 @@ import type { Product } from '../types/product.type';
   está en el catálogo (presentación + cómo pedir).
 */
 export const buildProductMetaDescription = (product: Product): string => {
-  const presentacion = product.size ? ` Presentación de ${product.size}.` : '';
+  const sizeSentence = product.size ? ` Presentación de ${product.size}.` : '';
   return toMetaDescription(
-    `${product.shortDescription}${presentacion} Artesanal, sin conservantes. Pedidos por WhatsApp.`,
+    `${product.shortDescription}${sizeSentence} Artesanal, sin conservantes. Pedidos por WhatsApp.`,
   );
 };

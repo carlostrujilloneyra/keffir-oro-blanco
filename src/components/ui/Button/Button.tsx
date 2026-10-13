@@ -15,7 +15,7 @@ export type ButtonVariant = keyof typeof VARIANT;
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
-  /** Renderiza el hijo (p. ej. un <Link>) con los estilos del botón. */
+  /* Renderiza el hijo (p. ej. un <Link>) con los estilos del botón. */
   asChild?: boolean;
 }
 

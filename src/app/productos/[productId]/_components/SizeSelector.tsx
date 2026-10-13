@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { type Product } from '@/features/products';
 
 interface Props {
-  /** Tallas hermanas (mismo grupo), incluida la actual. */
+  /* Tallas hermanas (mismo grupo), incluida la actual. */
   variants: Product[];
   currentSlug: string;
 }
@@ -31,7 +31,7 @@ export const SizeSelector = ({ variants, currentSlug }: Props) => {
             <>
               <span className='font-display text-base font-semibold leading-none'>{label}</span>
               <span className={cn('mt-1 text-xs', isActive ? 'text-papel/80' : 'text-tinta-suave')}>
-                S/ {formatPrice(variant.price)}
+                {formatPrice(variant.price)}
               </span>
             </>
           );

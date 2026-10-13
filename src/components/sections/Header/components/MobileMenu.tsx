@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion, useReducedMotion, type Variants } from 'motion/react';
 import { ArrowUpRight, ChevronDown, X } from 'lucide-react';
-import { NAV_ITEMS, SUB_MENUS, type NavSlug } from '@/constants/navItems';
+import { NAV_ITEMS, SUB_MENUS, type NavSlug } from '@/components/sections/Header/data/navItems';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
-import { PackCard } from '@/features/products/components/PackCard';
 import { cn } from '@/lib/utils';
+import { WHATSAPP_URL } from '@/lib/site';
 import { Button } from '@/components/ui/Button/Button';
+import { PackCard } from '@/features/products/components/PackCard';
 
 type Props = {
   open: boolean;
   onClose: () => void;
-  whatsappUrl: string;
 };
 
 const overlayVariants: Variants = {
@@ -40,7 +40,7 @@ const itemVariants: Variants = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.28, ease: 'easeOut' } },
 };
 
-export const MobileMenu = ({ open, onClose, whatsappUrl }: Props) => {
+export const MobileMenu = ({ open, onClose }: Props) => {
   const [expanded, setExpanded] = useState<NavSlug | null>(null);
   const reduce = useReducedMotion();
 
@@ -117,10 +117,10 @@ export const MobileMenu = ({ open, onClose, whatsappUrl }: Props) => {
 
             <nav aria-label='Principal (móvil)' className='flex-1 overflow-y-auto px-4 py-4'>
               <ul>
-                {NAV_ITEMS.map(({ label, href, slug, hasSubMenu }) => {
+                {NAV_ITEMS.map(({ label, href, slug }) => {
                   const isOpen = expanded === slug;
-                  const subMenu = hasSubMenu ? SUB_MENUS[slug] : undefined;
-                  const hasSub = Boolean(subMenu?.groups.some((group) => group.entries.length > 0));
+                  const subMenu = SUB_MENUS[slug];
+                  const hasSub = subMenu.groups.some((group) => group.entries.length > 0);
 
                   return (
                     <motion.li key={slug} variants={item} className='border-b border-papel-sombra/50'>
@@ -149,7 +149,7 @@ export const MobileMenu = ({ open, onClose, whatsappUrl }: Props) => {
                         </Link>
                       )}
 
-                      {hasSub && subMenu && (
+                      {hasSub && (
                         <div
                           className={cn(
                             'grid transition-[grid-template-rows] duration-300 ease-in-out',
@@ -234,7 +234,7 @@ export const MobileMenu = ({ open, onClose, whatsappUrl }: Props) => {
 
             <motion.div variants={item} className='border-t border-papel-sombra/60 p-4'>
               <Button asChild variant='primary' className='w-full py-3'>
-                <Link href={whatsappUrl} target='_blank' rel='noopener noreferrer' onClick={onClose}>
+                <Link href={WHATSAPP_URL} target='_blank' rel='noopener noreferrer' onClick={onClose}>
                   Contáctanos
                   <ArrowUpRight className='h-4 w-4' />
                 </Link>

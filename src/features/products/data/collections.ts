@@ -10,6 +10,8 @@ export const getProductById = (id: string): Product => {
   return product;
 };
 
+export const getProductBySlug = (slug: string): Product | undefined => allProducts.find((p) => p.slug === slug);
+
 export const getProductUrlById = (id: string) => getProductUrl(getProductById(id).slug);
 
 /*

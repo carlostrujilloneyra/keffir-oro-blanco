@@ -4,6 +4,7 @@ export {
   bestSellersCollection,
   promotedCollection,
   getProductById,
+  getProductBySlug,
   getProductUrlById,
   getSizeVariants,
   getRelatedProducts,
@@ -23,3 +24,10 @@ export type { Pack } from './data/packs';
 
 export type { Product } from './types/product.type';
 export type { SubcategoryDetail } from './data/subcategories';
+export type { Tone, SectionTone } from './lib/productAccent';
+
+export { getProductBaseTitle, getProductImage } from './lib/productDisplay';
+export { buildProductMetaDescription } from './lib/productSeo';
+export { toneStyles } from './lib/productAccent';
+export { badgeConfig, isAttributeTag } from './data/badgeConfig';
+export type { BadgeType } from './data/badgeConfig';
