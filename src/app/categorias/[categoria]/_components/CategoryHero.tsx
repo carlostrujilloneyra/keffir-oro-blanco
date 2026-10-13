@@ -55,20 +55,12 @@ export const CategoryHero = ({
   return (
     <div
       style={{ background: t.gradient }}
-      className='relative mt-4 flex flex-col gap-2 overflow-hidden rounded-panel px-4 py-5 tablet:mt-0 tablet:gap-4 tablet:p-4 md:p-8 lg:block lg:px-8 lg:py-12'
+      className='relative mt-4 flex flex-col gap-2 overflow-hidden rounded-panel px-4 py-5 tablet:mt-0 tablet:gap-4 tablet:p-4 md:p-8 lg:grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-center lg:gap-8 lg:px-8 lg:py-12'
     >
-      <div
-        className={cn(
-          'pointer-events-none absolute right-4 top-1/2 hidden h-80 w-80 -translate-y-1/2 rounded-full blur-3xl lg:block xl:left-[calc(50%+140px)] xl:right-auto',
-          styles.halo,
-          t.halo,
-        )}
-      />
-
       {/* Panel glass con el contenido */}
       <Stagger
         delay={0.15}
-        className='relative z-10 flex max-w-full flex-col justify-center gap-3 px-1 pb-2 tablet:min-h-[320px] tablet:rounded-[24px] tablet:border tablet:border-white/15 tablet:bg-white/[0.07] tablet:px-10 tablet:py-12 tablet:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] tablet:backdrop-blur-xl lg:min-h-[380px] lg:max-w-[600px] lg:gap-4 lg:px-14 lg:py-16'
+        className='relative z-10 flex max-w-full flex-col justify-center gap-3 px-1 pb-2 tablet:min-h-[320px] tablet:rounded-[24px] tablet:border tablet:border-white/15 tablet:bg-white/[0.07] tablet:px-10 tablet:py-12 tablet:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] tablet:backdrop-blur-xl lg:min-h-[380px] lg:gap-4 lg:px-10 lg:py-16 xl:px-14'
       >
         {/* Migas de pan */}
         <nav
@@ -126,13 +118,22 @@ export const CategoryHero = ({
         )}
       </Stagger>
 
-      {/* Va después del texto en el DOM; en móvil se muestra arriba con order-first. */}
+      {/* Va después del texto en el DOM; en móvil se muestra arriba con order-first. Desde lg es la segunda columna:
+          la imagen va en absoluto para que el alto lo marque el panel de texto, no la foto. */}
       <div
         className={cn(
           styles.stage,
-          'pointer-events-none relative order-first mt-5 h-52 w-full tablet:mt-6 tablet:h-72 lg:absolute lg:right-6 lg:top-1/2 lg:z-0 lg:mt-0 lg:h-[86%] lg:w-[340px] lg:-translate-y-1/2 xl:left-[656px] xl:right-14 xl:w-auto',
+          'pointer-events-none relative order-first mt-5 h-52 w-full tablet:mt-6 tablet:h-72 lg:order-none lg:mt-0 lg:h-auto lg:min-h-[340px] lg:self-stretch',
         )}
       >
+        <div
+          aria-hidden
+          className={cn(
+            'absolute left-1/2 top-1/2 hidden h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl lg:block',
+            styles.halo,
+            t.halo,
+          )}
+        />
         <span aria-hidden className={styles.shadow} />
         <Image
           src={imageUrl}
@@ -140,8 +141,11 @@ export const CategoryHero = ({
           width={460}
           height={460}
           priority
-          sizes='(min-width: 1280px) 560px, (min-width: 1024px) 340px, 300px'
-          className={cn(styles.float, 'h-full w-full select-none object-contain object-bottom')}
+          sizes='(min-width: 1024px) 45vw, 300px'
+          className={cn(
+            styles.float,
+            'absolute inset-0 h-full w-full select-none object-contain object-bottom lg:inset-y-6 lg:h-[calc(100%-3rem)]',
+          )}
         />
       </div>
     </div>

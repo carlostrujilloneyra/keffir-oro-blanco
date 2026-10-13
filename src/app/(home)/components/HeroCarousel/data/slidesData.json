@@ -1,29 +1,35 @@
 [
   {
-    "title": "Kéfir de Leche de Vaca",
-    "description": "Refuerza tu salud desde el interior. Este probiótico natural, cremoso y artesanal cuida tu digestión y fortalece tu sistema inmune. ¡Tu intestino te lo agradecerá!",
-    "image": "/assets/images/content/products/kefir-de-leche/background.webp",
-    "productId": "kefir-vaca-1l"
+    "productId": "kefir-frutos-bosque",
+    "tone": "frutos",
+    "eyebrow": "4 frutos en 1",
+    "title": "Kéfir de frutos del bosque",
+    "description": "Fresas, frambuesas, arándanos y zarzamoras en una sola botella. Cremoso, intenso y endulzado con stevia.",
+    "image": "/assets/images/content/products/kefir-con-frutos-del-bosque/gallery-01.webp",
+    "splash": "/assets/images/splashes/frutos-del-bosque/frutos-1.png"
   },
-
   {
-    "title": "Kéfir con Fresa",
-    "description": "Kéfir de leche fermentado con pulpa de fresa real y endulzado con stevia. Todo el poder probiótico con el sabor que sí te provoca tomar cada día.",
-    "image": "/assets/images/content/products/kefir-con-fresa/featured.webp",
-    "productId": "kefir-fresa"
+    "productId": "manteca-1l",
+    "tone": "miel",
+    "eyebrow": "Dura hasta 1 año",
+    "title": "Manteca de cerdo artesanal",
+    "description": "Hecha a la antigua, sin aditivos ni conservantes. Úsala en lugar del aceite para freír, hornear y darle sabor a tus guisos.",
+    "image": "/assets/images/categories/manteca-de-cerdo.webp"
   },
-
   {
-    "title": "Kéfir de Agua",
-    "description": "Refresca tu cuerpo con probióticos naturales. Esta bebida fermentada, ligera y burbujeante, mejora tu digestión y te llena de energía. ¡Hidratación saludable que tu cuerpo ama!",
-    "image": "/assets/images/content/products/kefir-de-agua/background.webp",
-    "productId": "kefir-agua-1l"
+    "productId": "kefir-vaca-1l",
+    "tone": "verde",
+    "eyebrow": "El clásico",
+    "title": "Kéfir de leche natural",
+    "description": "Leche fresca de vaca de establo, fermentada lote a lote. Cremoso, de acidez suave, con cultivos vivos y sin conservantes.",
+    "image": "/assets/images/content/products/kefir-de-leche/hero.webp"
   },
-
   {
-    "title": "Manteca de cerdo",
-    "description": "¡Regresa a lo natural! Nuestra manteca 100% artesanal realza el sabor de tus comidas con un toque auténtico y saludable. Perfecta para freír, hornear y cocinar sin químicos.",
-    "image": "/assets/images/categories/manteca-de-cerdo.webp",
-    "productId": "manteca-500"
+    "productId": "kombucha-flor-de-guisante",
+    "tone": "guisante",
+    "eyebrow": "Solo en TRIALFERI",
+    "title": "Kombucha de flor de guisante",
+    "description": "Té fermentado con flor de guisante y un toque de limón. Una kombucha distinta a todo lo que has probado.",
+    "image": "/assets/images/content/products/kefir-de-agua/background.webp"
   }
 ]
