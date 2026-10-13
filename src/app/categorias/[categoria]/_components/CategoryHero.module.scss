@@ -1,0 +1,97 @@
+$duration: 6s;
+$ease: cubic-bezier(0.45, 0, 0.55, 1);
+$lift: 14px;
+$scale: 1.06;
+
+$enter: 0.7s;
+$enter-ease: cubic-bezier(0.32, 0.72, 0, 1);
+
+.stage {
+  isolation: isolate;
+  animation: enter $enter $enter-ease both;
+}
+
+.float {
+  animation: float $duration $ease $enter infinite both;
+  transform-origin: 50% 60%;
+  will-change: transform;
+}
+
+.shadow {
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  z-index: -1;
+  width: 58%;
+  height: 7%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+  filter: blur(6px);
+  transform: translateX(-50%);
+  animation: shadow $duration $ease $enter infinite both;
+}
+
+.halo {
+  animation: halo $duration $ease $enter infinite both;
+}
+
+// `translate` y no `transform`: no pisa el -translate-y-1/2 del contenedor en desktop.
+@keyframes enter {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    translate: 0 28px;
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    translate: 0 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) scale($scale);
+  }
+  50% {
+    transform: translateY(-$lift) scale($scale);
+  }
+}
+
+@keyframes shadow {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(-50%) scaleX(0.78);
+  }
+}
+
+@keyframes halo {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage,
+  .float,
+  .shadow,
+  .halo {
+    animation: none;
+  }
+
+  .float {
+    transform: scale($scale);
+  }
+}

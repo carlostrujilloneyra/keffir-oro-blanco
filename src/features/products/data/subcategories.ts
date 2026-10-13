@@ -42,7 +42,7 @@ export const subcategoryDetails: SubcategoryDetail[] = [
       'Kéfir de leche de vaca y de cabra, sin fruta ni azúcar añadida. Cultivos activos fermentados en frío, en las presentaciones de 1 L, 475 ml y 250 ml.',
     tone: 'verde',
     productNames: ['kefir-leche-vaca', 'kefir-leche-cabra'],
-    imageUrl: '/assets/images/content/products/kefir-de-leche/featured.webp',
+    imageUrl: '/assets/images/content/products/kefir-de-leche/hero.webp',
   },
   {
     slug: 'kefir-frutado',
@@ -62,24 +62,22 @@ export const subcategoryDetails: SubcategoryDetail[] = [
     imageUrl: '/assets/images/content/products/kefir-con-fresa/featured.webp',
   },
   {
-    slug: 'kefir-de-agua',
+    slug: 'kombucha-y-kefir-de-agua',
     category: ProductCategory.PROBIOTICOS,
-    title: 'Kéfir de agua',
+    title: 'Kombucha y kéfir de agua',
     eyebrow: 'Sin lácteos',
     description:
-      'Fermentado con granos de kéfir de agua: refrescante, burbujeante y sin lácteos. Probióticos vivos para quienes no toleran la leche.',
+      'Bebidas fermentadas con cultivos vivos y sin lácteos: kombucha natural, cinco sabores nuevos en botella de 355 ml y kéfir de agua. Ligeras y naturalmente burbujeantes.',
     tone: 'verde',
-    productNames: ['kefir-agua'],
-  },
-  {
-    slug: 'kombucha',
-    category: ProductCategory.PROBIOTICOS,
-    title: 'Kombucha',
-    eyebrow: 'Té fermentado',
-    description:
-      'Bebida ancestral de té fermentado con cultivos vivos. Ligera, burbujeante y sin conservantes, elaborada lote a lote.',
-    tone: 'verde',
-    productNames: ['kombucha-natural'],
+    productNames: [
+      'kombucha-natural',
+      'kombucha-flor-de-guisante',
+      'kombucha-espirulina-azul',
+      'kombucha-arandanos',
+      'kombucha-frambuesa',
+      'kombucha-pitahaya',
+      'kefir-agua',
+    ],
   },
   {
     slug: 'fermentados',
@@ -95,14 +93,14 @@ export const subcategoryDetails: SubcategoryDetail[] = [
 
   /* ── Tradicionales ────────────────────────────────────────────────────── */
   {
-    slug: 'manteca-de-cerdo',
+    slug: 'para-cocinar',
     category: ProductCategory.TRADICIONALES,
-    title: 'Manteca de cerdo',
+    title: 'Para cocinar',
     eyebrow: 'Saberes ancestrales',
     description:
-      'Manteca 100% natural y artesanal para cocinar, freír y hornear. Sabor auténtico, en cuatro presentaciones según cuánto cocines.',
+      'Los básicos de la cocina de casa: manteca de cerdo artesanal para freír y hornear, sal rosada de Maras y vinagre de manzana con madre.',
     tone: 'miel',
-    productNames: ['manteca-de-cerdo'],
+    productNames: ['manteca-de-cerdo', 'sal-de-maras', 'vinagre-de-manzana'],
     imageUrl: '/assets/images/categories/manteca-de-cerdo.webp',
   },
   {
@@ -115,21 +113,11 @@ export const subcategoryDetails: SubcategoryDetail[] = [
     tone: 'miel',
     productNames: ['mermelada-fresa', 'mermelada-quito-quito'],
   },
-  {
-    slug: 'despensa',
-    category: ProductCategory.TRADICIONALES,
-    title: 'Despensa',
-    eyebrow: 'Ingredientes con origen',
-    description: 'Los básicos de la cocina, con procedencia: sal rosada de Maras y vinagre de manzana artesanal.',
-    tone: 'miel',
-    productNames: ['sal-de-maras', 'vinagre-de-manzana'],
-    imageUrl: '/assets/images/content/products/sal-de-maras/featured.webp',
-  },
 ];
 
-/* Productos de una subcategoría, en el orden en que están en el catálogo. */
+/* Productos de una subcategoría, en el orden de `productNames`. */
 export const getSubcategoryProducts = (subcategory: SubcategoryDetail): Product[] =>
-  allProducts.filter((product) => subcategory.productNames.includes(product.name));
+  subcategory.productNames.flatMap((name) => allProducts.filter((product) => product.name === name));
 
 /* Imagen del hero: la propia si se definió, si no la del primer producto. */
 export const getSubcategoryImage = (subcategory: SubcategoryDetail): string => {

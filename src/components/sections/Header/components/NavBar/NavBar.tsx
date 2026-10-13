@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
@@ -10,6 +10,8 @@ import { cn } from '@/lib/utils';
 
 export const NavBar = ({ className }: { className?: string }) => {
   const pathname = usePathname();
+  // El panel abre por :hover; tras clicar queda cerrado hasta que el puntero salga.
+  const [closedSlug, setClosedSlug] = useState<string | null>(null);
 
   // El submenú se mantiene abierto por :focus-within cuando el link clicado
   // conserva el foco tras navegar. Al cambiar de ruta quitamos el foco para cerrarlo.
@@ -25,13 +27,22 @@ export const NavBar = ({ className }: { className?: string }) => {
         {NAV_ITEMS.map(({ label, href, slug, hasSubMenu }) => {
           /* La sección actual queda pintada en verde. */
           const isActive = pathname === href;
+          const isClosed = closedSlug === slug;
 
           return (
-            <li key={slug} className='group'>
+            <li
+              key={slug}
+              className='group'
+              onPointerLeave={() => isClosed && setClosedSlug(null)}
+              onFocus={() => isClosed && setClosedSlug(null)}
+            >
               <Link
                 href={href}
                 aria-current={isActive ? 'page' : undefined}
-                onClick={(e) => e.currentTarget.blur()}
+                onClick={(e) => {
+                  e.currentTarget.blur();
+                  setClosedSlug(slug);
+                }}
                 className={cn(
                   'inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 hover:bg-papel-hueso hover:text-verde focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde md:text-base',
                   isActive ? 'bg-verde/10 text-verde' : 'text-tinta',
@@ -39,11 +50,13 @@ export const NavBar = ({ className }: { className?: string }) => {
               >
                 {label}
                 {hasSubMenu && (
-                  <ChevronDown className='h-4 w-4 transition-transform duration-200 group-hover:rotate-180' />
+                  <ChevronDown
+                    className={cn('h-4 w-4 transition-transform duration-200', !isClosed && 'group-hover:rotate-180')}
+                  />
                 )}
               </Link>
 
-              {hasSubMenu && <SubMenu slug={slug} />}
+              {hasSubMenu && <SubMenu slug={slug} closed={isClosed} onNavigate={() => setClosedSlug(slug)} />}
             </li>
           );
         })}

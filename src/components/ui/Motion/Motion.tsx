@@ -8,6 +8,7 @@ const EASE = [0.32, 0.72, 0, 1] as const;
 type RevealProps = {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
   delay?: number;
   x?: number;
   y?: number;
@@ -16,8 +17,8 @@ type RevealProps = {
 };
 
 /* Revelado simple (fade + desplazamiento). Aísla la animación en cliente para
-   que la página de detalle siga siendo Server Component. */
-export const Reveal = ({ children, className, delay = 0, x = 0, y = 16, inView = false }: RevealProps) => {
+   que las páginas y secciones sigan siendo Server Components. */
+export const Reveal = ({ children, className, style, delay = 0, x = 0, y = 16, inView = false }: RevealProps) => {
   const reduce = useReducedMotion();
 
   const variants: Variants = reduce
@@ -32,7 +33,7 @@ export const Reveal = ({ children, className, delay = 0, x = 0, y = 16, inView =
     : ({ animate: 'visible' } as const);
 
   return (
-    <motion.div variants={variants} initial='hidden' {...trigger} className={className}>
+    <motion.div variants={variants} initial='hidden' {...trigger} className={className} style={style}>
       {children}
     </motion.div>
   );
@@ -42,10 +43,12 @@ type StaggerProps = {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  /** true = al entrar en viewport (una vez); false = al montar. */
+  inView?: boolean;
 };
 
-/* Cascada: envuelve cada hijo directo y los revela en secuencia al montar. */
-export const Stagger = ({ children, className, delay = 0 }: StaggerProps) => {
+/* Cascada: envuelve cada hijo directo en un div y los revela en secuencia. */
+export const Stagger = ({ children, className, delay = 0, inView = false }: StaggerProps) => {
   const reduce = useReducedMotion();
 
   const container: Variants = {
@@ -56,8 +59,12 @@ export const Stagger = ({ children, className, delay = 0 }: StaggerProps) => {
     ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
     : { hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
 
+  const trigger = inView
+    ? ({ whileInView: 'visible', viewport: { once: true, margin: '-80px' } } as const)
+    : ({ animate: 'visible' } as const);
+
   return (
-    <motion.div variants={container} initial='hidden' animate='visible' className={className}>
+    <motion.div variants={container} initial='hidden' {...trigger} className={className}>
       {Children.map(children, (child) =>
         isValidElement(child) ? <motion.div variants={item}>{child}</motion.div> : child,
       )}

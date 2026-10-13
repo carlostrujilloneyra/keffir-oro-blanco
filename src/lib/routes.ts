@@ -1,6 +1,8 @@
 /* Única fuente de las rutas públicas: no armar '/productos/...' ni '/categorias/...' a mano. */
 export const CATALOG_URL = '/productos';
 
+export const FAQ_URL = '/#faq';
+
 export const getProductUrl = (slug: string) => `${CATALOG_URL}/${slug}`;
 
 export const getCategoryUrl = (category: string) => `/categorias/${category}`;

@@ -5,6 +5,8 @@ import { cn } from '@/lib/utils';
 import { formatPrice } from '@/lib/formatPrice';
 import { inlineMarkdown } from '@/lib/inlineMarkdown';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
+import { Stagger } from '@/components/ui/Motion/Motion';
+import styles from './CategoryHero.module.scss';
 
 export type CategoryTone = 'verde' | 'miel';
 
@@ -33,7 +35,6 @@ type Props = {
   imageAlt: string;
   count: number;
   tone: CategoryTone;
-  /* Miga intermedia. Solo la usan las subcategorías: Inicio › Padre › Actual. */
   parent?: { title: string; href: string };
   /* Accesos a las subcategorías con su precio "desde". Si faltan, se muestra solo el contador. */
   shortcuts?: { label: string; href: string; fromPrice: number }[];
@@ -55,21 +56,25 @@ export const CategoryHero = ({
   return (
     <div
       style={{ background: t.gradient }}
-      className='relative flex flex-col gap-4 overflow-hidden rounded-panel px-4 py-5 tablet:p-4 md:p-8 lg:block lg:px-8 lg:py-12'
+      className='relative flex flex-col gap-2 overflow-hidden rounded-panel px-4 py-5 tablet:gap-4 tablet:p-4 md:p-8 lg:block lg:px-8 lg:py-12'
     >
       <div
         className={cn(
-          'pointer-events-none absolute right-4 top-1/2 hidden h-80 w-80 -translate-y-1/2 rounded-full blur-3xl lg:block',
+          'pointer-events-none absolute right-4 top-1/2 hidden h-80 w-80 -translate-y-1/2 rounded-full blur-3xl lg:block xl:left-[calc(50%+140px)] xl:right-auto',
+          styles.halo,
           t.halo,
         )}
       />
 
       {/* Panel glass con el contenido */}
-      <div className='relative z-10 flex min-h-[320px] max-w-full flex-col justify-center gap-3 rounded-[24px] border border-white/15 bg-white/[0.07] px-4 py-8 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] backdrop-blur-xl tablet:px-10 tablet:py-12 lg:min-h-[380px] lg:max-w-[600px] lg:gap-4 lg:px-14 lg:py-16'>
+      <Stagger
+        delay={0.15}
+        className='relative z-10 flex max-w-full flex-col justify-center gap-3 px-1 pb-2 tablet:min-h-[320px] tablet:rounded-[24px] tablet:border tablet:border-white/15 tablet:bg-white/[0.07] tablet:px-10 tablet:py-12 tablet:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] tablet:backdrop-blur-xl lg:min-h-[380px] lg:max-w-[600px] lg:gap-4 lg:px-14 lg:py-16'
+      >
         {/* Migas de pan */}
         <nav
           aria-label='Migas de pan'
-          className='mb-4 flex items-center gap-1.5 text-xs text-papel/70 md:mb-6 md:text-sm'
+          className='mb-1 flex items-center gap-1.5 text-xs text-papel/70 tablet:mb-4 md:mb-6 md:text-sm'
         >
           <Link href='/' className='transition-colors hover:text-papel'>
             Inicio
@@ -90,14 +95,14 @@ export const CategoryHero = ({
 
         <Eyebrow variant='light'>{eyebrow}</Eyebrow>
 
-        <h1 className='font-display text-3xl font-semibold leading-[1.03] tracking-tight text-papel lg:text-6xl'>
+        <h1 className='font-display text-3xl font-semibold leading-[1.03] tracking-tight text-papel lg:text-5xl'>
           {title}
         </h1>
 
-        <p className='max-w-xl text-[13px] text-papel/80 md:text-base lg:text-lg'>{inlineMarkdown(description)}</p>
+        <p className='max-w-xl text-[13px] text-papel/80 md:text-base'>{inlineMarkdown(description)}</p>
 
         {shortcuts && shortcuts.length > 0 ? (
-          <nav aria-label={`Tipos de ${title}`} className='mt-2 flex flex-col gap-2'>
+          <nav aria-label={`Tipos de ${title}`} className='mt-2 flex flex-col gap-3'>
             <p className='text-xs font-medium text-papel/70 md:text-sm'>Elige por tipo · {count} productos</p>
             {/* Sin scroll: todos visibles. En móvil, chips compactos solo con el nombre;
               desde tablet, con su precio "desde". */}
@@ -120,18 +125,26 @@ export const CategoryHero = ({
             {count} {count === 1 ? 'producto' : 'productos'}
           </span>
         )}
-      </div>
+      </Stagger>
 
       {/* Va después del texto en el DOM; en móvil se muestra arriba con order-first. */}
-      <Image
-        src={imageUrl}
-        alt={imageAlt}
-        width={460}
-        height={460}
-        priority
-        sizes='(min-width: 1280px) 340px, (min-width: 1024px) 280px, 300px'
-        className='pointer-events-none order-first mx-auto h-60 w-auto select-none object-contain tablet:h-72 lg:absolute lg:right-6 lg:top-1/2 lg:z-0 lg:h-[85%] lg:w-auto lg:max-w-[280px] lg:-translate-y-1/2 xl:right-16 xl:max-w-[340px]'
-      />
+      <div
+        className={cn(
+          styles.stage,
+          'pointer-events-none relative order-first h-52 w-full tablet:h-72 lg:absolute lg:right-6 lg:top-1/2 lg:z-0 lg:h-[94%] lg:w-[340px] lg:-translate-y-1/2 xl:left-[656px] xl:right-14 xl:w-auto',
+        )}
+      >
+        <span aria-hidden className={styles.shadow} />
+        <Image
+          src={imageUrl}
+          alt={imageAlt}
+          width={460}
+          height={460}
+          priority
+          sizes='(min-width: 1280px) 560px, (min-width: 1024px) 340px, 300px'
+          className={cn(styles.float, 'h-full w-full select-none object-contain')}
+        />
+      </div>
     </div>
   );
 };

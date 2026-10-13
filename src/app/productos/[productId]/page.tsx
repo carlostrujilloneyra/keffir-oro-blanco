@@ -209,7 +209,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             página ofrece pedir, Google lee InStock; si no, OutOfStock.
           */}
           <div className='flex flex-col gap-2'>
-            <Button asChild variant={isAvailable ? 'primary' : 'dark'} className='w-full py-4 text-base'>
+            <Button asChild variant={isAvailable ? 'primary' : 'dark'} className='w-full py-4 text-base lg:py-4'>
               <Link href={isAvailable ? waUrl : consultaStockUrl} target='_blank' rel='noopener noreferrer'>
                 {isAvailable ? 'Pedir por WhatsApp' : 'Avísame cuando vuelva'}
                 <ArrowUpRight className='h-4 w-4' />

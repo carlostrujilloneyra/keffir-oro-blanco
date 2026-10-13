@@ -26,7 +26,7 @@ const HERO_BG =
   '#1B3227';
 
 const arrowClass =
-  'flex h-11 w-11 items-center justify-center rounded-full border border-papel/30 bg-papel/10 text-papel backdrop-blur-sm transition duration-200 hover:bg-papel/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-miel active:scale-90 active:bg-papel active:text-bosque';
+  'flex h-11 w-11 items-center justify-center rounded-[10px] bg-papel/10 text-papel backdrop-blur-sm transition duration-200 hover:bg-papel/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-miel active:scale-90 active:bg-papel active:text-bosque';
 
 const EASE = [0.32, 0.72, 0, 1] as const;
 

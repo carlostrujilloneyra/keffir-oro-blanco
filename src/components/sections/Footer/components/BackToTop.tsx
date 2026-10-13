@@ -8,7 +8,8 @@ import { ArrowUp } from 'lucide-react';
 */
 export const BackToTop = () => {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   };
 
   return (
@@ -18,9 +19,7 @@ export const BackToTop = () => {
       className='group inline-flex items-center gap-2 text-sm font-medium text-papel/60 transition-colors hover:text-papel'
     >
       Volver arriba
-      <span className='flex h-8 w-8 items-center justify-center rounded-full border border-papel/20 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:border-papel/50'>
-        <ArrowUp className='h-4 w-4' />
-      </span>
+      <ArrowUp className='h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5' />
     </button>
   );
 };

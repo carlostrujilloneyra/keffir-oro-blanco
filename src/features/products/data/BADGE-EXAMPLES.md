@@ -26,7 +26,7 @@ tags: ['fresh', 'probiotic', 'healthy', 'natural'];
 - **natural**: "100% natural" - Sin aditivos ni conservantes
 - **organic**: "Orgánico" - Certificado orgánico
 - **sugar-free**: "Sin azúcar añadida" - Sin azúcares añadidos
-- **lactose-free**: "Sin Lactosa" - Apto para intolerantes
+- **lactose-free**: "Fácil digestión" — no usar en kéfir: tiene lactosa reducida, no es sin lactosa
 - **vegan**: "Vegano" - Producto 100% vegano
 
 ### Badges de Características
@@ -61,12 +61,12 @@ tags: ['artisan', 'local', 'limited', 'seasonal'];
 {
   id: 'prod_012',
   title: 'Kéfir de Agua',
-  tags: ['recommended', 'probiotic', 'vegan', 'lactose-free', 'natural'],
+  tags: ['recommended', 'probiotic', 'vegan', 'natural'],
   // ...
 }
 ```
 
-**Resultado**: Muestra badges de "Recomendado", "Alto en probióticos", "Vegano", "Sin Lactosa", "100% natural"
+**Resultado**: Muestra badges de "Recomendado", "Alto en probióticos", "Vegano", "100% natural"
 
 ### Sal de Maras
 
@@ -128,7 +128,7 @@ tags: ['probiotic', 'fresh', 'healthy', 'natural'];
 ### Para Productos Veganos:
 
 ```typescript
-tags: ['vegan', 'lactose-free', 'natural', 'healthy'];
+tags: ['vegan', 'natural'];
 ```
 
 ### Para Productos Artesanales:

@@ -43,7 +43,24 @@ Layers:
 Append a `make({...})` entry to `allProducts` in `data/products.tsx` (sizes of the same product share `name`; each size is its own entry), set `tags` to place it in the right collections, and add its images under `public/`. The route and SEO metadata are generated automatically on next build. `/sitemap.xml` lists every generated route.
 
 ### Styling
-Tailwind (config in `tailwind.config.ts`). Custom breakpoints: `tablet:` (600px) and `super_desktop:` (1400px) — used alongside default `sm/md/lg`. Custom color scales `light-*` and `gray-*` carry inline usage guidance in the config; brand colors are `primary`/`secondary`. Fonts are loaded in `app/layout.tsx` via `next/font/google` as CSS variables: DM Sans (`--font-heading` → `font-display`, headings) and Inter (`--font-inter` → `font-sans`, body/UI). shadcn tokens use CSS variables (`--background`, etc.) defined in `src/app/globals.css`. Component-scoped styles use CSS/SCSS modules (`*.module.css` / `*.module.scss`).
+Tailwind (config in `tailwind.config.ts`). Custom breakpoints: `tablet:` (600px) and `super_desktop:` (1400px) — used alongside default `sm/md/lg`. Brand color tokens: `papel` (backgrounds), `tinta` (text), `bosque`/`verde`, `miel`, `fucsia` (from the jar labels). The legacy `light-*`/`gray-*` scales are no longer used by any component (pending removal). Fonts are loaded in `app/layout.tsx` via `next/font/google` as CSS variables: DM Sans (`--font-heading` → `font-display`, headings) and Inter (`--font-inter` → `font-sans`, body/UI). shadcn tokens use CSS variables (`--background`, etc.) defined in `src/app/globals.css`.
+
+### UI language ("etiqueta de frasco")
+The look comes from the physical jar labels. Reuse these pieces instead of hand-rolling styles:
+- **Section labels:** `<Eyebrow>` (`components/ui/Eyebrow`) — black ribbon with an arrow tip, sentence case; `variant='light'` on dark backgrounds. No dot + uppercase eyebrows.
+- **Buttons:** `<Button asChild variant=…><Link/></Button>` (`components/ui/Button`) — `primary` (green gradient) | `miel` | `dark` | `light` | `link`. Sentence case, 10px radius. Never hand-roll CTA classes.
+- **Badges:** `<Badge>` stickers (`neutral` / `category` / `alert` for "Nuevo"); labels in `features/products/data/badgeConfig.ts`, sentence case.
+- **Arrows:** `ArrowUpRight` only on links that leave the site (WhatsApp, social) — not as decoration.
+- **Surfaces:** cards are flat `bg-papel-hueso`, no grey outline, `rounded-card` (12px); large dark blocks use `rounded-panel` (28px) with the dark radial-gradient backgrounds. No icons inside circles.
+- **Product card:** `ProductShowcaseCard` adapts to its own width with the custom container query: the root has `cq`, children use `cq-sm:` (≥ 13rem). Narrow = compact version.
+- **Horizontal scroll rows:** add `scrollbar-none` (custom utility). Prefer wrapping over scrolling when items are few.
+- **Easing:** `ease-suave` token instead of arbitrary `ease-[cubic-bezier(...)]`.
+- **Copy:** only verifiable claims (no invented stats, shipping promises or health claims). Testimonials quote customers verbatim (`highlight` is a literal fragment of `quote`).
+
+### Content flags
+- `Product.containsDairy` drives the "Con lácteos / Sin lácteos" split of the header mega menu (`constants/navItems.tsx`, built from category/subcategory data).
+- Packs live in `features/products/data/packs.ts`; `draft: true` shows them only in development (hidden in production builds).
+- `CONTACT_EMAIL` in `lib/site.ts` is `undefined` until a real address exists (then it appears in the footer and JSON-LD).
 
 ## Conventions
 - Prettier + `prettier-plugin-tailwindcss` (auto-sorts classes); single quotes, config in `.prettierrc`.

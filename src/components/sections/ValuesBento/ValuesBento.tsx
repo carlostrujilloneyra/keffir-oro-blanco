@@ -3,6 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { WHATSAPP_URL } from '@/lib/site';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { Button } from '@/components/ui/Button/Button';
+import { Reveal, Stagger } from '@/components/ui/Motion/Motion';
 
 /* Solo lo que es cierto para TODOS los productos: esta sección cierra también Tradicionales. */
 const labelClaims = ['100% artesanal', 'Sin conservantes añadidos', 'Hecho en lotes pequeños'];
@@ -19,20 +20,22 @@ const ctaBackground =
 
 export const ValuesBento = () => (
   <section aria-labelledby='valores-titulo' className='flex w-full flex-col gap-5 bg-papel py-8 md:py-12 lg:gap-6'>
-    <header className='mb-3 flex flex-col gap-4 lg:mb-8'>
-      <Eyebrow>Por qué TRIALFERI</Eyebrow>
-      <h2
-        id='valores-titulo'
-        className='font-display text-3xl font-semibold leading-[1.05] tracking-tight text-tinta tablet:text-4xl lg:text-6xl'
-      >
-        Productos naturales, hechos a mano
-      </h2>
-      <p className='max-w-xl text-tinta-media md:text-lg'>
-        Elegimos cada ingrediente en su origen y lo preparamos a mano, sin atajos.
-      </p>
+    <header className='mb-3 lg:mb-8'>
+      <Stagger inView className='flex flex-col gap-4'>
+        <Eyebrow>Por qué TRIALFERI</Eyebrow>
+        <h2
+          id='valores-titulo'
+          className='font-display text-3xl font-semibold leading-[1.05] tracking-tight text-tinta tablet:text-4xl lg:text-6xl'
+        >
+          Productos naturales, hechos a mano
+        </h2>
+        <p className='max-w-xl text-tinta-media md:text-lg'>
+          Elegimos cada ingrediente en su origen y lo preparamos a mano, sin atajos.
+        </p>
+      </Stagger>
     </header>
 
-    <div className='grid overflow-hidden rounded-card bg-papel-hueso lg:grid-cols-2'>
+    <Reveal inView y={24} className='grid overflow-hidden rounded-card bg-papel-hueso lg:grid-cols-2'>
       <div className='flex flex-col gap-6 p-6 tablet:p-8 lg:p-12'>
         <div className='flex flex-col gap-2'>
           <h3 className='font-display text-2xl font-semibold tracking-tight text-tinta lg:text-3xl'>
@@ -69,9 +72,11 @@ export const ValuesBento = () => (
           ))}
         </dl>
       </div>
-    </div>
+    </Reveal>
 
-    <div
+    <Reveal
+      inView
+      y={24}
       style={{ background: ctaBackground }}
       className='flex flex-col items-start justify-between gap-6 rounded-panel p-6 tablet:p-8 lg:flex-row lg:items-center lg:p-12'
     >
@@ -88,6 +93,6 @@ export const ValuesBento = () => (
           <ArrowUpRight className='h-4 w-4' />
         </Link>
       </Button>
-    </div>
+    </Reveal>
   </section>
 );

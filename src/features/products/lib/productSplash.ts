@@ -4,9 +4,7 @@ const BASE = '/assets/images/splashes';
 
 export interface SplashLayer {
   src: string;
-  /** Posición y tamaño de la capa dentro del panel (clases Tailwind). */
   className: string;
-  /** Retardo de la animación para escalonar la entrada. */
   delay?: string;
 }
 
@@ -29,10 +27,7 @@ const leftRight = (left: string, right: string, size: string = SIZE, posY: strin
 const centered = (src: string, box: string = 'inset-0'): SplashLayer[] => [{ src: `${BASE}/${src}`, className: box }];
 
 /*
-  Splash por sabor (grupo `name`). Aparece al hover, o fijo cuando la card está
-  destacada (centro del coverflow). Todos los PNG son transparentes.
-  - Natural (leche vaca/cabra): un splash centrado.
-  - Frutados: dos splashes grandes izq/der en la parte inferior.
+  Splash por sabor (grupo `name`). Aparece al hover, o fijo cuando la card está destacada (centro del coverflow).
 */
 const SPLASHES: Record<string, SplashLayer[]> = {
   'kefir-leche-vaca': centered('leche/splash1.png', 'inset-0 translate-y-[8%] rotate-[30deg] translate-x-4'),
@@ -46,7 +41,7 @@ const SPLASHES: Record<string, SplashLayer[]> = {
   ),
   'kefir-aguaymanto': leftRight('aguaymanto/aguaymantos-1.png', 'aguaymanto/aguaymantos-3.png'),
   'kefir-chocolate': centered('chocolate/chocolate-1.png', '-inset-[22%]'),
-  'kefir-frutos-bosque': leftRight('arandanos/arandanos-2.png', 'arandanos/arandanos-1.png'),
+  'kefir-frutos-bosque': centered('frutos-del-bosque/frutos-1.png', '-inset-[2%] translate-y-[2%] -rotate-90'),
 };
 
 export const getProductSplash = (product: Product): SplashLayer[] => SPLASHES[product.name] ?? [];

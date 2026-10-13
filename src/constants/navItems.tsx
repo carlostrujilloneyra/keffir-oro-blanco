@@ -1,9 +1,7 @@
 import {
-  ButterIcon,
   CheeseIcon,
   CowIcon,
   FruitIcon,
-  KefirAguaIcon,
   KombuchaIcon,
   PigIcon,
   StrawberryIcon,
@@ -97,13 +95,18 @@ const menuExtras: Record<string, MenuExtras> = {
       { label: 'Chocolate', productId: 'kefir-chocolate' },
     ],
   },
-  'kefir-de-agua': {
-    description: 'Refrescante, burbujeante y sin lácteos. Probióticos vivos para quien no tolera la leche.',
-    icon: <KefirAguaIcon className='h-6 w-6' />,
-  },
-  kombucha: {
-    description: 'Té fermentado con cultivos vivos. Ligera, burbujeante y sin conservantes.',
+  'kombucha-y-kefir-de-agua': {
+    description: 'Fermentados con cultivos vivos y sin lácteos. Ligeros y naturalmente burbujeantes.',
     icon: <KombuchaIcon className='h-6 w-6' />,
+    chips: [
+      { label: 'Kombucha natural', productId: 'kombucha-1l' },
+      { label: 'Flor de guisante', productId: 'kombucha-flor-de-guisante' },
+      { label: 'Espirulina azul', productId: 'kombucha-espirulina-azul' },
+      { label: 'Arándanos', productId: 'kombucha-arandanos' },
+      { label: 'Frambuesa', productId: 'kombucha-frambuesa' },
+      { label: 'Pitahaya', productId: 'kombucha-pitahaya' },
+      { label: 'Kéfir de agua', productId: 'kefir-agua-1l' },
+    ],
   },
   fermentados: {
     description: 'Fermentados de mesa con probióticos naturales, para acompañar y untar.',
@@ -113,9 +116,14 @@ const menuExtras: Record<string, MenuExtras> = {
       { label: 'Crema de kéfir', productId: 'crema-de-kefir-aceituna' },
     ],
   },
-  'manteca-de-cerdo': {
-    description: '100% natural y artesanal, para cocinar, freír y hornear. En cuatro presentaciones.',
+  'para-cocinar': {
+    description: 'Manteca de cerdo artesanal, sal de Maras y vinagre de manzana.',
     icon: <PigIcon className='h-6 w-6' />,
+    chips: [
+      { label: 'Manteca de cerdo', productId: 'manteca-100' },
+      { label: 'Sal de Maras', productId: 'sal-de-maras' },
+      { label: 'Vinagre de manzana', productId: 'vinagre-de-manzana' },
+    ],
   },
   mermeladas: {
     description: 'Fruta cocida despacio, sin conservantes. Nada más.',
@@ -123,14 +131,6 @@ const menuExtras: Record<string, MenuExtras> = {
     chips: [
       { label: 'De fresa', productId: 'mermelada-fresa' },
       { label: 'Quito quito', productId: 'mermelada-quito-quito' },
-    ],
-  },
-  despensa: {
-    description: 'Los básicos de la cocina, con procedencia.',
-    icon: <ButterIcon className='h-6 w-6' />,
-    chips: [
-      { label: 'Sal de Maras', productId: 'sal-de-maras' },
-      { label: 'Vinagre de manzana', productId: 'vinagre-de-manzana' },
     ],
   },
 };

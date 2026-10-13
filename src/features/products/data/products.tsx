@@ -159,6 +159,18 @@ const kombuchaNatural = {
   shelfLife: '30 días',
 };
 
+const kombucha355 = {
+  category: ProductCategory.PROBIOTICOS,
+  size: '355 ml',
+  isNew: true,
+  // TODO: fotos reales de cada sabor (placeholder: kéfir de agua, igual que la kombucha natural).
+  featuredImage: '/assets/images/content/products/kefir-de-agua/background.webp',
+  thumbnailImage: '/assets/images/content/products/kefir-de-agua/background.webp',
+  howToUse: kombuchaNatural.howToUse,
+  // TODO: confirmar la vida útil de la presentación de 355 ml (hoy copia la de la kombucha natural).
+  shelfLife: kombuchaNatural.shelfLife,
+};
+
 const mantecaCerdo = {
   shortDescription: 'El secreto de la cocina tradicional para un sabor inigualable.',
   longDescription: (
@@ -234,7 +246,7 @@ export const allProducts: Product[] = [
     title: 'Kéfir de leche de vaca natural 475 ml',
     size: '475 ml',
     price: 14.0,
-    tags: ['probiotic', 'lactose-free'],
+    tags: ['probiotic'],
     featuredImage: '/assets/images/content/products/kefir-de-leche-475ml/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-leche-475ml/featured.webp',
     ...vacaNatural,
@@ -260,7 +272,7 @@ export const allProducts: Product[] = [
     title: 'Kéfir de leche de cabra natural 1 L',
     size: '1 L',
     price: 25.0,
-    tags: ['probiotic', 'lactose-free', 'best-seller'],
+    tags: ['probiotic', 'best-seller'],
     featuredImage: '/assets/images/content/products/kefir-de-leche-de-cabra/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-leche-de-cabra/featured.webp',
     ...cabraNatural,
@@ -272,7 +284,7 @@ export const allProducts: Product[] = [
     title: 'Kéfir de leche de cabra natural 475 ml',
     size: '475 ml',
     price: 15.0,
-    tags: ['probiotic', 'lactose-free'],
+    tags: ['probiotic'],
     featuredImage: '/assets/images/content/products/kefir-de-leche-de-cabra/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-leche-de-cabra/featured.webp',
     ...cabraNatural,
@@ -302,6 +314,13 @@ export const allProducts: Product[] = [
     tags: ['best-seller', 'recommended', 'sugar-free', 'probiotic'],
     featuredImage: '/assets/images/content/products/kefir-con-fresa/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-con-fresa/featured.webp',
+    galleryImages: [
+      '/assets/images/content/products/kefir-con-fresa/gallery-01.webp',
+      '/assets/images/content/products/kefir-con-fresa/gallery-02.webp',
+      '/assets/images/content/products/kefir-con-fresa/gallery-03.webp',
+      '/assets/images/content/products/kefir-con-fresa/gallery-04.webp',
+      '/assets/images/content/products/kefir-con-fresa/gallery-05.webp',
+    ],
     shortDescription: 'El sabor clásico que cuida de ti, con pulpa de fresa natural.',
     longDescription: (
       <>
@@ -332,7 +351,7 @@ export const allProducts: Product[] = [
     title: 'Kéfir de leche de vaca con pulpa de arándanos 475 ml',
     size: '475 ml',
     price: 17.9,
-    tags: ['best-seller', 'recommended', 'sugar-free'],
+    tags: ['best-seller', 'recommended', 'sugar-free', 'probiotic'],
     featuredImage: '/assets/images/content/products/kefir-con-arandanos/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-con-arandanos/featured.webp',
     shortDescription: 'Un impulso de antioxidantes y probióticos.',
@@ -406,15 +425,21 @@ export const allProducts: Product[] = [
     price: 18.5,
     isNew: true,
     tags: ['new', 'probiotic', 'sugar-free'],
-    // TODO: imagen real (placeholder: arándanos).
-    featuredImage: '/assets/images/content/products/kefir-con-arandanos/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-con-arandanos/featured.webp',
+    featuredImage: '/assets/images/content/products/kefir-con-frutos-del-bosque/gallery-01.webp',
+    thumbnailImage: '/assets/images/content/products/kefir-con-frutos-del-bosque/gallery-01.webp',
+    galleryImages: [
+      '/assets/images/content/products/kefir-con-frutos-del-bosque/gallery-02.webp',
+      '/assets/images/content/products/kefir-con-frutos-del-bosque/gallery-03.webp',
+      '/assets/images/content/products/kefir-con-frutos-del-bosque/gallery-04.webp',
+      '/assets/images/content/products/kefir-con-frutos-del-bosque/gallery-05.webp',
+      '/assets/images/content/products/kefir-con-frutos-del-bosque/gallery-06.webp',
+    ],
     shortDescription: 'Nuestra novedad: la mezcla de frutos del bosque, cremosa y probiótica.',
     longDescription: (
       <>
         <p>
-          Nuestra nueva propuesta: la cremosidad del kéfir de leche con una mezcla de <strong>frutos del bosque</strong>
-          .
+          Nuestra nueva propuesta: la cremosidad del kéfir de leche con una mezcla de <strong>frutos del bosque</strong>:
+          fresas, frambuesas, arándanos y zarzamoras, endulzado con stevia.
         </p>
         <p>
           Sabor intenso y natural, cargado de <strong>antioxidantes y probióticos</strong> que cuidan tu digestión y tus
@@ -439,15 +464,22 @@ export const allProducts: Product[] = [
     title: 'Kéfir de leche de vaca con chocolate 475 ml',
     size: '475 ml',
     price: 17.9,
-    tags: ['probiotic', 'recommended'],
+    tags: ['probiotic', 'recommended', 'sugar-free'],
     featuredImage: '/assets/images/content/products/kefir-de-chocolate/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-chocolate/featured.webp',
+    galleryImages: [
+      '/assets/images/content/products/kefir-de-chocolate/gallery-01.webp',
+      '/assets/images/content/products/kefir-de-chocolate/gallery-02.webp',
+      '/assets/images/content/products/kefir-de-chocolate/gallery-03.webp',
+      '/assets/images/content/products/kefir-de-chocolate/gallery-04.webp',
+      '/assets/images/content/products/kefir-de-chocolate/gallery-05.webp',
+    ],
     shortDescription: 'Cremosidad probiótica con el poder del cacao artesanal.',
     longDescription: (
       <>
         <p>
-          La cremosidad de nuestro kéfir de leche enriquecida con <strong>cacao 100% artesanal</strong> de los valles de
-          Moyobamba y Quillabamba.
+          La cremosidad de nuestro kéfir de leche con <strong>chocolate 100% cacao chuncho</strong> de Quillabamba,
+          endulzado con stevia.
         </p>
         <p>
           Cada sorbo aporta <strong>hierro, calcio y magnesio</strong>, además de antioxidantes del cacao. Placer y
@@ -518,6 +550,128 @@ export const allProducts: Product[] = [
     featuredImage: '/assets/images/content/products/kefir-de-agua/background.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-agua/background.webp',
     ...kombuchaNatural,
+  }),
+
+  /* ── Probióticos · Kombuchas de sabores (355 ml, cada una es un producto) ── */
+  make({
+    id: 'kombucha-flor-de-guisante',
+    name: 'kombucha-flor-de-guisante',
+    title: 'Kombucha de flor de guisante con limón 355 ml',
+    price: 13.9,
+    tags: ['new', 'vegan', 'probiotic'],
+    ...kombucha355,
+    shortDescription: 'Té fermentado con flor de guisante y un toque cítrico de limón.',
+    longDescription: (
+      <>
+        <p>
+          Nuestra kombucha de <strong>té fermentado con cultivos vivos</strong>, infusionada con{' '}
+          <strong>flor de guisante</strong> y terminada con <strong>limón</strong>.
+        </p>
+        <p>Floral, cítrica y naturalmente burbujeante, en botella de vidrio de 355 ml.</p>
+      </>
+    ),
+    benefits: [
+      'Elaborada con **té fermentado** y cultivos vivos.',
+      'Infusionada con **flor de guisante** y **limón**.',
+      '**Naturalmente burbujeante**, sin gas añadido.',
+      '**Sin lácteos**, apta para dietas veganas.',
+    ],
+  }),
+  make({
+    id: 'kombucha-espirulina-azul',
+    name: 'kombucha-espirulina-azul',
+    title: 'Kombucha de espirulina azul con hierba luisa 355 ml',
+    price: 13.0,
+    tags: ['new', 'vegan', 'probiotic'],
+    ...kombucha355,
+    shortDescription: 'Té fermentado con espirulina azul y el aroma fresco de la hierba luisa.',
+    longDescription: (
+      <>
+        <p>
+          Nuestra kombucha de <strong>té fermentado con cultivos vivos</strong>, con <strong>espirulina azul</strong> y{' '}
+          <strong>hierba luisa</strong>.
+        </p>
+        <p>Herbal, refrescante y naturalmente burbujeante, en botella de vidrio de 355 ml.</p>
+      </>
+    ),
+    benefits: [
+      'Elaborada con **té fermentado** y cultivos vivos.',
+      'Con **espirulina azul** y **hierba luisa**.',
+      '**Naturalmente burbujeante**, sin gas añadido.',
+      '**Sin lácteos**, apta para dietas veganas.',
+    ],
+  }),
+  make({
+    id: 'kombucha-arandanos',
+    name: 'kombucha-arandanos',
+    title: 'Kombucha de arándanos con menta 355 ml',
+    price: 12.5,
+    tags: ['new', 'vegan', 'probiotic'],
+    ...kombucha355,
+    shortDescription: 'Té fermentado con arándanos y menta fresca.',
+    longDescription: (
+      <>
+        <p>
+          Nuestra kombucha de <strong>té fermentado con cultivos vivos</strong>, con <strong>arándanos</strong> y{' '}
+          <strong>menta</strong>.
+        </p>
+        <p>Frutal, fresca y naturalmente burbujeante, en botella de vidrio de 355 ml.</p>
+      </>
+    ),
+    benefits: [
+      'Elaborada con **té fermentado** y cultivos vivos.',
+      'Con **arándanos** y **menta**.',
+      '**Naturalmente burbujeante**, sin gas añadido.',
+      '**Sin lácteos**, apta para dietas veganas.',
+    ],
+  }),
+  make({
+    id: 'kombucha-frambuesa',
+    name: 'kombucha-frambuesa',
+    title: 'Kombucha de frambuesa con menta 355 ml',
+    price: 12.5,
+    tags: ['new', 'vegan', 'probiotic'],
+    ...kombucha355,
+    shortDescription: 'Té fermentado con frambuesa y menta fresca.',
+    longDescription: (
+      <>
+        <p>
+          Nuestra kombucha de <strong>té fermentado con cultivos vivos</strong>, con <strong>frambuesa</strong> y{' '}
+          <strong>menta</strong>.
+        </p>
+        <p>Frutal, ligeramente ácida y naturalmente burbujeante, en botella de vidrio de 355 ml.</p>
+      </>
+    ),
+    benefits: [
+      'Elaborada con **té fermentado** y cultivos vivos.',
+      'Con **frambuesa** y **menta**.',
+      '**Naturalmente burbujeante**, sin gas añadido.',
+      '**Sin lácteos**, apta para dietas veganas.',
+    ],
+  }),
+  make({
+    id: 'kombucha-pitahaya',
+    name: 'kombucha-pitahaya',
+    title: 'Kombucha de pitahaya 355 ml',
+    price: 14.9,
+    tags: ['new', 'limited', 'vegan', 'probiotic'],
+    ...kombucha355,
+    shortDescription: 'Edición especial: té fermentado con pitahaya.',
+    longDescription: (
+      <>
+        <p>
+          Nuestra <strong>edición especial</strong>: kombucha de <strong>té fermentado con cultivos vivos</strong> y{' '}
+          <strong>pitahaya</strong>.
+        </p>
+        <p>Frutal y naturalmente burbujeante, en botella de vidrio de 355 ml.</p>
+      </>
+    ),
+    benefits: [
+      'Elaborada con **té fermentado** y cultivos vivos.',
+      'Con **pitahaya**, en edición especial.',
+      '**Naturalmente burbujeante**, sin gas añadido.',
+      '**Sin lácteos**, apta para dietas veganas.',
+    ],
   }),
 
   /* ── Tradicionales · Manteca de cerdo (grupo de tallas) ──────────────── */
@@ -682,21 +836,20 @@ export const allProducts: Product[] = [
       '/assets/images/content/products/vinagre-de-manzana/gallery-03.webp',
       '/assets/images/content/products/vinagre-de-manzana/gallery-02.webp',
     ],
-    shortDescription: 'Vinagre artesanal con madre, suave y lleno de beneficios.',
+    shortDescription: 'Vinagre artesanal con madre, sin pasteurizar ni filtrar.',
     longDescription: (
       <>
         <p>
           Hecho con <strong>manzanas 100% ecológicas</strong> y un proceso artesanal que transforma su sabor: suave,
-          equilibrado y delicioso. Conserva la <strong>&ldquo;madre&rdquo;</strong> con enzimas y probióticos.
+          equilibrado y delicioso. Es un vinagre <strong>con &ldquo;madre&rdquo;</strong>, sin pasteurizar ni filtrar.
         </p>
         <p>Ideal diluido en agua o para dar vida a ensaladas, aderezos y marinados.</p>
       </>
     ),
     benefits: [
       'Elaborado con **manzanas 100% ecológicas** mediante fermentación natural.',
-      'Conserva la **“madre”** con enzimas y probióticos beneficiosos.',
-      'Apoya la **digestión saludable**.',
-      '**100% natural**, sin pasteurizar ni filtrar.',
+      'Con **“madre”**: sin pasteurizar ni filtrar.',
+      '**100% natural**, sin conservantes.',
     ],
     howToUse: (
       <>
@@ -716,7 +869,7 @@ export const allProducts: Product[] = [
     name: 'chucrut-morado',
     title: 'Chucrut Morado Fermentado',
     price: 14,
-    tags: ['recommended', 'discover', 'vegan', 'natural'],
+    tags: ['recommended', 'discover', 'vegan', 'natural', 'probiotic'],
     featuredImage: '/assets/images/content/products/chucrut-morado/featured.webp',
     thumbnailImage: '/assets/images/content/products/chucrut-morado/thumbnail.png',
     galleryImages: [

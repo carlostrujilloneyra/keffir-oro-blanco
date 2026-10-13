@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { getProductById, promotedCollection } from '@/features/products';
+import { FAQ_URL } from '@/lib/routes';
 import { ProductShelfItem } from '@/features/products/components/ProductShelfItem';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { FeaturedCard } from './components/FeaturedCard';
@@ -47,7 +48,7 @@ export const MainSection = () => {
           <FeaturedCard
             eyebrow='Probióticos'
             title='Descubre si el Kéfir es para ti'
-            linkUrl='#faq'
+            linkUrl={FAQ_URL}
             ctaLabel='Conoce el kéfir'
             imageSrc='/assets/images/content/products/kefir-de-leche/featured.webp'
             imageAlt='Kéfir de leche artesanal'

@@ -15,7 +15,7 @@ export const categoryDetails = {
     eyebrow: 'Fermentación viva',
     description:
       'Kéfir de leche de **vaca y cabra**, natural o con pulpa de frutos del bosque, fresa, arándanos y aguaymanto. También **kéfir de agua, kombucha y chucrut**, todos con cultivos vivos.',
-    imageUrl: '/assets/images/categories/kefires.png',
+    imageUrl: '/assets/images/categories/kefires.webp',
     imageAlt: 'Kéfires artesanales TRIALFERI',
     tone: 'verde' as const,
   },

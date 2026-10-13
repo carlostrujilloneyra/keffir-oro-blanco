@@ -16,9 +16,10 @@ export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const reduce = useReducedMotion();
 
-  // Glass al hacer scroll.
+  // Histéresis: con un solo umbral, al encogerse el header el scroll lo reabría en bucle.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const onScroll = () =>
+      setScrolled((prev) => (prev ? window.scrollY > 8 : window.scrollY > 40));
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -61,14 +62,14 @@ export const Header = () => {
             aria-label='Ir al inicio'
             className={cn(
               'relative block shrink-0 transition-[height,width] duration-300',
-              scrolled ? 'h-10 w-[124px] lg:h-12 lg:w-[150px]' : 'h-11 w-[135px] lg:h-14 lg:w-[172px]',
+              scrolled ? 'h-8 w-[124px] lg:h-10 lg:w-[154px]' : 'h-9 w-[140px] lg:h-12 lg:w-[184px]',
             )}
           >
             <Image
               priority
               fill
-              sizes='172px'
-              src='/assets/images/ui/logos/black-logo-cropped.png'
+              sizes='184px'
+              src='/assets/images/ui/logos/trialferi-wordmark.png'
               alt='TRIALFERI'
               className='object-contain object-left'
             />
