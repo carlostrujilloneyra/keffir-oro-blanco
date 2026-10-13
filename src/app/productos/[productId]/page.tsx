@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { ArrowUpRight, ChevronRight } from 'lucide-react';
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { allProducts } from '@/features/products/data/products';
 import { categoryDetails, getRelatedProducts, getSizeVariants } from '@/features/products';
 import { buildProductMetaDescription } from '@/features/products/lib/productSeo';
@@ -11,6 +11,7 @@ import { isAttributeTag } from '@/features/products/data/badgeConfig';
 import { formatPrice } from '@/lib/formatPrice';
 import { buildWhatsAppUrl, CURRENCY, SITE_NAME, SITE_URL } from '@/lib/site';
 import { buildBreadcrumbJsonLd } from '@/lib/jsonLd';
+import { buildPageMetadata } from '@/lib/metadata';
 import { JsonLd } from '@/components/JsonLd';
 import {
   BenefitsList,
@@ -44,22 +45,12 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     };
   }
 
-  const shareImage = product.shareImage ?? product.thumbnailImage;
-
-  return {
+  return buildPageMetadata({
     title: product.title,
     description: buildProductMetaDescription(product),
-    alternates: { canonical: getProductUrl(product.slug) },
-    openGraph: {
-      title: product.title,
-      description: product.shortDescription,
-      images: [shareImage],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      images: [shareImage],
-    },
-  };
+    path: getProductUrl(product.slug),
+    image: product.shareImage ?? product.thumbnailImage,
+  });
 }
 
 // Generar rutas estáticas en build time
@@ -157,24 +148,31 @@ export default function ProductPage({ params }: ProductPageProps) {
       <JsonLd data={breadcrumbJsonLd} />
 
       {/* Migas de pan */}
-      <nav
-        aria-label='Migas de pan'
-        className='mb-8 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm text-tinta-suave lg:mb-10'
-      >
-        <Link href='/' className='font-medium transition-colors hover:text-verde'>
-          Inicio
+      <nav aria-label='Migas de pan' className='mb-8 text-sm text-tinta-suave lg:mb-10'>
+        <Link
+          href={category ? getCategoryUrl(category.slug) : '/'}
+          className='-ml-1 inline-flex min-h-11 items-center gap-1 pr-2 font-medium transition-colors hover:text-verde tablet:hidden'
+        >
+          <ChevronLeft className='h-4 w-4' />
+          {category ? category.title : 'Inicio'}
         </Link>
 
-        {category && (
-          <>
-            <ChevronRight className='h-4 w-4 text-tinta-suave/50' />
-            <Link href={getCategoryUrl(category.slug)} className='font-medium transition-colors hover:text-verde'>
-              {category.title}
-            </Link>
-          </>
-        )}
-        <ChevronRight className='h-4 w-4 text-tinta-suave/50' />
-        <span className='font-semibold text-tinta'>{product.title}</span>
+        <div className='hidden flex-wrap items-center gap-x-2.5 gap-y-1 tablet:flex'>
+          <Link href='/' className='font-medium transition-colors hover:text-verde'>
+            Inicio
+          </Link>
+
+          {category && (
+            <>
+              <ChevronRight className='h-4 w-4 text-tinta-suave/50' />
+              <Link href={getCategoryUrl(category.slug)} className='font-medium transition-colors hover:text-verde'>
+                {category.title}
+              </Link>
+            </>
+          )}
+          <ChevronRight className='h-4 w-4 text-tinta-suave/50' />
+          <span className='font-semibold text-tinta'>{product.title}</span>
+        </div>
       </nav>
 
       <article className='grid gap-8 lg:grid-cols-2 lg:gap-14'>
@@ -191,7 +189,7 @@ export default function ProductPage({ params }: ProductPageProps) {
         <Stagger delay={0.1} className='flex flex-col gap-8'>
           {/* Lo esencial primero: curaduría, nombre, precio y talla. */}
           <div className='flex flex-col gap-4'>
-            <ProductTags isNew={product.isNew} tags={curationTags} />
+            <ProductTags tags={curationTags} />
             <div className='flex flex-col gap-2'>
               <h1 className='font-display text-3xl font-semibold leading-[1.05] tracking-tight text-tinta lg:text-5xl'>
                 {keepUnitsTogether(product.title)}

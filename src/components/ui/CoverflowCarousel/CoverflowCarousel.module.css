@@ -105,10 +105,18 @@
   cursor: pointer;
   height: 8px;
   padding: 0;
+  position: relative;
   transition:
     width 0.3s ease,
     background 0.3s ease;
   width: 8px;
+}
+
+/* Área táctil de 44 px de alto sin cambiar el tamaño visible del punto. */
+.dot::before {
+  content: '';
+  inset: -18px -4px;
+  position: absolute;
 }
 
 .dot:hover {

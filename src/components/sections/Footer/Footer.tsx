@@ -35,12 +35,12 @@ export const Footer = () => (
       {/* Enlaces esenciales + contacto y redes */}
       <FooterReveal delay={0.08} className='flex flex-col gap-8 py-10 md:flex-row md:items-start md:justify-between'>
         <nav aria-label='Pie de página'>
-          <ul className='flex flex-wrap gap-x-6 gap-y-3'>
+          <ul className='flex flex-wrap gap-x-6'>
             {FOOTER_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className='text-sm text-papel/80 transition-colors hover:text-papel lg:text-[15px]'
+                  className='inline-flex min-h-11 items-center text-sm text-papel/80 transition-colors hover:text-papel lg:text-[15px]'
                 >
                   {link.label}
                 </Link>
@@ -49,12 +49,12 @@ export const Footer = () => (
           </ul>
         </nav>
 
-        <div className='flex flex-col gap-4 text-sm text-papel/80 lg:text-[15px]'>
+        <div className='flex flex-col gap-1 text-sm text-papel/80 lg:text-[15px]'>
           <Link
             href={WHATSAPP_URL}
             target='_blank'
             rel='noopener noreferrer'
-            className='flex items-center gap-3 transition-colors hover:text-papel'
+            className='flex min-h-11 items-center gap-3 transition-colors hover:text-papel'
           >
             <Phone className='h-4 w-4 shrink-0 text-miel' />
             {WHATSAPP_DISPLAY}
@@ -63,23 +63,22 @@ export const Footer = () => (
           {CONTACT_EMAIL && (
             <Link
               href={`mailto:${CONTACT_EMAIL}`}
-              className='flex items-center gap-3 break-all transition-colors hover:text-papel'
+              className='flex min-h-11 items-center gap-3 break-all transition-colors hover:text-papel'
             >
               <Mail className='h-4 w-4 shrink-0 text-miel' />
               {CONTACT_EMAIL}
             </Link>
           )}
 
-          <ul className='flex items-center gap-2'>
+          <ul className='-ml-3 flex items-center'>
             {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
               <li key={label}>
-                {/* p-2: área táctil cómoda sin dibujar un círculo alrededor del ícono. */}
                 <Link
                   href={href}
                   target='_blank'
                   rel='noopener noreferrer'
                   aria-label={label}
-                  className='-ml-2 flex p-2 text-papel/70 transition-colors hover:text-papel'
+                  className='flex h-11 w-11 items-center justify-center text-papel/70 transition-colors hover:text-papel'
                 >
                   <Icon className='h-5 w-5' />
                 </Link>

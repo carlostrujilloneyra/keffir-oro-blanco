@@ -109,7 +109,7 @@ export const MobileMenu = ({ open, onClose, whatsappUrl }: Props) => {
                 type='button'
                 onClick={onClose}
                 aria-label='Cerrar menú'
-                className='flex h-10 w-10 items-center justify-center rounded-full text-tinta transition-colors hover:bg-papel-hueso'
+                className='flex h-11 w-11 items-center justify-center rounded-full text-tinta transition-colors hover:bg-papel-hueso'
               >
                 <X className='h-6 w-6' />
               </button>

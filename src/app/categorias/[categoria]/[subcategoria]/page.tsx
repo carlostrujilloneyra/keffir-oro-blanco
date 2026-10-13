@@ -3,13 +3,14 @@ import { notFound } from 'next/navigation';
 import {
   categoryDetails,
   getSubcategoryImage,
-  getSubcategoryProducts,
+  getSubcategorySummary,
   resolveSubcategory,
   subcategoryDetails,
 } from '@/features/products';
 import { ValuesBento } from '@/components/sections/ValuesBento/ValuesBento';
 import { JsonLd } from '@/components/JsonLd';
 import { buildBreadcrumbJsonLd } from '@/lib/jsonLd';
+import { buildPageMetadata } from '@/lib/metadata';
 import { CategoryHero } from '../_components/CategoryHero';
 import { ProductGrid } from '@/features/products/components/ProductGrid';
 import { getCategoryUrl, getSubcategoryUrl } from '@/lib/routes';
@@ -27,11 +28,11 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   const sub = resolveSubcategory(params.categoria, params.subcategoria);
   if (!sub) return {};
 
-  return {
+  return buildPageMetadata({
     title: sub.title,
     description: sub.description,
-    alternates: { canonical: getSubcategoryUrl(sub.category, sub.slug) },
-  };
+    path: getSubcategoryUrl(sub.category, sub.slug),
+  });
 }
 
 export default function SubcategoriaPage({ params }: { params: Params }) {
@@ -39,7 +40,7 @@ export default function SubcategoriaPage({ params }: { params: Params }) {
   if (!sub) notFound();
 
   const parent = categoryDetails[sub.category];
-  const products = getSubcategoryProducts(sub);
+  const { products, count } = getSubcategorySummary(sub);
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: 'Inicio', path: '/' },
@@ -57,7 +58,7 @@ export default function SubcategoriaPage({ params }: { params: Params }) {
         description={sub.description}
         imageUrl={getSubcategoryImage(sub)}
         imageAlt={sub.title}
-        count={products.length}
+        count={count}
         tone={sub.tone}
         parent={{ title: parent.title, href: getCategoryUrl(parent.slug) }}
       />

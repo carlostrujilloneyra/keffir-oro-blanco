@@ -18,8 +18,7 @@ export const Header = () => {
 
   // Histéresis: con un solo umbral, al encogerse el header el scroll lo reabría en bucle.
   useEffect(() => {
-    const onScroll = () =>
-      setScrolled((prev) => (prev ? window.scrollY > 8 : window.scrollY > 40));
+    const onScroll = () => setScrolled((prev) => (prev ? window.scrollY > 8 : window.scrollY > 40));
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -93,7 +92,7 @@ export const Header = () => {
             onClick={() => setMenuOpen(true)}
             aria-label='Abrir menú'
             whileTap={{ scale: 0.9 }}
-            className='flex h-10 w-10 items-center justify-center rounded-full text-tinta transition-colors hover:bg-papel-hueso lg:hidden'
+            className='flex h-11 w-11 items-center justify-center rounded-full text-tinta transition-colors hover:bg-papel-hueso lg:hidden'
           >
             <Menu className='h-6 w-6' />
           </motion.button>

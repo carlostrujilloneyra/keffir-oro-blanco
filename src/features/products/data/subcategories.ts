@@ -1,5 +1,6 @@
 import { ProductCategory } from './categories';
 import { allProducts } from './products';
+import { getProductGroups } from './collections';
 import type { Product } from '../types/product.type';
 
 export type SubcategoryTone = 'verde' | 'miel';
@@ -119,7 +120,19 @@ export const subcategoryDetails: SubcategoryDetail[] = [
 export const getSubcategoryProducts = (subcategory: SubcategoryDetail): Product[] =>
   subcategory.productNames.flatMap((name) => allProducts.filter((product) => product.name === name));
 
-/* Imagen del hero: la propia si se definió, si no la del primer producto. */
+export const getSubcategorySummary = (subcategory: SubcategoryDetail) => {
+  const products = getSubcategoryProducts(subcategory);
+  const groups = getProductGroups(products);
+
+  return {
+    products,
+    groups,
+    count: groups.length,
+    fromPrice: products.length > 0 ? Math.min(...products.map((p) => p.price)) : 0,
+  };
+};
+
+/* Imagen del hero:la propia si se definió, si no la del primer producto. */
 export const getSubcategoryImage = (subcategory: SubcategoryDetail): string => {
   if (subcategory.imageUrl) return subcategory.imageUrl;
 

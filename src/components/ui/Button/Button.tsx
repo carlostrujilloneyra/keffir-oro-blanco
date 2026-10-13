@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 
-const SOLID = 'px-5 py-2.5 lg:px-6 lg:py-3';
+const SOLID = 'min-h-11 px-5 py-2.5 lg:px-6 lg:py-3';
 
 const VARIANT = {
   primary: `bg-gradient-verde ${SOLID} text-papel hover:brightness-110`,
@@ -25,7 +25,7 @@ export const Button = ({ variant = 'primary', className, asChild = false, ...pro
   return (
     <Comp
       className={cn(
-        'inline-flex w-fit items-center justify-center gap-2 rounded-[10px] text-sm font-semibold lg:text-base transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde focus-visible:ring-offset-2 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50',
+        'inline-flex w-fit items-center justify-center gap-2 rounded-[10px] text-sm font-semibold transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde focus-visible:ring-offset-2 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 lg:text-base',
         VARIANT[variant],
         className,
       )}

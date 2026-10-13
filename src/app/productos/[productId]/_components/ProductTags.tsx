@@ -2,18 +2,16 @@ import { Badge } from '@/components/ui/Badge/badge';
 import { badgeConfig, BadgeType } from '@/features/products/data/badgeConfig';
 
 interface ProductTagsProps {
-  isNew?: boolean;
   tags?: BadgeType[];
 }
 
-export function ProductTags({ isNew, tags }: ProductTagsProps) {
-  if (!isNew && (!tags || tags.length === 0)) {
+export function ProductTags({ tags }: ProductTagsProps) {
+  if (!tags || tags.length === 0) {
     return null;
   }
 
   return (
     <div className='flex flex-wrap gap-2'>
-      {isNew && <Badge variant='alert'>Nuevo</Badge>}
       {tags?.map((tag) => {
         const config = badgeConfig[tag];
 

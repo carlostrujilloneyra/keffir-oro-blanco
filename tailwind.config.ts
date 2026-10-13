@@ -48,7 +48,7 @@ const config: Config = {
         tinta: {
           DEFAULT: '#16201A', // texto principal (verde-carbón)
           media: '#3A463D', // párrafos
-          suave: '#6E756A', // metadatos, labels
+          suave: '#5F665B', // metadatos, labels (≥ 4.5:1 sobre papel-hueso)
         },
         bosque: '#1E3A2F', // bloques oscuros, hero, footer (verde profundo)
         verde: {

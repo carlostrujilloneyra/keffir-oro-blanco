@@ -20,6 +20,24 @@ export const getProductUrlById = (id: string) => getProductUrl(getProductById(id
 export const getSizeVariants = (product: Product): Product[] =>
   allProducts.filter((p) => p.name === product.name).sort((a, b) => a.price - b.price);
 
+export interface ProductGroup {
+  product: Product;
+  fromPrice: number;
+  sizes: number;
+}
+
+/* Un grupo por `name` (todas sus tallas), en el orden de entrada. `product` es el primer SKU. */
+export const getProductGroups = (products: Product[]): ProductGroup[] => {
+  const groups = new Map<string, Product[]>();
+  products.forEach((p) => groups.set(p.name, [...(groups.get(p.name) ?? []), p]));
+
+  return [...groups.values()].map((skus) => ({
+    product: skus[0],
+    fromPrice: Math.min(...skus.map((p) => p.price)),
+    sizes: skus.length,
+  }));
+};
+
 export const getRelatedProducts = (product: Product, limit = 4): Product[] => {
   const seen = new Set<string>();
   return allProducts

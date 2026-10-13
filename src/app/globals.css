@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Área táctil de 44 px de alto sin cambiar el tamaño visible del punto. */
+.swiper-pagination-bullet {
+  position: relative;
+}
+
+.swiper-pagination-bullet::before {
+  content: '';
+  inset: -18px -4px;
+  position: absolute;
+}
+
 @keyframes heroMediaIn {
   from {
     opacity: 0;
@@ -67,7 +78,7 @@
     --secondary: 41 26% 84%; /* papel-sombra #E0D9CA */
     --secondary-foreground: 144 18% 11%;
     --muted: 44 32% 91%;
-    --muted-foreground: 98 5% 44%; /* tinta-suave #6E756A */
+    --muted-foreground: 98 6% 38%; /* tinta-suave #5F665B */
     --accent: 41 26% 84%;
     --accent-foreground: 144 18% 11%;
     --destructive: 335 75% 47%; /* fucsia #D11E82 (novedad / alerta de marca) */

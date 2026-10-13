@@ -7,10 +7,13 @@ export {
   getProductUrlById,
   getSizeVariants,
   getRelatedProducts,
+  getProductGroups,
 } from './data/collections';
+export type { ProductGroup } from './data/collections';
 export {
   subcategoryDetails,
   getSubcategoryProducts,
+  getSubcategorySummary,
   getSubcategoryImage,
   resolveSubcategory,
 } from './data/subcategories';

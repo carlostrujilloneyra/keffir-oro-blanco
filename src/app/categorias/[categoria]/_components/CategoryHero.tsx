@@ -56,7 +56,7 @@ export const CategoryHero = ({
   return (
     <div
       style={{ background: t.gradient }}
-      className='relative flex flex-col gap-2 overflow-hidden rounded-panel px-4 py-5 tablet:gap-4 tablet:p-4 md:p-8 lg:block lg:px-8 lg:py-12'
+      className='relative mt-4 flex flex-col gap-2 overflow-hidden rounded-panel px-4 py-5 tablet:mt-0 tablet:gap-4 tablet:p-4 md:p-8 lg:block lg:px-8 lg:py-12'
     >
       <div
         className={cn(
@@ -111,7 +111,7 @@ export const CategoryHero = ({
                 <li key={href}>
                   <Link
                     href={href}
-                    className='flex flex-col rounded-[8px] border border-white/15 bg-white/10 px-3 py-1.5 transition-colors duration-200 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-papel tablet:py-2'
+                    className='flex min-h-11 flex-col justify-center rounded-[8px] border border-white/15 bg-white/10 px-3 py-1.5 transition-colors duration-200 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-papel tablet:py-2'
                   >
                     <span className='text-[13px] font-semibold text-papel tablet:text-sm'>{label}</span>
                     <span className='hidden text-xs text-papel/70 tablet:block'>desde S/ {formatPrice(fromPrice)}</span>
@@ -131,7 +131,7 @@ export const CategoryHero = ({
       <div
         className={cn(
           styles.stage,
-          'pointer-events-none relative order-first h-52 w-full tablet:h-72 lg:absolute lg:right-6 lg:top-1/2 lg:z-0 lg:h-[94%] lg:w-[340px] lg:-translate-y-1/2 xl:left-[656px] xl:right-14 xl:w-auto',
+          'pointer-events-none relative order-first mt-5 h-52 w-full tablet:mt-6 tablet:h-72 lg:absolute lg:right-6 lg:top-1/2 lg:z-0 lg:mt-0 lg:h-[86%] lg:w-[340px] lg:-translate-y-1/2 xl:left-[656px] xl:right-14 xl:w-auto',
         )}
       >
         <span aria-hidden className={styles.shadow} />
@@ -142,7 +142,7 @@ export const CategoryHero = ({
           height={460}
           priority
           sizes='(min-width: 1280px) 560px, (min-width: 1024px) 340px, 300px'
-          className={cn(styles.float, 'h-full w-full select-none object-contain')}
+          className={cn(styles.float, 'h-full w-full select-none object-contain object-bottom')}
         />
       </div>
     </div>

@@ -12,7 +12,6 @@ export interface Product {
 
   slug: string; // Derivado: `name` + talla compacta (lo calcula make()).
   title: string;
-  isNew?: boolean;
 
   tags?: BadgeType[];
 

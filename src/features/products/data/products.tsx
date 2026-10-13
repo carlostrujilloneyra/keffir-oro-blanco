@@ -14,7 +14,7 @@ const make = (product: Omit<Product, 'slug'>): Product => ({
 
 const vacaNatural = {
   containsDairy: true,
-  shortDescription: 'El clásico probiótico, cremoso y lleno de beneficios.',
+  shortDescription: 'El clásico de la casa: kéfir de leche de vaca, cremoso y fermentado a mano.',
   longDescription: (
     <>
       <p>
@@ -162,7 +162,6 @@ const kombuchaNatural = {
 const kombucha355 = {
   category: ProductCategory.PROBIOTICOS,
   size: '355 ml',
-  isNew: true,
   // TODO: fotos reales de cada sabor (placeholder: kéfir de agua, igual que la kombucha natural).
   featuredImage: '/assets/images/content/products/kefir-de-agua/background.webp',
   thumbnailImage: '/assets/images/content/products/kefir-de-agua/background.webp',
@@ -423,7 +422,6 @@ export const allProducts: Product[] = [
     title: 'Kéfir de leche de vaca con frutos del bosque 475 ml',
     size: '475 ml',
     price: 18.5,
-    isNew: true,
     tags: ['new', 'probiotic', 'sugar-free'],
     featuredImage: '/assets/images/content/products/kefir-con-frutos-del-bosque/gallery-01.webp',
     thumbnailImage: '/assets/images/content/products/kefir-con-frutos-del-bosque/gallery-01.webp',
@@ -438,8 +436,8 @@ export const allProducts: Product[] = [
     longDescription: (
       <>
         <p>
-          Nuestra nueva propuesta: la cremosidad del kéfir de leche con una mezcla de <strong>frutos del bosque</strong>:
-          fresas, frambuesas, arándanos y zarzamoras, endulzado con stevia.
+          Nuestra nueva propuesta: la cremosidad del kéfir de leche con una mezcla de <strong>frutos del bosque</strong>
+          : fresas, frambuesas, arándanos y zarzamoras, endulzado con stevia.
         </p>
         <p>
           Sabor intenso y natural, cargado de <strong>antioxidantes y probióticos</strong> que cuidan tu digestión y tus
@@ -531,7 +529,6 @@ export const allProducts: Product[] = [
     title: 'Kombucha natural 1 L',
     size: '1 L',
     price: 21.5,
-    isNew: true,
     tags: ['new', 'vegan', 'probiotic'],
     // TODO: imagen real de kombucha (placeholder: kéfir de agua).
     featuredImage: '/assets/images/content/products/kefir-de-agua/background.webp',
@@ -545,7 +542,6 @@ export const allProducts: Product[] = [
     title: 'Kombucha natural 475 ml',
     size: '475 ml',
     price: 12.5,
-    isNew: true,
     tags: ['new', 'vegan', 'probiotic'],
     featuredImage: '/assets/images/content/products/kefir-de-agua/background.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-agua/background.webp',
@@ -724,7 +720,6 @@ export const allProducts: Product[] = [
     title: 'Mermelada de fresa natural 200 g',
     size: '200 g',
     price: 13.5,
-    isNew: true,
     tags: ['new', 'natural'],
     // TODO: imagen real de la mermelada (placeholder temporal).
     featuredImage: '/assets/images/content/products/kefir-con-fresa/featured.webp',
@@ -754,7 +749,6 @@ export const allProducts: Product[] = [
     title: 'Mermelada de Quito Quito 200 g',
     size: '200 g',
     price: 13.5,
-    isNew: true,
     tags: ['new', 'recommended', 'natural'],
     // TODO: imagen real de la mermelada (placeholder temporal).
     featuredImage: '/assets/images/content/products/kefir-con-aguaymanto/featured.webp',
@@ -785,7 +779,6 @@ export const allProducts: Product[] = [
     name: 'sal-de-maras',
     title: 'Sal rosada de Maras, Cusco',
     price: 19,
-    isNew: true,
     tags: ['new', 'natural', 'artisan'],
     featuredImage: '/assets/images/content/products/sal-de-maras/featured.webp',
     thumbnailImage: '/assets/images/content/products/sal-de-maras/thumbnail.webp',
@@ -827,7 +820,6 @@ export const allProducts: Product[] = [
     name: 'vinagre-de-manzana',
     title: 'Vinagre de Manzana',
     price: 17,
-    isNew: true,
     tags: ['new', 'natural', 'healthy'],
     featuredImage: '/assets/images/content/products/vinagre-de-manzana/featured.webp',
     thumbnailImage: '/assets/images/content/products/vinagre-de-manzana/thumbnail.webp',

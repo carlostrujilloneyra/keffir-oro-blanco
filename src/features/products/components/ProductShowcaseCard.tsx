@@ -15,10 +15,25 @@ type Props = {
   highlighted?: boolean;
   /** true = toda la card es un enlace al detalle; false = no navega (el padre decide). */
   asLink?: boolean;
+  /** Card que representa todas las tallas: el sello dice "Desde S/ X". */
+  fromPrice?: number;
+  /** Quita la talla del final del título. */
+  hideSize?: boolean;
 };
 
-export const ProductShowcaseCard = ({ product, highlighted = false, asLink = true }: Props) => {
+export const ProductShowcaseCard = ({
+  product,
+  highlighted = false,
+  asLink = true,
+  fromPrice,
+  hideSize = false,
+}: Props) => {
   const tone = toneStyles[accentFor(product)];
+  const sizeSuffix = product.size ? ` ${product.size}` : '';
+  const title =
+    hideSize && sizeSuffix && product.title.endsWith(sizeSuffix)
+      ? product.title.slice(0, -sizeSuffix.length)
+      : product.title;
   const category = categoryDetails[product.category]?.title ?? 'Producto';
   const url = getProductUrl(product.slug);
   const splashes = getProductSplash(product);
@@ -85,7 +100,7 @@ export const ProductShowcaseCard = ({ product, highlighted = false, asLink = tru
           className='object-contain px-4 pb-3 pt-9 transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-[1.04] cq-sm:p-6'
         />
         <span className='absolute left-2 top-2 rounded-[4px] bg-tinta px-2 py-0.5 font-display text-xs font-semibold tracking-tight text-papel cq-sm:left-3 cq-sm:top-3 cq-sm:px-2.5 cq-sm:py-1 cq-sm:text-sm'>
-          S/ {formatPrice(product.price)}
+          {fromPrice !== undefined ? `Desde S/ ${formatPrice(fromPrice)}` : `S/ ${formatPrice(product.price)}`}
         </span>
       </div>
 
@@ -94,7 +109,7 @@ export const ProductShowcaseCard = ({ product, highlighted = false, asLink = tru
         <span className='hidden text-xs font-medium text-tinta-suave cq-sm:block'>{category}</span>
 
         <h3 className='font-display text-[15px] font-semibold leading-[1.2] tracking-tight text-tinta cq-sm:min-h-[2.6em] cq-sm:text-lg cq-sm:leading-[1.1]'>
-          {keepUnitsTogether(product.title)}
+          {keepUnitsTogether(title)}
         </h3>
 
         {ctaIsLink ? (

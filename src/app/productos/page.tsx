@@ -1,31 +1,34 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
-import { categoryDetails, getSubcategoryProducts, ProductCategory, subcategoryDetails } from '@/features/products';
+import { categoryDetails, getSubcategorySummary, ProductCategory, subcategoryDetails } from '@/features/products';
 import { ProductGrid } from '@/features/products/components/ProductGrid';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { Reveal, Stagger } from '@/components/ui/Motion/Motion';
+import { formatPrice } from '@/lib/formatPrice';
+import { buildPageMetadata } from '@/lib/metadata';
 import { CATALOG_URL, getCategoryUrl, getSubcategoryUrl } from '@/lib/routes';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: 'Nuestros productos',
   description:
     'Catálogo completo de TRIALFERI: kéfir de leche, kéfires frutados, kéfir de agua, kombucha, chucrut, manteca de cerdo y mermeladas artesanales. Sin conservantes.',
-  alternates: { canonical: CATALOG_URL },
-};
+  path: CATALOG_URL,
+});
+
+const MAX_PER_GROUP = 4;
 
 /* Categoría → subcategorías con productos. Las subcategorías vacías no se muestran. */
 const catalog = Object.values(ProductCategory).map((category) => {
   const groups = subcategoryDetails
     .filter((sub) => sub.category === category)
-    .map((sub) => ({ sub, products: getSubcategoryProducts(sub) }))
-    .filter(({ products }) => products.length > 0);
+    .map((sub) => ({ sub, ...getSubcategorySummary(sub) }))
+    .filter(({ count }) => count > 0);
 
   return {
     category,
     details: categoryDetails[category],
     groups,
-    count: groups.reduce((total, { products }) => total + products.length, 0),
+    count: groups.reduce((total, group) => total + group.count, 0),
   };
 });
 
@@ -74,25 +77,38 @@ export default function CatalogPage() {
               className='inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-tinta-media transition-colors hover:text-tinta'
             >
               Ver categoría
-              <ArrowUpRight className='h-4 w-4' />
             </Link>
           </Reveal>
 
-          {groups.map(({ sub, products }) => (
-            <div key={sub.slug} className='flex flex-col gap-5'>
-              <h3 className='font-display text-xl font-semibold tracking-tight text-tinta'>
-                <Link
-                  href={getSubcategoryUrl(sub.category, sub.slug)}
-                  className='group inline-flex items-center gap-1.5'
-                >
-                  {sub.title}
-                  <ArrowUpRight className='h-4 w-4 text-tinta-suave transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
-                </Link>
-              </h3>
+          {groups.map(({ sub, groups: productGroups, count, fromPrice }) => {
+            const href = getSubcategoryUrl(sub.category, sub.slug);
 
-              <ProductGrid products={products} />
-            </div>
-          ))}
+            return (
+              <div key={sub.slug} className='flex flex-col gap-5'>
+                <div className='flex items-baseline justify-between gap-4'>
+                  <div className='flex flex-col gap-0.5'>
+                    <h3 className='font-display text-xl font-semibold tracking-tight text-tinta'>
+                      <Link href={href} className='transition-colors hover:text-verde'>
+                        {sub.title}
+                      </Link>
+                    </h3>
+                    <p className='text-sm text-tinta-media'>Desde S/ {formatPrice(fromPrice)}</p>
+                  </div>
+
+                  {count > MAX_PER_GROUP && (
+                    <Link
+                      href={href}
+                      className='shrink-0 text-sm font-semibold text-tinta underline decoration-tinta/30 underline-offset-4 transition-colors hover:decoration-tinta'
+                    >
+                      Ver los {count}
+                    </Link>
+                  )}
+                </div>
+
+                <ProductGrid groups={productGroups.slice(0, MAX_PER_GROUP)} />
+              </div>
+            );
+          })}
         </section>
       ))}
     </div>

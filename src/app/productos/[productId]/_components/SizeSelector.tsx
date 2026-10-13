@@ -16,7 +16,7 @@ interface Props {
   "Presentaciones disponibles" para que la decisión de tamaño sea inmediata.
 */
 export const SizeSelector = ({ variants, currentSlug }: Props) => {
-  if (!variants || variants.length === 0) return null;
+  if (!variants || variants.length < 2) return null;
 
   return (
     <div>
