@@ -7,6 +7,7 @@ export {
   getProductBySlug,
   getProductUrlById,
   getSizeVariants,
+  getDefaultVariant,
   getRelatedProducts,
   getProductGroups,
 } from './data/collections';
@@ -23,7 +24,7 @@ export { getCategoryPack, getPackProducts } from './data/packs';
 export type { Pack } from './data/packs';
 
 export type { Product } from './types/product.type';
-export type { SubcategoryDetail } from './data/subcategories';
+export type { SubcategoryDetail, SubcategoryComparison } from './data/subcategories';
 export type { Tone, SectionTone } from './lib/productAccent';
 
 export { getProductBaseTitle, getProductImage } from './lib/productDisplay';

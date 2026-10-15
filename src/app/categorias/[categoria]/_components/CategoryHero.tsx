@@ -33,6 +33,8 @@ type Props = {
   imageUrl: string;
   imageAlt: string;
   count: number;
+  /* SKUs (tallas). Si supera a `count`, el contador dice "2 productos · 6 presentaciones". */
+  presentations?: number;
   tone: SectionTone;
   parent?: { title: string; href: string };
   /* Accesos a las subcategorías con su precio "desde". Si faltan, se muestra solo el contador. */
@@ -46,6 +48,7 @@ export const CategoryHero = ({
   imageUrl,
   imageAlt,
   count,
+  presentations,
   tone,
   parent,
   shortcuts,
@@ -114,6 +117,7 @@ export const CategoryHero = ({
         ) : (
           <span className='inline-flex w-fit items-center self-start rounded-full border border-white/15 bg-white/10 px-5 py-2 text-xs font-semibold text-papel/85 md:text-base'>
             {count} {count === 1 ? 'producto' : 'productos'}
+            {presentations !== undefined && presentations > count && ` · ${presentations} presentaciones`}
           </span>
         )}
       </Stagger>

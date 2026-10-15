@@ -7,9 +7,9 @@ import { keepUnitsTogether } from '@/lib/keepUnitsTogether';
 import { categoryDetails } from '../data/categories';
 import { type Product } from '../types/product.type';
 import { accentFor, toneStyles } from '../lib/productAccent';
-import { ToneHalo } from './ToneHalo';
 import { getProductSplash } from '../lib/productSplash';
 import { getProductBaseTitle } from '../lib/productDisplay';
+import { ToneHalo } from './ToneHalo';
 
 type Props = {
   product: Product;
@@ -23,6 +23,10 @@ type Props = {
   hideSize?: boolean;
 };
 
+const IMAGE_SIZES = '(min-width: 768px) 300px, 60vw';
+/* `cq-sm:` responde al ancho de la card, no de la pantalla: < 13rem = versión compacta. */
+const FOOTER_CLASS = 'mt-auto flex items-center border-t border-papel-sombra/70 pt-3';
+
 export const ProductShowcaseCard = ({
   product,
   highlighted = false,
@@ -32,7 +36,6 @@ export const ProductShowcaseCard = ({
 }: Props) => {
   const accent = accentFor(product);
   const tone = toneStyles[accent];
-  const title = hideSize ? getProductBaseTitle(product) : product.title;
   const category = categoryDetails[product.category]?.title ?? 'Producto';
   const url = getProductUrl(product.slug);
   const splashes = getProductSplash(product);
@@ -45,8 +48,30 @@ export const ProductShowcaseCard = ({
     highlighted ? tone.shadowStatic : cn(asLink && 'hover:-translate-x-1 hover:-translate-y-1', tone.shadow),
   );
 
-  /* `cq-sm:` responde al ancho de la card, no de la pantalla: < 13rem = versión compacta. */
-  const footerClass = 'mt-auto flex items-center border-t border-papel-sombra/70 pt-3';
+  const backdrop = (
+    <>
+      <ToneHalo tone={accent} />
+
+      {/* Salpicado del sabor: capas izq/der que enmarcan la botella. Aparecen al
+          hover, o de forma fija cuando la card está destacada (centro del coverflow). */}
+      {splashes.map((layer, i) => (
+        <div
+          key={i}
+          style={{ transitionDelay: layer.delay }}
+          className={cn(
+            'pointer-events-none absolute transition-all duration-500 ease-out',
+            layer.className,
+            highlighted
+              ? 'scale-100 opacity-100'
+              : // Táctil (sin hover): visible siempre. Con hover (desktop): aparece al pasar el mouse.
+                'scale-100 opacity-100 [@media(hover:hover)]:scale-90 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:scale-100 [@media(hover:hover)]:group-hover:opacity-100',
+          )}
+        >
+          <Image src={layer.src} alt='' aria-hidden fill sizes={IMAGE_SIZES} className='object-contain' />
+        </div>
+      ))}
+    </>
+  );
 
   const cta = (
     <span className='text-sm font-semibold text-tinta underline decoration-tinta/30 underline-offset-4 transition-colors duration-200 group-hover:decoration-tinta'>
@@ -54,64 +79,42 @@ export const ProductShowcaseCard = ({
     </span>
   );
 
+  const header = (
+    <>
+      <span className='hidden text-xs font-medium text-tinta-suave cq-sm:block'>{category}</span>
+
+      <h3 className='font-display text-[15px] font-semibold leading-[1.2] tracking-tight text-tinta cq-sm:min-h-[2.6em] cq-sm:text-lg cq-sm:leading-[1.1]'>
+        {keepUnitsTogether(hideSize ? getProductBaseTitle(product) : product.title)}
+      </h3>
+    </>
+  );
+
   const inner = (
     <>
       {/* Panel de imagen con halo de fermento y sello de precio */}
       <div className='relative aspect-square overflow-hidden'>
-        <ToneHalo tone={accent} />
-
-        {/* Salpicado del sabor: capas izq/der que enmarcan la botella. Aparecen al
-            hover, o de forma fija cuando la card está destacada (centro del coverflow). */}
-        {splashes.map((layer, i) => (
-          <div
-            key={i}
-            style={{ transitionDelay: layer.delay }}
-            className={cn(
-              'pointer-events-none absolute transition-all duration-500 ease-out',
-              layer.className,
-              highlighted
-                ? 'scale-100 opacity-100'
-                : // Táctil (sin hover): visible siempre. Con hover (desktop): aparece al pasar el mouse.
-                  'scale-100 opacity-100 [@media(hover:hover)]:scale-90 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:scale-100 [@media(hover:hover)]:group-hover:opacity-100',
-            )}
-          >
-            <Image
-              src={layer.src}
-              alt=''
-              aria-hidden
-              fill
-              sizes='(min-width: 768px) 300px, 60vw'
-              className='object-contain'
-            />
-          </div>
-        ))}
-
+        {backdrop}
         <Image
           src={product.thumbnailImage}
           alt={product.title}
           fill
-          sizes='(min-width: 768px) 300px, 60vw'
+          sizes={IMAGE_SIZES}
           className='object-contain px-4 pb-3 pt-9 transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-[1.04] cq-sm:p-6'
         />
         <span className='absolute left-2 top-2 rounded-[4px] bg-tinta px-2 py-0.5 font-display text-xs font-semibold tracking-tight text-papel cq-sm:left-3 cq-sm:top-3 cq-sm:px-2.5 cq-sm:py-1 cq-sm:text-sm'>
-          {fromPrice !== undefined ? `Desde ${formatPrice(fromPrice)}` : `${formatPrice(product.price)}`}
+          {fromPrice !== undefined ? `Desde ${formatPrice(fromPrice)}` : formatPrice(product.price)}
         </span>
       </div>
 
-      {/* Contenido */}
       <div className='flex flex-grow flex-col gap-2 p-3 cq-sm:p-4'>
-        <span className='hidden text-xs font-medium text-tinta-suave cq-sm:block'>{category}</span>
-
-        <h3 className='font-display text-[15px] font-semibold leading-[1.2] tracking-tight text-tinta cq-sm:min-h-[2.6em] cq-sm:text-lg cq-sm:leading-[1.1]'>
-          {keepUnitsTogether(title)}
-        </h3>
+        {header}
 
         {ctaIsLink ? (
-          <Link href={url} onClick={(e) => e.stopPropagation()} className={footerClass}>
+          <Link href={url} onClick={(e) => e.stopPropagation()} className={FOOTER_CLASS}>
             {cta}
           </Link>
         ) : (
-          <div className={footerClass}>{cta}</div>
+          <div className={FOOTER_CLASS}>{cta}</div>
         )}
       </div>
     </>

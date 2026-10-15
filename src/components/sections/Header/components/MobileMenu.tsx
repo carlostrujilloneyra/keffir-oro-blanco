@@ -171,11 +171,11 @@ export const MobileMenu = ({ open, onClose }: Props) => {
                                 {group.title && <Eyebrow className='mb-1 ml-2'>{group.title}</Eyebrow>}
                                 <ul>
                                   {group.entries.map(({ label: subLabel, href: subHref, description, icon, chips }) => (
-                                    /*
-                                      No es un <a> envolvente: los chips son enlaces
-                                      propios y anidar anclas es HTML inválido.
-                                    */
-                                    <li key={subHref} className='flex items-start gap-3 rounded-[8px] px-2 py-3'>
+                                    /* Enlace estirado, igual que en el SubMenu de escritorio. */
+                                    <li
+                                      key={subHref}
+                                      className='relative flex items-start gap-3 rounded-[8px] px-2 py-3'
+                                    >
                                       <span className='flex h-6 w-6 shrink-0 items-center justify-center text-verde'>
                                         {icon}
                                       </span>
@@ -184,7 +184,7 @@ export const MobileMenu = ({ open, onClose }: Props) => {
                                         <Link
                                           href={subHref}
                                           onClick={onClose}
-                                          className='text-sm font-semibold text-tinta transition-colors hover:text-verde'
+                                          className="text-sm font-semibold text-tinta transition-colors after:absolute after:inset-0 after:rounded-[8px] after:content-[''] hover:text-verde"
                                         >
                                           {subLabel}
                                         </Link>
@@ -203,7 +203,7 @@ export const MobileMenu = ({ open, onClose }: Props) => {
                                                   href={chip.href}
                                                   onClick={onClose}
                                                   /* Mismo velo que en escritorio (ver SubMenu). */
-                                                  className='inline-flex rounded-[4px] bg-tinta/[0.06] px-2.5 py-1.5 text-xs font-medium text-tinta-media transition-colors hover:bg-verde/15 hover:text-verde'
+                                                  className='relative z-10 inline-flex rounded-[4px] bg-tinta/[0.06] px-2.5 py-1.5 text-xs font-medium text-tinta-media transition-colors hover:bg-verde/15 hover:text-verde'
                                                 >
                                                   {chip.label}
                                                 </Link>

@@ -22,6 +22,16 @@ export interface SubcategoryDetail {
 
   /* Si no se define, se toma la imagen del primer producto del grupo. */
   imageUrl?: string;
+
+  /* Tabla "¿A o B?" bajo la grilla. Las claves son `Product.name` de esta subcategoría;
+     la fila de precio "Desde" se calcula de los datos. */
+  comparison?: SubcategoryComparison;
+}
+
+export interface SubcategoryComparison {
+  title: string;
+  columns: Record<string, string>;
+  rows: { label: string; values: Record<string, string> }[];
 }
 
 /*
@@ -44,6 +54,26 @@ export const subcategoryDetails: SubcategoryDetail[] = [
     tone: 'verde',
     productNames: ['kefir-leche-vaca', 'kefir-leche-cabra'],
     imageUrl: '/assets/images/content/products/kefir-de-leche/hero.webp',
+    comparison: {
+      title: '¿Vaca o cabra?',
+      columns: { 'kefir-leche-vaca': 'Vaca', 'kefir-leche-cabra': 'Cabra' },
+      rows: [
+        {
+          label: 'Leche',
+          values: {
+            'kefir-leche-vaca': 'De vaca de establo',
+            'kefir-leche-cabra': 'De cabra de libre pastoreo del Valle de Canta',
+          },
+        },
+        {
+          label: 'Sabor',
+          values: {
+            'kefir-leche-vaca': 'Suave y cremoso',
+            'kefir-leche-cabra': 'Característico y ligeramente ácido',
+          },
+        },
+      ],
+    },
   },
   {
     slug: 'kefir-frutado',

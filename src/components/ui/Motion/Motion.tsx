@@ -87,3 +87,32 @@ export const Stagger = ({ children, className, delay = 0, inView = false }: Stag
     </motion.div>
   );
 };
+
+type StaggerListProps = {
+  children: React.ReactNode;
+  className?: string;
+  itemClassName?: string;
+};
+
+/* Lista en cascada al entrar en viewport: <ul> + un <li> por hijo. Los hijos pueden ser Server Components. */
+export const StaggerList = ({ children, className, itemClassName }: StaggerListProps) => {
+  const { container, item } = useStaggerVariants({ stagger: 0.1, delay: 0.06, y: 28, duration: 0.7 });
+
+  return (
+    <motion.ul
+      variants={container}
+      initial='hidden'
+      whileInView='visible'
+      viewport={{ once: true, margin: '-60px' }}
+      className={className}
+    >
+      {Children.map(children, (child) =>
+        isValidElement(child) ? (
+          <motion.li key={child.key} variants={item} className={itemClassName}>
+            {child}
+          </motion.li>
+        ) : null,
+      )}
+    </motion.ul>
+  );
+};

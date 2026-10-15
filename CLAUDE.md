@@ -53,6 +53,7 @@ The look comes from the physical jar labels. Reuse these pieces instead of hand-
 - **Arrows:** `ArrowUpRight` only on links that leave the site (WhatsApp, social) — not as decoration.
 - **Surfaces:** cards are flat `bg-papel-hueso`, no grey outline, `rounded-card` (12px); large dark blocks use `rounded-panel` (28px) with the dark radial-gradient backgrounds. No icons inside circles.
 - **Product card:** `ProductShowcaseCard` adapts to its own width with the custom container query: the root has `cq`, children use `cq-sm:` (≥ 13rem). Narrow = compact version.
+- **Sizes in listings:** subcategory pages show one card per size (SKU); `/productos` and the category's "Los más pedidos" show one card per `Product.name` with a "Desde" price (`ProductGrid groups`). The size that represents a group — the product page's canonical URL, the sitemap entry and the `AggregateOffer` JSON-LD — is `getDefaultVariant()`: the `'best-seller'` size (the largest if several), else the cheapest. Moving the `'best-seller'` tag changes all of these.
 - **Horizontal scroll rows:** add `scrollbar-none` (custom utility). Prefer wrapping over scrolling when items are few.
 - **Easing:** `ease-suave` token instead of arbitrary `ease-[cubic-bezier(...)]`; in CSS `theme('transitionTimingFunction.suave')`, in motion `EASE_SUAVE`.
 - **Animations:** `Reveal` / `Stagger` / `useStaggerVariants` from `components/ui/Motion` (they handle reduced motion). Don't redefine variants per component.

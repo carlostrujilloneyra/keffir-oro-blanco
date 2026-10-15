@@ -13,6 +13,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { buildBreadcrumbJsonLd } from '@/lib/jsonLd';
 import { buildPageMetadata } from '@/lib/metadata';
 import { CategoryHero } from '../_components/CategoryHero';
+import { SubcategoryComparison } from '../_components/SubcategoryComparison';
 import { getCategoryUrl, getSubcategoryUrl } from '@/lib/routes';
 
 type Params = { categoria: string; subcategoria: string };
@@ -40,7 +41,7 @@ export default function SubcategoriaPage({ params }: { params: Params }) {
   if (!sub) notFound();
 
   const parent = categoryDetails[sub.category];
-  const { products, count } = getSubcategorySummary(sub);
+  const { products, groups, count } = getSubcategorySummary(sub);
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: 'Inicio', path: '/' },
@@ -59,6 +60,7 @@ export default function SubcategoriaPage({ params }: { params: Params }) {
         imageUrl={getSubcategoryImage(sub)}
         imageAlt={sub.title}
         count={count}
+        presentations={products.length}
         tone={sub.tone}
         parent={{ title: parent.title, href: getCategoryUrl(parent.slug) }}
       />
@@ -74,6 +76,8 @@ export default function SubcategoriaPage({ params }: { params: Params }) {
           )}
         </div>
       </section>
+
+      {sub.comparison && <SubcategoryComparison comparison={sub.comparison} groups={groups} />}
 
       <ValuesBento />
     </>

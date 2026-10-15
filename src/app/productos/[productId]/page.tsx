@@ -5,6 +5,7 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import {
   allProducts,
   categoryDetails,
+  getDefaultVariant,
   getProductBySlug,
   getRelatedProducts,
   getSizeVariants,
@@ -16,8 +17,8 @@ import {
 import { ProductImageGallery } from '@/features/products/components/ProductImageGallery/ProductImageGallery';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/Accordion/accordion';
 import { formatPrice } from '@/lib/formatPrice';
-import { buildWhatsAppUrl, CURRENCY, SITE_NAME, SITE_URL } from '@/lib/site';
-import { buildBreadcrumbJsonLd } from '@/lib/jsonLd';
+import { buildWhatsAppUrl } from '@/lib/site';
+import { buildBreadcrumbJsonLd, buildProductJsonLd } from '@/lib/jsonLd';
 import { buildPageMetadata } from '@/lib/metadata';
 import { JsonLd } from '@/components/JsonLd';
 import { Reveal, Stagger } from '@/components/ui/Motion/Motion';
@@ -51,10 +52,13 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     };
   }
 
+  /* Todas las tallas existen y se pre-renderizan, pero la canónica es la talla representativa del grupo. */
+  const canonical = getDefaultVariant(getSizeVariants(product));
+
   return buildPageMetadata({
     title: product.title,
     description: buildProductMetaDescription(product),
-    path: getProductUrl(product.slug),
+    path: getProductUrl(canonical.slug),
     image: product.shareImage ?? product.thumbnailImage,
   });
 }
@@ -85,27 +89,7 @@ export default function ProductPage({ params }: ProductPageProps) {
   /* Ausente = disponible, para no tener que marcar los 25 productos. */
   const isAvailable = product.available !== false;
 
-  // Datos estructurados (schema.org Product) → resultados enriquecidos en Google.
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: product.title,
-    description: product.shortDescription,
-    image: `${SITE_URL}${getProductImage(product)}`,
-    brand: { '@type': 'Brand', name: SITE_NAME },
-    ...(category ? { category: category.title } : {}),
-    offers: {
-      '@type': 'Offer',
-      price: product.price,
-      priceCurrency: CURRENCY,
-      /*
-        Antes estaba fijo en InStock: la página le afirmaba a Google que todo
-        estaba siempre disponible. Ahora sigue el dato real del catálogo.
-      */
-      availability: isAvailable ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-      url: `${SITE_URL}${getProductUrl(product.slug)}`,
-    },
-  };
+  const jsonLd = buildProductJsonLd(product, sizeVariants, category?.title);
 
   /* Refleja las migas visibles de abajo, para que Google muestre la ruta. */
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([

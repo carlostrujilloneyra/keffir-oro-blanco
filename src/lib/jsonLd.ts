@@ -1,4 +1,6 @@
-import { CONTACT_EMAIL, LOGO_PATH, SITE_NAME, SITE_URL, WHATSAPP_DISPLAY } from '@/lib/site';
+import { CONTACT_EMAIL, CURRENCY, LOGO_PATH, SITE_NAME, SITE_URL, WHATSAPP_DISPLAY } from '@/lib/site';
+import { getProductUrl } from '@/lib/routes';
+import { getDefaultVariant, getProductBaseTitle, getProductImage, type Product } from '@/features/products';
 
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
@@ -67,3 +69,48 @@ export const buildBreadcrumbJsonLd = (items: BreadcrumbItem[]) => ({
     item: `${SITE_URL}${item.path}`,
   })),
 });
+
+const availability = (available: boolean) =>
+  available ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock';
+
+/* `available` ausente = disponible. Se publica tal cual, para no afirmar stock que no hay. */
+const isAvailable = (product: Product) => product.available !== false;
+
+/*
+  schema.org Product. La ficha canónica de un grupo con varias tallas publica un
+  AggregateOffer con el rango de precios de todas; el resto, el Offer de su talla.
+*/
+export const buildProductJsonLd = (product: Product, variants: Product[], categoryTitle?: string) => {
+  const url = `${SITE_URL}${getProductUrl(product.slug)}`;
+  const isCanonicalOfGroup = variants.length > 1 && getDefaultVariant(variants).slug === product.slug;
+  const prices = variants.map((p) => p.price);
+
+  const offers = isCanonicalOfGroup
+    ? {
+        '@type': 'AggregateOffer',
+        lowPrice: Math.min(...prices),
+        highPrice: Math.max(...prices),
+        offerCount: variants.length,
+        priceCurrency: CURRENCY,
+        availability: availability(variants.some(isAvailable)),
+        url,
+      }
+    : {
+        '@type': 'Offer',
+        price: product.price,
+        priceCurrency: CURRENCY,
+        availability: availability(isAvailable(product)),
+        url,
+      };
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: isCanonicalOfGroup ? getProductBaseTitle(product) : product.title,
+    description: product.shortDescription,
+    image: `${SITE_URL}${getProductImage(product)}`,
+    brand: { '@type': 'Brand', name: SITE_NAME },
+    ...(categoryTitle ? { category: categoryTitle } : {}),
+    offers,
+  };
+};

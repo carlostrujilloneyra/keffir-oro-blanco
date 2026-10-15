@@ -22,6 +22,18 @@ export const getProductUrlById = (id: string) => getProductUrl(getProductById(id
 export const getSizeVariants = (product: Product): Product[] =>
   allProducts.filter((p) => p.name === product.name).sort((a, b) => a.price - b.price);
 
+/*
+  Talla que representa al grupo: la marcada 'best-seller'. Si varias lo están, la
+  de mayor precio (la presentación más grande); si ninguna, la primera de
+  `variants` (getSizeVariants las ordena de menor a mayor precio). Define el chip
+  elegido por defecto en las tarjetas y la URL canónica de la ficha.
+*/
+export const getDefaultVariant = (variants: Product[]): Product => {
+  const bestSellers = variants.filter((p) => p.tags?.includes('best-seller'));
+  if (bestSellers.length === 0) return variants[0];
+  return bestSellers.reduce((top, p) => (p.price > top.price ? p : top));
+};
+
 export interface ProductGroup {
   product: Product;
   fromPrice: number;

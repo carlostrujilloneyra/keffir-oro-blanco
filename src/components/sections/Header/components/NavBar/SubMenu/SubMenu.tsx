@@ -8,17 +8,18 @@ type ClickHandler = (e: React.MouseEvent<HTMLElement>) => void;
 
 const EntryItem = ({ label, href, description, icon, chips, onClick }: SubMenuEntry & { onClick: ClickHandler }) => (
   /*
-    La tarjeta no es un <a>: los chips son enlaces propios y anidar
-    anclas es HTML inválido. El hover se pinta sobre el <li>.
+    Enlace estirado: el ::after del título cubre toda la fila, así que clicar en
+    cualquier parte lleva a la subcategoría. Los chips quedan encima (z-10) con su
+    propio enlace; no se anidan anclas.
   */
-  <li className='grid grid-cols-[auto_1fr] gap-3 rounded-[8px] p-3 hover:bg-papel-hueso'>
+  <li className='group/entry relative grid grid-cols-[auto_1fr] gap-3 rounded-[8px] p-3 hover:bg-papel-hueso'>
     <span className='flex h-6 w-6 items-center justify-center text-verde'>{icon}</span>
 
     <div className='min-w-0'>
       <Link
         href={href}
         onClick={onClick}
-        className='text-sm font-semibold text-tinta transition-colors hover:text-verde focus-visible:underline focus-visible:outline-none'
+        className="text-sm font-semibold text-tinta transition-colors after:absolute after:inset-0 after:rounded-[8px] after:content-[''] focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-verde group-hover/entry:text-verde"
       >
         {label}
       </Link>
@@ -36,7 +37,7 @@ const EntryItem = ({ label, href, description, icon, chips, onClick }: SubMenuEn
                 href={chip.href}
                 onClick={onClick}
                 /* Velo de tinta: se apoya igual sobre papel (reposo) y papel-hueso (hover). */
-                className='inline-flex rounded-[4px] bg-tinta/[0.06] px-2.5 py-1 text-xs font-medium text-tinta-media transition-colors hover:bg-verde/15 hover:text-verde focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde'
+                className='relative z-10 inline-flex rounded-[4px] bg-tinta/[0.06] px-2.5 py-1 text-xs font-medium text-tinta-media transition-colors hover:bg-verde/15 hover:text-verde focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde'
               >
                 {chip.label}
               </Link>

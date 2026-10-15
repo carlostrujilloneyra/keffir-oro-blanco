@@ -1,5 +1,12 @@
 import type { MetadataRoute } from 'next';
-import { allProducts, categoryDetails, subcategoryDetails } from '@/features/products';
+import {
+  allProducts,
+  categoryDetails,
+  getDefaultVariant,
+  getProductGroups,
+  getSizeVariants,
+  subcategoryDetails,
+} from '@/features/products';
 import { CATALOG_URL, getCategoryUrl, getProductUrl, getSubcategoryUrl } from '@/lib/routes';
 import { SITE_URL } from '@/lib/site';
 
@@ -25,8 +32,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
-  const productRoutes: MetadataRoute.Sitemap = allProducts.map((product) => ({
-    url: `${SITE_URL}${getProductUrl(product.slug)}`,
+  /* Una URL por producto: la talla canónica. Las demás tallas existen, pero apuntan a esta con canonical. */
+  const productRoutes: MetadataRoute.Sitemap = getProductGroups(allProducts).map(({ product }) => ({
+    url: `${SITE_URL}${getProductUrl(getDefaultVariant(getSizeVariants(product)).slug)}`,
     changeFrequency: 'weekly',
     priority: 0.6,
   }));
