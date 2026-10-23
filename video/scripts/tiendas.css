@@ -1,0 +1,499 @@
+
+      /* ── Variante tienda (solo se inserta con --store) ── */
+
+      /* Sticker fijo de la degustación: centrado en y ≈ 245 (bajo la barra de progreso de los estados). */
+      .sticker-clip {
+        z-index: 8;
+      }
+      .sticker-pos {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 190px;
+        display: flex;
+        justify-content: center;
+      }
+      .sticker {
+        display: inline-block;
+        padding: 11px 28px 12px;
+        border-radius: 999px;
+        background: #fbf4ec;
+        color: #1e3a2f;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 1.1;
+        white-space: nowrap;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+      }
+      /* Con el sticker en pantalla, los títulos bajan para no chocar con él. */
+      .scene.bajo-sticker {
+        padding-top: 300px;
+      }
+      .bajo-sticker .chips {
+        margin-top: 32px;
+      }
+      .bajo-sticker.duo .brand-word {
+        font-size: 150px;
+      }
+
+      /* Gancho */
+      .gancho {
+        align-items: stretch;
+      }
+      .g-light {
+        position: absolute;
+        left: 40px;
+        top: 160px;
+        width: 900px;
+        height: 1000px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(159, 216, 180, 0.3), rgba(159, 216, 180, 0));
+      }
+      .g-flash {
+        z-index: 1;
+        background: radial-gradient(circle at 50% 38%, #ffffff 0%, rgba(255, 252, 235, 0.85) 35%, rgba(255, 252, 235, 0) 75%);
+      }
+      .g-title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Anton', sans-serif;
+        font-weight: 400;
+        line-height: 0.9;
+        color: var(--papel);
+        text-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      }
+      .g-l1 {
+        font-size: 190px;
+      }
+      .g-l2 {
+        font-size: 230px;
+      }
+      .g-l3 {
+        font-size: 400px;
+        line-height: 0.85;
+        color: var(--miel);
+      }
+      .g-pill-slot {
+        position: absolute;
+        left: 60px;
+        top: 990px;
+        width: 860px;
+        text-align: center;
+      }
+      .g-pill {
+        display: inline-block;
+        padding: 16px 44px 18px;
+        border-radius: 999px;
+        background: var(--miel);
+        color: var(--tinta);
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        font-size: 58px;
+        line-height: 1.2;
+        white-space: nowrap;
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+      }
+      .g-store {
+        position: absolute;
+        left: 60px;
+        top: 1150px;
+        width: 860px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+      }
+      .g-circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+      }
+      .g-circle img {
+        display: block;
+        width: 92px;
+        height: auto;
+      }
+      .g-en {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 44px;
+        color: var(--papel);
+        white-space: nowrap;
+      }
+      .g-row,
+      .deg-row,
+      .c-shelf {
+        position: absolute;
+        height: 0;
+      }
+
+      /* Artesanal: sellos como stickers a los lados del trío */
+      .art-sin {
+        font-size: 52px;
+      }
+      .art-seal {
+        position: absolute;
+        z-index: 4;
+        top: 24%;
+        width: 190px;
+        height: 190px;
+      }
+      .art-seal-l {
+        left: 30px;
+      }
+      .art-seal-r {
+        right: 162px;
+      }
+
+      /* Degustación: título, calendario que cae, sello encima y fila de botellas */
+      .deg-copy {
+        position: relative;
+      }
+      .deg-title {
+        font-family: 'Anton', sans-serif;
+        font-weight: 400;
+        font-size: 170px;
+        line-height: 0.92;
+        color: var(--tinta);
+      }
+      .deg-title .dl,
+      .deg-title .dl-t {
+        display: block;
+      }
+      /* «¡VEN A» y la pill GRATIS comparten la primera línea, centradas como grupo */
+      .deg-title .dl-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+      }
+      /* el giro va en un contenedor: GSAP reescribe el transform de la pill al animarla */
+      .deg-gratis-tilt {
+        display: flex;
+        transform: translateY(-6px) rotate(-6deg);
+      }
+      .deg-gratis {
+        display: inline-block;
+        padding: 8px 30px 6px;
+        border-radius: 14px;
+        background: var(--miel);
+        color: var(--tinta);
+        font-family: 'Anton', sans-serif;
+        font-size: 58px;
+        line-height: 1.1;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+      }
+      .cal-wrap {
+        position: absolute;
+        left: 290px;
+        top: 610px;
+        width: 400px;
+        height: 430px;
+        scale: 0.9;
+        transform-origin: 50% 0;
+      }
+      .cal {
+        position: absolute;
+        inset: 0;
+        border-radius: 28px;
+        background: #fff;
+        text-align: center;
+        box-shadow: 0 26px 50px rgba(60, 40, 10, 0.28);
+      }
+      .cal-head {
+        height: 112px;
+        border-radius: 28px 28px 0 0;
+        background: #1e5a3a;
+        color: var(--papel);
+        font-family: 'Anton', sans-serif;
+        font-size: 76px;
+        line-height: 112px;
+        letter-spacing: 0.06em;
+      }
+      .cal-num {
+        font-family: 'Anton', sans-serif;
+        font-size: 230px;
+        line-height: 248px;
+        color: var(--tinta);
+      }
+      .cal-mes {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        font-size: 46px;
+        line-height: 1;
+        letter-spacing: 0.12em;
+        color: #1e5a3a;
+      }
+      .cal-ring {
+        position: absolute;
+        top: -20px;
+        width: 22px;
+        height: 54px;
+        border-radius: 11px;
+        background: #2b2b2b;
+        box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.25);
+      }
+      .cal-ring.l {
+        left: 90px;
+      }
+      .cal-ring.r {
+        right: 90px;
+      }
+      .deg-stamp {
+        position: absolute;
+        z-index: 2;
+        left: 50%;
+        top: 412px;
+        width: 420px;
+        margin-left: -210px;
+        padding: 4px 0 2px;
+        border: 7px solid #b0186b;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.82);
+        color: #b0186b;
+        font-family: 'Anton', sans-serif;
+        font-size: 66px;
+        line-height: 1.1;
+        letter-spacing: 0.04em;
+        text-align: center;
+        opacity: 0;
+      }
+      .deg-info {
+        position: absolute;
+        left: 60px;
+        top: 1170px;
+        width: 860px;
+        text-align: center;
+      }
+      .deg-hora {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 50px;
+        line-height: 1.2;
+        color: var(--tinta);
+        white-space: nowrap;
+      }
+      .deg-nota {
+        margin-top: 4px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        font-size: 38px;
+        color: rgba(22, 32, 26, 0.8);
+      }
+
+      /* Cierre: póster editorial (valores de assets/stores/referencia-cierre-verde-raiz.html) */
+      .poster {
+        --menta: #8fd19e;
+        --crema: #fbf4ec;
+        color: var(--crema);
+      }
+      .cv-grain {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 40;
+        opacity: 0.12;
+        mix-blend-mode: soft-light;
+      }
+      .cv-roots {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0.14;
+      }
+      .cv-roots path {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+      }
+      .cv-top {
+        position: absolute;
+        top: 196px;
+        left: 0;
+        right: 0;
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+      }
+      .cv-top span {
+        font-family: 'Anton', sans-serif;
+        font-size: 30px;
+        letter-spacing: 8px;
+        margin-right: -8px; /* el espaciado también queda tras la última letra: así los dos gaps miden 18 px */
+        color: rgba(251, 244, 236, 0.85);
+      }
+      .cv-top i {
+        width: 70px;
+        height: 2px;
+        background: rgba(251, 244, 236, 0.35);
+      }
+      .cv-kick {
+        position: absolute;
+        top: 276px;
+        left: 0;
+        right: 0;
+        z-index: 5;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        letter-spacing: 10px;
+        color: var(--menta);
+      }
+      /* planta en dos piezas del mismo ancho: hojas arriba, raíces debajo (alto total 232 px) */
+      .cv-plant {
+        position: absolute;
+        top: 322px;
+        left: 50%;
+        z-index: 5;
+        width: 202px;
+        margin-left: -101px;
+        filter: drop-shadow(0 0 40px rgba(143, 209, 158, 0.35));
+      }
+      .cv-plant img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      #cv-raices {
+        --x: -12%;
+        -webkit-mask-image: linear-gradient(to bottom, #000 var(--x), rgba(0, 0, 0, 0) calc(var(--x) + 12%));
+        mask-image: linear-gradient(to bottom, #000 var(--x), rgba(0, 0, 0, 0) calc(var(--x) + 12%));
+      }
+      .cv-word {
+        position: absolute;
+        top: 574px;
+        left: 270px;
+        z-index: 5;
+        width: 540px;
+      }
+      .cv-info {
+        position: absolute;
+        left: 84px;
+        top: 830px;
+        z-index: 6;
+        width: 540px;
+        font-family: 'Poppins', sans-serif;
+      }
+      .cv-lab {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        font-size: 20px;
+        letter-spacing: 4px;
+        color: var(--menta);
+      }
+      .cv-lab b {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: var(--menta);
+        color: var(--tinta);
+        font-size: 18px;
+      }
+      .cv-lab .cv-wa svg {
+        width: 20px;
+        height: 20px;
+      }
+      .cv-big {
+        margin-top: 8px;
+        font-family: 'Anton', sans-serif;
+        font-size: 62px;
+        line-height: 1.05;
+        letter-spacing: 0.5px;
+      }
+      .cv-med {
+        margin-top: 2px;
+        font-weight: 600;
+        font-size: 30px;
+      }
+      .cv-sm {
+        margin-top: 2px;
+        font-size: 24px;
+        opacity: 0.7;
+      }
+      .cv-sep {
+        height: 2px;
+        margin: 20px 0;
+        background: linear-gradient(90deg, rgba(143, 209, 158, 0.6), transparent);
+      }
+      .cv-floor {
+        position: absolute;
+        left: 110px;
+        top: 1760px;
+        z-index: 2;
+        width: 860px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(0, 0, 0, 0.55), transparent);
+      }
+      /* left = centro de cada producto; el desplazamiento va en el contenedor y la animación en la imagen */
+      .cv-p {
+        position: absolute;
+        transform: translateX(-50%);
+      }
+      .cv-p img {
+        display: block;
+        filter: drop-shadow(0 26px 24px rgba(0, 0, 0, 0.5));
+      }
+      .cv-seal {
+        position: absolute;
+        left: 650px;
+        top: 860px;
+        z-index: 8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 270px;
+        height: 270px;
+        border-radius: 50%;
+        background: var(--miel);
+        color: var(--tinta);
+        font-family: 'Poppins', sans-serif;
+        transform: rotate(-12deg);
+        box-shadow: 0 22px 40px rgba(0, 0, 0, 0.45);
+      }
+      .cv-seal::before {
+        content: '';
+        position: absolute;
+        inset: 12px;
+        border-radius: 50%;
+        border: 3px dashed rgba(22, 32, 26, 0.55);
+      }
+      .cv-seal-a {
+        font-weight: 800;
+        font-size: 19px;
+        letter-spacing: 3px;
+      }
+      .cv-seal-g {
+        font-family: 'Anton', sans-serif;
+        font-size: 28px;
+        line-height: 1;
+        letter-spacing: 1px;
+      }
+      .cv-seal-n {
+        font-family: 'Anton', sans-serif;
+        font-size: 72px;
+        line-height: 1;
+      }
+      .cv-seal-h {
+        margin-top: 6px;
+        font-weight: 600;
+        font-size: 17px;
+      }

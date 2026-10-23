@@ -1,0 +1,79 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Anton;src:url(node_modules/@fontsource/anton/files/anton-latin-400-normal.woff2)}
+@font-face{font-family:Poppins;font-weight:400;src:url(node_modules/@fontsource/poppins/files/poppins-latin-400-normal.woff2)}
+@font-face{font-family:Poppins;font-weight:600;src:url(node_modules/@fontsource/poppins/files/poppins-latin-600-normal.woff2)}
+@font-face{font-family:Poppins;font-weight:800;src:url(node_modules/@fontsource/poppins/files/poppins-latin-800-normal.woff2)}
+:root{--bg:#14231B;--bg2:#1E3528;--menta:#8FD19E;--crema:#FBF4EC;--miel:#F2B705;--tinta:#16201A}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden}
+body{position:relative;font-family:Poppins;color:var(--crema);
+ background:
+  radial-gradient(55% 28% at 50% 22%,rgba(143,209,158,.28),transparent 70%),
+  radial-gradient(60% 30% at 78% 62%,rgba(242,183,5,.16),transparent 70%),
+  linear-gradient(180deg,#183026 0%,var(--bg) 55%,#0f1a14 100%)}
+.grain{position:absolute;inset:0;opacity:.12;mix-blend-mode:soft-light;z-index:40;pointer-events:none}
+.roots{position:absolute;inset:0;z-index:1}
+.top{position:absolute;top:196px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:14px;z-index:5}
+.top img{width:58px;height:58px;border-radius:50%;background:var(--crema);padding:3px}
+.top span{font-family:Anton;font-size:30px;letter-spacing:3px}
+.top i{width:60px;height:2px;background:rgba(251,244,236,.35)}
+.kick{position:absolute;top:276px;left:0;right:0;text-align:center;font-weight:600;font-size:28px;letter-spacing:10px;color:var(--menta);z-index:5}
+.plant{position:absolute;top:322px;left:50%;transform:translateX(-50%);height:232px;z-index:5;filter:drop-shadow(0 0 40px rgba(143,209,158,.35))}
+.word{position:absolute;top:574px;left:50%;transform:translateX(-50%);width:540px;z-index:5}
+/* info */
+.info{position:absolute;left:84px;top:830px;width:540px;z-index:6}
+.lab{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px;letter-spacing:4px;color:var(--menta)}
+.lab b{width:34px;height:34px;border-radius:50%;background:var(--menta);color:var(--tinta);display:flex;align-items:center;justify-content:center;font-size:18px}
+.big{font-family:Anton;font-size:62px;line-height:1.05;margin-top:8px;letter-spacing:.5px}
+.med{font-weight:600;font-size:30px;margin-top:2px}
+.sm{font-size:24px;opacity:.7;margin-top:2px}
+.sep{height:2px;margin:20px 0;background:linear-gradient(90deg,rgba(143,209,158,.6),transparent)}
+/* bottles */
+.floor{position:absolute;left:110px;top:1760px;width:860px;height:120px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);z-index:2}
+.p{position:absolute;filter:drop-shadow(0 26px 24px rgba(0,0,0,.5));transform:translateX(-50%)}
+.b-nat{left:580px;top:1262px;height:560px;z-index:4}
+.b-ara{left:385px;top:1372px;height:430px;z-index:3}
+.b-fre{left:765px;top:1372px;height:430px;z-index:3}
+.b-fru{left:240px;top:1440px;height:410px;z-index:5}
+.cot-ajo{left:905px;top:1600px;width:230px;z-index:6}
+.cot-oli{left:760px;top:1660px;width:260px;z-index:7}
+/* seal */
+.seal{position:absolute;left:650px;top:860px;width:270px;height:270px;border-radius:50%;background:var(--miel);color:var(--tinta);z-index:8;transform:rotate(-12deg);
+ display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 22px 40px rgba(0,0,0,.45)}
+.seal::before{content:'';position:absolute;inset:12px;border-radius:50%;border:3px dashed rgba(22,32,26,.55)}
+.seal .a{font-weight:800;font-size:19px;letter-spacing:3px}
+.seal .n{font-family:Anton;font-size:72px;line-height:1}
+.seal .g{font-family:Anton;font-size:28px;line-height:1;letter-spacing:1px}
+.seal .h{font-weight:600;font-size:17px;margin-top:6px}
+</style></head><body>
+<svg class="grain" width="1080" height="1920"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+<svg class="roots" width="1080" height="1920" fill="none" stroke="#8FD19E" stroke-linecap="round" opacity=".14">
+ <path d="M540 545 C 470 620, 300 640, 170 720 S 70 840, 64 900" stroke-width="4"/>
+ <path d="M64 900 C 56 1000, 60 1100, 66 1160" stroke-width="3"/>
+ <path d="M540 545 C 640 615, 820 640, 930 740 S 1000 860, 990 900" stroke-width="4"/>
+ <path d="M170 720 C 130 700, 100 690, 70 700" stroke-width="2.5"/>
+ <path d="M930 740 C 960 720, 990 715, 1020 720" stroke-width="2.5"/>
+</svg>
+<div class="top"><i></i><img src="trialferi2.png"><span>TRIALFERI</span><i></i></div>
+<div class="kick">ESTAMOS EN</div>
+<img class="plant" src="planta-claro.png">
+<img class="word" src="texto-crema.png">
+<div class="info">
+ <div class="lab"><b>📍</b>DÓNDE</div>
+ <div class="big">C.C. UNICACHI</div>
+ <div class="med">Tienda 77 · Comas</div>
+ <div class="sm">Ref.: Mall de Comas</div>
+ <div class="sep"></div>
+ <div class="lab"><b>✆</b>PEDIDOS</div>
+ <div class="big">942 469 453</div>
+ <div class="med">WhatsApp · @bioverderaiz</div>
+</div>
+<div class="floor"></div>
+<img class="p b-ara" src="arandanos-recta.png">
+<img class="p b-fre" src="fresa-recta.png">
+<img class="p b-nat" src="natural.png">
+<img class="p b-fru" src="frutos.png">
+<img class="p cot-ajo" src="cottage-cabra-ajo.png">
+<img class="p cot-oli" src="cottage-cabra-olivo.png">
+<div class="seal"><div class="a">DEGUSTACIÓN</div><div class="g">GRATIS</div><div class="n">DOM 25</div><div class="h">8:30 a. m. – 1:00 p. m.</div></div>
+</body></html>

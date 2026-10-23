@@ -1,0 +1,998 @@
+[
+  {
+    "text": "Este",
+    "start": 0.08,
+    "end": 0.38,
+    "id": "w0"
+  },
+  {
+    "text": "domingo",
+    "start": 0.38,
+    "end": 1.04,
+    "id": "w1"
+  },
+  {
+    "text": "25,",
+    "start": 1.04,
+    "end": 1.75,
+    "id": "w2"
+  },
+  {
+    "text": "degustación",
+    "start": 1.75,
+    "end": 2.37,
+    "id": "w3"
+  },
+  {
+    "text": "gratuita",
+    "start": 2.37,
+    "end": 2.84,
+    "id": "w4"
+  },
+  {
+    "text": "de",
+    "start": 2.84,
+    "end": 2.96,
+    "id": "w5"
+  },
+  {
+    "text": "kefir",
+    "start": 3.07,
+    "end": 3.35,
+    "id": "w6"
+  },
+  {
+    "text": "natural",
+    "start": 3.36,
+    "end": 3.8,
+    "id": "w7"
+  },
+  {
+    "text": "y",
+    "start": 3.8,
+    "end": 3.85,
+    "id": "w8"
+  },
+  {
+    "text": "frutados",
+    "start": 3.93,
+    "end": 4.44,
+    "id": "w9"
+  },
+  {
+    "text": "en",
+    "start": 4.44,
+    "end": 4.56,
+    "id": "w10"
+  },
+  {
+    "text": "la",
+    "start": 4.56,
+    "end": 4.68,
+    "id": "w11"
+  },
+  {
+    "text": "biotienda",
+    "start": 4.68,
+    "end": 5.28,
+    "id": "w12"
+  },
+  {
+    "text": "Verde-Raíz.¿Ya",
+    "start": 5.4,
+    "end": 6.72,
+    "id": "w13"
+  },
+  {
+    "text": "probaste",
+    "start": 6.72,
+    "end": 7.2,
+    "id": "w14"
+  },
+  {
+    "text": "el",
+    "start": 7.2,
+    "end": 7.32,
+    "id": "w15"
+  },
+  {
+    "text": "kefir",
+    "start": 7.32,
+    "end": 7.6,
+    "id": "w16"
+  },
+  {
+    "text": "de",
+    "start": 7.72,
+    "end": 7.74,
+    "id": "w17"
+  },
+  {
+    "text": "frutos",
+    "start": 7.74,
+    "end": 8.1,
+    "id": "w18"
+  },
+  {
+    "text": "del",
+    "start": 8.1,
+    "end": 8.28,
+    "id": "w19"
+  },
+  {
+    "text": "bosque?",
+    "start": 8.28,
+    "end": 8.86,
+    "id": "w20"
+  },
+  {
+    "text": "Cuatro",
+    "start": 8.94,
+    "end": 9.35,
+    "id": "w21"
+  },
+  {
+    "text": "frutos",
+    "start": 9.35,
+    "end": 9.78,
+    "id": "w22"
+  },
+  {
+    "text": "en",
+    "start": 9.85,
+    "end": 9.92,
+    "id": "w23"
+  },
+  {
+    "text": "una",
+    "start": 10.04,
+    "end": 10.23,
+    "id": "w24"
+  },
+  {
+    "text": "sola",
+    "start": 10.32,
+    "end": 10.57,
+    "id": "w25"
+  },
+  {
+    "text": "botella,",
+    "start": 10.57,
+    "end": 11.24,
+    "id": "w26"
+  },
+  {
+    "text": "fresa,",
+    "start": 11.24,
+    "end": 11.82,
+    "id": "w27"
+  },
+  {
+    "text": "frambuesa,",
+    "start": 11.93,
+    "end": 12.71,
+    "id": "w28"
+  },
+  {
+    "text": "arándano",
+    "start": 12.79,
+    "end": 13.42,
+    "id": "w29"
+  },
+  {
+    "text": "y",
+    "start": 13.42,
+    "end": 13.5,
+    "id": "w30"
+  },
+  {
+    "text": "sarsamura.",
+    "start": 13.5,
+    "end": 14.34,
+    "id": "w31"
+  },
+  {
+    "text": "Yel",
+    "start": 14.42,
+    "end": 14.52,
+    "id": "w32"
+  },
+  {
+    "text": "clásico,",
+    "start": 14.64,
+    "end": 15.38,
+    "id": "w33"
+  },
+  {
+    "text": "kefir",
+    "start": 15.38,
+    "end": 15.77,
+    "id": "w34"
+  },
+  {
+    "text": "de",
+    "start": 15.78,
+    "end": 15.93,
+    "id": "w35"
+  },
+  {
+    "text": "leche",
+    "start": 16.02,
+    "end": 16.28,
+    "id": "w36"
+  },
+  {
+    "text": "de",
+    "start": 16.38,
+    "end": 16.46,
+    "id": "w37"
+  },
+  {
+    "text": "vaca",
+    "start": 16.57,
+    "end": 16.82,
+    "id": "w38"
+  },
+  {
+    "text": "o",
+    "start": 16.82,
+    "end": 16.88,
+    "id": "w39"
+  },
+  {
+    "text": "de",
+    "start": 16.96,
+    "end": 17.06,
+    "id": "w40"
+  },
+  {
+    "text": "cabra,",
+    "start": 17.06,
+    "end": 17.53,
+    "id": "w41"
+  },
+  {
+    "text": "pasteurizado",
+    "start": 17.6,
+    "end": 18.19,
+    "id": "w42"
+  },
+  {
+    "text": "en",
+    "start": 18.27,
+    "end": 18.32,
+    "id": "w43"
+  },
+  {
+    "text": "ollas",
+    "start": 18.32,
+    "end": 18.58,
+    "id": "w44"
+  },
+  {
+    "text": "de",
+    "start": 18.58,
+    "end": 18.68,
+    "id": "w45"
+  },
+  {
+    "text": "acero",
+    "start": 18.68,
+    "end": 18.94,
+    "id": "w46"
+  },
+  {
+    "text": "quirúrgico",
+    "start": 18.94,
+    "end": 19.54,
+    "id": "w47"
+  },
+  {
+    "text": "y",
+    "start": 19.54,
+    "end": 19.62,
+    "id": "w48"
+  },
+  {
+    "text": "sin",
+    "start": 19.62,
+    "end": 19.72,
+    "id": "w49"
+  },
+  {
+    "text": "azúcar",
+    "start": 19.84,
+    "end": 20.3,
+    "id": "w50"
+  },
+  {
+    "text": "añadida.",
+    "start": 20.3,
+    "end": 21.12,
+    "id": "w51"
+  },
+  {
+    "text": "100%",
+    "start": 21.2,
+    "end": 21.9,
+    "id": "w52"
+  },
+  {
+    "text": "kefir",
+    "start": 21.9,
+    "end": 22.18,
+    "id": "w53"
+  },
+  {
+    "text": "natural,",
+    "start": 22.3,
+    "end": 22.98,
+    "id": "w54"
+  },
+  {
+    "text": "no",
+    "start": 22.98,
+    "end": 23.06,
+    "id": "w55"
+  },
+  {
+    "text": "es",
+    "start": 23.16,
+    "end": 23.24,
+    "id": "w56"
+  },
+  {
+    "text": "yogurte",
+    "start": 23.35,
+    "end": 23.81,
+    "id": "w57"
+  },
+  {
+    "text": "estilo",
+    "start": 23.81,
+    "end": 24.28,
+    "id": "w58"
+  },
+  {
+    "text": "kefir.¿Es",
+    "start": 24.28,
+    "end": 25.18,
+    "id": "w59"
+  },
+  {
+    "text": "tu",
+    "start": 25.18,
+    "end": 25.3,
+    "id": "w60"
+  },
+  {
+    "text": "primera",
+    "start": 25.3,
+    "end": 25.75,
+    "id": "w61"
+  },
+  {
+    "text": "vez?",
+    "start": 25.75,
+    "end": 26.06,
+    "id": "w62"
+  },
+  {
+    "text": "Empieza",
+    "start": 26.24,
+    "end": 26.68,
+    "id": "w63"
+  },
+  {
+    "text": "con",
+    "start": 26.68,
+    "end": 26.9,
+    "id": "w64"
+  },
+  {
+    "text": "un",
+    "start": 26.9,
+    "end": 27.05,
+    "id": "w65"
+  },
+  {
+    "text": "shot",
+    "start": 27.05,
+    "end": 27.35,
+    "id": "w66"
+  },
+  {
+    "text": "de",
+    "start": 27.35,
+    "end": 27.5,
+    "id": "w67"
+  },
+  {
+    "text": "30",
+    "start": 27.5,
+    "end": 27.95,
+    "id": "w68"
+  },
+  {
+    "text": "ml",
+    "start": 27.95,
+    "end": 28.1,
+    "id": "w69"
+  },
+  {
+    "text": "en",
+    "start": 28.1,
+    "end": 28.25,
+    "id": "w70"
+  },
+  {
+    "text": "ayunas",
+    "start": 28.25,
+    "end": 28.69,
+    "id": "w71"
+  },
+  {
+    "text": "y",
+    "start": 28.69,
+    "end": 28.78,
+    "id": "w72"
+  },
+  {
+    "text": "ve",
+    "start": 28.78,
+    "end": 28.88,
+    "id": "w73"
+  },
+  {
+    "text": "aumentando",
+    "start": 28.93,
+    "end": 29.67,
+    "id": "w74"
+  },
+  {
+    "text": "poco",
+    "start": 29.67,
+    "end": 29.97,
+    "id": "w75"
+  },
+  {
+    "text": "a",
+    "start": 29.97,
+    "end": 30.01,
+    "id": "w76"
+  },
+  {
+    "text": "poco.¿Lo",
+    "start": 30.09,
+    "end": 30.76,
+    "id": "w77"
+  },
+  {
+    "text": "prefieres",
+    "start": 30.76,
+    "end": 31.26,
+    "id": "w78"
+  },
+  {
+    "text": "con",
+    "start": 31.26,
+    "end": 31.43,
+    "id": "w79"
+  },
+  {
+    "text": "fruta?",
+    "start": 31.43,
+    "end": 31.92,
+    "id": "w80"
+  },
+  {
+    "text": "Tenemos",
+    "start": 32,
+    "end": 32.42,
+    "id": "w81"
+  },
+  {
+    "text": "de",
+    "start": 32.42,
+    "end": 32.56,
+    "id": "w82"
+  },
+  {
+    "text": "fresa",
+    "start": 32.56,
+    "end": 32.85,
+    "id": "w83"
+  },
+  {
+    "text": "con",
+    "start": 32.91,
+    "end": 33.12,
+    "id": "w84"
+  },
+  {
+    "text": "pulpa",
+    "start": 33.12,
+    "end": 33.47,
+    "id": "w85"
+  },
+  {
+    "text": "natural,",
+    "start": 33.47,
+    "end": 34.04,
+    "id": "w86"
+  },
+  {
+    "text": "de",
+    "start": 34.15,
+    "end": 34.25,
+    "id": "w87"
+  },
+  {
+    "text": "arándanos",
+    "start": 34.25,
+    "end": 34.88,
+    "id": "w88"
+  },
+  {
+    "text": "también",
+    "start": 34.99,
+    "end": 35.38,
+    "id": "w89"
+  },
+  {
+    "text": "con",
+    "start": 35.38,
+    "end": 35.59,
+    "id": "w90"
+  },
+  {
+    "text": "pulpa",
+    "start": 35.59,
+    "end": 35.94,
+    "id": "w91"
+  },
+  {
+    "text": "natural",
+    "start": 35.94,
+    "end": 36.54,
+    "id": "w92"
+  },
+  {
+    "text": "y",
+    "start": 36.54,
+    "end": 36.61,
+    "id": "w93"
+  },
+  {
+    "text": "de",
+    "start": 36.61,
+    "end": 36.76,
+    "id": "w94"
+  },
+  {
+    "text": "chocolate",
+    "start": 36.76,
+    "end": 37.46,
+    "id": "w95"
+  },
+  {
+    "text": "con",
+    "start": 37.52,
+    "end": 37.59,
+    "id": "w96"
+  },
+  {
+    "text": "cacao",
+    "start": 37.66,
+    "end": 37.92,
+    "id": "w97"
+  },
+  {
+    "text": "de",
+    "start": 37.92,
+    "end": 38.05,
+    "id": "w98"
+  },
+  {
+    "text": "quillabamba,",
+    "start": 38.05,
+    "end": 38.9,
+    "id": "w99"
+  },
+  {
+    "text": "todos",
+    "start": 38.9,
+    "end": 39.18,
+    "id": "w100"
+  },
+  {
+    "text": "endulzados",
+    "start": 39.28,
+    "end": 39.88,
+    "id": "w101"
+  },
+  {
+    "text": "con",
+    "start": 39.88,
+    "end": 40.08,
+    "id": "w102"
+  },
+  {
+    "text": "estevia.",
+    "start": 40.08,
+    "end": 40.78,
+    "id": "w103"
+  },
+  {
+    "text": "Productos",
+    "start": 40.92,
+    "end": 41.47,
+    "id": "w104"
+  },
+  {
+    "text": "100%",
+    "start": 41.47,
+    "end": 42.17,
+    "id": "w105"
+  },
+  {
+    "text": "artesanales,",
+    "start": 42.17,
+    "end": 43.08,
+    "id": "w106"
+  },
+  {
+    "text": "sin",
+    "start": 43.08,
+    "end": 43.29,
+    "id": "w107"
+  },
+  {
+    "text": "conservantes",
+    "start": 43.29,
+    "end": 44.13,
+    "id": "w108"
+  },
+  {
+    "text": "añadidos,",
+    "start": 44.13,
+    "end": 44.84,
+    "id": "w109"
+  },
+  {
+    "text": "hecho",
+    "start": 44.84,
+    "end": 45.28,
+    "id": "w110"
+  },
+  {
+    "text": "a",
+    "start": 45.28,
+    "end": 45.37,
+    "id": "w111"
+  },
+  {
+    "text": "mano,",
+    "start": 45.37,
+    "end": 45.89,
+    "id": "w112"
+  },
+  {
+    "text": "lote",
+    "start": 45.89,
+    "end": 46.23,
+    "id": "w113"
+  },
+  {
+    "text": "a",
+    "start": 46.24,
+    "end": 46.32,
+    "id": "w114"
+  },
+  {
+    "text": "lote.",
+    "start": 46.32,
+    "end": 46.72,
+    "id": "w115"
+  },
+  {
+    "text": "Te",
+    "start": 46.8,
+    "end": 46.87,
+    "id": "w116"
+  },
+  {
+    "text": "esperamos",
+    "start": 46.87,
+    "end": 47.53,
+    "id": "w117"
+  },
+  {
+    "text": "este",
+    "start": 47.53,
+    "end": 47.78,
+    "id": "w118"
+  },
+  {
+    "text": "domingo",
+    "start": 47.9,
+    "end": 48.31,
+    "id": "w119"
+  },
+  {
+    "text": "25",
+    "start": 48.4,
+    "end": 48.79,
+    "id": "w120"
+  },
+  {
+    "text": "de",
+    "start": 48.79,
+    "end": 48.92,
+    "id": "w121"
+  },
+  {
+    "text": "octubre",
+    "start": 48.95,
+    "end": 49.44,
+    "id": "w122"
+  },
+  {
+    "text": "de",
+    "start": 49.44,
+    "end": 49.59,
+    "id": "w123"
+  },
+  {
+    "text": "8",
+    "start": 49.59,
+    "end": 49.8,
+    "id": "w124"
+  },
+  {
+    "text": "y",
+    "start": 49.81,
+    "end": 49.88,
+    "id": "w125"
+  },
+  {
+    "text": "media",
+    "start": 49.88,
+    "end": 50.23,
+    "id": "w126"
+  },
+  {
+    "text": "de",
+    "start": 50.29,
+    "end": 50.4,
+    "id": "w127"
+  },
+  {
+    "text": "la",
+    "start": 50.4,
+    "end": 50.55,
+    "id": "w128"
+  },
+  {
+    "text": "mañana",
+    "start": 50.55,
+    "end": 51,
+    "id": "w129"
+  },
+  {
+    "text": "a",
+    "start": 51,
+    "end": 51.07,
+    "id": "w130"
+  },
+  {
+    "text": "una",
+    "start": 51.07,
+    "end": 51.29,
+    "id": "w131"
+  },
+  {
+    "text": "de",
+    "start": 51.29,
+    "end": 51.43,
+    "id": "w132"
+  },
+  {
+    "text": "la",
+    "start": 51.43,
+    "end": 51.59,
+    "id": "w133"
+  },
+  {
+    "text": "tarde.",
+    "start": 51.59,
+    "end": 52.26,
+    "id": "w134"
+  },
+  {
+    "text": "Ven",
+    "start": 52.36,
+    "end": 52.47,
+    "id": "w135"
+  },
+  {
+    "text": "a",
+    "start": 52.47,
+    "end": 52.58,
+    "id": "w136"
+  },
+  {
+    "text": "probar",
+    "start": 52.58,
+    "end": 52.9,
+    "id": "w137"
+  },
+  {
+    "text": "gratis",
+    "start": 52.9,
+    "end": 53.21,
+    "id": "w138"
+  },
+  {
+    "text": "nuestros",
+    "start": 53.27,
+    "end": 53.78,
+    "id": "w139"
+  },
+  {
+    "text": "kefires",
+    "start": 53.78,
+    "end": 54.21,
+    "id": "w140"
+  },
+  {
+    "text": "naturales",
+    "start": 54.21,
+    "end": 54.78,
+    "id": "w141"
+  },
+  {
+    "text": "y",
+    "start": 54.78,
+    "end": 54.82,
+    "id": "w142"
+  },
+  {
+    "text": "frutados,",
+    "start": 54.9,
+    "end": 55.45,
+    "id": "w143"
+  },
+  {
+    "text": "sin",
+    "start": 55.45,
+    "end": 55.63,
+    "id": "w144"
+  },
+  {
+    "text": "compromiso.",
+    "start": 55.64,
+    "end": 56.6,
+    "id": "w145"
+  },
+  {
+    "text": "Estamos",
+    "start": 56.68,
+    "end": 57.04,
+    "id": "w146"
+  },
+  {
+    "text": "en",
+    "start": 57.04,
+    "end": 57.16,
+    "id": "w147"
+  },
+  {
+    "text": "la",
+    "start": 57.16,
+    "end": 57.27,
+    "id": "w148"
+  },
+  {
+    "text": "biotienda",
+    "start": 57.29,
+    "end": 57.84,
+    "id": "w149"
+  },
+  {
+    "text": "Verde-Rais,",
+    "start": 57.84,
+    "end": 58.54,
+    "id": "w150"
+  },
+  {
+    "text": "en",
+    "start": 58.64,
+    "end": 58.7,
+    "id": "w151"
+  },
+  {
+    "text": "el",
+    "start": 58.7,
+    "end": 58.8,
+    "id": "w152"
+  },
+  {
+    "text": "complejo",
+    "start": 58.83,
+    "end": 59.32,
+    "id": "w153"
+  },
+  {
+    "text": "comercial",
+    "start": 59.32,
+    "end": 59.89,
+    "id": "w154"
+  },
+  {
+    "text": "Unikachi",
+    "start": 59.89,
+    "end": 60.38,
+    "id": "w155"
+  },
+  {
+    "text": "de",
+    "start": 60.38,
+    "end": 60.45,
+    "id": "w156"
+  },
+  {
+    "text": "Comas,",
+    "start": 60.53,
+    "end": 60.93,
+    "id": "w157"
+  },
+  {
+    "text": "tienda",
+    "start": 60.93,
+    "end": 61.47,
+    "id": "w158"
+  },
+  {
+    "text": "77.",
+    "start": 61.58,
+    "end": 62.56,
+    "id": "w159"
+  },
+  {
+    "text": "O",
+    "start": 62.64,
+    "end": 62.65,
+    "id": "w160"
+  },
+  {
+    "text": "pídelos",
+    "start": 62.65,
+    "end": 63.28,
+    "id": "w161"
+  },
+  {
+    "text": "por",
+    "start": 63.28,
+    "end": 63.48,
+    "id": "w162"
+  },
+  {
+    "text": "WhatsApp",
+    "start": 63.55,
+    "end": 64.27,
+    "id": "w163"
+  },
+  {
+    "text": "al",
+    "start": 64.27,
+    "end": 64.45,
+    "id": "w164"
+  },
+  {
+    "text": "942-469-453.",
+    "start": 64.45,
+    "end": 67.36,
+    "id": "w165"
+  }
+]

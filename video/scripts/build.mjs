@@ -1,8 +1,48 @@
 /* Genera index.html (composición HyperFrames) desde los datos de abajo.
    Uso: node scripts/build.mjs  (con --sin-musica genera la versión reels: voz + efectos)
-   La voz (assets/sfx/voz.mp3) es la pista maestra: cada escena empieza en la palabra
-   de voz.transcript.json (whisper) que la nombra. */
+   Variante para una biotienda: --store verde-raiz → index-verde-raiz-degustacion.html
+   (con --sin-degustacion → index-verde-raiz.html). Ver STORES.
+   La voz es la pista maestra: cada escena empieza en la palabra de <voz>.transcript.json
+   (whisper) que la nombra. */
 import fs from 'node:fs';
+import path from 'node:path';
+
+// ── Variantes por biotienda ─────────────────────────────────────────────
+const STORES = {
+  'verde-raiz': {
+    name: 'VerdeRaíz', slogan: 'Raíces limpias, vida sana',
+    logo: {
+      hojas: 'assets/stores/verde-raiz-hojas.png',
+      raices: 'assets/stores/verde-raiz-raices.png',
+      texto: 'assets/stores/verde-raiz-texto.png',
+      planta: 'assets/stores/verde-raiz-planta.png',
+      hojasClaro: 'assets/stores/verde-raiz-hojas-claro.png',
+      raicesClaro: 'assets/stores/verde-raiz-raices-claro.png',
+      textoCrema: 'assets/stores/verde-raiz-texto-crema.png',
+    },
+    ubicacion: 'C.C. Unicachi · Tienda 77 · Comas',
+    referencia: 'Ref.: Mall de Comas',
+    whatsapp: '942 469 453', tiktok: '@bioverderaiz',
+    showKombucha: false, showSorteo: false, showCottage: true,
+    degustacion: {
+      show: true, gratis: true,
+      dia: 'DOM', numero: '25', mes: 'OCTUBRE',
+      sticker: '🥄 DEGUSTACIÓN GRATIS · DOM 25 OCT',
+      horario: '8:30 a. m. – 1:00 p. m.',
+      nota: 'Sin compromiso',
+      productos: ['kefir-natural', 'kefir-fresa', 'kefir-arandanos', 'kefir-frutos-del-bosque'],
+    },
+    voice: 'assets/sfx/voz-verde-raiz.mp3',
+    voiceSinDegustacion: 'assets/sfx/voz-verde-raiz-sin-degustacion.mp3',
+  },
+};
+const argAfter = (flag) => { const i = process.argv.indexOf(flag); return i > -1 ? process.argv[i + 1] : null; };
+const STORE_ID = argAfter('--store');
+const STORE = STORE_ID ? STORES[STORE_ID] : null;
+if (STORE_ID && !STORE) throw new Error(`tienda desconocida: ${STORE_ID} (hay: ${Object.keys(STORES).join(', ')})`);
+const DEG = !!STORE && STORE.degustacion.show && !process.argv.includes('--sin-degustacion');
+// id de producto → botella a escala real (REAL)
+const PRODUCT_BOTTLE = { 'kefir-natural': 'kefir1L', 'kefir-fresa': 'fresa', 'kefir-arandanos': 'arandanos', 'kefir-frutos-del-bosque': 'frutos' };
 
 const FPS = 30;
 const snap = (t) => Math.round(t * FPS) / FPS;
@@ -14,19 +54,31 @@ const edge = (t) => (t <= 0 ? 0 : t >= END - 1e-6 ? r(END) : r(t - 1 / 60));
 const clipTime = (a, b) => `data-start="${edge(a)}" data-duration="${r(edge(b) - edge(a))}"`;
 
 // ── Voz ─────────────────────────────────────────────────────────────────
-const VO = 0.5; // música sola antes de la voz
-const VOICE_FILE_LEN = 64.287;
-const VOICE_END = 64.12; // fin real de la última palabra (energía); whisper no separa el número
-// Grupos del número medidos por energía (la voz trae sus pausas): 941 · 462 · 492
-const NUM_GROUPS = [60.8, 62.0, 63.12].map((t) => snap(t + VO));
-/* Whisper pega algunas palabras a la anterior cuando hay signos ("bosque?¡Cuatro", "kefir.¿Es",
-   "verde.¡Muy"): su inicio se mide en la energía de la voz (segundos del archivo). */
-const ONSET = { cuatro: 2.56, fresa: 5.06, es: 19.02, lo: 24.78, muy: 45.7 };
+/* Por cada voz: música sola antes de la voz (vo), largo del archivo, fin real de la última palabra
+   (energía; whisper no separa el número), grupos del número medidos por energía y los inicios que
+   whisper pega a la palabra anterior cuando hay signos ("bosque?¡Cuatro", "kefir.¿Es"): segundos del archivo. */
+const VOICES = {
+  'assets/sfx/voz.mp3': { vo: 0.5, len: 64.287, end: 64.12, num: [60.8, 62.0, 63.12], onset: { cuatro: 2.56, fresa: 5.06, es: 19.02, lo: 24.78, muy: 45.7 } },
+  'assets/sfx/voz-verde-raiz.mp3': { vo: 0.3, len: 67.474, end: 67.38, num: [64.51, 65.2, 66.34], onset: { ya: 6.56, es: 25.03, lo: 30.62, productos: 40.89, te: 46.76, estamos: 56.6 } },
+};
+const VOICE_SRC = STORE ? (DEG ? STORE.voice : STORE.voiceSinDegustacion) : 'assets/sfx/voz.mp3';
+const TRANSCRIPT = `${path.basename(VOICE_SRC, '.mp3')}.transcript.json`;
+if (!fs.existsSync(new URL(`../${VOICE_SRC}`, import.meta.url))) throw new Error(`falta la voz ${VOICE_SRC}`);
+if (!VOICES[VOICE_SRC] || !fs.existsSync(new URL(`../${TRANSCRIPT}`, import.meta.url))) {
+  throw new Error(`la voz ${VOICE_SRC} aún no está medida: transcríbela a ${TRANSCRIPT} y agrega sus datos en VOICES`);
+}
+const VOICE = VOICES[VOICE_SRC];
+const VO = VOICE.vo;
+const VOICE_FILE_LEN = VOICE.len;
+const VOICE_END = VOICE.end;
+const NUM_GROUPS = VOICE.num.map((t) => snap(t + VO));
+const ONSET = VOICE.onset;
 const on = (k) => snap(ONSET[k] + VO);
 // Fecha de lanzamiento de las kombuchas: si tiene valor, aparece bajo "MUY PRONTO" (ej. 'Noviembre 2026').
 const LAUNCH_DATE = '';
 const CLOSE_MAX = 10; // el cierre dura como máximo 10 s
-const WORDS = JSON.parse(fs.readFileSync(new URL('../voz.transcript.json', import.meta.url), 'utf8'));
+const HOLD_END = 2; // variante tienda: el cierre queda 2 s tras la última palabra (para leer la dirección)
+const WORDS = JSON.parse(fs.readFileSync(new URL(`../${TRANSCRIPT}`, import.meta.url), 'utf8'));
 const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9%]/g, '');
 function w(word, nth = 1) {
   const hits = WORDS.filter((x) => norm(x.text) === norm(word));
@@ -49,6 +101,8 @@ const BG = {
   sorteo: { style: 'linear-gradient(150deg, #C2187A 0%, #8E1F82 48%, #5B2A86 100%)', dark: true, kw: MIEL, wave: '#C2187A', mid: '#8E1F82' },
   noche: { style: 'radial-gradient(circle at 50% 62%, #2A1638 0%, #120A1A 62%)', dark: true, kw: '#E9D5FF', wave: '#120A1A', mid: '#3A1F4E' },
   bosque: { style: 'linear-gradient(170deg, #16201A 0%, #1E3A2F 100%)', dark: true, kw: '#9FD8B4', wave: '#1E3A2F', mid: '#2F5A47' },
+  poster: { style: 'radial-gradient(55% 28% at 50% 22%, rgba(143, 209, 158, 0.28), transparent 70%), radial-gradient(60% 30% at 78% 62%, rgba(242, 183, 5, 0.16), transparent 70%), linear-gradient(180deg, #183026 0%, #14231B 55%, #0F1A14 100%)', dark: true, kw: '#8FD19E', wave: '#14231B', mid: '#1E3528' },
+  papel: { c: ['#FFFDF8', '#F8EFDD', '#EAD7B4'], stops: [0, 40, 80], dark: false, kw: '#1E5A3A', arch: 'rgba(30, 90, 58, 0.1)', wave: '#F2B705', mid: '#FBF4EC' },
 };
 const waveFront = (bg) => BG[bg].wave || BG[bg].c[2];
 const waveBack = (bg) => BG[bg].mid || BG[bg].c[1];
@@ -67,10 +121,59 @@ const SIZE = {
   'assets/scenes/canasta-trialferi.webp': [4511, 3800],
   'assets/scenes/kombucha-pitahaya.webp': [1009, 1600],
   'assets/scenes/kombucha-pitahaya-diagonal.webp': [1059, 1600],
+  'assets/scenes/kefir-trio-frutos.png': [1122, 1402],
 };
 
 // ── Tiempos (palabras de la voz) ─────────────────────────────────────────
-const T = {
+// Variante tienda: gancho de degustación → kéfir (igual) → artesanal → degustación → cierre con la tienda.
+const storeTimes = () => ({
+  ...(DEG ? {
+    g: 0,
+    este: w('este'),
+    degust: w('degustacion'),
+    kefirG: w('kefir'),
+    biotienda: w('biotienda'),
+  } : {}),
+  h1: DEG ? on('ya') : 0,
+  h2: w('cuatro'),
+  fruits: [w('fresa'), w('frambuesa'), w('arandano'), w('sarsamura')],
+  A: w('yel'),
+  vaca: w('vaca'),
+  cabra: w('cabra'),
+  ribbons: [w('pasteurizado'), w('sin'), w('100%')],
+  acero: w('acero'),
+  primera: on('es'),
+  steps: [w('empieza'), w('ayunas'), w('aumentando')],
+  treinta: w('30'),
+  fr: on('lo'),
+  frFresa: w('fresa', 2),
+  frArand: w('arandanos'),
+  frChoc: w('chocolate'),
+  todos: w('todos'),
+  stevia: w('estevia'),
+  art: on('productos'), // "Productos 100% artesanales, sin conservantes añadidos, hecho a mano, lote a lote."
+  artesanales: w('artesanales'),
+  sinC: w('sin', 2),
+  hecho: w('hecho'),
+  ...(DEG ? {
+    deg: on('te'), // "¡Te esperamos este domingo 25 de octubre…"
+    degDomingo: w('domingo', 2),
+    deg25: w('25', 2),
+    octubre: w('octubre'),
+    ocho: w('8'),
+    gratis: w('gratis'),
+    naturales: w('naturales'),
+    sinComp: w('sin', 3),
+  } : {}),
+  cierre: on('estamos'),
+  verde: w('verderais'),
+  complejo: w('complejo'),
+  comas: w('comas'),
+  t77: w('77'),
+  unicachi: w('unikachi'),
+  whatsapp: w('whatsapp'),
+});
+const T = STORE ? storeTimes() : {
   h1: 0,
   h2: on('cuatro'),
   fruits: [on('fresa'), w('frambuesa'), w('arandano'), w('sarsamura')],
@@ -106,14 +209,15 @@ const T = {
   hecho: w('echo'),
   pide: w('pide'),
 };
-const END = snap(T.cierre + CLOSE_MAX);
+const END = STORE ? snap(VO + VOICE_END + HOLD_END) : snap(T.cierre + CLOSE_MAX);
 if (END - VO - VOICE_END < 0.5) throw new Error('la cola tras la voz quedó en menos de 0.5 s');
+const STICKER = DEG ? { a: T.h1, b: T.deg } : null; // sticker fijo de la degustación (entre el gancho y la escena DEGUSTACIÓN)
 
 /* Volúmenes (RMS en su momento más fuerte). Voz ≈ -18 dB. Música 0.85 sin voz,
    0.255 (30 %) bajo la voz ≈ -29 dB. Prioridad: voz > música > vertido/splash/destape
    (≈ -32) > burbujas/brindis (≈ -35) > woosh/pop (≈ -39). */
-const VOL = { voz: 1, music: 0.85, duck: 0.255, duckDeep: 0.15, burbujasLejos: 0.1, destapeSuave: 0.13, vertido: 0.7, splash: 0.22, splashSoft: 0.13, destape: 0.21, burbujas: 0.24, brindis: 0.12, woosh: 0.04, pop: 0.08 };
-const SFX_LEN = { vertido: 2.08, splash: 2.08, burbujas: 2.0, woosh: 2.0, pop: 0.69, destape: 1.6, brindis: 0.81 };
+const VOL = { voz: 1, music: 0.85, duck: 0.255, duckDeep: 0.15, burbujasLejos: 0.1, destapeSuave: 0.13, vertido: 0.7, splash: 0.22, splashSoft: 0.13, destape: 0.21, burbujas: 0.24, brindis: 0.12, woosh: 0.04, pop: 0.08, sello: 0.14, 'raices-crecen': 0.14, 'campanita-tienda': 0.16 };
+const SFX_LEN = { vertido: 2.08, splash: 2.08, burbujas: 2.0, woosh: 2.0, pop: 0.69, destape: 1.6, brindis: 0.81, sello: 0.69, 'raices-crecen': 1.6, 'campanita-tienda': 1.6 };
 const PEAK = { woosh: 0.6, destape: 0.25, brindis: 0.2 };
 
 // ── helpers ─────────────────────────────────────────────────────────────
@@ -161,14 +265,19 @@ const REAL = {
   pitahaya: ['assets/scenes/kombucha-pitahaya-botella.webp', [19, 19, 459, 1580, 479, 1600]],
   kefir1L: ['assets/scenes/kefir-leche-botella.webp', [287, 41, 737, 1489, 1024, 1536]],
   frutos: ['assets/kefir/frutos-botella.webp', [225, 4, 809, 1465, 1049, 1499]],
+  // fotos inclinadas: se enderezan girando la imagen (3.er valor); la caja se midió ya girada
+  fresa: ['assets/kefir/sabores/fresa-botella.webp', [332, 25, 843, 1325, 1086, 1448], -14],
+  arandanos: ['assets/kefir/sabores/arandanos-botella.webp', [296, 103, 746, 1330, 1024, 1536], -11],
 };
+// Alto relativo por capacidad (1 L : 475 ml = 620 : 480)
+const ML_H = { kefir1L: 620, frutos: 480, fresa: 480, arandanos: 480 };
 // Ancho visible de la botella cuando mide H px de alto.
 const realWidth = (key, H) => { const [, [l, t, rr, bb]] = REAL[key]; return Math.round(((rr - l) * H) / (bb - t)); };
 function realBottle(key, H, id, { style = '', extra = '' } = {}) {
-  const [src, [l, t, rr, bb, iw, ih]] = REAL[key];
+  const [src, [l, t, rr, bb, iw, ih], rot] = REAL[key];
   const s = H / (bb - t);
   const box = `width: ${Math.round((rr - l) * s)}px; height: ${H}px`;
-  const img = `width: ${Math.round(iw * s)}px; height: ${Math.round(ih * s)}px; left: ${-Math.round(l * s)}px; top: ${-Math.round(t * s)}px`;
+  const img = `width: ${Math.round(iw * s)}px; height: ${Math.round(ih * s)}px; left: ${-Math.round(l * s)}px; top: ${-Math.round(t * s)}px${rot ? `; transform: rotate(${rot}deg)` : ''}`;
   return `<div class="real" id="${id}" style="${box}${style ? '; ' + style : ''}"><div class="real-crop" data-layout-allow-overflow><img src="${src}" alt="" style="${img}" /></div><div class="real-refl" data-layout-allow-overflow><img src="${src}" alt="" style="${img}" /></div>${extra}</div>`;
 }
 
@@ -197,6 +306,7 @@ const audio = [];
 const A = (o) => ANIM.push(Object.fromEntries(Object.entries(o).map(([k, v]) => [k, typeof v === 'number' ? r(v) : v])));
 
 function pushAudio(file, start, extra = {}) {
+  if (!fs.existsSync(new URL(`../assets/sfx/${file}.mp3`, import.meta.url))) return; // efecto opcional que aún no existe
   const s0 = r(Math.max(0, start));
   const dur = r(Math.min(extra.duration ?? SFX_LEN[file], END - s0));
   if (dur <= 0.05) return;
@@ -209,6 +319,8 @@ function bg(id, a, b, name) {
   bgClips.push(`<div id="bg-${id}" class="clip bg" ${clipTime(a, b)} data-track-index="0"><div class="fill" style="${bgStyle(name)}"></div></div>`);
 }
 function section(id, a, b, cls, inner) {
+  // el sticker de la degustación ocupa la franja de y ≈ 245: los títulos de esas escenas bajan
+  if (STICKER && a >= STICKER.a - 0.01 && b <= STICKER.b + 0.01) cls += ' bajo-sticker';
   content.push(`<section id="${id}" class="clip scene ${cls}" ${clipTime(a, b)} data-track-index="1">
         ${inner}
       </section>`);
@@ -240,6 +352,50 @@ const scenes = [];
 const cutsWhoosh = [];
 const waves = [];
 
+// ── TIENDA · GANCHO: "¡Este domingo 25, degustación gratuita…!" (frame 0 ya con contenido) ──
+const shelfRow = (prefix, keys, unit, gap = 18) => {
+  // fila de botellas a escala real entre sí; devuelve el html y el ancho total
+  let x = 0;
+  const items = keys.map((k, i) => {
+    const H = Math.round(ML_H[k] * unit);
+    const wd = realWidth(k, H);
+    const html = realBottle(k, H, `${prefix}-${i}`, { style: `position: absolute; left: ${x}px; bottom: 0` });
+    x += wd + gap;
+    return html;
+  });
+  return { html: items.join(''), width: x - gap };
+};
+const DEG_BOTTLES = DEG ? STORE.degustacion.productos.map((p) => PRODUCT_BOTTLE[p]) : [];
+if (DEG) {
+  const id = 'g0', a = T.g, b = T.h1;
+  const d = STORE.degustacion;
+  bg(id, a, b, 'bosque');
+  const row = shelfRow('g0-b', DEG_BOTTLES, 0.62, 22);
+  section(id, a, b, 'gancho', `<div class="g-light"></div>
+        <div class="copy on-dark g-copy">
+          <h1 class="g-title"><span class="g-l1">ESTE</span><span class="g-l2">DOMINGO</span><span class="g-l3">${esc(d.numero)}</span></h1>
+        </div>
+        <div class="g-pill-slot"><span class="g-pill" id="g0-pill">DEGUSTACIÓN GRATIS</span></div>
+        <div class="g-store"><span class="g-circle"><img src="${STORE.logo.planta}" alt="" /></span><span class="g-en">en Biotienda ${esc(STORE.name)}</span></div>
+        <div class="g-row" style="top: 1880px; left: ${540 - Math.round(row.width / 2)}px; width: ${row.width}px">${row.html}</div>
+        <div class="flash g-flash" id="g0-flash"></div>`);
+  // frame 0: destello de luz sobre el verde y el título ya cayendo
+  A({ k: 'flashIn', sel: '#g0-flash', at: a });
+  A({ k: 'impact', sel: '#g0 .g-title', at: a, land: T.este, dur: 0.25 });
+  pushAudio('sello', T.este - 0.02, { duration: 0.5, fadeOut: 0.1 });
+  A({ k: 'parallax', sel: '#bg-g0 .fill', at: a, dur: b - a, to: 1.04 });
+  A({ k: 'glowBg', sel: '#g0 .g-light', at: a, end: b });
+  A({ k: 'pop', sel: '#g0-pill', at: T.degust }); pop(T.degust);
+  A({ k: 'fromBelow', sel: '#g0 .g-row .real', at: T.kefirG - 0.1, stagger: 0.1 });
+  A({ k: 'rise', sel: '#g0 .g-store', at: T.biotienda - 0.1 }); pop(T.biotienda);
+  // la pill se encoge y vuela al lugar del sticker; el resto sale
+  // centro de la pill (490, 1047) → centro del sticker (540, 218)
+  A({ k: 'toSticker', sel: '#g0-pill', at: b - 0.4, dur: 0.4, dx: 50, dy: -829, scale: 0.6 });
+  A({ k: 'fade', sel: '#g0 .g-copy, #g0 .g-store', at: b - 0.4, dur: 0.3 });
+  A({ k: 'exit', sel: '#g0 .g-row', at: b - 0.3, dur: 0.3 });
+  scenes.push([id, a, b]);
+}
+
 // ── GANCHO 1: vertido de frutos del bosque (frame 0 completo) ───────────
 {
   const id = 'h1', a = T.h1, b = T.h2;
@@ -253,10 +409,11 @@ const waves = [];
   A({ k: 'zoom', sel: '#h1 .enter', at: a, dur: b - a - 0.3, from: 1, to: 1.08 });
   A({ k: 'parallax', sel: '#bg-h1 .fill', at: a, dur: b - a, to: 1.03 });
   A({ k: 'drift', sel: '#h1 .copy', at: a, dur: b - a - 0.55, y: -12 });
-  A({ k: 'ribbon', sel: '#h1 .ribbon', at: 0.5 }); pop(0.5);
-  A({ k: 'shine', sel: '#h1 .shine', at: 0.3 });
+  A({ k: 'ribbon', sel: '#h1 .ribbon', at: a + 0.5 }); pop(a + 0.5);
+  A({ k: 'shine', sel: '#h1 .shine', at: a + 0.3 });
   exitScene(id, b);
-  pushAudio('vertido', 0);
+  pushAudio('vertido', a);
+  if (a > 0) cutsWhoosh.push(a);
   scenes.push([id, a, b]);
 }
 
@@ -373,7 +530,7 @@ const waves = [];
 
 // ── FRUTADOS: corte de continuidad (la botella no se mueve; cambia de sabor) ──
 {
-  const id = 'fr', a = T.fr, b = T.kt;
+  const id = 'fr', a = T.fr, b = STORE ? T.art : T.kt;
   const phases = [
     { key: 'fresa', at: T.frFresa, bg: 'rosa', name: 'Fresa', line: 'con pulpa natural', brush: '#C81D3A', img: 'assets/kefir/sabores/fresa-botella.webp',
       splashes: [{ src: 'assets/kefir/sabores/fresa-splash-1.png', cls: 'bl' }, { src: 'assets/kefir/sabores/fresa-splash-2.png', cls: 'br' }] },
@@ -431,10 +588,148 @@ const waves = [];
   scenes.push([id, a, b]);
 }
 
+// ── VARIANTE TIENDA: artesanal → degustación → cierre con la tienda ─────
+function buildStoreScenes() {
+  const d = STORE.degustacion;
+  // ARTESANAL: "Productos 100 % artesanales, sin conservantes añadidos, hecho a mano, lote a lote."
+  {
+    const id = 'art', a = T.art, b = DEG ? T.deg : T.cierre;
+    bg(id, a, b, 'verdoso');
+    section(id, a, b, 'artesanal', `<div class="copy on-light" style="--kw: ${BG.verdoso.kw}">
+          <h1 class="title mid">${words('[100%] artesanales')}</h1>
+          <div class="flavor-line art-sin">sin conservantes añadidos</div>
+          <div class="chips">${ribbon('Hecho a mano, {lote a lote}')}</div>
+        </div>
+        <div class="stage"><div class="arch" style="--arch: ${BG.verdoso.arch}"></div><div class="shadow"></div><div class="enter"><div class="float">${imgBox('assets/scenes/kefir-trio-frutos.png')}</div></div>
+          ${sealHtml('art', 'art-seal-art', 'art-seal art-seal-l')}${sealHtml('sin', 'art-seal-sin', 'art-seal art-seal-r')}
+        </div>`);
+    A({ k: 'words', sel: '#art .title .w', at: a + 0.1 });
+    A({ k: 'bottle', sel: '#art .enter', at: a });
+    A({ k: 'archIn', sel: '#art .arch', at: a });
+    A({ k: 'shine', sel: '#art .shine', at: a + 0.4 });
+    A({ k: 'float', sel: '#art .float', at: a, end: b });
+    A({ k: 'stamp', sel: '#art-seal-art', at: T.artesanales }); pushAudio('sello', T.artesanales + 0.2, { duration: 0.5, fadeOut: 0.1 });
+    A({ k: 'rise', sel: '#art .art-sin', at: T.sinC });
+    A({ k: 'stamp', sel: '#art-seal-sin', at: T.sinC + 0.3 }); pushAudio('sello', T.sinC + 0.5, { duration: 0.5, fadeOut: 0.1 });
+    A({ k: 'ribbon', sel: '#art .ribbon', at: T.hecho }); pop(T.hecho);
+    exitScene(id, b, { text: '.copy, .art-seal', product: '.enter' });
+    waves.push({ at: a, bg: 'verdoso' });
+    scenes.push([id, a, b]);
+  }
+
+  // DEGUSTACIÓN: "¡Te esperamos este domingo 25 de octubre de 8 y media…! Ven a probar gratis…"
+  if (DEG) {
+    const id = 'deg', a = T.deg, b = T.cierre;
+    bg(id, a, b, 'papel');
+    const row = shelfRow('deg-b', DEG_BOTTLES, 0.74, 34);
+    section(id, a, b, 'degusta', `<div class="copy on-light deg-copy">
+          <h1 class="deg-title"><span class="dl dl-row"><span class="dl-t">¡VEN A</span>${d.gratis ? '<span class="deg-gratis-tilt"><span class="deg-gratis" id="deg-gratis">GRATIS</span></span>' : ''}</span><span class="dl"><span class="dl-t">PROBARLOS!</span></span></h1>
+        </div>
+        <div class="cal-wrap">
+          <div class="cal" id="deg-cal"><div class="cal-head">${esc(d.dia)}</div><div class="cal-num">${esc(d.numero)}</div><div class="cal-mes">${esc(d.mes)}</div><span class="cal-ring l"></span><span class="cal-ring r"></span></div>
+          <div class="deg-stamp" id="deg-stamp"><span>DEGUSTACIÓN</span></div>
+        </div>
+        <div class="deg-info"><p class="deg-hora" id="deg-hora">🕘 ${esc(d.horario)}</p><p class="deg-nota" id="deg-nota">${esc(d.nota)}</p></div>
+        <div class="deg-row" style="top: 1820px; left: ${540 - Math.round(row.width / 2)}px; width: ${row.width}px">${row.html}</div>`);
+    A({ k: 'words', sel: '#deg .deg-title .dl', at: a + 0.05 });
+    if (d.gratis) { A({ k: 'pop', sel: '#deg-gratis', at: a + 0.45 }); pop(a + 0.45); A({ k: 'bump', sel: '#deg-gratis', at: T.gratis }); }
+    // la hoja del calendario cae y rebota con "domingo"; el 25 late con la voz; el sello cae encima
+    A({ k: 'calFall', sel: '#deg-cal', at: T.degDomingo - 0.35 });
+    pop(T.degDomingo + 0.2);
+    A({ k: 'bump', sel: '#deg .cal-num', at: T.deg25 });
+    A({ k: 'stamp', sel: '#deg-stamp', at: T.octubre + 0.15 }); pushAudio('sello', T.octubre + 0.35, { duration: 0.5, fadeOut: 0.1 });
+    A({ k: 'rise', sel: '#deg-hora', at: T.ocho - 0.1 });
+    A({ k: 'rise', sel: '#deg-nota', at: T.sinComp });
+    A({ k: 'fromBelow', sel: '#deg .deg-row .real', at: T.naturales - 0.35, stagger: 0.12 });
+    // chin-chin: las dos del medio se inclinan hasta tocarse
+    const chin = b - 1.15;
+    A({ k: 'chin', sel: '#deg-b-1', at: chin, rot: 9 });
+    A({ k: 'chin', sel: '#deg-b-2', at: chin, rot: -9 });
+    pushAudio('brindis', chin + 0.28 - PEAK.brindis);
+    exitScene(id, b, { text: '.deg-copy, .cal-wrap, .deg-info', product: '.deg-row' });
+    waves.push({ at: a, bg: 'papel' });
+    scenes.push([id, a, b]);
+  }
+
+  /* CIERRE: póster editorial (valores de assets/stores/referencia-cierre-verde-raiz.html).
+     La planta se arma por partes (hojas → raíces), luego las raíces decorativas, el nombre, los datos,
+     el sello de la degustación y los productos. */
+  {
+    const id = 'cierre', a = T.cierre, b = END;
+    bg(id, a, b, 'poster');
+    const [lugar, ...resto] = STORE.ubicacion.split(' · ');
+    // [src, centro x, top, alto (o ancho para los cottage), z]; de atrás hacia adelante = orden de entrada
+    const PRODUCTS = [
+      ['natural', 'assets/scenes/kefir-leche-botella.webp', 580, 1262, { h: 560 }, 4, [1024, 1536]],
+      ['arandanos', 'assets/stores/arandanos-botella-recta.png', 385, 1372, { h: 430 }, 3, [472, 1231]],
+      ['fresa', 'assets/stores/fresa-botella-recta.png', 765, 1372, { h: 430 }, 3, [556, 1307]],
+      ['frutos', 'assets/kefir/frutos-botella.webp', 240, 1440, { h: 410 }, 5, [1049, 1499]],
+      ...(STORE.showCottage ? [
+        ['cottage-ajo', 'assets/stores/cottage-cabra-ajo.png', 905, 1600, { w: 230 }, 6, [484, 493]],
+        ['cottage-olivo', 'assets/stores/cottage-cabra-olivo.png', 760, 1660, { w: 260 }, 7, [521, 412]],
+      ] : []),
+    ];
+    // sin cottage: el grupo de botellas se recentra en la pantalla
+    const widthOf = ([, , , , sz, , [iw, ih]]) => (sz.w || (sz.h * iw) / ih);
+    const lo = Math.min(...PRODUCTS.map((p) => p[2] - widthOf(p) / 2)), hi = Math.max(...PRODUCTS.map((p) => p[2] + widthOf(p) / 2));
+    const shift = STORE.showCottage ? 0 : Math.round(540 - (lo + hi) / 2);
+    const products = PRODUCTS.map(([key, src, x, top, sz, z]) => `<div class="cv-p" style="left: ${x + shift}px; top: ${top}px; z-index: ${z}"><img id="cv-${key}" src="${src}" alt="" style="${sz.h ? `height: ${sz.h}px` : `width: ${sz.w}px`}" /></div>`).join('');
+    const seal = DEG ? `<div class="cv-seal" id="cv-seal"><span class="cv-seal-a">DEGUSTACIÓN</span>${d.gratis ? '<span class="cv-seal-g">GRATIS</span>' : ''}<span class="cv-seal-n">${esc(d.dia)} ${esc(d.numero)}</span><span class="cv-seal-h">${esc(d.horario)}</span></div>` : '';
+    const WA = '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6C17.6 6 6 17.4 6 31.5c0 4.9 1.4 9.5 3.9 13.4L6 58l13.5-3.8c3.7 2 8 3.1 12.5 3.1 14.4 0 26-11.4 26-25.5S46.4 6 32 6z" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/><path d="M24.5 19.5c-.8-.1-1.8 0-2.6.9-1.3 1.4-3 3.2-3 6.6 0 6.5 7.9 15.7 16.4 18.8 3.8 1.4 6.4 1.2 8.3-.4 1.3-1.1 1.8-2.6 1.8-3.8 0-.7-.4-1.2-1-1.5l-5.2-2.5c-.7-.3-1.4-.1-1.9.5l-2 2.5c-.4.5-1.1.6-1.6.3-3.4-1.7-6.3-4.5-8.1-7.8-.3-.6-.2-1.2.2-1.6l1.9-2.1c.5-.5.6-1.2.3-1.9l-2.3-5.6c-.3-.6-.7-1-1.2-1.1z" fill="currentColor"/></svg>';
+    section(id, a, b, 'poster', `<svg class="cv-grain" data-layout-allow-overflow aria-hidden="true"><filter id="cv-noise"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch" /><feColorMatrix type="saturate" values="0" /></filter><rect width="100%" height="100%" filter="url(#cv-noise)" /></svg>
+        <svg class="cv-roots" viewBox="0 0 1080 1920" fill="none" stroke="#8FD19E" stroke-linecap="round" aria-hidden="true">
+          <path pathLength="1" d="M540 545 C 470 620, 300 640, 170 720 S 70 840, 64 900" stroke-width="4" />
+          <path pathLength="1" d="M64 900 C 56 1000, 60 1100, 66 1160" stroke-width="3" />
+          <path pathLength="1" d="M540 545 C 640 615, 820 640, 930 740 S 1000 860, 990 900" stroke-width="4" />
+          <path pathLength="1" d="M170 720 C 130 700, 100 690, 70 700" stroke-width="2.5" />
+          <path pathLength="1" d="M930 740 C 960 720, 990 715, 1020 720" stroke-width="2.5" />
+        </svg>
+        <div class="cv-top" id="cv-top"><i></i><span id="cv-tf">TRIALFERI</span><i></i></div>
+        <div class="cv-kick" id="cv-kick">${DEG ? 'ESTAMOS EN' : 'ENCUÉNTRALOS EN'}</div>
+        <div class="cv-plant"><img id="cv-hojas" src="${STORE.logo.hojasClaro}" alt="" /><img id="cv-raices" src="${STORE.logo.raicesClaro}" alt="" /></div>
+        <img class="cv-word" id="cv-word" src="${STORE.logo.textoCrema}" alt="${esc(STORE.name)}" />
+        <div class="cv-info">
+          <div class="cv-donde"><div class="cv-lab"><b>📍</b>DÓNDE</div><div class="cv-big">${esc(lugar.toUpperCase())}</div><div class="cv-med">${esc(resto.join(' · '))}</div><div class="cv-sm">${esc(STORE.referencia)}</div></div>
+          <div class="cv-sep" id="cv-sep"></div>
+          <div class="cv-pedidos"><div class="cv-lab"><b class="cv-wa">${WA}</b>PEDIDOS</div><div class="cv-big">${esc(STORE.whatsapp)}</div><div class="cv-med">WhatsApp · ${esc(STORE.tiktok)}</div></div>
+        </div>
+        <div class="cv-floor"></div>
+        ${products}
+        ${seal}`);
+    // 1. TRIALFERI y "ESTAMOS EN" con fade; hojas con pop; raíces de arriba hacia abajo en "Verde Raíz"
+    A({ k: 'fadeIn', sel: '#cv-top, #cv-kick', at: a });
+    A({ k: 'tighten', sel: '#cv-tf', at: a });
+    A({ k: 'sprout', sel: '#cv-hojas', at: a + 0.3 }); pop(a + 0.3);
+    A({ k: 'rootsGrow', sel: '#cv-raices', at: T.verde - 0.05, dur: 1.2 });
+    pushAudio('raices-crecen', T.verde - 0.05, { duration: 1.4, fadeOut: 0.3 });
+    // 2. al terminar las raíces, las líneas decorativas se dibujan hacia los bordes
+    A({ k: 'draw', sel: '#cierre .cv-roots path', at: T.verde + 1.15, dur: 0.9 });
+    // 3. nombre de la tienda
+    A({ k: 'riseIn', sel: '#cv-word', at: T.verde + 0.6 });
+    pushAudio('campanita-tienda', T.verde + 0.6, { duration: 1.2, fadeOut: 0.3 });
+    // 4. datos: DÓNDE con "Unicachi", PEDIDOS con "WhatsApp"
+    A({ k: 'lineIn', sel: '#cierre .cv-donde > *', at: T.unicachi - 0.1, stagger: 0.08 });
+    A({ k: 'fadeIn', sel: '#cv-sep', at: T.whatsapp - 0.3 });
+    A({ k: 'lineIn', sel: '#cierre .cv-pedidos > *', at: T.whatsapp - 0.1, stagger: 0.08 });
+    // 5. sello de la degustación (cuando la voz termina la dirección)
+    if (DEG) { A({ k: 'sealDrop', sel: '#cv-seal', at: T.t77 + 0.6 }); pushAudio('sello', T.t77 + 0.95, { duration: 0.5, fadeOut: 0.1 }); }
+    // 6. productos en cascada de atrás hacia adelante; los cottage rebotan al aterrizar
+    const pa = a + 0.35;
+    PRODUCTS.forEach(([key], i) => {
+      const at = pa + i * 0.1;
+      A({ k: key.startsWith('cottage') ? 'landBounce' : 'riseUp', sel: `#cv-${key}`, at });
+      if (key.startsWith('cottage')) pushAudio('pop', at + 0.42, { vol: VOL.pop * 0.6, duration: 0.18, fadeOut: 0.08 });
+    });
+    waves.push({ at: a, bg: 'poster' });
+    scenes.push([id, a, b]);
+  }
+}
+if (STORE) buildStoreScenes();
+
 // ── KOMBUCHAS: teaser de lanzamiento (aún no están a la venta) ───────────
 const KT_ROW = ['guisante', 'espirulina', 'pitahaya']; // 355 ml las tres: misma altura real
 // a) intriga: siluetas a contraluz · b) revelación: destello y pasan a color
-{
+if (!STORE) {
   const id = 'kt', a = T.kt, b = T.flor;
   bg(id, a, b, 'noche');
   section(id, a, b, 'teaser', `<div class="copy on-dark" style="--kw: ${BG.noche.kw}">
@@ -465,7 +760,7 @@ const KT_ROW = ['guisante', 'espirulina', 'pitahaya']; // 355 ml las tres: misma
 }
 
 // c) desfile: una botella grande por nombre, corte seco en cada palabra
-{
+if (!STORE) {
   const id = 'kd', a = T.flor, b = T.kp;
   const phases = [
     { key: 'guisante', at: T.flor, img: 'assets/scenes/kombucha-guisante.png', halo: 'rgba(139, 87, 214, 0.42)', flavor: 'con flor de guisante', cap: [61, 4.5] },
@@ -514,7 +809,7 @@ const KT_ROW = ['guisante', 'espirulina', 'pitahaya']; // 355 ml las tres: misma
 }
 
 // d) muy pronto: eyebrow → cinta → pills; las tres en V (pitahaya adelante, con "Nuevo")
-{
+if (!STORE) {
   const id = 'kp', a = T.kp, b = T.sorteo;
   bg(id, a, b, 'noche');
   const attrs = [['Burbujeantes', T.kp], ['Artesanales', T.artesanalesK], ['Con té verde', T.teVerde]];
@@ -558,7 +853,7 @@ const KT_ROW = ['guisante', 'espirulina', 'pitahaya']; // 355 ml las tres: misma
 }
 
 // ── SORTEO: el ticket se arranca por la línea punteada + ráfaga de confeti ──
-{
+if (!STORE) {
   const id = 's9', a = T.sorteo, b = T.cierre;
   bg(id, a, b, 'sorteo');
   const rnd = mulberry32(2024);
@@ -606,7 +901,7 @@ const KT_ROW = ['guisante', 'espirulina', 'pitahaya']; // 355 ml las tres: misma
 }
 
 // ── CIERRE: logo, WhatsApp por grupos y estante con 4 botellas a escala real ─────
-{
+if (!STORE) {
   const id = 's10', a = T.cierre, b = END;
   bg(id, a, b, 'bosque');
   /* Proporción real entre ellas (1 L : 475 ml : 355 ml = 620 : 480 : 430); el grupo se escala para
@@ -673,6 +968,13 @@ waves.filter((v) => v.at > 0).forEach((c, k) => {
 });
 cutsWhoosh.forEach((c) => pushAudio('woosh', c - PEAK.woosh, { duration: 1.2, fadeOut: 0.3 }));
 
+// Sticker de la degustación: fijo bajo la barra de progreso de los estados de WhatsApp, encima de las olas.
+if (STICKER) {
+  overlays.push(`<div id="sticker" class="clip sticker-clip" ${clipTime(STICKER.a, STICKER.b)} data-track-index="2"><div class="sticker-pos"><span class="sticker" id="sticker-pill">${esc(STORE.degustacion.sticker)}</span></div></div>`);
+  A({ k: 'breathe', sel: '#sticker-pill', at: STICKER.a + 0.15, end: STICKER.b - 0.3 });
+  A({ k: 'fadeQuick', sel: '#sticker-pill', at: STICKER.b - 0.25 });
+}
+
 // Grano animado (cambia cada 2 frames), 3 % de opacidad.
 overlays.push(`<div id="grain" class="clip grain" data-start="0" data-duration="${END}" data-track-index="9"></div>`);
 A({ k: 'grain', sel: '#grain', at: 0, end: END });
@@ -684,6 +986,10 @@ function duckLane() {
   const on0 = WORDS[0].start + VO;
   const off = VO + VOICE_END;
   // en la intriga de las kombuchas baja un poco más (suspenso) y vuelve al 30 % en la revelación
+  if (STORE) {
+    // sin teaser: 30 % bajo toda la voz y fundido de salida en los últimos 2 s
+    return [{ t: 0, v: VOL.music }, { t: r(on0 - 0.08), v: VOL.music }, { t: r(on0 + 0.02), v: VOL.duck }, { t: r(END - 2), v: VOL.duck }, { t: END, v: 0 }];
+  }
   const deep = [{ t: r(T.kt - 0.3), v: VOL.duck }, { t: r(T.kt + 0.2), v: VOL.duckDeep }, { t: r(T.llegan - 0.1), v: VOL.duckDeep }, { t: r(T.llegan + 0.15), v: VOL.duck }];
   return [{ t: 0, v: 0 }, { t: r(VO - 0.02), v: VOL.music }, { t: r(on0 - 0.08), v: VOL.music }, { t: r(on0 + 0.02), v: VOL.duck }, ...deep, { t: r(off), v: VOL.duck }, { t: r(off + 0.15), v: VOL.music }, { t: r(END - 0.3), v: VOL.music }, { t: END, v: 0 }];
 }
@@ -703,9 +1009,9 @@ for (let t0 = 0, media = 0, k = 0; t0 < END - 0.001; k++) {
 }
 const NO_MUSIC = process.argv.includes('--sin-musica'); // versión reels: voz + efectos
 const musicHtml = NO_MUSIC ? [] : [`<hf-audio-group id="musica" data-label="Música" data-volume="1" data-automation="${lane(duckLane())}"></hf-audio-group>`, ...musicClips];
-const voiceHtml = `<audio id="voz" data-audio-group="voz" src="assets/sfx/voz.mp3" data-start="${VO}" data-duration="${r(Math.min(VOICE_FILE_LEN, END - VO))}" data-track-index="4" data-volume="${VOL.voz}"></audio>`;
+const voiceHtml = `<audio id="voz" data-audio-group="voz" src="${VOICE_SRC}" data-start="${VO}" data-duration="${r(Math.min(VOICE_FILE_LEN, END - VO))}" data-track-index="4" data-volume="${VOL.voz}"></audio>`;
 
-const TRACK = { vertido: 7, splash: 8, destape: 7, burbujas: 9, brindis: 9, woosh: 10, pop: 11 };
+const TRACK = { vertido: 7, splash: 8, destape: 7, burbujas: 9, brindis: 9, woosh: 10, pop: 11, sello: 11, 'raices-crecen': 7, 'campanita-tienda': 9 };
 const lanes = {};
 for (const x of audio.sort((p, q) => p.start - q.start)) {
   let t = TRACK[x.file];
@@ -721,14 +1027,18 @@ const sfxHtml = audio.map((x) => {
 const MASTER = attrJson({ version: 1, nodes: [{ type: 'truepeak', id: 'n1', label: 'Techo de entrega', params: { ceiling: -3, lookahead: 3, release: 80 } }] });
 
 // ── documento ───────────────────────────────────────────────────────────
-const css = fs.readFileSync(new URL('./style.css', import.meta.url), 'utf8');
-const anim = fs.readFileSync(new URL('./timeline.js', import.meta.url), 'utf8');
+// la variante tienda suma sus estilos y animaciones propias (la versión original no cambia)
+const read = (f) => fs.readFileSync(new URL(f, import.meta.url), 'utf8');
+const css = read('./style.css') + (STORE ? read('./tiendas.css') : '');
+const LOOP_MARK = '      for (const a of ANIM) {';
+const anim = STORE ? read('./timeline.js').replace(LOOP_MARK, read('./tiendas.js') + LOOP_MARK) : read('./timeline.js');
+const OUT = STORE ? `index-${STORE_ID}${DEG ? '-degustacion' : ''}.html` : 'index.html';
 const html = `<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1080, height=1920" />
-    <title>TRIALFERI — promo kéfir</title>
+    <title>${STORE ? `TRIALFERI × ${esc(STORE.name)}${DEG ? ' — degustación' : ''}` : 'TRIALFERI — promo kéfir'}</title>
     <!-- Generado por scripts/build.mjs: edita los datos allí y vuelve a correr \`node scripts/build.mjs\`. -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <style>
@@ -762,6 +1072,6 @@ ${anim}
   </body>
 </html>
 `;
-fs.writeFileSync(new URL('../index.html', import.meta.url), html);
-console.log(`index.html: ${r(END)} s · ${audio.length} efectos · ${ANIM.length} animaciones`);
+fs.writeFileSync(new URL(`../${OUT}`, import.meta.url), html);
+console.log(`${OUT}: ${r(END)} s · ${audio.length} efectos · ${ANIM.length} animaciones`);
 console.log(scenes.map(([id, a, b]) => `${id} ${r(a)}–${r(b)} (${r(b - a)} s)`).join('\n'));
