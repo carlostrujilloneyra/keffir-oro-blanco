@@ -1,0 +1,1650 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>TRIALFERI — promo kéfir</title>
+    <!-- Generado por scripts/build.mjs: edita los datos allí y vuelve a correr `node scripts/build.mjs`. -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: 'Alfa Slab One';
+        src: url('assets/fonts/alfaslab.woff2') format('woff2');
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: 'Anton';
+        src: url('assets/fonts/anton.woff2') format('woff2');
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: 'Poppins';
+        src: url('assets/fonts/poppins-400.woff2') format('woff2');
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: 'Poppins';
+        src: url('assets/fonts/poppins-500.woff2') format('woff2');
+        font-weight: 500;
+        font-display: block;
+      }
+      @font-face {
+        font-family: 'Poppins';
+        src: url('assets/fonts/poppins-600.woff2') format('woff2');
+        font-weight: 600;
+        font-display: block;
+      }
+      @font-face {
+        font-family: 'Poppins';
+        src: url('assets/fonts/poppins-700.woff2') format('woff2');
+        font-weight: 700 900;
+        font-display: block;
+      }
+      :root {
+        --papel: #f5f2ea;
+        --tinta: #16201a;
+        --miel: #f2b705;
+        --wa: #25d366;
+        --verde: #2f7d52;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      /* El lienzo base es el fucsia del gancho: nunca se ve un frame crema vacío. */
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #b0186b;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #b0186b;
+        font-family: 'Poppins', sans-serif;
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+      .bg .fill {
+        position: absolute;
+        inset: 0;
+      }
+
+      /* Escena: texto arriba (desde y = 240) centrado en la columna segura x 60–920;
+         el producto llena el resto hasta y = 1900 (solo el texto respeta la franja inferior). */
+      .scene {
+        display: flex;
+        flex-direction: column;
+        padding: 240px 0 20px;
+      }
+      .copy {
+        position: relative;
+        z-index: 2;
+        flex: none;
+        width: 860px;
+        margin-left: 60px;
+        text-align: center;
+        --ink: var(--tinta);
+        color: var(--ink);
+      }
+      .on-dark {
+        --ink: var(--papel);
+      }
+
+      /* KÉFIR: contorno + relleno que sube como líquido */
+      .brand-word {
+        position: relative;
+        display: inline-block;
+        font-family: 'Alfa Slab One', serif;
+        font-size: 190px;
+        line-height: 0.95;
+        letter-spacing: 0.02em;
+      }
+      .bw-outline {
+        display: block;
+        visibility: hidden;
+      }
+      .bw-fill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--ink);
+      }
+      .flavor-line {
+        margin-top: 4px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 62px;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        color: var(--kw);
+        text-wrap: balance;
+      }
+      .brand.kombu {
+        display: inline-flex;
+        align-items: center;
+        gap: 30px;
+        text-align: left;
+      }
+      .kb-stack {
+        display: flex;
+        flex-direction: column;
+        padding-left: 22px;
+        border-left: 5px solid var(--ink);
+        font-family: 'Anton', sans-serif;
+        font-size: 128px;
+        line-height: 0.88;
+        color: var(--ink);
+      }
+      .kombu .flavor-line {
+        max-width: 470px;
+        margin-top: 0;
+        font-size: 64px;
+      }
+      .title {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 120px;
+        line-height: 0.98;
+        letter-spacing: -0.035em;
+        color: var(--ink);
+        text-wrap: balance;
+      }
+      .title.mid {
+        font-size: 108px;
+      }
+      .title .w,
+      .hl {
+        display: inline-block;
+      }
+      .title .kw {
+        color: var(--kw);
+      }
+      .title .line {
+        display: block;
+      }
+      .desc {
+        margin-top: 16px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        font-size: 42px;
+        line-height: 1.2;
+        color: var(--ink);
+        text-wrap: balance;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+        margin-top: 22px;
+      }
+      /* Cinta negra con punta de flecha (como "30-40 Probióticos" de la etiqueta).
+         El envoltorio recorta para que se despliegue desde la izquierda. */
+      .ribbon-wrap {
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: middle;
+      }
+      .ribbon {
+        display: inline-block;
+        padding: 12px 54px 13px 26px;
+        background: var(--tinta);
+        color: var(--papel);
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 34px;
+        white-space: nowrap;
+        clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 50%, calc(100% - 28px) 100%, 0 100%);
+      }
+      .attrs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .pre {
+        display: block;
+        width: max-content;
+        margin: 0 auto 22px;
+      }
+      .tag {
+        position: absolute;
+        z-index: 4;
+        display: inline-block;
+        padding: 10px 24px 11px;
+        border-radius: 999px;
+        background: var(--papel);
+        color: var(--tinta);
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 32px;
+        white-space: nowrap;
+        box-shadow: 0 8px 20px rgba(22, 32, 26, 0.28);
+      }
+
+      /* Sellos circulares */
+      .seal {
+        width: 150px;
+        height: 150px;
+      }
+      .seal svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+      .seal-bg {
+        fill: var(--tinta);
+      }
+      .seal-line {
+        fill: none;
+        stroke: var(--papel);
+        stroke-width: 2;
+      }
+      .seal-ring {
+        fill: var(--papel);
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 12.5px;
+        letter-spacing: 0.5px;
+      }
+      .seal-big {
+        fill: var(--papel);
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        font-size: 30px;
+      }
+      .seal-ink {
+        fill: var(--papel);
+        stroke: var(--papel);
+      }
+      .seal-light .seal-bg {
+        fill: var(--papel);
+      }
+      .seal-light .seal-line {
+        stroke: var(--tinta);
+      }
+      .seal-light .seal-ring,
+      .seal-light .seal-big {
+        fill: var(--tinta);
+      }
+      .seal-light .seal-ink {
+        fill: var(--verde);
+        stroke: var(--verde);
+      }
+
+      /* Producto: arco detrás, sombra en la base, brillo especular y flotado. */
+      .stage {
+        position: relative;
+        flex: 1 1 auto;
+        min-height: 0;
+        margin: 20px 20px 0;
+      }
+      .vertido .stage {
+        margin-top: 50px;
+      }
+      .arch {
+        position: absolute;
+        left: 16%;
+        right: 16%;
+        top: 4%;
+        bottom: -40px;
+        border-radius: 999px 999px 0 0;
+        background: var(--arch);
+        box-shadow:
+          inset 0 0 0 3px rgba(255, 255, 255, 0.22),
+          0 0 46px rgba(255, 255, 255, 0.18);
+      }
+      .stage.right .arch {
+        left: 38%;
+        right: 2%;
+      }
+      .enter,
+      .float {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .stage.right .float {
+        justify-content: flex-end;
+      }
+      .imgbox {
+        position: relative;
+        flex: none;
+        height: 100%;
+        max-width: 100%;
+      }
+      .imgbox > img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: bottom center;
+        filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.2));
+      }
+      .shine {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(105deg, rgba(255, 255, 255, 0) 44%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0) 56%);
+        background-size: 300% 100%;
+        background-position: 100% 0%;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-position: bottom center;
+        mask-position: bottom center;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        mix-blend-mode: screen;
+      }
+      .shadow {
+        position: absolute;
+        left: 26%;
+        right: 26%;
+        bottom: -6px;
+        height: 26px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.16);
+        box-shadow: 0 0 34px 20px rgba(0, 0, 0, 0.16);
+      }
+      .stage.right .shadow {
+        left: 46%;
+        right: 6%;
+      }
+      .splash {
+        position: absolute;
+        left: -40px;
+        top: 4%;
+        width: 900px;
+        height: 100%;
+      }
+      .splash img,
+      .pspl img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .drops {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+      }
+      .drop {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0;
+        box-shadow:
+          inset -3px -4px 0 rgba(0, 0, 0, 0.14),
+          inset 3px 3px 0 rgba(255, 255, 255, 0.45);
+      }
+
+      /* Vaca o cabra: dos recortes de la misma foto entran desde los lados. */
+      /* Dúo de 1 L: la base de las botellas cae en y ≈ 1500 (90 % de la foto); la ola de leche y el
+         reflejo bajan a la franja inferior (solo imagen, sin texto). */
+      .duo-box {
+        position: absolute;
+        left: -126px;
+        top: 541px;
+        width: 1332px;
+        height: 1066px;
+      }
+      .duo-art {
+        position: absolute;
+        inset: 0;
+        transform-origin: 50% 90%;
+      }
+      .duo-art > img,
+      .duo-ext img,
+      .duo-refl img,
+      .duo-box > img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .duo-l {
+        clip-path: inset(0 44% 0 31%);
+      }
+      .duo-r {
+        clip-path: inset(0 23% 0 54%);
+      }
+      .duo-box .arch {
+        left: 26%;
+        right: 22%;
+        top: 6%;
+        bottom: 8%;
+      }
+
+      /* Kéfir natural: KÉFIR + "de vaca o de cabra", una cinta que cambia de texto y chips bajo cada botella */
+      .duo .brand-word {
+        font-size: 170px;
+      }
+      .duo .chips {
+        margin-top: 16px;
+      }
+      .duo-ext,
+      .duo-refl {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 100%;
+      }
+      /* La ola baja de la foto (sin las botellas), espejada y desplazada hacia abajo. */
+      .duo-ext {
+        top: 0;
+        transform: translate(4%, -1%) scaleX(-1) scaleY(1.3);
+      }
+      .duo-ext img {
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 91%, #000 96%);
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 91%, #000 96%);
+      }
+      /* Reflejo espejado sobre la base de las botellas (y = 90 % de la foto). */
+      .duo-refl {
+        top: 80%;
+        transform: scaleY(-1);
+        -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 10%, #000 11%, rgba(0, 0, 0, 0) 34%);
+        mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 10%, #000 11%, rgba(0, 0, 0, 0) 34%);
+      }
+      .duo-refl img {
+        opacity: 0.2;
+      }
+      .duo-tag {
+        position: absolute;
+        z-index: 4;
+        top: 83.2%;
+        transform: translateX(-50%);
+      }
+      .duo-tag .tag {
+        position: static;
+      }
+      .rs-slot {
+        display: inline-grid;
+        overflow: hidden;
+        vertical-align: top;
+      }
+      .rs {
+        grid-area: 1 / 1;
+        text-align: center;
+        white-space: nowrap;
+      }
+      .fr-ask {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 60px;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+
+      /* Primera vez */
+      .steps-row {
+        position: relative;
+        z-index: 2;
+        flex: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 860px;
+        margin: 26px 0 0 60px;
+      }
+      .steps {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .step {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 36px;
+        color: var(--tinta);
+      }
+      .num {
+        flex: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--tinta);
+        color: var(--papel);
+        font-weight: 700;
+        font-size: 30px;
+      }
+      .check {
+        flex: none;
+        width: 44px;
+        height: 44px;
+      }
+      .check circle {
+        fill: var(--verde);
+      }
+      .check path {
+        fill: none;
+        stroke: var(--papel);
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 40;
+        stroke-dashoffset: 40;
+      }
+      .shot {
+        position: relative;
+        flex: none;
+        width: 160px;
+        height: 250px;
+        padding-top: 44px;
+      }
+      .shot svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .shot-liquid {
+        fill: #e9e2cf;
+      }
+      .shot-glass {
+        fill: none;
+        stroke: var(--tinta);
+        stroke-width: 6;
+        stroke-linejoin: round;
+      }
+      .shot-mark {
+        stroke: var(--verde);
+        stroke-width: 5;
+        stroke-dasharray: 10 7;
+      }
+      .shot-label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 34px;
+        color: var(--verde);
+      }
+      .stage.arch-photo {
+        margin: 26px 120px 0;
+      }
+      .photo {
+        border-radius: 420px 420px 28px 28px;
+        overflow: hidden;
+        box-shadow:
+          0 0 0 8px rgba(47, 125, 82, 0.16),
+          0 24px 50px rgba(22, 32, 26, 0.18);
+      }
+      .photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 55% 70%;
+      }
+
+      /* Frutados: KÉFIR fijo, cinta SABOR + pincelada que cambia con cada sabor */
+      .frutados .brand-word {
+        font-size: 170px;
+      }
+      .sabores,
+      .fr-lines {
+        position: relative;
+      }
+      .sabores {
+        height: 124px;
+        margin-top: 4px;
+      }
+      .fr-lines {
+        height: 74px;
+      }
+      .sabor,
+      .fr-line {
+        position: absolute;
+        left: 0;
+        right: 0;
+      }
+      .sabor {
+        top: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+      }
+      .fr-line {
+        top: 0;
+        margin-top: 0;
+        font-size: 50px;
+        white-space: nowrap;
+      }
+      .sabor-tag {
+        display: inline-block;
+        padding: 6px 18px 4px;
+        background: var(--tinta);
+        color: var(--papel);
+        font-family: 'Anton', sans-serif;
+        font-size: 44px;
+        letter-spacing: 0.04em;
+      }
+      .sabor-name {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 540px;
+        height: 120px;
+      }
+      .brush {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+      .brush path {
+        fill: none;
+        stroke-width: 84;
+        stroke-linecap: round;
+        stroke-dasharray: 620;
+        stroke-dashoffset: 620;
+      }
+      .sabor-name > span {
+        position: relative;
+        font-family: 'Alfa Slab One', serif;
+        font-size: 80px;
+        line-height: 1;
+        color: var(--papel);
+      }
+      .fr-bottle,
+      .fr-vertido {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .pspl {
+        position: absolute;
+      }
+      .pspl.bl {
+        left: -60px;
+        bottom: 40px;
+        width: 620px;
+        height: 620px;
+      }
+      .pspl.br {
+        right: -50px;
+        bottom: 60px;
+        width: 600px;
+        height: 540px;
+      }
+      .pspl.bl.wide {
+        left: -260px;
+        bottom: -40px;
+        width: 1000px;
+        height: 670px;
+      }
+      .pspl.tr.wide {
+        right: -300px;
+        top: 80px;
+        width: 1000px;
+        height: 670px;
+      }
+      .pspl.center {
+        left: -12%;
+        right: -12%;
+        top: -10%;
+        bottom: -4%;
+      }
+
+      /* Kombuchas: tapa que salta, burbujas */
+      .kombucha .cam {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .cap {
+        position: absolute;
+        z-index: 2;
+        width: 9%;
+        height: 4%;
+        margin-left: -4.5%;
+        margin-top: -1.5%;
+      }
+      .cap-body {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px 8px 4px 4px;
+        background: #121212;
+        box-shadow: inset 0 -5px 0 rgba(255, 255, 255, 0.14);
+      }
+      .bubble {
+        position: absolute;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.75);
+        background: rgba(255, 255, 255, 0.12);
+        opacity: 0;
+      }
+
+      /* Teaser de kombuchas: siluetas a contraluz → color, desfile y "muy pronto" */
+      .kt-slot {
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        min-height: 340px;
+      }
+      .kt-slot > * {
+        grid-area: 1 / 1;
+      }
+      .kt-tease {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 84px;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        color: var(--ink);
+        text-wrap: balance;
+      }
+      .nuevo {
+        display: inline-block;
+        padding: 10px 26px 8px;
+        border-radius: 10px;
+        background: var(--miel);
+        color: var(--tinta);
+        font-family: 'Anton', sans-serif;
+        font-size: 64px;
+        line-height: 1;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+      }
+      .kt-halo {
+        position: absolute;
+        left: 6%;
+        right: 6%;
+        top: 46%;
+        bottom: 0;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(214, 170, 255, 0.34), rgba(214, 170, 255, 0));
+      }
+      .kt-row {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 110px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 44px;
+      }
+      .flash {
+        position: absolute;
+        inset: 0;
+        z-index: 7;
+        background: #fff;
+        opacity: 0;
+      }
+      .kd-bottle,
+      .kd-main,
+      .kd-diag {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .kd-diag {
+        transform-origin: 50% 80%;
+      }
+      .kd-halo {
+        position: absolute;
+        left: -12%;
+        right: -12%;
+        top: 4%;
+        bottom: -6%;
+        border-radius: 50%;
+      }
+      .kd-flavors {
+        display: grid;
+        align-items: center;
+      }
+      .kd-flavors > .flavor-line {
+        grid-area: 1 / 1;
+      }
+      .kp-eyebrow {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 30px;
+        letter-spacing: 0.42em;
+        color: var(--papel);
+      }
+      .kp-pills {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 26px;
+      }
+      .kp-pill {
+        display: inline-block;
+        padding: 10px 24px 11px;
+        border-radius: 999px;
+        border: 2px solid rgba(245, 242, 234, 0.55);
+        background: rgba(245, 242, 234, 0.1);
+        color: var(--papel);
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 32px;
+        white-space: nowrap;
+      }
+      .kp-v {
+        position: absolute;
+        inset: 0;
+      }
+      .kp-halo {
+        position: absolute;
+        z-index: -1;
+        left: -70%;
+        right: -70%;
+        top: 2%;
+        bottom: -8%;
+        border-radius: 50%;
+      }
+      .kp-bubbles {
+        position: absolute;
+        inset: 0;
+      }
+      .bubble.small {
+        border-width: 1.5px;
+      }
+      .kp-nuevo {
+        position: absolute;
+        z-index: 2;
+        right: -34%;
+        top: 40%;
+      }
+      .kp-pronto {
+        margin-top: 18px;
+      }
+      /* Cinta de etiqueta en versión clara: sobre el fondo oscuro la negra no se leería */
+      .ribbon.big {
+        padding: 16px 92px 14px 40px;
+        background: var(--papel);
+        color: var(--tinta);
+        font-family: 'Anton', sans-serif;
+        font-weight: 400;
+        font-size: 140px;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        clip-path: polygon(0 0, calc(100% - 56px) 0, 100% 50%, calc(100% - 56px) 100%, 0 100%);
+      }
+      .kp-date {
+        margin-top: 18px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 48px;
+        color: var(--kw);
+      }
+
+      /* Sorteo */
+      .confettis {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .confetti {
+        position: absolute;
+        top: -60px;
+        border-radius: 3px;
+        opacity: 0.9;
+      }
+      .title.big {
+        font-size: 96px;
+        line-height: 1.02;
+      }
+      .ticket-wrap {
+        position: relative;
+        z-index: 2;
+        flex: none;
+        display: flex;
+        justify-content: center;
+        width: 860px;
+        margin: 30px 0 0 60px;
+      }
+      .ticket {
+        position: relative;
+        display: flex;
+        width: 760px;
+        height: 190px;
+        filter: drop-shadow(0 14px 24px rgba(40, 0, 40, 0.35));
+      }
+      .ticket-stub {
+        position: relative;
+        flex: none;
+        width: 180px;
+      }
+      .ticket-main {
+        position: relative;
+        flex: 1;
+      }
+      .ticket-stub svg,
+      .ticket-main svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .ticket-shape {
+        fill: var(--papel);
+      }
+      .ticket-dash {
+        stroke: rgba(22, 32, 26, 0.45);
+        stroke-width: 3;
+        stroke-dasharray: 10 10;
+      }
+      .star {
+        fill: #c2187a;
+      }
+      .ticket-body {
+        position: absolute;
+        inset: 0 16px 0 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+      .ticket .t1 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 1.15;
+        color: var(--tinta);
+      }
+      .ticket .t2 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        font-size: 52px;
+        line-height: 1.1;
+        color: #c2187a;
+      }
+      .burst-origin {
+        position: absolute;
+        left: 24%;
+        top: 50%;
+        width: 0;
+        height: 0;
+      }
+      .confetti.burst {
+        top: -11px;
+        left: -7px;
+        opacity: 0;
+      }
+      /* Canasta grande y centrada en la mitad inferior, bajo el ticket */
+      .sorteo-stage {
+        margin: 24px 20px 0;
+      }
+      .glow {
+        position: absolute;
+        left: 18%;
+        right: 18%;
+        top: 8%;
+        bottom: 4%;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(255, 214, 120, 0.55), rgba(255, 214, 120, 0));
+      }
+
+      /* Cierre */
+      .closing {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 230px 160px 0 80px;
+      }
+      .logo-glow {
+        position: absolute;
+        left: 270px;
+        top: 130px;
+        width: 460px;
+        height: 460px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(245, 242, 234, 0.32), rgba(245, 242, 234, 0));
+      }
+      .logo {
+        position: relative;
+        flex: none;
+        width: 280px;
+        height: 260px;
+      }
+      .logo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.4));
+      }
+      .wa-slot {
+        flex: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 160px;
+        margin-top: 18px;
+      }
+      .wa-wrap {
+        position: relative;
+      }
+      .wa-ring {
+        position: absolute;
+        inset: 0;
+        border-radius: 999px;
+        border: 6px solid var(--wa);
+      }
+      .wa-btn {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        padding: 26px 52px 28px 40px;
+        border-radius: 999px;
+        background: var(--wa);
+        color: var(--tinta);
+        box-shadow: 0 18px 44px rgba(37, 211, 102, 0.35);
+      }
+      .wa-icon {
+        display: block;
+        width: 86px;
+        height: 86px;
+      }
+      .wa-num {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        font-size: 80px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+      .wa-num .g {
+        display: inline-block;
+      }
+      .cta-line {
+        margin-top: 14px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 46px;
+        line-height: 1.1;
+        color: var(--papel);
+        white-space: nowrap;
+      }
+      .cta-handle {
+        font-weight: 500;
+        color: #d9d3c4;
+      }
+      .cta-sep {
+        color: #9fd8b4;
+      }
+      .cta-made {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 30px;
+        color: #d9d3c4;
+        white-space: nowrap;
+      }
+      .flag {
+        display: block;
+        width: 42px;
+        height: 28px;
+        border-radius: 3px;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
+      }
+      /* Sellos pegados como stickers en la esquina superior de las botellas de los extremos */
+      .seal-on {
+        position: absolute;
+        z-index: 4;
+        top: 12%;
+        width: 140px;
+        height: 140px;
+      }
+      .seal-on-l {
+        left: -40px;
+      }
+      .seal-on-r {
+        left: -40px;
+      }
+      .pronto-pos {
+        position: absolute;
+        z-index: 4;
+        left: 50%;
+        bottom: calc(100% + 10px);
+        transform: translateX(-50%);
+      }
+      .pronto {
+        display: inline-block;
+        padding: 6px 18px 7px;
+        border-radius: 999px;
+        background: var(--miel);
+        color: var(--tinta);
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 26px;
+        white-space: nowrap;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+      }
+      /* Estante: botellas a escala real entre sí, base en y = 1700, con reflejo y base de luz. */
+      .shelf {
+        position: absolute;
+        inset: 0;
+      }
+      .shelf-light {
+        position: absolute;
+        left: 20px;
+        right: 120px;
+        top: 1640px;
+        height: 130px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(245, 242, 234, 0.26), rgba(245, 242, 234, 0));
+      }
+      .real {
+        position: relative;
+        flex: none;
+      }
+      .real-crop {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .real img {
+        position: absolute;
+        max-width: none;
+      }
+      .real-refl {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: 100%;
+        overflow: hidden;
+        opacity: 0.2;
+        transform: scaleY(-1);
+        transform-origin: 50% 50%;
+        -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 16%);
+        mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 16%);
+      }
+
+      /* Ola de líquido y grano */
+      .wave {
+        z-index: 8;
+        overflow: hidden;
+      }
+      .wave-svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 2160px;
+        height: 800px;
+      }
+      .grain {
+        z-index: 9;
+        opacity: 0.03;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+        background-size: 240px 240px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="65.26666666666667"
+      data-width="1080"
+      data-height="1920"
+      data-fx-chain="{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;type&quot;:&quot;truepeak&quot;,&quot;id&quot;:&quot;n1&quot;,&quot;label&quot;:&quot;Techo de entrega&quot;,&quot;params&quot;:{&quot;ceiling&quot;:-3,&quot;lookahead&quot;:3,&quot;release&quot;:80}}]}"
+    >
+      <div id="bg-h1" class="clip bg" data-start="0" data-duration="3.05" data-track-index="0"><div class="fill" style="background: radial-gradient(circle farthest-corner at 50% 70%, #FBD9E8 0%, #E683B6 18%, #B0186B 46%, #B0186B 100%)"></div></div>
+      <div id="bg-h2" class="clip bg" data-start="3.05" data-duration="5.6" data-track-index="0"><div class="fill" style="background: radial-gradient(circle farthest-corner at 50% 70%, #FBD9E8 0%, #E683B6 18%, #B0186B 46%, #B0186B 100%)"></div></div>
+      <div id="bg-kN" class="clip bg" data-start="8.65" data-duration="10.867" data-track-index="0"><div class="fill" style="background: radial-gradient(circle farthest-corner at 50% 62%, #FFFFFF 0%, #EEF6EF 30%, #CDE5D3 64%, #CDE5D3 100%)"></div></div>
+      <div id="bg-pv" class="clip bg" data-start="19.517" data-duration="5.733" data-track-index="0"><div class="fill" style="background: radial-gradient(circle farthest-corner at 50% 62%, #FFFFFF 0%, #EEF6EF 30%, #CDE5D3 64%, #CDE5D3 100%)"></div></div>
+      <div id="bg-fr-fresa" class="clip bg" data-start="25.25" data-duration="3.7" data-track-index="0"><div class="fill" style="background: radial-gradient(circle farthest-corner at 50% 62%, #FFF1F4 0%, #FAC6D3 30%, #F29AB2 64%, #F29AB2 100%)"></div></div>
+      <div id="bg-fr-arand" class="clip bg" data-start="28.95" data-duration="2.533" data-track-index="0"><div class="fill" style="background: radial-gradient(circle farthest-corner at 50% 62%, #E2D7F6 0%, #9A7FD4 30%, #47297F 64%, #47297F 100%)"></div></div>
+      <div id="bg-fr-choc" class="clip bg" data-start="31.483" data-duration="4.167" data-track-index="0"><div class="fill" style="background: radial-gradient(circle farthest-corner at 50% 62%, #EEDFCF 0%, #AE7C5C 30%, #573220 64%, #573220 100%)"></div></div>
+      <div id="bg-kt" class="clip bg" data-start="35.65" data-duration="3.8" data-track-index="0"><div class="fill" style="background: radial-gradient(circle at 50% 62%, #2A1638 0%, #120A1A 62%)"></div></div>
+      <div id="bg-kd" class="clip bg" data-start="39.45" data-duration="3.3" data-track-index="0"><div class="fill" style="background: radial-gradient(circle at 50% 62%, #2A1638 0%, #120A1A 62%)"></div></div>
+      <div id="bg-kp" class="clip bg" data-start="42.75" data-duration="5.8" data-track-index="0"><div class="fill" style="background: radial-gradient(circle at 50% 62%, #2A1638 0%, #120A1A 62%)"></div></div>
+      <div id="bg-s9" class="clip bg" data-start="48.55" data-duration="6.7" data-track-index="0"><div class="fill" style="background: linear-gradient(150deg, #C2187A 0%, #8E1F82 48%, #5B2A86 100%)"></div></div>
+      <div id="bg-s10" class="clip bg" data-start="55.25" data-duration="10.017" data-track-index="0"><div class="fill" style="background: linear-gradient(170deg, #16201A 0%, #1E3A2F 100%)"></div></div>
+
+      <section id="h1" class="clip scene vertido" data-start="0" data-duration="3.05" data-track-index="1">
+        <div class="copy on-dark" style="--kw: #FFC4E0">
+          <div class="brand-word" id="h1-kefir"><span class="bw-outline">KÉFIR</span><span class="bw-fill">KÉFIR</span></div>
+          <div class="flavor-line">de frutos del bosque</div>
+          <div class="chips"><span class="ribbon-wrap "><span class="ribbon">Endulzado con <span class="hl">stevia</span></span></span></div>
+        </div>
+        <div class="stage"><div class="arch" style="--arch: rgba(90, 0, 45, 0.28)"></div><div class="shadow"></div><div class="enter"><div class="float"><div class="imgbox" style="aspect-ratio: 1024 / 1536"><img src="assets/kefir/vertido-frutos.webp" alt="" /><div class="shine" style="-webkit-mask-image: url('assets/kefir/vertido-frutos.webp'); mask-image: url('assets/kefir/vertido-frutos.webp')"></div></div></div></div></div>
+      </section>
+
+      <section id="h2" class="clip scene product" data-start="3.05" data-duration="5.6" data-track-index="1">
+        <div class="copy on-dark" style="--kw: #FFC4E0">
+          <h1 class="title"><span class="w kw">4</span> <span class="w kw">frutos</span> <span class="w">en</span> <span class="w">1</span> <span class="w">botella</span></h1>
+        </div>
+        <div class="stage right"><div class="arch" style="--arch: rgba(90, 0, 45, 0.28)"></div><div class="shadow"></div><div class="enter"><div class="splash"><img src="assets/kefir/splash-frutos.png" alt="" /></div><div class="float"><div class="imgbox" style="aspect-ratio: 1049 / 1499"><img src="assets/kefir/frutos-botella.webp" alt="" /><div class="shine" style="-webkit-mask-image: url('assets/kefir/frutos-botella.webp'); mask-image: url('assets/kefir/frutos-botella.webp')"></div></div></div></div></div>
+        <span class="tag fly" id="h2-tag-0" style="left: 60px; top: 880px">Fresa</span><span class="tag fly" id="h2-tag-1" style="left: 150px; top: 1020px">Frambuesa</span><span class="tag fly" id="h2-tag-2" style="left: 60px; top: 1160px">Arándano</span><span class="tag fly" id="h2-tag-3" style="left: 150px; top: 1300px">Zarzamora</span>
+        <div class="drops"><span id="h2-drop-0" class="drop" style="left: 317.5px; top: 1137.5px; width: 25px; height: 25px; background: #F7A8CB"></span><span id="h2-drop-1" class="drop" style="left: 324.5px; top: 1144.5px; width: 11px; height: 11px; background: #F7A8CB"></span><span id="h2-drop-2" class="drop" style="left: 320.5px; top: 1140.5px; width: 19px; height: 19px; background: #F7A8CB"></span><span id="h2-drop-3" class="drop" style="left: 318.5px; top: 1138.5px; width: 23px; height: 23px; background: #F7A8CB"></span><span id="h2-drop-4" class="drop" style="left: 319.5px; top: 1139.5px; width: 21px; height: 21px; background: #F7A8CB"></span><span id="h2-drop-5" class="drop" style="left: 317.5px; top: 1137.5px; width: 25px; height: 25px; background: #F7A8CB"></span><span id="h2-drop-6" class="drop" style="left: 321px; top: 1141px; width: 18px; height: 18px; background: #F7A8CB"></span><span id="h2-drop-7" class="drop" style="left: 323.5px; top: 1143.5px; width: 13px; height: 13px; background: #F7A8CB"></span><span id="h2-drop-8" class="drop" style="left: 323.5px; top: 1143.5px; width: 13px; height: 13px; background: #F7A8CB"></span><span id="h2-drop-9" class="drop" style="left: 323.5px; top: 1143.5px; width: 13px; height: 13px; background: #F7A8CB"></span></div>
+      </section>
+
+      <section id="kN" class="clip scene duo" data-start="8.65" data-duration="10.867" data-track-index="1">
+        <div class="copy on-light" style="--kw: #2F7D52">
+          <div class="brand-word" id="kN-kefir"><span class="bw-outline">KÉFIR</span><span class="bw-fill">KÉFIR</span></div>
+          <div class="flavor-line">de vaca o de cabra</div>
+          <div class="chips"><span class="ribbon-wrap swap"><span class="ribbon"><span class="rs-slot"><span class="rs" id="kN-rs-0">Pasteurizado en ollas de <span class="hl">acero quirúrgico</span></span><span class="rs" id="kN-rs-1">0% de azúcar añadida</span><span class="rs" id="kN-rs-2">100% kéfir natural, no es yogurt estilo kéfir</span></span></span></span></div>
+        </div>
+        <div class="duo-box">
+          <div class="arch" style="--arch: rgba(47, 125, 82, 0.13)"></div>
+          <div class="duo-art">
+            <div class="duo-ext" data-layout-allow-overflow><img src="assets/scenes/kefir-leche-duo.png" alt="" /></div>
+            <div class="duo-refl" data-layout-allow-overflow><img src="assets/scenes/kefir-leche-duo.png" alt="" /></div>
+            <img class="duo-full" src="assets/scenes/kefir-leche-duo.png" alt="" />
+          </div>
+          <img class="duo-l" src="assets/scenes/kefir-leche-duo.png" alt="" />
+          <img class="duo-r" src="assets/scenes/kefir-leche-duo.png" alt="" />
+          <div class="duo-tag" style="left: 42%"><span class="tag" id="kN-tag-cabra">Libre pastoreo</span></div>
+          <div class="duo-tag" style="left: 66%"><span class="tag" id="kN-tag-vaca">Leche de establo</span></div>
+        </div>
+        <div class="drops"><span id="kN-drop-0" class="drop" style="left: 532.5px; top: 1242.5px; width: 15px; height: 15px; background: #FFFFFF"></span><span id="kN-drop-1" class="drop" style="left: 532px; top: 1242px; width: 16px; height: 16px; background: #FFFFFF"></span><span id="kN-drop-2" class="drop" style="left: 527.5px; top: 1237.5px; width: 25px; height: 25px; background: #FFFFFF"></span><span id="kN-drop-3" class="drop" style="left: 534px; top: 1244px; width: 12px; height: 12px; background: #FFFFFF"></span><span id="kN-drop-4" class="drop" style="left: 531.5px; top: 1241.5px; width: 17px; height: 17px; background: #FFFFFF"></span><span id="kN-drop-5" class="drop" style="left: 532.5px; top: 1242.5px; width: 15px; height: 15px; background: #FFFFFF"></span><span id="kN-drop-6" class="drop" style="left: 532px; top: 1242px; width: 16px; height: 16px; background: #FFFFFF"></span><span id="kN-drop-7" class="drop" style="left: 528px; top: 1238px; width: 24px; height: 24px; background: #FFFFFF"></span></div>
+      </section>
+
+      <section id="pv" class="clip scene primera" data-start="19.517" data-duration="5.733" data-track-index="1">
+        <div class="copy on-light" style="--kw: #2F7D52">
+          <h1 class="title mid"><span class="w">¿Primera</span> <span class="w">vez</span> <span class="w">con</span> <span class="w kw">kéfir?</span></h1>
+        </div>
+        <div class="steps-row">
+          <ol class="steps"><li class="step"><span class="num">1</span><span class="step-text">Empieza con un shot de <span class="hl">30 ml</span></span><svg class="check" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" /><path d="M11 21l6 6 12-13" /></svg></li><li class="step"><span class="num">2</span><span class="step-text">En ayunas</span><svg class="check" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" /><path d="M11 21l6 6 12-13" /></svg></li><li class="step"><span class="num">3</span><span class="step-text">Aumenta poco a poco</span><svg class="check" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" /><path d="M11 21l6 6 12-13" /></svg></li></ol>
+          <div class="shot">
+            <svg viewBox="0 0 200 260" aria-hidden="true">
+              <defs><clipPath id="shot-clip"><path d="M30 20 H170 L152 236 Q150 246 140 246 H60 Q50 246 48 236 Z" /></clipPath></defs>
+              <g clip-path="url(#shot-clip)"><rect class="shot-liquid" x="0" y="90" width="200" height="170" /></g>
+              <path class="shot-glass" d="M30 20 H170 L152 236 Q150 246 140 246 H60 Q50 246 48 236 Z" />
+              <line class="shot-mark" x1="36" y1="90" x2="164" y2="90" />
+            </svg>
+            <span class="shot-label">30 ml</span>
+          </div>
+        </div>
+        <div class="stage arch-photo"><div class="photo enter"><img src="assets/kefir/primera-vez.webp" alt="" /></div></div>
+      </section>
+
+      <section id="fr" class="clip scene frutados" data-start="25.25" data-duration="10.4" data-track-index="1">
+        <div class="copy on-light" id="fr-copy" style="--kw: #A0123F">
+          <div class="brand-word" id="fr-kefir"><span class="bw-outline">KÉFIR</span><span class="bw-fill">KÉFIR</span></div>
+          <div class="sabores"><div class="sabor fr-ask" id="fr-ask">¿Lo prefieres con fruta?</div><div class="sabor" id="fr-sabor-fresa"><span class="sabor-tag">SABOR</span><span class="sabor-name"><svg class="brush" viewBox="0 0 520 120" preserveAspectRatio="none" aria-hidden="true"><path style="stroke: #C81D3A" d="M18 64 C 90 40, 170 76, 250 58 S 410 44, 500 62" /></svg><span>Fresa</span></span></div><div class="sabor" id="fr-sabor-arand"><span class="sabor-tag">SABOR</span><span class="sabor-name"><svg class="brush" viewBox="0 0 520 120" preserveAspectRatio="none" aria-hidden="true"><path style="stroke: #5A36A8" d="M18 64 C 90 40, 170 76, 250 58 S 410 44, 500 62" /></svg><span>Arándanos</span></span></div><div class="sabor" id="fr-sabor-choc"><span class="sabor-tag">SABOR</span><span class="sabor-name"><svg class="brush" viewBox="0 0 520 120" preserveAspectRatio="none" aria-hidden="true"><path style="stroke: #3E2416" d="M18 64 C 90 40, 170 76, 250 58 S 410 44, 500 62" /></svg><span>Chocolate</span></span></div></div>
+          <div class="fr-lines"><div class="flavor-line fr-line" id="fr-line-fresa">con pulpa natural</div><div class="flavor-line fr-line" id="fr-line-arand">con pulpa natural</div><div class="flavor-line fr-line" id="fr-line-choc">con cacao de Quillabamba</div></div>
+          <div class="chips"><span class="ribbon-wrap "><span class="ribbon">Endulzado con <span class="hl">stevia</span></span></span></div>
+        </div>
+        <div class="stage"><div class="arch" style="--arch: rgba(160, 18, 63, 0.14)"></div><div class="shadow"></div><div class="pspl bl" id="fr-spl-fresa-0"><img src="assets/kefir/sabores/fresa-splash-1.png" alt="" /></div><div class="pspl br" id="fr-spl-fresa-1"><img src="assets/kefir/sabores/fresa-splash-2.png" alt="" /></div><div class="pspl bl wide" id="fr-spl-arand-0"><img src="assets/kefir/sabores/arandanos-splash-1.png" alt="" /></div><div class="pspl tr wide" id="fr-spl-arand-1"><img src="assets/kefir/sabores/arandanos-splash-2.png" alt="" /></div><div class="pspl center" id="fr-spl-choc-0"><img src="assets/kefir/sabores/chocolate-splash.png" alt="" /></div>
+          <div class="enter"><div class="fr-vertido"><div class="imgbox" style="aspect-ratio: 1024 / 1536"><img src="assets/kefir/vertido-fresa.webp" alt="" /><div class="shine" style="-webkit-mask-image: url('assets/kefir/vertido-fresa.webp'); mask-image: url('assets/kefir/vertido-fresa.webp')"></div></div></div><div class="float"><div class="fr-bottle" id="fr-bottle-fresa"><div class="imgbox" style="aspect-ratio: 1086 / 1448"><img src="assets/kefir/sabores/fresa-botella.webp" alt="" /><div class="shine" style="-webkit-mask-image: url('assets/kefir/sabores/fresa-botella.webp'); mask-image: url('assets/kefir/sabores/fresa-botella.webp')"></div></div></div><div class="fr-bottle" id="fr-bottle-arand"><div class="imgbox" style="aspect-ratio: 1024 / 1536"><img src="assets/kefir/sabores/arandanos-botella.webp" alt="" /><div class="shine" style="-webkit-mask-image: url('assets/kefir/sabores/arandanos-botella.webp'); mask-image: url('assets/kefir/sabores/arandanos-botella.webp')"></div></div></div><div class="fr-bottle" id="fr-bottle-choc"><div class="imgbox" style="aspect-ratio: 1024 / 1536"><img src="assets/kefir/sabores/chocolate-botella.webp" alt="" /><div class="shine" style="-webkit-mask-image: url('assets/kefir/sabores/chocolate-botella.webp'); mask-image: url('assets/kefir/sabores/chocolate-botella.webp')"></div></div></div></div></div>
+        </div>
+        <div class="drops"><span id="fr-fresa-drop-0" class="drop" style="left: 534px; top: 1244px; width: 12px; height: 12px; background: #E8456B"></span><span id="fr-fresa-drop-1" class="drop" style="left: 532.5px; top: 1242.5px; width: 15px; height: 15px; background: #E8456B"></span><span id="fr-fresa-drop-2" class="drop" style="left: 533px; top: 1243px; width: 14px; height: 14px; background: #E8456B"></span><span id="fr-fresa-drop-3" class="drop" style="left: 530px; top: 1240px; width: 20px; height: 20px; background: #E8456B"></span><span id="fr-fresa-drop-4" class="drop" style="left: 527.5px; top: 1237.5px; width: 25px; height: 25px; background: #E8456B"></span><span id="fr-fresa-drop-5" class="drop" style="left: 528px; top: 1238px; width: 24px; height: 24px; background: #E8456B"></span><span id="fr-fresa-drop-6" class="drop" style="left: 528px; top: 1238px; width: 24px; height: 24px; background: #E8456B"></span><span id="fr-fresa-drop-7" class="drop" style="left: 531.5px; top: 1241.5px; width: 17px; height: 17px; background: #E8456B"></span><span id="fr-fresa-drop-8" class="drop" style="left: 531.5px; top: 1241.5px; width: 17px; height: 17px; background: #E8456B"></span><span id="fr-fresa-drop-9" class="drop" style="left: 528.5px; top: 1238.5px; width: 23px; height: 23px; background: #E8456B"></span></div><div class="drops"><span id="fr-arand-drop-0" class="drop" style="left: 529px; top: 1239px; width: 22px; height: 22px; background: #B9A4EA"></span><span id="fr-arand-drop-1" class="drop" style="left: 533px; top: 1243px; width: 14px; height: 14px; background: #B9A4EA"></span><span id="fr-arand-drop-2" class="drop" style="left: 528px; top: 1238px; width: 24px; height: 24px; background: #B9A4EA"></span><span id="fr-arand-drop-3" class="drop" style="left: 528.5px; top: 1238.5px; width: 23px; height: 23px; background: #B9A4EA"></span><span id="fr-arand-drop-4" class="drop" style="left: 533px; top: 1243px; width: 14px; height: 14px; background: #B9A4EA"></span><span id="fr-arand-drop-5" class="drop" style="left: 528.5px; top: 1238.5px; width: 23px; height: 23px; background: #B9A4EA"></span><span id="fr-arand-drop-6" class="drop" style="left: 529px; top: 1239px; width: 22px; height: 22px; background: #B9A4EA"></span><span id="fr-arand-drop-7" class="drop" style="left: 534.5px; top: 1244.5px; width: 11px; height: 11px; background: #B9A4EA"></span><span id="fr-arand-drop-8" class="drop" style="left: 529px; top: 1239px; width: 22px; height: 22px; background: #B9A4EA"></span><span id="fr-arand-drop-9" class="drop" style="left: 530px; top: 1240px; width: 20px; height: 20px; background: #B9A4EA"></span></div><div class="drops"><span id="fr-choc-drop-0" class="drop" style="left: 528px; top: 1238px; width: 24px; height: 24px; background: #7A4A2E"></span><span id="fr-choc-drop-1" class="drop" style="left: 530.5px; top: 1240.5px; width: 19px; height: 19px; background: #7A4A2E"></span><span id="fr-choc-drop-2" class="drop" style="left: 531.5px; top: 1241.5px; width: 17px; height: 17px; background: #7A4A2E"></span><span id="fr-choc-drop-3" class="drop" style="left: 529px; top: 1239px; width: 22px; height: 22px; background: #7A4A2E"></span><span id="fr-choc-drop-4" class="drop" style="left: 531px; top: 1241px; width: 18px; height: 18px; background: #7A4A2E"></span><span id="fr-choc-drop-5" class="drop" style="left: 532px; top: 1242px; width: 16px; height: 16px; background: #7A4A2E"></span><span id="fr-choc-drop-6" class="drop" style="left: 533.5px; top: 1243.5px; width: 13px; height: 13px; background: #7A4A2E"></span><span id="fr-choc-drop-7" class="drop" style="left: 528.5px; top: 1238.5px; width: 23px; height: 23px; background: #7A4A2E"></span><span id="fr-choc-drop-8" class="drop" style="left: 530.5px; top: 1240.5px; width: 19px; height: 19px; background: #7A4A2E"></span><span id="fr-choc-drop-9" class="drop" style="left: 527.5px; top: 1237.5px; width: 25px; height: 25px; background: #7A4A2E"></span></div>
+      </section>
+
+      <section id="kt" class="clip scene teaser" data-start="35.65" data-duration="3.8" data-track-index="1">
+        <div class="copy on-dark" style="--kw: #E9D5FF">
+          <div class="kt-slot">
+            <p class="kt-tease" id="kt-tease">Se viene algo nuevo…</p>
+            <div class="kt-brand brand kombu" id="kt-brand"><div class="kb-stack"><span>KOM</span><span>BU</span><span>CHA</span></div><span class="nuevo" id="kt-nuevo">Nuevo</span></div>
+          </div>
+        </div>
+        <div class="kt-halo"></div>
+        <div class="kt-row sil" id="kt-row"><div class="real" id="kt-b-0" style="width: 250px; height: 860px"><div class="real-crop" data-layout-allow-overflow><img src="assets/scenes/kombucha-guisante-botella.png" alt="" style="width: 579px; height: 868px; left: -164px; top: -4px" /></div><div class="real-refl" data-layout-allow-overflow><img src="assets/scenes/kombucha-guisante-botella.png" alt="" style="width: 579px; height: 868px; left: -164px; top: -4px" /></div></div><div class="real" id="kt-b-1" style="width: 233px; height: 860px"><div class="real-crop" data-layout-allow-overflow><img src="assets/scenes/kombucha-espirulina-botella.png" alt="" style="width: 597px; height: 896px; left: -183px; top: -15px" /></div><div class="real-refl" data-layout-allow-overflow><img src="assets/scenes/kombucha-espirulina-botella.png" alt="" style="width: 597px; height: 896px; left: -183px; top: -15px" /></div></div><div class="real" id="kt-b-2" style="width: 242px; height: 860px"><div class="real-crop" data-layout-allow-overflow><img src="assets/scenes/kombucha-pitahaya-botella.webp" alt="" style="width: 264px; height: 881px; left: -10px; top: -10px" /></div><div class="real-refl" data-layout-allow-overflow><img src="assets/scenes/kombucha-pitahaya-botella.webp" alt="" style="width: 264px; height: 881px; left: -10px; top: -10px" /></div></div></div>
+        <div class="flash" id="kt-flash"></div>
+      </section>
+
+      <section id="kd" class="clip scene product kombucha" data-start="39.45" data-duration="3.3" data-track-index="1">
+        <div class="cam"><div class="copy on-dark" style="--kw: #E9D5FF">
+          <div class="brand kombu"><div class="kb-stack"><span>KOM</span><span>BU</span><span>CHA</span></div><div class="kd-flavors"><div class="flavor-line" id="kd-fl-guisante">con flor de guisante</div><div class="flavor-line" id="kd-fl-espirulina">con espirulina azul</div><div class="flavor-line" id="kd-fl-pitahaya">con pitahaya</div></div></div>
+        </div>
+        <div class="stage"><div class="shadow"></div><div class="enter"><div class="kd-bottle" id="kd-guisante"><div class="kd-halo" style="background: radial-gradient(closest-side, rgba(139, 87, 214, 0.42), rgba(0, 0, 0, 0))"></div><div class="kd-main" id="kd-main-guisante"><div class="float"><div class="imgbox" style="aspect-ratio: 1122 / 1402"><img src="assets/scenes/kombucha-guisante.png" alt="" /><div class="shine" style="-webkit-mask-image: url('assets/scenes/kombucha-guisante.png'); mask-image: url('assets/scenes/kombucha-guisante.png')"></div><span class="cap" style="left: 61%; top: 4.5%"><span class="cap-body"></span></span><span class="bubble" style="left: 69%; top: 34%; width: 15px; height: 18px"></span><span class="bubble" style="left: 57%; top: 53%; width: 15px; height: 19px"></span><span class="bubble" style="left: 47%; top: 54%; width: 12px; height: 16px"></span><span class="bubble" style="left: 43%; top: 61%; width: 11px; height: 12px"></span><span class="bubble" style="left: 41%; top: 63%; width: 18px; height: 18px"></span><span class="bubble" style="left: 36%; top: 59%; width: 17px; height: 14px"></span><span class="bubble" style="left: 33%; top: 19%; width: 20px; height: 16px"></span><span class="bubble" style="left: 38%; top: 66%; width: 9px; height: 21px"></span><span class="bubble" style="left: 60%; top: 44%; width: 21px; height: 13px"></span><span class="bubble" style="left: 43%; top: 24%; width: 14px; height: 20px"></span><span class="bubble" style="left: 58%; top: 20%; width: 12px; height: 15px"></span><span class="bubble" style="left: 46%; top: 33%; width: 11px; height: 12px"></span></div></div></div></div><div class="kd-bottle" id="kd-espirulina"><div class="kd-halo" style="background: radial-gradient(closest-side, rgba(24, 178, 196, 0.36), rgba(0, 0, 0, 0))"></div><div class="kd-main" id="kd-main-espirulina"><div class="float"><div class="imgbox" style="aspect-ratio: 1024 / 1536"><img src="assets/scenes/kombucha-espirulina.png" alt="" /><div class="shine" style="-webkit-mask-image: url('assets/scenes/kombucha-espirulina.png'); mask-image: url('assets/scenes/kombucha-espirulina.png')"></div><span class="cap" style="left: 53%; top: 3.5%"><span class="cap-body"></span></span><span class="bubble" style="left: 40%; top: 42%; width: 17px; height: 19px"></span><span class="bubble" style="left: 69%; top: 62%; width: 19px; height: 11px"></span><span class="bubble" style="left: 48%; top: 55%; width: 16px; height: 14px"></span><span class="bubble" style="left: 67%; top: 24%; width: 13px; height: 16px"></span><span class="bubble" style="left: 30%; top: 46%; width: 21px; height: 19px"></span><span class="bubble" style="left: 31%; top: 47%; width: 9px; height: 19px"></span><span class="bubble" style="left: 31%; top: 56%; width: 12px; height: 15px"></span><span class="bubble" style="left: 40%; top: 56%; width: 8px; height: 21px"></span><span class="bubble" style="left: 57%; top: 61%; width: 14px; height: 22px"></span><span class="bubble" style="left: 56%; top: 39%; width: 8px; height: 12px"></span><span class="bubble" style="left: 40%; top: 19%; width: 17px; height: 16px"></span><span class="bubble" style="left: 68%; top: 61%; width: 19px; height: 20px"></span></div></div></div></div><div class="kd-bottle" id="kd-pitahaya"><div class="kd-halo" style="background: radial-gradient(closest-side, rgba(200, 0, 90, 0.34), rgba(0, 0, 0, 0))"></div><div class="kd-diag" id="kd-diag-pitahaya"><div class="imgbox" style="aspect-ratio: 1059 / 1600"><img src="assets/scenes/kombucha-pitahaya-diagonal.webp" alt="" /><div class="shine" style="-webkit-mask-image: url('assets/scenes/kombucha-pitahaya-diagonal.webp'); mask-image: url('assets/scenes/kombucha-pitahaya-diagonal.webp')"></div></div></div><div class="kd-main" id="kd-main-pitahaya"><div class="float"><div class="imgbox" style="aspect-ratio: 1009 / 1600"><img src="assets/scenes/kombucha-pitahaya.webp" alt="" /><div class="shine" style="-webkit-mask-image: url('assets/scenes/kombucha-pitahaya.webp'); mask-image: url('assets/scenes/kombucha-pitahaya.webp')"></div><span class="cap" style="left: 48.5%; top: 3.2%; width: 22%; height: 4.6%; margin-left: -11%"><span class="cap-body"></span></span><span class="bubble" style="left: 38%; top: 57%; width: 16px; height: 17px"></span><span class="bubble" style="left: 43%; top: 24%; width: 13px; height: 11px"></span><span class="bubble" style="left: 41%; top: 32%; width: 11px; height: 13px"></span><span class="bubble" style="left: 54%; top: 31%; width: 13px; height: 12px"></span><span class="bubble" style="left: 35%; top: 19%; width: 16px; height: 11px"></span><span class="bubble" style="left: 32%; top: 34%; width: 21px; height: 15px"></span><span class="bubble" style="left: 47%; top: 65%; width: 12px; height: 14px"></span><span class="bubble" style="left: 59%; top: 56%; width: 22px; height: 11px"></span><span class="bubble" style="left: 42%; top: 23%; width: 12px; height: 10px"></span><span class="bubble" style="left: 46%; top: 65%; width: 14px; height: 16px"></span><span class="bubble" style="left: 37%; top: 54%; width: 10px; height: 10px"></span><span class="bubble" style="left: 66%; top: 47%; width: 12px; height: 12px"></span></div></div></div></div></div></div></div>
+      </section>
+
+      <section id="kp" class="clip scene teaser kp-scene" data-start="42.75" data-duration="5.8" data-track-index="1">
+        <div class="copy on-dark" style="--kw: #E9D5FF">
+          <p class="kp-eyebrow">KOMBUCHAS</p>
+          <div class="kp-pronto"><span class="ribbon-wrap"><span class="ribbon big">MUY PRONTO</span></span></div>
+          
+          <div class="kp-pills"><span class="kp-pill" id="kp-a-0">Burbujeantes</span><span class="kp-pill" id="kp-a-1">Artesanales</span><span class="kp-pill" id="kp-a-2">Con té verde</span></div>
+        </div>
+        <div class="kp-v" id="kp-row"><div class="real" id="kp-b-0" style="width: 323px; height: 1110px; position: absolute; left: 88.5px; top: 590px; z-index: 1"><div class="real-crop" data-layout-allow-overflow><img src="assets/scenes/kombucha-guisante-botella.png" alt="" style="width: 747px; height: 1121px; left: -212px; top: -5px" /></div><div class="real-refl" data-layout-allow-overflow><img src="assets/scenes/kombucha-guisante-botella.png" alt="" style="width: 747px; height: 1121px; left: -212px; top: -5px" /></div><div class="kp-halo" data-layout-allow-overflow style="background: radial-gradient(closest-side, rgba(139, 87, 214, 0.75), rgba(0, 0, 0, 0))"></div><div class="kp-bubbles"><span class="bubble small" style="left: 68%; top: 45%; width: 9px; height: 8px"></span><span class="bubble small" style="left: 49%; top: 44%; width: 13px; height: 13px"></span><span class="bubble small" style="left: 73%; top: 69%; width: 13px; height: 9px"></span><span class="bubble small" style="left: 53%; top: 70%; width: 10px; height: 10px"></span><span class="bubble small" style="left: 61%; top: 47%; width: 11px; height: 7px"></span><span class="bubble small" style="left: 33%; top: 52%; width: 13px; height: 8px"></span><span class="bubble small" style="left: 66%; top: 79%; width: 11px; height: 13px"></span><span class="bubble small" style="left: 46%; top: 64%; width: 9px; height: 7px"></span><span class="bubble small" style="left: 67%; top: 66%; width: 12px; height: 9px"></span></div></div><div class="real" id="kp-b-1" style="width: 300px; height: 1110px; position: absolute; left: 680px; top: 590px; z-index: 1"><div class="real-crop" data-layout-allow-overflow><img src="assets/scenes/kombucha-espirulina-botella.png" alt="" style="width: 771px; height: 1157px; left: -236px; top: -20px" /></div><div class="real-refl" data-layout-allow-overflow><img src="assets/scenes/kombucha-espirulina-botella.png" alt="" style="width: 771px; height: 1157px; left: -236px; top: -20px" /></div><div class="kp-halo" data-layout-allow-overflow style="background: radial-gradient(closest-side, rgba(24, 178, 196, 0.7), rgba(0, 0, 0, 0))"></div><div class="kp-bubbles"><span class="bubble small" style="left: 47%; top: 66%; width: 10px; height: 12px"></span><span class="bubble small" style="left: 73%; top: 75%; width: 9px; height: 7px"></span><span class="bubble small" style="left: 71%; top: 65%; width: 13px; height: 13px"></span><span class="bubble small" style="left: 29%; top: 44%; width: 6px; height: 9px"></span><span class="bubble small" style="left: 65%; top: 46%; width: 8px; height: 14px"></span><span class="bubble small" style="left: 60%; top: 78%; width: 13px; height: 8px"></span><span class="bubble small" style="left: 52%; top: 72%; width: 8px; height: 10px"></span><span class="bubble small" style="left: 20%; top: 67%; width: 8px; height: 7px"></span><span class="bubble small" style="left: 68%; top: 44%; width: 13px; height: 9px"></span></div></div><div class="real" id="kp-b-2" style="width: 344px; height: 1220px; position: absolute; left: 368px; top: 580px; z-index: 3"><div class="real-crop" data-layout-allow-overflow><img src="assets/scenes/kombucha-pitahaya-botella.webp" alt="" style="width: 374px; height: 1250px; left: -15px; top: -15px" /></div><div class="real-refl" data-layout-allow-overflow><img src="assets/scenes/kombucha-pitahaya-botella.webp" alt="" style="width: 374px; height: 1250px; left: -15px; top: -15px" /></div><div class="kp-halo" data-layout-allow-overflow style="background: radial-gradient(closest-side, rgba(200, 0, 90, 0.7), rgba(0, 0, 0, 0))"></div><div class="kp-bubbles"><span class="bubble small" style="left: 37%; top: 53%; width: 7px; height: 13px"></span><span class="bubble small" style="left: 60%; top: 66%; width: 8px; height: 7px"></span><span class="bubble small" style="left: 64%; top: 54%; width: 10px; height: 7px"></span><span class="bubble small" style="left: 57%; top: 52%; width: 10px; height: 13px"></span><span class="bubble small" style="left: 67%; top: 75%; width: 10px; height: 14px"></span><span class="bubble small" style="left: 77%; top: 61%; width: 6px; height: 13px"></span><span class="bubble small" style="left: 71%; top: 40%; width: 8px; height: 12px"></span><span class="bubble small" style="left: 27%; top: 48%; width: 13px; height: 8px"></span><span class="bubble small" style="left: 75%; top: 65%; width: 14px; height: 13px"></span></div><span class="nuevo kp-nuevo" id="kp-nuevo">Nuevo</span></div></div>
+      </section>
+
+      <section id="s9" class="clip scene sorteo" data-start="48.55" data-duration="6.7" data-track-index="1">
+        <div class="confettis" data-layout-allow-overflow><span id="s9-conf-0" class="confetti" style="left: 753px; width: 20px; height: 41px; background: #F2B705"></span><span id="s9-conf-1" class="confetti" style="left: 488px; width: 14px; height: 29px; background: #F5F2EA"></span><span id="s9-conf-2" class="confetti" style="left: 468px; width: 17px; height: 40px; background: #18B2C4"></span><span id="s9-conf-3" class="confetti" style="left: 301px; width: 21px; height: 48px; background: #A77AF0"></span><span id="s9-conf-4" class="confetti" style="left: 781px; width: 16px; height: 24px; background: #F29AB2"></span><span id="s9-conf-5" class="confetti" style="left: 294px; width: 13px; height: 23px; background: #FFC4E0"></span><span id="s9-conf-6" class="confetti" style="left: 489px; width: 14px; height: 26px; background: #F2B705"></span><span id="s9-conf-7" class="confetti" style="left: 852px; width: 13px; height: 20px; background: #F5F2EA"></span><span id="s9-conf-8" class="confetti" style="left: 401px; width: 21px; height: 44px; background: #18B2C4"></span><span id="s9-conf-9" class="confetti" style="left: 230px; width: 16px; height: 33px; background: #A77AF0"></span><span id="s9-conf-10" class="confetti" style="left: 213px; width: 20px; height: 32px; background: #F29AB2"></span><span id="s9-conf-11" class="confetti" style="left: 269px; width: 21px; height: 37px; background: #FFC4E0"></span><span id="s9-conf-12" class="confetti" style="left: 762px; width: 19px; height: 32px; background: #F2B705"></span><span id="s9-conf-13" class="confetti" style="left: 522px; width: 17px; height: 24px; background: #F5F2EA"></span><span id="s9-conf-14" class="confetti" style="left: 954px; width: 13px; height: 28px; background: #18B2C4"></span><span id="s9-conf-15" class="confetti" style="left: 18px; width: 18px; height: 30px; background: #A77AF0"></span><span id="s9-conf-16" class="confetti" style="left: 149px; width: 20px; height: 41px; background: #F29AB2"></span><span id="s9-conf-17" class="confetti" style="left: 651px; width: 14px; height: 31px; background: #FFC4E0"></span><span id="s9-conf-18" class="confetti" style="left: 533px; width: 15px; height: 23px; background: #F2B705"></span><span id="s9-conf-19" class="confetti" style="left: 117px; width: 15px; height: 32px; background: #F5F2EA"></span><span id="s9-conf-20" class="confetti" style="left: 423px; width: 14px; height: 32px; background: #18B2C4"></span><span id="s9-conf-21" class="confetti" style="left: 509px; width: 12px; height: 20px; background: #A77AF0"></span><span id="s9-conf-22" class="confetti" style="left: 236px; width: 16px; height: 31px; background: #F29AB2"></span><span id="s9-conf-23" class="confetti" style="left: 522px; width: 19px; height: 41px; background: #FFC4E0"></span><span id="s9-conf-24" class="confetti" style="left: 741px; width: 16px; height: 33px; background: #F2B705"></span><span id="s9-conf-25" class="confetti" style="left: 1000px; width: 15px; height: 36px; background: #F5F2EA"></span><span id="s9-conf-26" class="confetti" style="left: 193px; width: 13px; height: 28px; background: #18B2C4"></span><span id="s9-conf-27" class="confetti" style="left: 762px; width: 15px; height: 31px; background: #A77AF0"></span><span id="s9-conf-28" class="confetti" style="left: 456px; width: 20px; height: 44px; background: #F29AB2"></span><span id="s9-conf-29" class="confetti" style="left: 682px; width: 12px; height: 21px; background: #FFC4E0"></span></div>
+        <div class="copy on-dark" style="--kw: #F2B705">
+          <div class="pre"><span class="ribbon-wrap "><span class="ribbon">Solo en octubre</span></span></div>
+          <h1 class="title big"><span class="line"><span class="w">Sorteamos</span> <span class="w">una</span></span> <span class="line"><span class="w kw">canasta</span> <span class="w">TRIALFERI</span></span></h1>
+        </div>
+        <div class="ticket-wrap"><div class="ticket">
+          <div class="ticket-stub"><svg viewBox="0 0 190 200" preserveAspectRatio="none" aria-hidden="true"><path class="ticket-shape" d="M24 0H190V200H24A24 24 0 0 1 0 176V128A28 28 0 0 0 0 72V24A24 24 0 0 1 24 0Z" /><path class="star" transform="translate(53 58) scale(0.84)" d="M50 8l11 27 29 2-22 19 7 28-25-15-25 15 7-28-22-19 29-2z"/></svg></div>
+          <div class="ticket-main"><svg viewBox="0 0 570 200" preserveAspectRatio="none" aria-hidden="true"><path class="ticket-shape" d="M0 0H546A24 24 0 0 1 570 24V72A28 28 0 0 0 570 128V176A24 24 0 0 1 546 200H0Z" /><line x1="2" y1="18" x2="2" y2="182" class="ticket-dash" /></svg>
+            <div class="ticket-body"><p class="t1">Por compras mayores a S/20</p><p class="t2">pide tu ticket</p></div></div>
+          <div class="burst-origin" data-layout-allow-overflow><span id="s9-burst-0" class="confetti burst" style="width: 14px; height: 22px; background: #F2B705"></span><span id="s9-burst-1" class="confetti burst" style="width: 14px; height: 22px; background: #F5F2EA"></span><span id="s9-burst-2" class="confetti burst" style="width: 14px; height: 22px; background: #18B2C4"></span><span id="s9-burst-3" class="confetti burst" style="width: 14px; height: 22px; background: #A77AF0"></span><span id="s9-burst-4" class="confetti burst" style="width: 14px; height: 22px; background: #F29AB2"></span><span id="s9-burst-5" class="confetti burst" style="width: 14px; height: 22px; background: #FFC4E0"></span><span id="s9-burst-6" class="confetti burst" style="width: 14px; height: 22px; background: #F2B705"></span><span id="s9-burst-7" class="confetti burst" style="width: 14px; height: 22px; background: #F5F2EA"></span><span id="s9-burst-8" class="confetti burst" style="width: 14px; height: 22px; background: #18B2C4"></span><span id="s9-burst-9" class="confetti burst" style="width: 14px; height: 22px; background: #A77AF0"></span><span id="s9-burst-10" class="confetti burst" style="width: 14px; height: 22px; background: #F29AB2"></span><span id="s9-burst-11" class="confetti burst" style="width: 14px; height: 22px; background: #FFC4E0"></span><span id="s9-burst-12" class="confetti burst" style="width: 14px; height: 22px; background: #F2B705"></span><span id="s9-burst-13" class="confetti burst" style="width: 14px; height: 22px; background: #F5F2EA"></span><span id="s9-burst-14" class="confetti burst" style="width: 14px; height: 22px; background: #18B2C4"></span><span id="s9-burst-15" class="confetti burst" style="width: 14px; height: 22px; background: #A77AF0"></span><span id="s9-burst-16" class="confetti burst" style="width: 14px; height: 22px; background: #F29AB2"></span><span id="s9-burst-17" class="confetti burst" style="width: 14px; height: 22px; background: #FFC4E0"></span><span id="s9-burst-18" class="confetti burst" style="width: 14px; height: 22px; background: #F2B705"></span><span id="s9-burst-19" class="confetti burst" style="width: 14px; height: 22px; background: #F5F2EA"></span><span id="s9-burst-20" class="confetti burst" style="width: 14px; height: 22px; background: #18B2C4"></span><span id="s9-burst-21" class="confetti burst" style="width: 14px; height: 22px; background: #A77AF0"></span></div>
+        </div></div>
+        <div class="stage sorteo-stage"><div class="glow"></div><div class="enter"><div class="float"><div class="imgbox" style="aspect-ratio: 4511 / 3800"><img src="assets/scenes/canasta-trialferi.webp" alt="" /><div class="shine" style="-webkit-mask-image: url('assets/scenes/canasta-trialferi.webp'); mask-image: url('assets/scenes/canasta-trialferi.webp')"></div></div></div></div></div>
+      </section>
+
+      <section id="s10" class="clip scene closing" data-start="55.25" data-duration="10.017" data-track-index="1">
+        <div class="logo-glow"></div>
+        <div class="logo"><img src="assets/trialferi-logo.png" alt="TRIALFERI" /></div>
+        <div class="wa-slot"><div class="wa-wrap"><div class="wa-ring"></div><div class="wa-btn"><svg class="wa-icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6C17.6 6 6 17.4 6 31.5c0 4.9 1.4 9.5 3.9 13.4L6 58l13.5-3.8c3.7 2 8 3.1 12.5 3.1 14.4 0 26-11.4 26-25.5S46.4 6 32 6z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M24.5 19.5c-.8-.1-1.8 0-2.6.9-1.3 1.4-3 3.2-3 6.6 0 6.5 7.9 15.7 16.4 18.8 3.8 1.4 6.4 1.2 8.3-.4 1.3-1.1 1.8-2.6 1.8-3.8 0-.7-.4-1.2-1-1.5l-5.2-2.5c-.7-.3-1.4-.1-1.9.5l-2 2.5c-.4.5-1.1.6-1.6.3-3.4-1.7-6.3-4.5-8.1-7.8-.3-.6-.2-1.2.2-1.6l1.9-2.1c.5-.5.6-1.2.3-1.9l-2.3-5.6c-.3-.6-.7-1-1.2-1.1z" fill="currentColor"/></svg><span class="wa-num"><span class="g">941</span> <span class="g">462</span> <span class="g">492</span></span></div></div></div>
+        <p class="cta-line">Pide por WhatsApp <span class="cta-sep">·</span> <span class="cta-handle">@trialferi</span></p>
+        <p class="cta-made">Hecho a mano, lote a lote <span class="cta-sep">·</span> <svg class="flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="10" height="20" fill="#D91023"/><rect x="10" width="10" height="20" fill="#FFFFFF"/><rect x="20" width="10" height="20" fill="#D91023"/></svg> Producto peruano</p>
+        <div class="shelf-light"></div>
+        <div class="shelf"><div class="real" id="s10-b-0" style="width: 178px; height: 610px; position: absolute; left: 66px; top: 1090px; z-index: 3"><div class="real-crop" data-layout-allow-overflow><img src="assets/scenes/kombucha-guisante-botella.png" alt="" style="width: 411px; height: 616px; left: -116px; top: -3px" /></div><div class="real-refl" data-layout-allow-overflow><img src="assets/scenes/kombucha-guisante-botella.png" alt="" style="width: 411px; height: 616px; left: -116px; top: -3px" /></div><div class="pronto-pos"><span class="pronto">Pronto</span></div><div id="s10-seal-art" class="seal seal-light seal-on seal-on-l"><svg viewBox="0 0 150 150" aria-hidden="true">
+            <defs><path id="s10-seal-art-p" d="M75 75m-55 0a55 55 0 1 1 110 0a55 55 0 1 1 -110 0" /></defs>
+            <circle cx="75" cy="75" r="72" class="seal-bg" /><circle cx="75" cy="75" r="66" class="seal-line" /><circle cx="75" cy="75" r="42" class="seal-line" />
+            <text class="seal-ring"><textPath href="#s10-seal-art-p" textLength="340">100% ARTESANAL · HECHO A MANO · 100% ARTESANAL ·</textPath></text><text x="75" y="86" text-anchor="middle" class="seal-big">100%</text>
+          </svg></div></div><div class="real" id="s10-b-1" style="width: 272px; height: 681px; position: absolute; left: 234px; top: 1019px; z-index: 1"><div class="real-crop" data-layout-allow-overflow><img src="assets/kefir/frutos-botella.webp" alt="" style="width: 489px; height: 699px; left: -105px; top: -2px" /></div><div class="real-refl" data-layout-allow-overflow><img src="assets/kefir/frutos-botella.webp" alt="" style="width: 489px; height: 699px; left: -105px; top: -2px" /></div></div><div class="real" id="s10-b-2" style="width: 273px; height: 880px; position: absolute; left: 502px; top: 820px; z-index: 2"><div class="real-crop" data-layout-allow-overflow><img src="assets/scenes/kefir-leche-botella.webp" alt="" style="width: 622px; height: 933px; left: -174px; top: -25px" /></div><div class="real-refl" data-layout-allow-overflow><img src="assets/scenes/kefir-leche-botella.webp" alt="" style="width: 622px; height: 933px; left: -174px; top: -25px" /></div></div><div class="real" id="s10-b-3" style="width: 172px; height: 610px; position: absolute; left: 763px; top: 1090px; z-index: 3"><div class="real-crop" data-layout-allow-overflow><img src="assets/scenes/kombucha-pitahaya-botella.webp" alt="" style="width: 187px; height: 625px; left: -7px; top: -7px" /></div><div class="real-refl" data-layout-allow-overflow><img src="assets/scenes/kombucha-pitahaya-botella.webp" alt="" style="width: 187px; height: 625px; left: -7px; top: -7px" /></div><div class="pronto-pos"><span class="pronto">Pronto</span></div><div id="s10-seal-sin" class="seal seal-light seal-on seal-on-r"><svg viewBox="0 0 150 150" aria-hidden="true">
+            <defs><path id="s10-seal-sin-p" d="M75 75m-55 0a55 55 0 1 1 110 0a55 55 0 1 1 -110 0" /></defs>
+            <circle cx="75" cy="75" r="72" class="seal-bg" /><circle cx="75" cy="75" r="66" class="seal-line" /><circle cx="75" cy="75" r="42" class="seal-line" />
+            <text class="seal-ring"><textPath href="#s10-seal-sin-p" textLength="340">SIN CONSERVANTES AÑADIDOS · SIN CONSERVANTES AÑADIDOS ·</textPath></text><g transform="translate(75 77)" class="seal-ink"><path d="M-2 14C-14 10-18-2-14-16C-2-14 4-4-2 14Z" /><path d="M2 14C14 10 18-2 14-16C2-14-4-4 2 14Z" opacity="0.75" /><path d="M0 18V2" stroke-width="2" fill="none" /></g>
+          </svg></div></div></div>
+      </section>
+
+      <div id="wave-0" class="clip wave" data-start="8.317" data-duration="0.7" data-track-index="3">
+        <svg class="wave-svg" data-layout-allow-overflow viewBox="0 0 2160 800" preserveAspectRatio="none" aria-hidden="true">
+          <path fill="#EEF6EF" d="M0 90 C 180 20 360 20 540 90 S 900 160 1080 90 S 1440 20 1620 90 S 1980 160 2160 90 V 700 C 1980 770 1800 770 1620 700 S 1260 630 1080 700 S 720 770 540 700 S 180 630 0 700 Z" />
+          <path fill="#CDE5D3" d="M0 150 C 180 70 360 70 540 150 S 900 230 1080 150 S 1440 70 1620 150 S 1980 230 2160 150 V 620 C 1980 690 1800 690 1620 620 S 1260 550 1080 620 S 720 690 540 620 S 180 550 0 620 Z" />
+        </svg>
+      </div>
+      <div id="wave-1" class="clip wave" data-start="28.617" data-duration="0.7" data-track-index="3">
+        <svg class="wave-svg" data-layout-allow-overflow viewBox="0 0 2160 800" preserveAspectRatio="none" aria-hidden="true">
+          <path fill="#9A7FD4" d="M0 90 C 180 20 360 20 540 90 S 900 160 1080 90 S 1440 20 1620 90 S 1980 160 2160 90 V 700 C 1980 770 1800 770 1620 700 S 1260 630 1080 700 S 720 770 540 700 S 180 630 0 700 Z" />
+          <path fill="#47297F" d="M0 150 C 180 70 360 70 540 150 S 900 230 1080 150 S 1440 70 1620 150 S 1980 230 2160 150 V 620 C 1980 690 1800 690 1620 620 S 1260 550 1080 620 S 720 690 540 620 S 180 550 0 620 Z" />
+        </svg>
+      </div>
+      <div id="wave-2" class="clip wave" data-start="31.15" data-duration="0.7" data-track-index="3">
+        <svg class="wave-svg" data-layout-allow-overflow viewBox="0 0 2160 800" preserveAspectRatio="none" aria-hidden="true">
+          <path fill="#AE7C5C" d="M0 90 C 180 20 360 20 540 90 S 900 160 1080 90 S 1440 20 1620 90 S 1980 160 2160 90 V 700 C 1980 770 1800 770 1620 700 S 1260 630 1080 700 S 720 770 540 700 S 180 630 0 700 Z" />
+          <path fill="#573220" d="M0 150 C 180 70 360 70 540 150 S 900 230 1080 150 S 1440 70 1620 150 S 1980 230 2160 150 V 620 C 1980 690 1800 690 1620 620 S 1260 550 1080 620 S 720 690 540 620 S 180 550 0 620 Z" />
+        </svg>
+      </div>
+      <div id="wave-3" class="clip wave" data-start="24.917" data-duration="0.7" data-track-index="3">
+        <svg class="wave-svg" data-layout-allow-overflow viewBox="0 0 2160 800" preserveAspectRatio="none" aria-hidden="true">
+          <path fill="#FAC6D3" d="M0 90 C 180 20 360 20 540 90 S 900 160 1080 90 S 1440 20 1620 90 S 1980 160 2160 90 V 700 C 1980 770 1800 770 1620 700 S 1260 630 1080 700 S 720 770 540 700 S 180 630 0 700 Z" />
+          <path fill="#F29AB2" d="M0 150 C 180 70 360 70 540 150 S 900 230 1080 150 S 1440 70 1620 150 S 1980 230 2160 150 V 620 C 1980 690 1800 690 1620 620 S 1260 550 1080 620 S 720 690 540 620 S 180 550 0 620 Z" />
+        </svg>
+      </div>
+      <div id="wave-4" class="clip wave" data-start="35.317" data-duration="0.7" data-track-index="3">
+        <svg class="wave-svg" data-layout-allow-overflow viewBox="0 0 2160 800" preserveAspectRatio="none" aria-hidden="true">
+          <path fill="#3A1F4E" d="M0 90 C 180 20 360 20 540 90 S 900 160 1080 90 S 1440 20 1620 90 S 1980 160 2160 90 V 700 C 1980 770 1800 770 1620 700 S 1260 630 1080 700 S 720 770 540 700 S 180 630 0 700 Z" />
+          <path fill="#120A1A" d="M0 150 C 180 70 360 70 540 150 S 900 230 1080 150 S 1440 70 1620 150 S 1980 230 2160 150 V 620 C 1980 690 1800 690 1620 620 S 1260 550 1080 620 S 720 690 540 620 S 180 550 0 620 Z" />
+        </svg>
+      </div>
+      <div id="wave-5" class="clip wave" data-start="48.217" data-duration="0.7" data-track-index="3">
+        <svg class="wave-svg" data-layout-allow-overflow viewBox="0 0 2160 800" preserveAspectRatio="none" aria-hidden="true">
+          <path fill="#8E1F82" d="M0 90 C 180 20 360 20 540 90 S 900 160 1080 90 S 1440 20 1620 90 S 1980 160 2160 90 V 700 C 1980 770 1800 770 1620 700 S 1260 630 1080 700 S 720 770 540 700 S 180 630 0 700 Z" />
+          <path fill="#C2187A" d="M0 150 C 180 70 360 70 540 150 S 900 230 1080 150 S 1440 70 1620 150 S 1980 230 2160 150 V 620 C 1980 690 1800 690 1620 620 S 1260 550 1080 620 S 720 690 540 620 S 180 550 0 620 Z" />
+        </svg>
+      </div>
+      <div id="wave-6" class="clip wave" data-start="54.917" data-duration="0.7" data-track-index="3">
+        <svg class="wave-svg" data-layout-allow-overflow viewBox="0 0 2160 800" preserveAspectRatio="none" aria-hidden="true">
+          <path fill="#2F5A47" d="M0 90 C 180 20 360 20 540 90 S 900 160 1080 90 S 1440 20 1620 90 S 1980 160 2160 90 V 700 C 1980 770 1800 770 1620 700 S 1260 630 1080 700 S 720 770 540 700 S 180 630 0 700 Z" />
+          <path fill="#1E3A2F" d="M0 150 C 180 70 360 70 540 150 S 900 230 1080 150 S 1440 70 1620 150 S 1980 230 2160 150 V 620 C 1980 690 1800 690 1620 620 S 1260 550 1080 620 S 720 690 540 620 S 180 550 0 620 Z" />
+        </svg>
+      </div>
+      <div id="grain" class="clip grain" data-start="0" data-duration="65.26666666666667" data-track-index="9"></div>
+
+      <audio id="voz" data-audio-group="voz" src="assets/sfx/voz.mp3" data-start="0.5" data-duration="64.287" data-track-index="4" data-volume="1"></audio>
+      <hf-audio-group id="musica" data-label="Música" data-volume="1" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0},{&quot;t&quot;:0.48,&quot;v&quot;:0.85},{&quot;t&quot;:0.48,&quot;v&quot;:0.85},{&quot;t&quot;:0.58,&quot;v&quot;:0.255},{&quot;t&quot;:35.367,&quot;v&quot;:0.255},{&quot;t&quot;:35.867,&quot;v&quot;:0.15},{&quot;t&quot;:37.267,&quot;v&quot;:0.15},{&quot;t&quot;:37.517,&quot;v&quot;:0.255},{&quot;t&quot;:64.62,&quot;v&quot;:0.255},{&quot;t&quot;:64.77,&quot;v&quot;:0.85},{&quot;t&quot;:64.967,&quot;v&quot;:0.85},{&quot;t&quot;:65.26666666666667,&quot;v&quot;:0}]}]}"></hf-audio-group>
+      <audio id="music-0" data-timeline-role="music" data-audio-group="musica" src="assets/sfx/musica.mp3" data-start="0" data-duration="27.494" data-track-index="5" data-volume="1" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.04,&quot;v&quot;:1},{&quot;t&quot;:27.454,&quot;v&quot;:1},{&quot;t&quot;:27.494,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="music-1" data-audio-group="musica" src="assets/sfx/musica.mp3" data-start="27.454" data-media-start="4.597" data-duration="22.897" data-track-index="12" data-volume="1" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0},{&quot;t&quot;:0.04,&quot;v&quot;:1},{&quot;t&quot;:22.857,&quot;v&quot;:1},{&quot;t&quot;:22.897,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="music-2" data-audio-group="musica" src="assets/sfx/musica.mp3" data-start="50.311" data-media-start="4.597" data-duration="14.956" data-track-index="5" data-volume="1" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0},{&quot;t&quot;:0.04,&quot;v&quot;:1}]}]}"></audio>
+      <audio id="sfx-vertido-1" data-audio-group="sfx" src="assets/sfx/vertido.mp3" data-start="0" data-duration="2.08" data-track-index="7" data-volume="0.7"></audio>
+      <audio id="sfx-pop-1" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="0.48" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-woosh-1" data-audio-group="sfx" src="assets/sfx/woosh.mp3" data-start="2.467" data-duration="1.2" data-track-index="10" data-volume="0.04" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.9,&quot;v&quot;:1},{&quot;t&quot;:1.2,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-splash-1" data-audio-group="sfx" src="assets/sfx/splash.mp3" data-start="3.087" data-duration="2.08" data-track-index="8" data-volume="0.22"></audio>
+      <audio id="sfx-pop-2" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="5.547" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-3" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="6.047" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-4" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="6.813" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-5" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="7.513" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-splash-7" data-audio-group="sfx" src="assets/sfx/splash.mp3" data-start="8.367" data-duration="1" data-track-index="8" data-volume="0.13" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.75,&quot;v&quot;:1},{&quot;t&quot;:1,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-splash-2" data-audio-group="sfx" src="assets/sfx/splash.mp3" data-start="9.167" data-duration="2.08" data-track-index="52" data-volume="0.22"></audio>
+      <audio id="sfx-pop-6" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="10.713" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-7" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="11.18" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-8" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="11.647" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-woosh-2" data-audio-group="sfx" src="assets/sfx/woosh.mp3" data-start="18.933" data-duration="1.2" data-track-index="10" data-volume="0.04" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.9,&quot;v&quot;:1},{&quot;t&quot;:1.2,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-9" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="20.647" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-10" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="22.747" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-11" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="23.48" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-splash-10" data-audio-group="sfx" src="assets/sfx/splash.mp3" data-start="24.967" data-duration="1" data-track-index="8" data-volume="0.13" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.75,&quot;v&quot;:1},{&quot;t&quot;:1,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-vertido-2" data-audio-group="sfx" src="assets/sfx/vertido.mp3" data-start="25.117" data-duration="2.08" data-track-index="7" data-volume="0.7" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:1.93,&quot;v&quot;:1},{&quot;t&quot;:2.08,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-splash-3" data-audio-group="sfx" src="assets/sfx/splash.mp3" data-start="27.287" data-duration="1.2" data-track-index="8" data-volume="0.13" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:1,&quot;v&quot;:1},{&quot;t&quot;:1.2,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-13" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="27.297" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-splash-8" data-audio-group="sfx" src="assets/sfx/splash.mp3" data-start="28.667" data-duration="1" data-track-index="8" data-volume="0.13" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.75,&quot;v&quot;:1},{&quot;t&quot;:1,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-splash-4" data-audio-group="sfx" src="assets/sfx/splash.mp3" data-start="28.987" data-duration="1.2" data-track-index="52" data-volume="0.13" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:1,&quot;v&quot;:1},{&quot;t&quot;:1.2,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-14" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="28.997" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-splash-9" data-audio-group="sfx" src="assets/sfx/splash.mp3" data-start="31.2" data-duration="1" data-track-index="8" data-volume="0.13" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.75,&quot;v&quot;:1},{&quot;t&quot;:1,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-splash-5" data-audio-group="sfx" src="assets/sfx/splash.mp3" data-start="31.52" data-duration="1.2" data-track-index="52" data-volume="0.13" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:1,&quot;v&quot;:1},{&quot;t&quot;:1.2,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-15" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="31.53" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-12" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="33.847" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-splash-11" data-audio-group="sfx" src="assets/sfx/splash.mp3" data-start="35.367" data-duration="1" data-track-index="8" data-volume="0.13" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.75,&quot;v&quot;:1},{&quot;t&quot;:1,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-burbujas-1" data-audio-group="sfx" src="assets/sfx/burbujas.mp3" data-start="35.767" data-duration="1.6" data-track-index="9" data-volume="0.1" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:1.2,&quot;v&quot;:1},{&quot;t&quot;:1.6,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-destape-1" data-audio-group="sfx" src="assets/sfx/destape.mp3" data-start="37.117" data-duration="1.6" data-track-index="7" data-volume="0.13"></audio>
+      <audio id="sfx-pop-16" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="37.797" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-destape-2" data-audio-group="sfx" src="assets/sfx/destape.mp3" data-start="39.297" data-duration="1.6" data-track-index="7" data-volume="0.13"></audio>
+      <audio id="sfx-burbujas-2" data-audio-group="sfx" src="assets/sfx/burbujas.mp3" data-start="39.767" data-duration="2" data-track-index="9" data-volume="0.24" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:1.7,&quot;v&quot;:1},{&quot;t&quot;:2,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-destape-3" data-audio-group="sfx" src="assets/sfx/destape.mp3" data-start="40.33" data-duration="1.6" data-track-index="48" data-volume="0.13"></audio>
+      <audio id="sfx-destape-4" data-audio-group="sfx" src="assets/sfx/destape.mp3" data-start="41.797" data-duration="1.6" data-track-index="7" data-volume="0.13"></audio>
+      <audio id="sfx-pop-18" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="42.747" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-burbujas-3" data-audio-group="sfx" src="assets/sfx/burbujas.mp3" data-start="42.967" data-duration="2" data-track-index="9" data-volume="0.1" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:1.5,&quot;v&quot;:1},{&quot;t&quot;:2,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-17" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="43.447" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-19" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="43.713" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-20" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="44.647" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-21" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="46.18" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-splash-12" data-audio-group="sfx" src="assets/sfx/splash.mp3" data-start="48.267" data-duration="1" data-track-index="8" data-volume="0.13" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.75,&quot;v&quot;:1},{&quot;t&quot;:1,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-22" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="48.647" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-23" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="49.513" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-splash-6" data-audio-group="sfx" src="assets/sfx/splash.mp3" data-start="52.067" data-duration="0.8" data-track-index="8" data-volume="0.13" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.6,&quot;v&quot;:1},{&quot;t&quot;:0.8,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-splash-13" data-audio-group="sfx" src="assets/sfx/splash.mp3" data-start="54.967" data-duration="1" data-track-index="8" data-volume="0.13" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.75,&quot;v&quot;:1},{&quot;t&quot;:1,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-25" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="55.697" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-24" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="55.997" data-duration="0.18" data-track-index="11" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-pop-26" data-audio-group="sfx" src="assets/sfx/pop.mp3" data-start="56.08" data-duration="0.18" data-track-index="64" data-volume="0.08" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:0.1,&quot;v&quot;:1},{&quot;t&quot;:0.18,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sfx-brindis-1" data-audio-group="sfx" src="assets/sfx/brindis.mp3" data-start="63.783" data-duration="0.81" data-track-index="9" data-volume="0.12"></audio>
+    </div>
+    <script>
+      const ANIM = [{"k":"zoom","sel":"#h1 .enter","at":0,"dur":2.767,"from":1,"to":1.08},{"k":"parallax","sel":"#bg-h1 .fill","at":0,"dur":3.067,"to":1.03},{"k":"drift","sel":"#h1 .copy","at":0,"dur":2.517,"y":-12},{"k":"ribbon","sel":"#h1 .ribbon","at":0.5},{"k":"shine","sel":"#h1 .shine","at":0.3},{"k":"fade","sel":"#h1 .copy","at":2.517,"dur":0.3},{"k":"exit","sel":"#h1 .enter","at":2.767,"dur":0.3},{"k":"drop","sel":"#h2-drop-0","at":3.273,"dx":-275,"up":452,"fall":1142,"dur":1.296},{"k":"drop","sel":"#h2-drop-1","at":3.371,"dx":393,"up":382,"fall":843,"dur":1.077},{"k":"drop","sel":"#h2-drop-2","at":3.416,"dx":-288,"up":238,"fall":867,"dur":1.063},{"k":"drop","sel":"#h2-drop-3","at":3.207,"dx":217,"up":184,"fall":879,"dur":1.445},{"k":"drop","sel":"#h2-drop-4","at":3.179,"dx":-354,"up":262,"fall":878,"dur":1.124},{"k":"drop","sel":"#h2-drop-5","at":3.324,"dx":312,"up":400,"fall":1079,"dur":1.006},{"k":"drop","sel":"#h2-drop-6","at":3.268,"dx":-238,"up":369,"fall":1051,"dur":1.491},{"k":"drop","sel":"#h2-drop-7","at":3.321,"dx":187,"up":314,"fall":1025,"dur":1.462},{"k":"drop","sel":"#h2-drop-8","at":3.415,"dx":-397,"up":393,"fall":773,"dur":1.049},{"k":"drop","sel":"#h2-drop-9","at":3.386,"dx":126,"up":447,"fall":794,"dur":1.253},{"k":"bottle","sel":"#h2 .enter","at":3.067},{"k":"shine","sel":"#h2 .shine","at":3.417},{"k":"splash","sel":"#h2 .splash","at":3.107,"end":8.367},{"k":"words","sel":"#h2 .title .w","at":3.217},{"k":"float","sel":"#h2 .float","at":3.067,"end":8.667},{"k":"flyIn","sel":"#h2-tag-0","at":5.467,"fx":-520,"fy":-160,"rot":-24},{"k":"flyIn","sel":"#h2-tag-1","at":5.967,"fx":-560,"fy":120,"rot":24},{"k":"flyIn","sel":"#h2-tag-2","at":6.733,"fx":-520,"fy":-90,"rot":-24},{"k":"flyIn","sel":"#h2-tag-3","at":7.433,"fx":-560,"fy":160,"rot":24},{"k":"fade","sel":"#h2 .copy, #h2 .tag","at":8.117,"dur":0.3},{"k":"exit","sel":"#h2 .enter","at":8.367,"dur":0.3},{"k":"drop","sel":"#kN-drop-0","at":9.393,"dx":-430,"up":430,"fall":964,"dur":1.273},{"k":"drop","sel":"#kN-drop-1","at":9.461,"dx":141,"up":363,"fall":845,"dur":1.139},{"k":"drop","sel":"#kN-drop-2","at":9.439,"dx":-315,"up":221,"fall":999,"dur":1.301},{"k":"drop","sel":"#kN-drop-3","at":9.488,"dx":392,"up":359,"fall":961,"dur":1.215},{"k":"drop","sel":"#kN-drop-4","at":9.285,"dx":-294,"up":332,"fall":999,"dur":1.222},{"k":"drop","sel":"#kN-drop-5","at":9.35,"dx":383,"up":320,"fall":1118,"dur":1.207},{"k":"drop","sel":"#kN-drop-6","at":9.443,"dx":-294,"up":391,"fall":777,"dur":1.025},{"k":"drop","sel":"#kN-drop-7","at":9.287,"dx":393,"up":192,"fall":969,"dur":1.081},{"k":"liquid","sel":"#kN-kefir .bw-fill","at":8.717,"dur":0.9},{"k":"rise","sel":"#kN .flavor-line","at":8.967},{"k":"sideIn","sel":"#kN .duo-l","at":8.667,"fx":-240},{"k":"sideIn","sel":"#kN .duo-r","at":8.667,"fx":240},{"k":"meet","sel":"#kN .duo-full","at":9.217,"hide":"#kN .duo-l, #kN .duo-r"},{"k":"archIn","sel":"#kN .arch","at":8.667},{"k":"slowZoom","sel":"#kN .duo-art","at":9.567,"dur":9.367,"to":1.03},{"k":"fadeIn","sel":"#kN .duo-ext, #kN .duo-refl","at":9.267},{"k":"pop","sel":"#kN-tag-vaca","at":10.733},{"k":"pop","sel":"#kN-tag-cabra","at":11.2},{"k":"ribbon","sel":"#kN .ribbon","at":11.667},{"k":"swapIn","sel":"#kN-rs-0","at":11.667,"first":true},{"k":"swapOut","sel":"#kN-rs-0","at":14.05},{"k":"swapIn","sel":"#kN-rs-1","at":14.1,"first":false},{"k":"swapOut","sel":"#kN-rs-1","at":15.417},{"k":"swapIn","sel":"#kN-rs-2","at":15.467,"first":false},{"k":"glow","sel":"#kN .hl","at":13.033},{"k":"fade","sel":"#kN .copy, #kN .duo-tag","at":18.983,"dur":0.3},{"k":"exit","sel":"#kN .duo-box","at":19.233,"dur":0.3},{"k":"words","sel":"#pv .title .w","at":19.633},{"k":"bottle","sel":"#pv .photo","at":19.533},{"k":"slowZoom","sel":"#pv .photo img","at":20.133,"dur":4.533,"to":1.06},{"k":"rise","sel":"#pv .shot","at":20.033},{"k":"fillShot","sel":"#pv .shot-liquid","at":21.667},{"k":"step","sel":"#pv .step:nth-child(1)","at":20.667},{"k":"check","sel":"#pv .step:nth-child(1) .check path","at":20.967},{"k":"step","sel":"#pv .step:nth-child(2)","at":22.767},{"k":"check","sel":"#pv .step:nth-child(2) .check path","at":23.067},{"k":"step","sel":"#pv .step:nth-child(3)","at":23.5},{"k":"check","sel":"#pv .step:nth-child(3) .check path","at":23.8},{"k":"glow","sel":"#pv .hl","at":21.967,"color":"#2F7D52"},{"k":"fade","sel":"#pv .copy, #pv .steps-row","at":24.717,"dur":0.3},{"k":"exit","sel":"#pv .photo","at":24.967,"dur":0.3},{"k":"drop","sel":"#fr-fresa-drop-0","at":27.527,"dx":-132,"up":386,"fall":768,"dur":1.272},{"k":"drop","sel":"#fr-fresa-drop-1","at":27.497,"dx":290,"up":174,"fall":748,"dur":1.136},{"k":"drop","sel":"#fr-fresa-drop-2","at":27.483,"dx":-401,"up":239,"fall":1021,"dur":1.012},{"k":"drop","sel":"#fr-fresa-drop-3","at":27.493,"dx":228,"up":359,"fall":700,"dur":1.176},{"k":"drop","sel":"#fr-fresa-drop-4","at":27.553,"dx":-170,"up":210,"fall":768,"dur":1.285},{"k":"drop","sel":"#fr-fresa-drop-5","at":27.434,"dx":185,"up":197,"fall":955,"dur":1.357},{"k":"drop","sel":"#fr-fresa-drop-6","at":27.446,"dx":-297,"up":278,"fall":739,"dur":1.126},{"k":"drop","sel":"#fr-fresa-drop-7","at":27.559,"dx":410,"up":338,"fall":1046,"dur":1.34},{"k":"drop","sel":"#fr-fresa-drop-8","at":27.361,"dx":-428,"up":355,"fall":1043,"dur":1.199},{"k":"drop","sel":"#fr-fresa-drop-9","at":27.412,"dx":296,"up":395,"fall":1063,"dur":1.472},{"k":"drop","sel":"#fr-arand-drop-0","at":29.252,"dx":-439,"up":229,"fall":1027,"dur":1.328},{"k":"drop","sel":"#fr-arand-drop-1","at":29.061,"dx":320,"up":445,"fall":841,"dur":1.432},{"k":"drop","sel":"#fr-arand-drop-2","at":29.104,"dx":-268,"up":269,"fall":1021,"dur":1.327},{"k":"drop","sel":"#fr-arand-drop-3","at":29.197,"dx":201,"up":168,"fall":1153,"dur":1.424},{"k":"drop","sel":"#fr-arand-drop-4","at":29.017,"dx":-252,"up":299,"fall":841,"dur":1.381},{"k":"drop","sel":"#fr-arand-drop-5","at":29.103,"dx":294,"up":273,"fall":875,"dur":1.264},{"k":"drop","sel":"#fr-arand-drop-6","at":29.046,"dx":-394,"up":423,"fall":758,"dur":1.495},{"k":"drop","sel":"#fr-arand-drop-7","at":29.18,"dx":215,"up":290,"fall":1154,"dur":1.055},{"k":"drop","sel":"#fr-arand-drop-8","at":29.09,"dx":-436,"up":354,"fall":803,"dur":1.215},{"k":"drop","sel":"#fr-arand-drop-9","at":29.056,"dx":227,"up":363,"fall":805,"dur":1.474},{"k":"drop","sel":"#fr-choc-drop-0","at":31.672,"dx":-247,"up":184,"fall":1077,"dur":1.238},{"k":"drop","sel":"#fr-choc-drop-1","at":31.667,"dx":382,"up":178,"fall":713,"dur":1.499},{"k":"drop","sel":"#fr-choc-drop-2","at":31.58,"dx":-408,"up":230,"fall":1042,"dur":1.227},{"k":"drop","sel":"#fr-choc-drop-3","at":31.668,"dx":206,"up":347,"fall":1065,"dur":1.184},{"k":"drop","sel":"#fr-choc-drop-4","at":31.565,"dx":-187,"up":416,"fall":941,"dur":1.266},{"k":"drop","sel":"#fr-choc-drop-5","at":31.671,"dx":348,"up":346,"fall":862,"dur":1.042},{"k":"drop","sel":"#fr-choc-drop-6","at":31.666,"dx":-407,"up":440,"fall":1019,"dur":1.367},{"k":"drop","sel":"#fr-choc-drop-7","at":31.657,"dx":319,"up":209,"fall":924,"dur":1.063},{"k":"drop","sel":"#fr-choc-drop-8","at":31.692,"dx":-383,"up":277,"fall":1064,"dur":1.414},{"k":"drop","sel":"#fr-choc-drop-9","at":31.635,"dx":258,"up":254,"fall":1039,"dur":1.206},{"k":"bottle","sel":"#fr .fr-vertido","at":25.267},{"k":"zoom","sel":"#fr .fr-vertido .imgbox","at":25.267,"dur":2,"from":1,"to":1.08},{"k":"xfadeOut","sel":"#fr .fr-vertido","at":27.117},{"k":"liquid","sel":"#fr-kefir .bw-fill","at":25.317,"dur":0.9},{"k":"rise","sel":"#fr-ask","at":25.467},{"k":"fadeQuick","sel":"#fr-ask","at":27.017},{"k":"ribbon","sel":"#fr .ribbon","at":33.867},{"k":"glow","sel":"#fr .hl","at":35.133},{"k":"archIn","sel":"#fr .arch","at":25.267},{"k":"float","sel":"#fr .float","at":25.267,"end":35.667},{"k":"xfadeIn","sel":"#fr-bottle-fresa","at":27.267},{"k":"shine","sel":"#fr-bottle-fresa .shine","at":27.517},{"k":"burst","sel":"#fr-spl-fresa-0","at":27.267,"rot":-14},{"k":"burst","sel":"#fr-spl-fresa-1","at":27.267,"rot":14},{"k":"sabor","sel":"#fr-sabor-fresa","at":27.317},{"k":"rise","sel":"#fr-line-fresa","at":27.387,"dur":0.4},{"k":"setVar","sel":"#fr-copy","at":28.967,"vars":{"--ink":"#F5F2EA","--kw":"#D8C8FF"}},{"k":"xfadeOut","sel":"#fr-bottle-fresa","at":28.917},{"k":"fadeQuick","sel":"#fr-sabor-fresa, #fr-line-fresa","at":28.717},{"k":"fadeQuick","sel":"#fr-spl-fresa-0","at":28.767},{"k":"fadeQuick","sel":"#fr-spl-fresa-1","at":28.767},{"k":"xfadeIn","sel":"#fr-bottle-arand","at":28.967},{"k":"shine","sel":"#fr-bottle-arand .shine","at":29.217},{"k":"burst","sel":"#fr-spl-arand-0","at":28.967,"rot":-14},{"k":"burst","sel":"#fr-spl-arand-1","at":28.967,"rot":14},{"k":"sabor","sel":"#fr-sabor-arand","at":29.017},{"k":"rise","sel":"#fr-line-arand","at":29.087,"dur":0.4},{"k":"setVar","sel":"#fr-copy","at":31.5,"vars":{"--ink":"#F5F2EA","--kw":"#F3CBA4"}},{"k":"xfadeOut","sel":"#fr-bottle-arand","at":31.45},{"k":"fadeQuick","sel":"#fr-sabor-arand, #fr-line-arand","at":31.25},{"k":"fadeQuick","sel":"#fr-spl-arand-0","at":31.3},{"k":"fadeQuick","sel":"#fr-spl-arand-1","at":31.3},{"k":"xfadeIn","sel":"#fr-bottle-choc","at":31.5},{"k":"shine","sel":"#fr-bottle-choc .shine","at":31.75},{"k":"burst","sel":"#fr-spl-choc-0","at":31.5,"rot":-14},{"k":"sabor","sel":"#fr-sabor-choc","at":31.55},{"k":"rise","sel":"#fr-line-choc","at":31.62,"dur":0.4},{"k":"fade","sel":"#fr .copy","at":35.117,"dur":0.3},{"k":"exit","sel":"#fr .enter","at":35.367,"dur":0.3},{"k":"fadeQuick","sel":"#fr-spl-choc-0","at":35.367},{"k":"slowZoom","sel":"#kt-row","at":35.667,"dur":3.8,"to":1.04},{"k":"glowBg","sel":"#kt .kt-halo","at":35.667,"end":37.367},{"k":"rise","sel":"#kt-tease","at":35.817,"dur":1},{"k":"flash","sel":"#kt-flash","at":37.307},{"k":"colorize","sel":"#kt .real img","at":37.367},{"k":"fadeQuick","sel":"#kt-tease","at":37.267},{"k":"brandIn","sel":"#kt-brand","at":37.417},{"k":"stamp","sel":"#kt-nuevo","at":37.817},{"k":"shake","sel":"#kt-row","at":37.367},{"k":"fade","sel":"#kt .copy","at":38.917,"dur":0.3},{"k":"exit","sel":"#kt .kt-row","at":39.167,"dur":0.3},{"k":"show","sel":"#kd-guisante, #kd-fl-guisante","at":39.457},{"k":"hide","sel":"#kd-guisante, #kd-fl-guisante","at":40.49},{"k":"bottle","sel":"#kd-main-guisante","at":39.467},{"k":"capPop","sel":"#kd-guisante .cap","at":39.547},{"k":"bubbles","sel":"#kd-guisante .bubble","at":39.617,"end":41.1},{"k":"float","sel":"#kd-guisante .float","at":39.467,"end":40.5},{"k":"shine","sel":"#kd-guisante .shine","at":39.617},{"k":"show","sel":"#kd-espirulina, #kd-fl-espirulina","at":40.49},{"k":"hide","sel":"#kd-espirulina, #kd-fl-espirulina","at":41.957},{"k":"bottle","sel":"#kd-main-espirulina","at":40.5},{"k":"capPop","sel":"#kd-espirulina .cap","at":40.58},{"k":"bubbles","sel":"#kd-espirulina .bubble","at":40.65,"end":42.567},{"k":"float","sel":"#kd-espirulina .float","at":40.5,"end":41.967},{"k":"shine","sel":"#kd-espirulina .shine","at":40.65},{"k":"show","sel":"#kd-pitahaya, #kd-fl-pitahaya","at":41.957},{"k":"tiltIn","sel":"#kd-diag-pitahaya","at":41.967,"rot":-18},{"k":"xfadeOut","sel":"#kd-diag-pitahaya","at":42.167},{"k":"xfadeIn","sel":"#kd-main-pitahaya","at":42.167},{"k":"capPop","sel":"#kd-pitahaya .cap","at":42.047},{"k":"bubbles","sel":"#kd-pitahaya .bubble","at":42.117,"end":43.367},{"k":"float","sel":"#kd-pitahaya .float","at":41.967,"end":42.767},{"k":"shine","sel":"#kd-pitahaya .shine","at":42.117},{"k":"shake","sel":"#kd .cam","at":39.547},{"k":"brandIn","sel":"#kd .brand","at":39.467},{"k":"exit","sel":"#kd .enter","at":42.467,"dur":0.3},{"k":"rise","sel":"#kp .kp-eyebrow","at":42.767},{"k":"bottle","sel":"#kp-b-0, #kp-b-1","at":42.767,"stagger":0.07},{"k":"bottle","sel":"#kp-b-2","at":42.907},{"k":"float","sel":"#kp-b-0","at":43.667,"end":48.267},{"k":"bubbles","sel":"#kp-b-0 .bubble","at":43.167,"end":48.267},{"k":"float","sel":"#kp-b-1","at":43.917,"end":48.267},{"k":"bubbles","sel":"#kp-b-1 .bubble","at":43.367,"end":48.267},{"k":"float","sel":"#kp-b-2","at":44.167,"end":48.267},{"k":"bubbles","sel":"#kp-b-2 .bubble","at":43.567,"end":48.267},{"k":"stamp","sel":"#kp-nuevo","at":43.467},{"k":"pop","sel":"#kp-a-0","at":42.767},{"k":"pop","sel":"#kp-a-1","at":43.733},{"k":"pop","sel":"#kp-a-2","at":44.667},{"k":"ribbon","sel":"#kp .ribbon","at":46.2},{"k":"fade","sel":"#kp .copy","at":48.017,"dur":0.3},{"k":"exit","sel":"#kp .kp-v","at":48.267,"dur":0.3},{"k":"confetti","sel":"#s9-conf-0","at":50.935,"dur":3.559,"drift":36,"rot":-126},{"k":"confetti","sel":"#s9-conf-1","at":52.223,"dur":3.519,"drift":-5,"rot":-372},{"k":"confetti","sel":"#s9-conf-2","at":48.588,"dur":2.825,"drift":18,"rot":450},{"k":"confetti","sel":"#s9-conf-3","at":50.362,"dur":2.618,"drift":-26,"rot":19},{"k":"confetti","sel":"#s9-conf-4","at":51.623,"dur":3.508,"drift":53,"rot":-157},{"k":"confetti","sel":"#s9-conf-5","at":51.09,"dur":3.554,"drift":-15,"rot":189},{"k":"confetti","sel":"#s9-conf-6","at":50.205,"dur":3.746,"drift":-15,"rot":398},{"k":"confetti","sel":"#s9-conf-7","at":51.319,"dur":2.862,"drift":86,"rot":416},{"k":"confetti","sel":"#s9-conf-8","at":51.025,"dur":2.607,"drift":13,"rot":-167},{"k":"confetti","sel":"#s9-conf-9","at":52.207,"dur":3.058,"drift":-31,"rot":97},{"k":"confetti","sel":"#s9-conf-10","at":49.196,"dur":3.481,"drift":21,"rot":58},{"k":"confetti","sel":"#s9-conf-11","at":49.279,"dur":3.95,"drift":92,"rot":-341},{"k":"confetti","sel":"#s9-conf-12","at":52.588,"dur":2.722,"drift":-16,"rot":183},{"k":"confetti","sel":"#s9-conf-13","at":50.76,"dur":2.913,"drift":73,"rot":-416},{"k":"confetti","sel":"#s9-conf-14","at":51.304,"dur":3.741,"drift":28,"rot":-126},{"k":"confetti","sel":"#s9-conf-15","at":50.919,"dur":3.669,"drift":18,"rot":-283},{"k":"confetti","sel":"#s9-conf-16","at":49.54,"dur":3.647,"drift":-24,"rot":92},{"k":"confetti","sel":"#s9-conf-17","at":48.686,"dur":3.412,"drift":-107,"rot":-175},{"k":"confetti","sel":"#s9-conf-18","at":51.337,"dur":2.98,"drift":-34,"rot":-46},{"k":"confetti","sel":"#s9-conf-19","at":49.408,"dur":3.752,"drift":-61,"rot":231},{"k":"confetti","sel":"#s9-conf-20","at":50.58,"dur":3.155,"drift":-58,"rot":302},{"k":"confetti","sel":"#s9-conf-21","at":53.484,"dur":2.839,"drift":-19,"rot":-290},{"k":"confetti","sel":"#s9-conf-22","at":50.137,"dur":3.962,"drift":-50,"rot":301},{"k":"confetti","sel":"#s9-conf-23","at":53.072,"dur":3.426,"drift":-105,"rot":-335},{"k":"confetti","sel":"#s9-conf-24","at":51.187,"dur":3.19,"drift":87,"rot":-39},{"k":"confetti","sel":"#s9-conf-25","at":52.776,"dur":3.15,"drift":-104,"rot":-414},{"k":"confetti","sel":"#s9-conf-26","at":53.109,"dur":3.571,"drift":104,"rot":-415},{"k":"confetti","sel":"#s9-conf-27","at":49.811,"dur":3.963,"drift":-74,"rot":181},{"k":"confetti","sel":"#s9-conf-28","at":51.061,"dur":3.433,"drift":-33,"rot":56},{"k":"confetti","sel":"#s9-conf-29","at":49.78,"dur":3.05,"drift":-93,"rot":148},{"k":"burstPiece","sel":"#s9-burst-0","at":52.067,"dx":262,"dy":3,"rot":35},{"k":"burstPiece","sel":"#s9-burst-1","at":52.067,"dx":440,"dy":189,"rot":79},{"k":"burstPiece","sel":"#s9-burst-2","at":52.067,"dx":239,"dy":147,"rot":-14},{"k":"burstPiece","sel":"#s9-burst-3","at":52.067,"dx":237,"dy":287,"rot":101},{"k":"burstPiece","sel":"#s9-burst-4","at":52.067,"dx":73,"dy":181,"rot":312},{"k":"burstPiece","sel":"#s9-burst-5","at":52.067,"dx":-49,"dy":316,"rot":-93},{"k":"burstPiece","sel":"#s9-burst-6","at":52.067,"dx":-73,"dy":303,"rot":-177},{"k":"burstPiece","sel":"#s9-burst-7","at":52.067,"dx":-208,"dy":180,"rot":2},{"k":"burstPiece","sel":"#s9-burst-8","at":52.067,"dx":-355,"dy":260,"rot":-138},{"k":"burstPiece","sel":"#s9-burst-9","at":52.067,"dx":-304,"dy":93,"rot":-253},{"k":"burstPiece","sel":"#s9-burst-10","at":52.067,"dx":-412,"dy":26,"rot":269},{"k":"burstPiece","sel":"#s9-burst-11","at":52.067,"dx":-408,"dy":-76,"rot":-232},{"k":"burstPiece","sel":"#s9-burst-12","at":52.067,"dx":-397,"dy":-107,"rot":166},{"k":"burstPiece","sel":"#s9-burst-13","at":52.067,"dx":-356,"dy":-238,"rot":-159},{"k":"burstPiece","sel":"#s9-burst-14","at":52.067,"dx":-174,"dy":-233,"rot":337},{"k":"burstPiece","sel":"#s9-burst-15","at":52.067,"dx":-95,"dy":-296,"rot":-268},{"k":"burstPiece","sel":"#s9-burst-16","at":52.067,"dx":19,"dy":-264,"rot":318},{"k":"burstPiece","sel":"#s9-burst-17","at":52.067,"dx":165,"dy":-261,"rot":-73},{"k":"burstPiece","sel":"#s9-burst-18","at":52.067,"dx":244,"dy":-217,"rot":-261},{"k":"burstPiece","sel":"#s9-burst-19","at":52.067,"dx":325,"dy":-188,"rot":161},{"k":"burstPiece","sel":"#s9-burst-20","at":52.067,"dx":402,"dy":-148,"rot":-324},{"k":"burstPiece","sel":"#s9-burst-21","at":52.067,"dx":308,"dy":-30,"rot":-237},{"k":"ribbon","sel":"#s9 .ribbon","at":48.667},{"k":"words","sel":"#s9 .title .w","at":48.817},{"k":"bottle","sel":"#s9 .enter","at":48.567},{"k":"shine","sel":"#s9 .shine","at":49.067},{"k":"glowBg","sel":"#s9 .glow","at":48.667,"end":55.267},{"k":"float","sel":"#s9 .float","at":48.567,"end":55.267},{"k":"ticket","sel":"#s9 .ticket","at":49.533},{"k":"tear","sel":"#s9 .ticket-stub","at":52.067},{"k":"fade","sel":"#s9 .copy, #s9 .ticket-wrap","at":54.717,"dur":0.3},{"k":"exit","sel":"#s9 .enter","at":54.967,"dur":0.3},{"k":"bottle","sel":"#s10 .logo","at":55.267},{"k":"glowBg","sel":"#s10 .logo-glow","at":55.267,"end":65.267},{"k":"float","sel":"#s10 .logo img","at":55.267,"end":65.267},{"k":"bottle","sel":"#s10 .real","at":55.267,"stagger":0.12},{"k":"pop","sel":"#s10 .pronto","at":56.017},{"k":"stamp","sel":"#s10-seal-art","at":55.717},{"k":"stamp","sel":"#s10-seal-sin","at":56.1},{"k":"rise","sel":"#s10 .cta-made","at":57.867},{"k":"rise","sel":"#s10 .cta-line","at":59.767},{"k":"button","sel":"#s10 .wa-wrap","at":61.18},{"k":"group","sel":"#s10 .wa-num .g:nth-child(1)","at":61.3},{"k":"group","sel":"#s10 .wa-num .g:nth-child(2)","at":62.5},{"k":"group","sel":"#s10 .wa-num .g:nth-child(3)","at":63.633},{"k":"ring","sel":"#s10 .wa-ring","at":63.983},{"k":"pulse","sel":"#s10 .wa-btn","at":64.233,"end":65.267},{"k":"wave","sel":"#wave-0 .wave-svg","at":8.317,"dur":0.7},{"k":"wave","sel":"#wave-1 .wave-svg","at":28.617,"dur":0.7},{"k":"wave","sel":"#wave-2 .wave-svg","at":31.15,"dur":0.7},{"k":"wave","sel":"#wave-3 .wave-svg","at":24.917,"dur":0.7},{"k":"wave","sel":"#wave-4 .wave-svg","at":35.317,"dur":0.7},{"k":"wave","sel":"#wave-5 .wave-svg","at":48.217,"dur":0.7},{"k":"wave","sel":"#wave-6 .wave-svg","at":54.917,"dur":0.7},{"k":"grain","sel":"#grain","at":0,"end":65.267}];
+      const tl = gsap.timeline({ paused: true });
+      /* Sistema de movimiento (sin frames vacíos: el producto sale hasta 40 % y entra desde 60 %, así cada corte
+         pasa de producto a producto): entradas 500–700 ms con expo.out (≈ cubic-bezier(0.16, 1, 0.3, 1)),
+         salidas 250–350 ms con power2.in, botellas con un rebote leve (back.out), stagger 60–80 ms. */
+      const IN = 'expo.out';
+      const OUTE = 'power2.in';
+      const SPRING = 'back.out(1.5)';
+      const BEAT = 0.5714;
+      const MIEL = '#F2B705';
+      const F = 1 / 30;
+      const $$ = (sel) => gsap.utils.toArray(sel);
+
+      // Ola dentro del texto "KÉFIR": polígono ondulado que sube como líquido.
+      function wavePolygon(level, phase) {
+        const pts = [];
+        for (let i = 0; i <= 16; i++) {
+          const x = (i / 16) * 100;
+          const y = level + 5 * Math.sin((i / 16) * Math.PI * 3 + phase);
+          pts.push(`${x.toFixed(2)}% ${y.toFixed(2)}%`);
+        }
+        return `polygon(${pts.join(', ')}, 100% 110%, 0% 110%)`;
+      }
+
+      const H = {
+        fade(a) {
+          if (document.querySelector(a.sel)) tl.fromTo(a.sel, { opacity: 1 }, { opacity: 0, duration: a.dur, ease: OUTE, immediateRender: false }, a.at);
+        },
+        exit: (a) => tl.fromTo(a.sel, { scale: 1, opacity: 1 }, { scale: 1.05, opacity: 0.4, duration: a.dur, ease: OUTE, immediateRender: false }, a.at),
+        fadeQuick: (a) => tl.fromTo(a.sel, { opacity: 1 }, { opacity: 0, duration: 0.2, ease: OUTE, immediateRender: false }, a.at),
+        rise: (a) => tl.fromTo(a.sel, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: a.dur || 0.6, ease: IN }, a.at),
+        words: (a) => tl.fromTo(a.sel, { y: 34, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: IN, stagger: 0.07 }, a.at),
+        brandIn: (a) => tl.fromTo(a.sel, { y: 30, scale: 0.94, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.6, ease: IN }, a.at),
+        pop: (a) => tl.fromTo(a.sel, { scale: 0.6, y: 10, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.5, ease: 'back.out(2.2)' }, a.at),
+        bottle: (a) => tl.fromTo(a.sel, { y: 60, scale: 0.9, opacity: 0.6 }, { y: 0, scale: 1, opacity: 1, duration: 0.7, ease: SPRING, stagger: a.stagger || 0 }, a.at),
+        archIn: (a) => tl.fromTo(a.sel, { scaleY: 0.85, opacity: 0, transformOrigin: '50% 100%' }, { scaleY: 1, opacity: 1, duration: 0.6, ease: IN }, a.at),
+        float(a) {
+          const half = 0.7;
+          const n = Math.max(0, Math.floor((a.end - a.at) / half) - 1);
+          tl.fromTo(a.sel, { y: 0 }, { y: -3, duration: half, ease: 'sine.inOut', yoyo: true, repeat: n }, a.at);
+        },
+        // Zoom lento tipo cámara lenta + parallax: fondo, producto y texto a velocidades distintas.
+        zoom: (a) => tl.fromTo(a.sel, { scale: a.from }, { scale: a.to, duration: a.dur, ease: 'none' }, a.at),
+        slowZoom: (a) => tl.fromTo(a.sel, { scale: 1 }, { scale: a.to, duration: a.dur, ease: 'none' }, a.at),
+        parallax: (a) => tl.fromTo(a.sel, { scale: 1 }, { scale: a.to, duration: a.dur, ease: 'none' }, a.at),
+        drift: (a) => tl.fromTo(a.sel, { y: 0 }, { y: a.y, duration: a.dur, ease: 'none' }, a.at),
+        // Cinta negra: se despliega desde la izquierda con la punta al frente.
+        ribbon: (a) => tl.fromTo(a.sel, { xPercent: -105 }, { xPercent: 0, duration: 0.6, ease: IN }, a.at),
+        // Brillo especular: una franja de luz recorre la botella una vez.
+        shine: (a) => tl.fromTo(a.sel, { backgroundPosition: '100% 0%' }, { backgroundPosition: '0% 0%', duration: 0.9, ease: 'power2.inOut' }, a.at),
+        splash(a) {
+          tl.fromTo(a.sel, { rotation: -25, scale: 0.6, opacity: 0, transformOrigin: '30% 60%' }, { rotation: 0, scale: 1, opacity: 1, duration: 0.7, ease: 'back.out(1.6)' }, a.at);
+          tl.to(a.sel, { rotation: 3, duration: Math.max(0.2, a.end - a.at - 0.7), ease: 'sine.inOut' }, a.at + 0.7);
+        },
+        burst: (a) => tl.fromTo(a.sel, { scale: 0.6, rotation: a.rot, opacity: 0 }, { scale: 1, rotation: 0, opacity: 1, duration: 0.55, ease: 'back.out(1.7)' }, a.at),
+        // Frutas que llegan volando y se ordenan alrededor de la botella.
+        flyIn: (a) => tl.fromTo(a.sel, { x: a.fx, y: a.fy, rotation: a.rot, scale: 0.7, opacity: 0 }, { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1, duration: 0.65, ease: 'back.out(1.6)' }, a.at),
+        // KÉFIR: contorno primero y luego se "llena de líquido" con una máscara ondulada.
+        outlineIn: (a) => tl.fromTo(a.sel, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'none' }, a.at),
+        liquid(a) {
+          const el = document.querySelector(a.sel);
+          const o = { p: 0 };
+          tl.set(el, { clipPath: wavePolygon(110, 0) }, 0);
+          tl.fromTo(o, { p: 0 }, { p: 1, duration: a.dur, ease: 'power2.out', onUpdate: () => { el.style.clipPath = wavePolygon(110 - o.p * 125, o.p * Math.PI * 4); } }, a.at);
+        },
+        // Palabra clave que se ilumina cuando la voz la dice.
+        glow(a) {
+          tl.to(a.sel, { color: a.color || MIEL, scale: 1.08, textShadow: `0 0 18px ${a.color ? 'rgba(47,125,82,0.45)' : 'rgba(242,183,5,0.85)'}`, duration: 0.25, ease: 'power2.out' }, a.at);
+          tl.to(a.sel, { scale: 1, textShadow: '0 0 0px rgba(242,183,5,0)', duration: 0.45, ease: 'power2.inOut' }, a.at + 0.35);
+        },
+        // Vaca o cabra: cada botella entra desde su lado y se encuentran con el splash de leche.
+        sideIn: (a) => tl.fromTo(a.sel, { x: a.fx }, { x: 0, duration: 0.55, ease: 'back.out(1.3)' }, a.at),
+        meet(a) {
+          tl.fromTo(a.sel, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.3, ease: IN }, a.at);
+          tl.set(a.hide, { opacity: 0 }, a.at + 0.3);
+        },
+        // Primera vez: el shot se llena hasta la marca de 30 ml; cada paso con un check dibujado.
+        fillShot: (a) => tl.fromTo(a.sel, { attr: { y: 250 } }, { attr: { y: 90 }, duration: 0.9, ease: 'power2.out' }, a.at),
+        step: (a) => tl.fromTo(a.sel, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.55, ease: IN }, a.at),
+        check: (a) => tl.fromTo(a.sel, { strokeDashoffset: 40 }, { strokeDashoffset: 0, duration: 0.35, ease: 'power2.out' }, a.at),
+        // Frutados: la botella queda en su sitio y cambia de sabor con un fundido.
+        xfadeIn: (a) => tl.fromTo(a.sel, { opacity: 0, scale: 0.98 }, { opacity: 1, scale: 1, duration: 0.35, ease: IN }, a.at),
+        fadeIn: (a) => tl.fromTo(a.sel, { opacity: 0 }, { opacity: 1, duration: 0.4, ease: IN }, a.at),
+        xfadeOut: (a) => tl.fromTo(a.sel, { opacity: 1 }, { opacity: 0, duration: 0.3, ease: 'none', immediateRender: false }, a.at),
+        setVar: (a) => tl.set(a.sel, a.vars, a.at),
+        // Corte seco (sin fundido): aparece o desaparece en un frame.
+        show: (a) => tl.fromTo(a.sel, { opacity: 0 }, { opacity: 1, duration: 0.005, ease: 'none' }, a.at),
+        hide: (a) => tl.fromTo(a.sel, { opacity: 1 }, { opacity: 0, duration: 0.005, ease: 'none', immediateRender: false }, a.at),
+        // Teaser: destello blanco breve (0.18 s) y las siluetas pasan a color.
+        flash(a) {
+          tl.fromTo(a.sel, { opacity: 0 }, { opacity: 0.85, duration: 0.06, ease: 'power2.out' }, a.at);
+          tl.to(a.sel, { opacity: 0, duration: 0.12, ease: 'power2.in' }, a.at + 0.06);
+        },
+        colorize: (a) => tl.fromTo(a.sel, { filter: 'brightness(0) drop-shadow(0px 0px 6px rgba(255,214,240,0.7))' }, { filter: 'brightness(1) drop-shadow(0px 0px 0px rgba(255,214,240,0))', duration: 0.25, ease: 'power2.out' }, a.at),
+        // Pitahaya: llega inclinada y gira hasta quedar vertical.
+        tiltIn: (a) => tl.fromTo(a.sel, { rotation: 0, y: 40, opacity: 0.6 }, { rotation: a.rot, y: 0, opacity: 1, duration: 0.45, ease: IN }, a.at),
+        // Cinta que cambia de texto en su sitio: el texto sale hacia arriba y el nuevo entra desde abajo.
+        swapIn: (a) => tl.fromTo(a.sel, { yPercent: a.first ? 0 : 110, opacity: a.first ? 1 : 0 }, { yPercent: 0, opacity: 1, duration: a.first ? 0.01 : 0.5, ease: IN }, a.at),
+        swapOut: (a) => tl.fromTo(a.sel, { yPercent: 0 }, { yPercent: -110, duration: 0.3, ease: OUTE, immediateRender: false }, a.at),
+        // Cinta "SABOR": sticker girado + pincelada que se pinta de izquierda a derecha.
+        sabor(a) {
+          tl.fromTo(a.sel + ' .sabor-tag', { rotation: -28, scale: 0.4, opacity: 0 }, { rotation: -8, scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(2)' }, a.at);
+          tl.fromTo(a.sel + ' .brush path', { strokeDashoffset: 620 }, { strokeDashoffset: 0, duration: 0.5, ease: 'power2.out' }, a.at + 0.1);
+          tl.fromTo(a.sel + ' .sabor-name > span', { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: IN }, a.at + 0.25);
+        },
+        // Kombuchas: la tapa salta, la cámara tiembla 2 frames y suben burbujas.
+        capPop: (a) => tl.fromTo(a.sel, { x: 0, y: 0, rotation: 0, opacity: 1 }, { x: 70, y: -480, rotation: 220, opacity: 0, duration: 0.6, ease: 'power2.out' }, a.at),
+        shake(a) {
+          tl.fromTo(a.sel, { x: 0, y: 0 }, { x: 10, y: -6, duration: F, ease: 'none' }, a.at);
+          tl.to(a.sel, { x: -8, y: 5, duration: F, ease: 'none' }, a.at + F);
+          tl.to(a.sel, { x: 0, y: 0, duration: F, ease: 'none' }, a.at + 2 * F);
+        },
+        bubbles(a) {
+          const els = $$(a.sel);
+          const span = Math.max(0.2, a.end - a.at - 1.4);
+          els.forEach((el, i) => {
+            const at = a.at + (i / els.length) * span;
+            tl.fromTo(el, { y: 0, scale: 0.6 }, { y: -520, scale: 1, duration: 1.4, ease: 'power1.out' }, at);
+            tl.fromTo(el, { opacity: 0 }, { opacity: 0.85, duration: 0.3, ease: 'none' }, at);
+            tl.fromTo(el, { opacity: 0.85 }, { opacity: 0, duration: 0.3, ease: 'none', immediateRender: false }, at + 1.1);
+          });
+        },
+        drop(a) {
+          tl.fromTo(a.sel, { opacity: 0 }, { opacity: 1, duration: 0.05, ease: 'none' }, a.at);
+          tl.fromTo(a.sel, { x: 0, scale: 0.5 }, { x: a.dx, scale: 1, duration: a.dur, ease: 'none' }, a.at);
+          tl.fromTo(a.sel, { y: 0 }, { y: -a.up, duration: a.dur * 0.35, ease: 'power2.out' }, a.at);
+          tl.fromTo(a.sel, { y: -a.up }, { y: a.fall, duration: a.dur * 0.65, ease: 'power2.in', immediateRender: false }, a.at + a.dur * 0.35);
+          tl.fromTo(a.sel, { opacity: 1 }, { opacity: 0, duration: 0.2, ease: 'none', immediateRender: false }, a.at + a.dur - 0.2);
+        },
+        confetti: (a) => tl.fromTo(a.sel, { y: -80, x: 0, rotation: 0 }, { y: 2060, x: a.drift, rotation: a.rot, duration: a.dur, ease: 'none' }, a.at),
+        burstPiece(a) {
+          tl.fromTo(a.sel, { x: 0, y: 0, rotation: 0, opacity: 0 }, { x: a.dx, y: a.dy, rotation: a.rot, opacity: 1, duration: 0.6, ease: 'power3.out' }, a.at);
+          tl.to(a.sel, { y: a.dy + 520, opacity: 0, duration: 1.1, ease: 'power1.in' }, a.at + 0.6);
+        },
+        glowBg(a) {
+          tl.fromTo(a.sel, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.8, ease: IN }, a.at);
+          const n = Math.max(0, Math.floor((a.end - a.at - 0.8) / 1.1) - 1);
+          tl.fromTo(a.sel, { scale: 1 }, { scale: 1.06, duration: 1.1, ease: 'sine.inOut', yoyo: true, repeat: n, immediateRender: false }, a.at + 0.8);
+        },
+        // Sorteo: el ticket entra girando y luego se arranca por la línea punteada.
+        ticket: (a) => tl.fromTo(a.sel, { rotation: -12, scale: 0.7, y: 30, opacity: 0 }, { rotation: -2, scale: 1, y: 0, opacity: 1, duration: 0.65, ease: 'back.out(1.6)' }, a.at),
+        tear: (a) => tl.fromTo(a.sel, { rotation: 0, x: 0, y: 0, opacity: 1 }, { rotation: -32, x: -70, y: 260, opacity: 0, duration: 0.8, ease: 'power2.in', transformOrigin: '100% 0%' }, a.at),
+        // Cierre: sellos de goma, número por grupos y onda.
+        stamp(a) {
+          tl.fromTo(a.sel, { scale: 1.4, rotation: -22, opacity: 0 }, { scale: 1, rotation: -8, opacity: 1, duration: 0.22, ease: 'power3.in' }, a.at);
+          tl.to(a.sel, { x: 6, duration: 0.04, ease: 'none' }, a.at + 0.22);
+          tl.to(a.sel, { x: -5, duration: 0.04, ease: 'none' }, a.at + 0.26);
+          tl.to(a.sel, { x: 0, duration: 0.04, ease: 'none' }, a.at + 0.3);
+        },
+        button: (a) => tl.fromTo(a.sel, { scale: 0.6, y: 20, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.5, ease: 'back.out(2)' }, a.at),
+        group: (a) => tl.fromTo(a.sel, { y: 30, scale: 0.6, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(2.4)' }, a.at),
+        ring: (a) => tl.fromTo(a.sel, { scale: 1, opacity: 0.9 }, { scale: 1.6, opacity: 0, duration: 0.8, ease: 'power2.out' }, a.at),
+        pulse(a) {
+          const n = Math.max(0, Math.floor((a.end - a.at) / BEAT) - 1);
+          tl.fromTo(a.sel, { scale: 1 }, { scale: 1.04, duration: BEAT, ease: 'sine.inOut', yoyo: true, repeat: n }, a.at);
+        },
+        // Ola: una franja de líquido cruza la pantalla de abajo arriba; el corte ocurre cuando pasa por el centro.
+        wave: (a) => tl.fromTo(a.sel, { y: 1920, x: 0 }, { y: -760, x: -540, duration: a.dur, ease: 'none' }, a.at),
+        // Grano: el patrón cambia de posición cada 2 frames.
+        grain(a) {
+          const steps = Math.round((a.end - a.at) * 15);
+          tl.fromTo(a.sel, { backgroundPosition: '0px 0px' }, { backgroundPosition: `${steps * 97}px ${steps * 61}px`, duration: a.end - a.at, ease: `steps(${steps})` }, a.at);
+        },
+      };
+
+      for (const a of ANIM) {
+        if (!H[a.k]) throw new Error('animación desconocida: ' + a.k);
+        H[a.k](a);
+      }
+
+      window.__timelines['main'] = tl;
+
+    </script>
+  </body>
+</html>
