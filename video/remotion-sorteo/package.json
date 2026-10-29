@@ -1,0 +1,28 @@
+{
+  "name": "trialferi-remotion-sorteo",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts SorteoTeaser out/video-mudo.mp4 --muted --crf=17",
+    "audio": "python3 scripts/mix-audio.py > out/mix.sh && bash out/mix.sh",
+    "final": "ffmpeg -y -i out/video-mudo.mp4 -i out/mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart out/sorteo-teaser.mp4"
+  },
+  "dependencies": {
+    "@react-three/drei": "9.122.0",
+    "@react-three/fiber": "8.18.0",
+    "@remotion/cli": "4.0.539",
+    "@remotion/fonts": "4.0.539",
+    "@remotion/google-fonts": "4.0.539",
+    "@remotion/media-utils": "4.0.539",
+    "@remotion/paths": "4.0.539",
+    "@remotion/three": "4.0.539",
+    "@remotion/transitions": "4.0.539",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.539",
+    "three": "0.169.0"
+  },
+  "devDependencies": {
+    "@types/three": "0.169.0"
+  }
+}
