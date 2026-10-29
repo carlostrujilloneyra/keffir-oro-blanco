@@ -37,3 +37,6 @@ next-env.d.ts
 
 # claude code
 .claude/settings.local.json
+
+# skills para otros asistentes (se regeneran con npx skills experimental_install)
+.agents/
