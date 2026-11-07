@@ -69,10 +69,12 @@ type StaggerProps = {
   delay?: number;
   /* true = al entrar en viewport (una vez); false = al montar. */
   inView?: boolean;
+  /* true = el primer render ya sale visible, sin esperar a la hidratación (texto del LCP). */
+  skipInitial?: boolean;
 };
 
 /* Cascada: envuelve cada hijo directo en un div y los revela en secuencia. */
-export const Stagger = ({ children, className, delay = 0, inView = false }: StaggerProps) => {
+export const Stagger = ({ children, className, delay = 0, inView = false, skipInitial = false }: StaggerProps) => {
   const { container, item } = useStaggerVariants({ stagger: 0.09, delay, y: 14, duration: 0.65 });
 
   const trigger = inView
@@ -80,7 +82,7 @@ export const Stagger = ({ children, className, delay = 0, inView = false }: Stag
     : ({ animate: 'visible' } as const);
 
   return (
-    <motion.div variants={container} initial='hidden' {...trigger} className={className}>
+    <motion.div variants={container} initial={skipInitial ? false : 'hidden'} {...trigger} className={className}>
       {Children.map(children, (child) =>
         isValidElement(child) ? <motion.div variants={item}>{child}</motion.div> : child,
       )}
