@@ -4,9 +4,7 @@ import { motion } from 'motion/react';
 import { useStaggerVariants } from '@/components/ui/Motion/Motion';
 import { getProductById, promotedCollection } from '@/features/products';
 import { ProductShelfItem } from '@/features/products/components/ProductShelfItem';
-import { FAQ_URL } from '@/lib/routes';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
-import { FeaturedCard } from './components/FeaturedCard';
 
 const shelf = [getProductById('manteca-1l'), ...promotedCollection];
 
@@ -33,27 +31,13 @@ export const MainSection = () => {
         </h2>
       </motion.div>
 
-      {/* 1 destacado (el punto de partida) + estante de 3 productos. */}
-      <div className='grid gap-5 tablet:gap-6 lg:grid-cols-[1.15fr_1fr]'>
-        <motion.div variants={item}>
-          <FeaturedCard
-            eyebrow='Probióticos'
-            title='Descubre si el Kéfir es para ti'
-            linkUrl={FAQ_URL}
-            ctaLabel='Conoce el kéfir'
-            imageSrc='/assets/images/content/products/kefir-de-leche/featured.webp'
-            imageAlt='Kéfir de leche artesanal'
-          />
-        </motion.div>
-
-        <ul className='grid gap-3 tablet:gap-4'>
-          {shelf.map((product) => (
-            <motion.li key={product.id} variants={item}>
-              <ProductShelfItem product={product} />
-            </motion.li>
-          ))}
-        </ul>
-      </div>
+      <ul className='grid gap-3 tablet:grid-cols-2 tablet:gap-4 lg:grid-cols-3'>
+        {shelf.map((product) => (
+          <motion.li key={product.id} variants={item}>
+            <ProductShelfItem product={product} />
+          </motion.li>
+        ))}
+      </ul>
     </motion.section>
   );
 };

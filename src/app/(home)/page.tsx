@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { BestSellingProducts, HeroShowcase, MainSection } from './components';
+import { BestSellingProducts, HeroShowcase, KefirFeatures, MainSection } from './components';
 import { TestimonialsSection } from '@/features/testimonials';
 import { FaqSection } from '@/features/faqs';
 import { CategoriesSection } from '@/components/sections/CategoriesSection/CategoriesSection';
@@ -21,6 +21,7 @@ export default function HomePage() {
 
       <HeroShowcase />
       <CategoriesSection />
+      <KefirFeatures />
       <MainSection />
       <BestSellingProducts />
       <TestimonialsSection />
