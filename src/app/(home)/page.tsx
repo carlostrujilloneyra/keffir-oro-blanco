@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { BestSellingProducts, HeroCarousel, MainSection } from './components';
+import { BestSellingProducts, HeroShowcase, MainSection } from './components';
 import { TestimonialsSection } from '@/features/testimonials';
 import { FaqSection } from '@/features/faqs';
 import { CategoriesSection } from '@/components/sections/CategoriesSection/CategoriesSection';
@@ -19,7 +19,7 @@ export default function HomePage() {
 
       <h1 className='sr-only'>TRIALFERI — Kéfir artesanal y fermentos vivos del Perú</h1>
 
-      <HeroCarousel />
+      <HeroShowcase />
       <CategoriesSection />
       <MainSection />
       <BestSellingProducts />

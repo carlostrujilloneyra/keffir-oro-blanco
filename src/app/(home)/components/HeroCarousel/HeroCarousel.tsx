@@ -1,5 +1,7 @@
 'use client';
 
+/* TODO: eliminar en un commit aparte (junto con slidesData.json y `.swiper-slide-active .hero-*` de globals.css): lo reemplazó HeroShowcase. */
+
 import { useRef } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
