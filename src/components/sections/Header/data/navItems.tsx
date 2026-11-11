@@ -3,14 +3,17 @@ import {
   allProducts,
   categoryDetails,
   getCategoryPack,
-  getProductById,
+  getDefaultVariant,
   getProductGroups,
+  getProductShortName,
+  getSizeVariants,
   getSubcategoryProducts,
   ProductCategory,
   subcategoryDetails,
   type Pack,
   type Product,
   type SubcategoryDetail,
+  type SubcategorySlug,
 } from '@/features/products';
 import { getCategoryUrl, getProductUrl, getSubcategoryUrl } from '@/lib/routes';
 
@@ -48,7 +51,14 @@ export interface SubMenuGroup {
 }
 
 export interface SubMenu {
+  /* Menú móvil: los mismos grupos que el panel de escritorio, uno tras otro. */
   groups: SubMenuGroup[];
+  /*
+    Panel de escritorio: columnas de grupos. Las subcategorías mixtas salen de
+    "Con lácteos" / "Sin lácteos" y van una sola vez, con todos sus chips, a un
+    grupo propio al pie de la segunda columna.
+  */
+  columns: SubMenuGroup[][];
   pack?: Pack;
   /* Productos distintos de la categoría (no tallas), para "Ver los N productos". */
   total: number;
@@ -60,90 +70,34 @@ export const NAV_ITEMS: NavItem[] = Object.values(ProductCategory).map((category
   slug: category,
 }));
 
-/* Solo lo propio del menú, por slug de subcategoría. Título y enlace salen de subcategoryDetails. */
-interface MenuExtras {
-  description: string;
-  icon: React.ReactNode;
-  chips?: { label: string; productId: string }[];
-}
-
-const menuExtras: Record<string, MenuExtras> = {
-  'kefir-natural': {
-    description: 'De vaca y de cabra, sin fruta ni azúcar añadida. En 1 L, 475 ml y 250 ml.',
-    icon: <CowIcon className='h-6 w-6' />,
-    chips: [
-      { label: 'Vaca', productId: 'kefir-vaca-1l' },
-      { label: 'Cabra', productId: 'kefir-cabra-1l' },
-    ],
-  },
-  'kefir-frutado': {
-    description: 'La cremosidad del kéfir con pulpa de fruta real, endulzado con stevia.',
-    icon: <FruitIcon className='h-6 w-6' />,
-    chips: [
-      { label: 'Fresa', productId: 'kefir-fresa' },
-      { label: 'Arándanos', productId: 'kefir-arandanos' },
-      { label: 'Aguaymanto', productId: 'kefir-aguaymanto' },
-      { label: 'Frutos del bosque', productId: 'kefir-frutos-bosque' },
-      { label: 'Chocolate', productId: 'kefir-chocolate' },
-    ],
-  },
-  'kombucha-y-kefir-de-agua': {
-    description: 'Fermentados con cultivos vivos y sin lácteos. Ligeros y naturalmente burbujeantes.',
-    icon: <KombuchaIcon className='h-6 w-6' />,
-    chips: [
-      { label: 'Kombucha natural', productId: 'kombucha-1l' },
-      { label: 'Flor de guisante', productId: 'kombucha-flor-de-guisante' },
-      { label: 'Espirulina azul', productId: 'kombucha-espirulina-azul' },
-      { label: 'Arándanos', productId: 'kombucha-arandanos' },
-      { label: 'Frambuesa', productId: 'kombucha-frambuesa' },
-      { label: 'Pitahaya', productId: 'kombucha-pitahaya' },
-      { label: 'Kéfir de agua', productId: 'kefir-agua-1l' },
-    ],
-  },
-  fermentados: {
-    description: 'Fermentados de mesa con probióticos naturales, para acompañar y untar.',
-    icon: <CheeseIcon className='h-6 w-6' />,
-    chips: [
-      { label: 'Chucrut morado', productId: 'chucrut-morado' },
-      { label: 'Crema de kéfir', productId: 'crema-de-kefir-aceituna' },
-    ],
-  },
-  'para-cocinar': {
-    description: 'Manteca de cerdo artesanal, sal de Maras y vinagre de manzana.',
-    icon: <PigIcon className='h-6 w-6' />,
-    chips: [
-      { label: 'Manteca de cerdo', productId: 'manteca-100' },
-      { label: 'Sal de Maras', productId: 'sal-de-maras' },
-      { label: 'Vinagre de manzana', productId: 'vinagre-de-manzana' },
-    ],
-  },
-  mermeladas: {
-    description: 'Fruta cocida despacio, sin conservantes. Nada más.',
-    icon: <StrawberryIcon className='h-6 w-6' />,
-    chips: [
-      { label: 'De fresa', productId: 'mermelada-fresa' },
-      { label: 'Quito quito', productId: 'mermelada-quito-quito' },
-    ],
-  },
+/* Icono por subcategoría: es lo único del menú que no sale de los datos. */
+const subcategoryIcons: Record<SubcategorySlug, React.ReactNode> = {
+  'kefir-natural': <CowIcon className='h-6 w-6' />,
+  'kefir-frutado': <FruitIcon className='h-6 w-6' />,
+  'kombucha-y-kefir-de-agua': <KombuchaIcon className='h-6 w-6' />,
+  fermentados: <CheeseIcon className='h-6 w-6' />,
+  'para-cocinar': <PigIcon className='h-6 w-6' />,
+  mermeladas: <StrawberryIcon className='h-6 w-6' />,
 };
 
 type ProductFilter = (product: Product) => boolean;
 
 /* Entrada de una subcategoría con solo los productos que pasan el filtro (null si no queda ninguno). */
 const buildEntry = (sub: SubcategoryDetail, keep: ProductFilter): SubMenuEntry | null => {
-  if (!getSubcategoryProducts(sub).some(keep)) return null;
+  const products = getSubcategoryProducts(sub).filter(keep);
+  if (products.length === 0) return null;
 
-  const extras = menuExtras[sub.slug];
-  const chips = (extras?.chips ?? [])
-    .map(({ label, productId }) => ({ label, product: getProductById(productId) }))
-    .filter(({ product }) => keep(product))
-    .map(({ label, product }) => ({ label, href: getProductUrl(product.slug) }));
+  /* Un chip por producto (no por talla); los que aún no se venden no llevan atajo. */
+  const chips = getProductGroups(products)
+    .map(({ product }) => getDefaultVariant(getSizeVariants(product)))
+    .filter((variant) => variant.availability !== 'coming-soon' && variant.availability !== 'sold-out')
+    .map((variant) => ({ label: getProductShortName(variant), href: getProductUrl(variant.slug) }));
 
   return {
     label: sub.title,
     href: getSubcategoryUrl(sub.category, sub.slug),
-    description: extras?.description,
-    icon: extras?.icon,
+    description: sub.description,
+    icon: subcategoryIcons[sub.slug],
     chips,
   };
 };
@@ -154,18 +108,30 @@ const buildGroup = (subs: SubcategoryDetail[], keep: ProductFilter, title?: stri
 });
 
 /* Si la categoría mezcla productos con y sin lácteos, el menú se parte en dos grupos (ayuda a intolerantes). */
+const mixesDairy = (products: Product[]) => products.some((p) => p.containsDairy) && products.some((p) => !p.containsDairy);
+
 const buildSubMenu = (category: ProductCategory): SubMenu => {
   const subs = subcategoryDetails.filter((sub) => sub.category === category);
   const products = allProducts.filter((product) => product.category === category);
-  const mixesDairy = products.some((p) => p.containsDairy) && products.some((p) => !p.containsDairy);
+  const splitByDairy = mixesDairy(products);
+
+  const mixedSubs = subs.filter((sub) => mixesDairy(getSubcategoryProducts(sub)));
+  const pureSubs = subs.filter((sub) => !mixedSubs.includes(sub));
+  const columns = splitByDairy
+    ? [
+        [buildGroup(pureSubs, (p) => !!p.containsDairy, 'Con lácteos')],
+        [
+          buildGroup(pureSubs, (p) => !p.containsDairy, 'Sin lácteos'),
+          buildGroup(mixedSubs, () => true, 'Con y sin lácteos'),
+        ],
+      ]
+        .map((column) => column.filter((group) => group.entries.length > 0))
+        .filter((column) => column.length > 0)
+    : [[buildGroup(subs, () => true)]];
 
   return {
-    groups: mixesDairy
-      ? [
-          buildGroup(subs, (p) => !!p.containsDairy, 'Con lácteos'),
-          buildGroup(subs, (p) => !p.containsDairy, 'Sin lácteos'),
-        ]
-      : [buildGroup(subs, () => true)],
+    groups: columns.flat(),
+    columns,
     pack: getCategoryPack(category),
     total: getProductGroups(products).length,
   };

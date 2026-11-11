@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import { WHATSAPP_URL } from '@/lib/site';
 import { NavBar } from './components/NavBar/NavBar';
 import { MobileMenu } from './components/MobileMenu';
+import { WhatsAppIcon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/Button/Button';
 import { useStaggerVariants } from '@/components/ui/Motion/Motion';
 
@@ -16,7 +17,6 @@ export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Histéresis: con un solo umbral, al encogerse el header el scroll lo reabría en bucle.
   useEffect(() => {
     const onScroll = () => setScrolled((prev) => (prev ? window.scrollY > 8 : window.scrollY > 40));
     onScroll();
@@ -82,7 +82,8 @@ export const Header = () => {
         <motion.div variants={itemV} className='flex items-center gap-3'>
           <Button asChild variant='primary' className='hidden lg:inline-flex'>
             <Link href={WHATSAPP_URL} target='_blank' rel='noopener noreferrer'>
-              Contáctanos
+              <WhatsAppIcon className='h-5 w-5' />
+              Pedir por WhatsApp
               <ArrowUpRight className='h-4 w-4' />
             </Link>
           </Button>

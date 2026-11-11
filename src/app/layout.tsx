@@ -48,7 +48,8 @@ export default function RootLayout({
     <html lang='es'>
       <body className={`${dmSans.variable} ${inter.variable}`}>
         <Header />
-        <main className='container-max w-full px-4 tablet:p-8 lg:px-12'>{children}</main>
+        {/* Solo margen lateral e inferior: el espacio bajo el header lo pone cada página. */}
+        <main className='container-max w-full px-4 pb-8 tablet:px-8 lg:px-12'>{children}</main>
         <Footer />
       </body>
     </html>

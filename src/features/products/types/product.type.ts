@@ -1,6 +1,11 @@
 import type { ProductCategory } from '../data/categories';
 import type { BadgeType } from '../data/badgeConfig';
+import type { SubcategorySlug } from '../data/subcategoryIndex';
 
+/* Ausente = 'available'. Se publica en el JSON-LD (InStock / PreOrder / OutOfStock). */
+export type ProductAvailability = 'available' | 'coming-soon' | 'sold-out';
+
+/* SKU plano: una talla concreta. Se genera desde una ProductFamily (data/products.tsx). */
 export interface Product {
   id: string;
   category: ProductCategory;
@@ -10,14 +15,15 @@ export interface Product {
      getSizeVariants() y las subcategorías. El slug de la URL es `slug`. */
   name: string;
 
-  slug: string; // Derivado: `name` + talla compacta (lo calcula make()).
+  /* Nombre corto del sabor o producto ("Fresa", "Vaca"): chips del hero de subcategoría y mini-cards del inicio. Sin él, el título sin talla. */
+  shortName?: string;
+
+  slug: string; // Derivado: `name` + talla compacta.
   title: string;
 
   tags?: BadgeType[];
 
-  /* Disponibilidad real de este SKU. Ausente = disponible. Se publica en el
-     JSON-LD, así que marcarlo false también lo comunica a Google. */
-  available?: boolean;
+  availability?: ProductAvailability;
 
   /* Lleva leche o derivados. Ausente = sin lácteos (el menú lo usa para guiar a intolerantes). */
   containsDairy?: boolean;
@@ -41,4 +47,56 @@ export interface Product {
   benefits?: string[];
   howToUse?: React.ReactNode;
   shelfLife?: string;
+}
+
+/* Lo que una variante puede cambiar respecto de su familia (SKUs con foto o texto propios). */
+type VariantOverrides = Partial<
+  Pick<
+    Product,
+    | 'title'
+    | 'featuredImage'
+    | 'thumbnailImage'
+    | 'galleryImages'
+    | 'shareImage'
+    | 'shortDescription'
+    | 'longDescription'
+    | 'benefits'
+    | 'howToUse'
+    | 'shelfLife'
+  >
+>;
+
+/* Una talla de la familia: solo lo que cambia entre presentaciones. */
+export interface ProductVariant extends VariantOverrides {
+  id: string;
+  size?: string;
+  price: number;
+  tags?: BadgeType[];
+  availability?: ProductAvailability;
+}
+
+/*
+  Producto con todas sus tallas. Los datos comunes se escriben una vez; cada
+  variante genera un Product con title = `title` + talla y slug = `name` + talla compacta.
+  La categoría se deriva de `subcategory`.
+*/
+export interface ProductFamily
+  extends Pick<
+    Product,
+    | 'name'
+    | 'shortName'
+    | 'containsDairy'
+    | 'featuredImage'
+    | 'thumbnailImage'
+    | 'galleryImages'
+    | 'shareImage'
+    | 'shortDescription'
+    | 'longDescription'
+    | 'benefits'
+    | 'howToUse'
+    | 'shelfLife'
+  > {
+  subcategory: SubcategorySlug;
+  title: string; // Sin talla
+  variants: ProductVariant[];
 }

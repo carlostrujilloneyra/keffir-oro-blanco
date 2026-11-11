@@ -42,70 +42,53 @@ tags: ['artisan', 'local', 'limited', 'seasonal'];
 
 ## 📝 Ejemplos de Productos
 
-### Kéfir de Leche de Vaca
+### Kéfir de leche de vaca (1 L)
 
 ```typescript
-{
-  id: 'prod_005',
-  title: 'Kéfir de leche de Vaca 1 LT',
-  tags: ['best-seller', 'recommended', 'fresh', 'probiotic', 'healthy'],
-  // ...
-}
+{ id: 'kefir-vaca-1l', size: '1 L', price: 24.0, tags: ['probiotic', 'best-seller'] }
 ```
 
-**Resultado**: Muestra badges de "Más vendido", "Recomendado", "Producto fresco", "Alto en probióticos", "Saludable"
+**Resultado**: Muestra badges de "Más vendido" y "Alto en probióticos"
 
-### Kéfir de Agua (Vegano)
+### Kéfir de agua (vegano)
 
 ```typescript
-{
-  id: 'prod_012',
-  title: 'Kéfir de Agua',
-  tags: ['recommended', 'probiotic', 'vegan', 'natural'],
-  // ...
-}
+{ id: 'kefir-agua-1l', size: '1 L', price: 19.0, tags: ['recommended', 'best-seller', 'vegan', 'probiotic'] }
 ```
 
-**Resultado**: Muestra badges de "Recomendado", "Alto en probióticos", "Vegano", "100% natural"
+**Resultado**: Muestra badges de "Recomendado", "Más vendido", "Vegano", "Alto en probióticos"
 
 ### Sal de Maras
 
 ```typescript
-{
-  id: 'prod_001',
-  title: 'Sal rosada de Maras, Cusco',
-  tags: ['new', 'natural', 'artisan', 'local'],
-  // ...
-}
+{ id: 'sal-de-maras', price: 19, tags: ['new', 'natural', 'artisan'] }
 ```
 
-**Resultado**: Muestra badges de "Nuevo", "100% natural", "Artesanal", "Producto local"
+**Resultado**: Muestra badges de "Nuevo", "100% natural", "Artesanal"
 
-### Vinagre de Manzana Orgánico
+### Kombucha natural (1 L)
 
 ```typescript
-{
-  id: 'prod_003',
-  title: 'Vinagre de Manzana',
-  tags: ['new', 'organic', 'natural', 'healthy', 'sugar-free'],
-  // ...
-}
+{ id: 'kombucha-1l', size: '1 L', price: 21.5, tags: ['new', 'vegan', 'probiotic'] }
 ```
 
-**Resultado**: Muestra badges de "Nuevo", "Orgánico", "100% natural", "Saludable", "Sin azúcar añadida"
+**Resultado**: Muestra badges de "Nuevo", "Vegano", "Alto en probióticos"
 
-### Chucrut Morado
+### Chucrut morado
 
 ```typescript
-{
-  id: 'prod_013',
-  title: 'Chucrut Morado Fermentado',
-  tags: ['recommended', 'discover', 'probiotic', 'natural', 'artisan'],
-  // ...
-}
+{ id: 'chucrut-morado', price: 14, tags: ['recommended', 'discover', 'vegan', 'natural', 'probiotic'] }
 ```
 
-**Resultado**: Muestra badges de "Recomendado", "Descubre", "Alto en probióticos", "100% natural", "Artesanal"
+**Resultado**: Muestra badges de "Recomendado", "Descubre", "Vegano", "100% natural", "Alto en probióticos"
+
+### Próximamente
+
+No es un tag: se activa con `availability: 'coming-soon'` en la variante. El badge "Próximamente" va primero y reemplaza a "Nuevo" si lo tiene.
+
+```typescript
+{ id: 'kombucha-pitahaya', size: '355 ml', price: 14.0, tags: ['new', 'limited', 'vegan', 'probiotic'], availability: 'coming-soon' }
+```
 
 ## 🎨 Variantes de Estilo
 
@@ -152,16 +135,11 @@ tags: ['limited', 'seasonal', 'discover'];
 ## 🔧 Cómo Agregar Badges a un Producto
 
 1. Abre `src/features/products/data/products.tsx`
-2. Encuentra tu producto
-3. Agrega o modifica el array `tags`:
+2. Encuentra la familia del producto y su variante (talla) dentro de `variants`
+3. Agrega o modifica el array `tags` de esa variante:
 
 ```typescript
-{
-  id: 'prod_XXX',
-  title: 'Mi Producto',
-  tags: ['probiotic', 'fresh', 'healthy'], // ← Agrega aquí
-  // ... resto de propiedades
-}
+{ id: 'kefir-vaca-475', size: '475 ml', price: 14.0, tags: ['probiotic', 'fresh'] } // ← Agrega aquí
 ```
 
 4. Los badges se mostrarán automáticamente en:

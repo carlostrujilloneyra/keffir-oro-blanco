@@ -59,8 +59,8 @@ export const SubMenu = ({ slug, closed = false, onNavigate }: SubMenuProps) => {
     e.currentTarget.blur();
     onNavigate?.();
   };
-  const { groups, pack, total } = SUB_MENUS[slug];
-  const columns = groups.length + (pack ? 1 : 0);
+  const { columns: groupColumns, pack, total } = SUB_MENUS[slug];
+  const columns = groupColumns.length + (pack ? 1 : 0);
 
   return (
     /* Se centra respecto del <ul> del NavBar (no del ítem) para que un panel ancho no se salga. */
@@ -84,14 +84,18 @@ export const SubMenu = ({ slug, closed = false, onNavigate }: SubMenuProps) => {
             columns === 2 && 'grid-cols-2',
           )}
         >
-          {groups.map((group, index) => (
-            <div key={group.title ?? index} className='flex flex-col gap-2'>
-              {group.title && <Eyebrow className='mb-1 ml-3'>{group.title}</Eyebrow>}
-              <ul className='flex flex-col gap-1'>
-                {group.entries.map((entry) => (
-                  <EntryItem key={entry.href} {...entry} onClick={handleClick} />
-                ))}
-              </ul>
+          {groupColumns.map((column, columnIndex) => (
+            <div key={columnIndex} className='flex flex-col gap-6'>
+              {column.map((group, index) => (
+                <div key={group.title ?? index} className='flex flex-col gap-2'>
+                  {group.title && <Eyebrow className='mb-1 ml-3'>{group.title}</Eyebrow>}
+                  <ul className='flex flex-col gap-1'>
+                    {group.entries.map((entry) => (
+                      <EntryItem key={entry.href} {...entry} onClick={handleClick} />
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           ))}
 

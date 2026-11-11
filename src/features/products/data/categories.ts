@@ -22,11 +22,11 @@ interface CategoryDetail {
 
 export const categoryDetails: Record<ProductCategory, CategoryDetail> = {
   [ProductCategory.PROBIOTICOS]: {
-    title: 'Probióticos',
+    title: 'Kéfir y fermentados',
     slug: ProductCategory.PROBIOTICOS,
     eyebrow: 'Fermentación viva',
     description:
-      'Kéfir de leche de **vaca y cabra**, natural o con pulpa de frutos del bosque, fresa, arándanos y aguaymanto. También **kéfir de agua, kombucha y chucrut**, todos con cultivos vivos.',
+      'Kéfir de leche de **vaca y cabra**, natural o con pulpa de frutos del bosque, fresa y arándanos. También **kéfir de agua, kombucha y chucrut**, todos con cultivos vivos.',
     imageUrl: '/assets/images/categories/kefires.webp',
     imageAlt: 'Kéfires artesanales TRIALFERI',
     tone: 'verde',
@@ -37,7 +37,7 @@ export const categoryDetails: Record<ProductCategory, CategoryDetail> = {
     slug: ProductCategory.TRADICIONALES,
     eyebrow: 'Recetas de casa',
     description:
-      '**Manteca de cerdo artesanal** elaborada con grasa seleccionada y sin aditivos. Además, mermelada de **fresa, durazno, arándanos y quito quito**. Recetas simples que respetan los ingredientes y los procesos de siempre.',
+      '**Manteca de cerdo artesanal** elaborada con grasa seleccionada y sin aditivos. Además, mermelada de **fresa, arándanos y quito quito**. Recetas simples que respetan los ingredientes y los procesos de siempre.',
     imageUrl: '/assets/images/categories/manteca-de-cerdo.webp',
     imageAlt: 'Productos tradicionales TRIALFERI',
     tone: 'miel',

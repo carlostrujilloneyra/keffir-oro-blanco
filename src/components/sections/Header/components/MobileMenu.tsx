@@ -6,6 +6,7 @@ import { NAV_ITEMS, SUB_MENUS, type NavSlug } from '@/components/sections/Header
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { cn } from '@/lib/utils';
 import { WHATSAPP_URL } from '@/lib/site';
+import { WhatsAppIcon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/Button/Button';
 import { PackCard } from '@/features/products/components/PackCard';
 
@@ -130,6 +131,7 @@ export const MobileMenu = ({ open, onClose }: Props) => {
                           type='button'
                           onClick={() => setExpanded(isOpen ? null : slug)}
                           aria-expanded={isOpen}
+                          aria-label={`Ver ${label}`}
                           className='flex w-full items-center justify-between gap-2 py-4 text-left'
                         >
                           <span className='font-display text-lg font-semibold text-tinta'>{label}</span>
@@ -235,7 +237,8 @@ export const MobileMenu = ({ open, onClose }: Props) => {
             <motion.div variants={item} className='border-t border-papel-sombra/60 p-4'>
               <Button asChild variant='primary' className='w-full py-3'>
                 <Link href={WHATSAPP_URL} target='_blank' rel='noopener noreferrer' onClick={onClose}>
-                  Contáctanos
+                  <WhatsAppIcon className='h-5 w-5' />
+                  Pedir por WhatsApp
                   <ArrowUpRight className='h-4 w-4' />
                 </Link>
               </Button>

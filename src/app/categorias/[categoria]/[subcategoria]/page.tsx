@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import {
   categoryDetails,
+  getAvailableFromPrice,
+  getDefaultVariant,
+  getProductShortName,
+  getSizeVariants,
   getSubcategoryImage,
   getSubcategorySummary,
   resolveSubcategory,
@@ -14,7 +18,8 @@ import { buildBreadcrumbJsonLd } from '@/lib/jsonLd';
 import { buildPageMetadata } from '@/lib/metadata';
 import { CategoryHero } from '../_components/CategoryHero';
 import { SubcategoryComparison } from '../_components/SubcategoryComparison';
-import { getCategoryUrl, getSubcategoryUrl } from '@/lib/routes';
+import { formatPrice } from '@/lib/formatPrice';
+import { getCategoryUrl, getProductUrl, getSubcategoryUrl } from '@/lib/routes';
 
 type Params = { categoria: string; subcategoria: string };
 
@@ -43,6 +48,24 @@ export default function SubcategoriaPage({ params }: { params: Params }) {
   const parent = categoryDetails[sub.category];
   const { products, groups, count } = getSubcategorySummary(sub);
 
+  /*
+    Un acceso por producto: varias tallas → "Desde" (solo las disponibles) y la talla
+    principal (la URL canónica). Sin tallas disponibles, "Próximamente".
+  */
+  const productLinks = {
+    title: sub.chipsTitle ?? 'Elige tu sabor',
+    items: groups.map(({ product, sizes }) => {
+      const variants = getSizeVariants(product);
+      const fromPrice = getAvailableFromPrice(variants);
+      return {
+        label: getProductShortName(product),
+        priceLabel:
+          fromPrice === undefined ? 'Próximamente' : sizes > 1 ? `Desde ${formatPrice(fromPrice)}` : formatPrice(fromPrice),
+        href: getProductUrl(getDefaultVariant(variants).slug),
+      };
+    }),
+  };
+
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: 'Inicio', path: '/' },
     { name: parent.title, path: getCategoryUrl(parent.slug) },
@@ -59,16 +82,17 @@ export default function SubcategoriaPage({ params }: { params: Params }) {
         description={sub.description}
         imageUrl={getSubcategoryImage(sub)}
         imageAlt={sub.title}
+        imageScale={sub.imageScale}
         count={count}
-        presentations={products.length}
-        tone={sub.tone}
+        panel={sub.panel}
+        productLinks={productLinks}
         parent={{ title: parent.title, href: getCategoryUrl(parent.slug) }}
       />
 
       <section aria-label={`Productos de ${sub.title}`} className='w-full bg-papel py-8 md:py-12'>
         <div>
           {products.length > 0 ? (
-            <ProductGrid products={products} />
+            <ProductGrid products={products} context='category' />
           ) : (
             <div className='rounded-card bg-papel-hueso p-10 text-center'>
               <p className='text-tinta-media'>Pronto tendremos productos en esta subcategoría.</p>

@@ -53,6 +53,10 @@ export default function CategoriaPage({ params }: { params: Params }) {
     .map((sub) => ({ sub, ...getSubcategorySummary(sub) }))
     .filter(({ count }) => count > 0);
 
+  /* Fondo "etiqueta" de la categoría: el de su primera subcategoría. */
+  const panel = subcategoryDetails.find((sub) => sub.category === categoria)?.panel;
+  if (!panel) throw new Error(`Categoría "${categoria}" sin subcategorías`);
+
   const count = subcategories.reduce((total, sub) => total + sub.count, 0);
 
   const shortcuts = subcategories.map(({ sub, fromPrice }) => ({
@@ -81,7 +85,7 @@ export default function CategoriaPage({ params }: { params: Params }) {
         imageUrl={details.imageUrl}
         imageAlt={details.imageAlt}
         count={count}
-        tone={details.tone}
+        panel={panel}
         shortcuts={shortcuts}
       />
 
@@ -115,7 +119,7 @@ export default function CategoriaPage({ params }: { params: Params }) {
             </h2>
           </Stagger>
 
-          <ProductGrid groups={bestSellers} />
+          <ProductGrid groups={bestSellers} context='category' />
         </section>
       )}
 

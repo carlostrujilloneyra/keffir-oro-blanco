@@ -7,3 +7,6 @@ export const getProductBaseTitle = (product: Product): string => {
 };
 
 export const getProductImage = (product: Product): string => product.featuredImage || product.thumbnailImage;
+
+/* Nombre corto ("Fresa", "Vaca") para chips y mini-cards; sin `shortName`, el título sin talla. */
+export const getProductShortName = (product: Product): string => product.shortName ?? getProductBaseTitle(product);

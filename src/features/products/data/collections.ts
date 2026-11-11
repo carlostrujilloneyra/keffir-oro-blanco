@@ -34,20 +34,33 @@ export const getDefaultVariant = (variants: Product[]): Product => {
   return bestSellers.reduce((top, p) => (p.price > top.price ? p : top));
 };
 
+/* Sin `availability` = a la venta. */
+export const isAvailable = (product: Product): boolean => (product.availability ?? 'available') === 'available';
+
+/* Precio "Desde": solo cuenta lo que se puede pedir hoy. Sin nada disponible, undefined (no se muestra). */
+export const getAvailableFromPrice = (products: Product[]): number | undefined => {
+  const prices = products.filter(isAvailable).map((p) => p.price);
+  return prices.length > 0 ? Math.min(...prices) : undefined;
+};
+
 export interface ProductGroup {
   product: Product;
   fromPrice: number;
   sizes: number;
 }
 
-/* Un grupo por `name` (todas sus tallas), en el orden de entrada. `product` es el primer SKU. */
+/*
+  Un grupo por `name` (todas sus tallas), en el orden de entrada. `product` es el primer SKU.
+  `fromPrice` cuenta solo las tallas disponibles; si ninguna lo está (p. ej. "Próximamente"),
+  el menor precio de todas, para que la card agrupada siga mostrando a cuánto saldrá.
+*/
 export const getProductGroups = (products: Product[]): ProductGroup[] => {
   const groups = new Map<string, Product[]>();
   products.forEach((p) => groups.set(p.name, [...(groups.get(p.name) ?? []), p]));
 
   return [...groups.values()].map((skus) => ({
     product: skus[0],
-    fromPrice: Math.min(...skus.map((p) => p.price)),
+    fromPrice: getAvailableFromPrice(skus) ?? Math.min(...skus.map((p) => p.price)),
     sizes: skus.length,
   }));
 };
@@ -64,5 +77,7 @@ export const getRelatedProducts = (product: Product, limit = 4): Product[] => {
     .slice(0, limit);
 };
 
-export const bestSellersCollection = allProducts.filter((p) => p.tags?.includes('best-seller'));
+export const bestSellersCollection = allProducts.filter(
+  (p) => p.tags?.includes('best-seller') && p.availability !== 'coming-soon',
+);
 export const promotedCollection = allProducts.filter((p) => p.tags?.includes('discover'));

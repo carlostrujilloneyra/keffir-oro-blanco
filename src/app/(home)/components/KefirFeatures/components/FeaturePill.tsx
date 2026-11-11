@@ -43,12 +43,15 @@ export const FeaturePill = forwardRef<HTMLButtonElement, Props>(
           tabIndex={active ? 0 : -1}
           onClick={onSelect}
           onKeyDown={onKeyDown}
-          className='block min-h-11 w-full rounded-card px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-miel'
+          className='block min-h-11 w-full rounded-card px-4 py-2.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-miel'
         >
           <motion.span
             layout={reduce ? false : 'position'}
             transition={LAYOUT_TRANSITION}
-            className='block font-display text-base font-semibold'
+            className={cn(
+              'block font-display text-[17px] leading-6 tracking-tight',
+              active ? 'font-semibold' : 'font-medium text-papel/85',
+            )}
           >
             {feature.title}
           </motion.span>
@@ -58,7 +61,7 @@ export const FeaturePill = forwardRef<HTMLButtonElement, Props>(
               initial={reduce ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.25 }}
-              className='mt-1 block text-sm leading-snug text-tinta-media'
+              className='mt-0.5 block text-balance pb-0.5 text-[15px] leading-[1.45] text-tinta-media'
             >
               {feature.description}
             </motion.span>

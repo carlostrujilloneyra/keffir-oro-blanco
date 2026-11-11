@@ -1,6 +1,6 @@
-import { CONTACT_EMAIL, CURRENCY, LOGO_PATH, SITE_NAME, SITE_URL, WHATSAPP_DISPLAY } from '@/lib/site';
+import { CONTACT_EMAIL, CURRENCY, LOGO_PATH, SITE_NAME, SITE_URL, WHATSAPP_NUMBER } from '@/lib/site';
 import { getProductUrl } from '@/lib/routes';
-import { getDefaultVariant, getProductBaseTitle, getProductImage, type Product } from '@/features/products';
+import { getProductImage, type Product, type ProductAvailability } from '@/features/products';
 
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
@@ -23,7 +23,7 @@ export const organizationJsonLd = {
   },
   image: `${SITE_URL}${LOGO_PATH}`,
   email: CONTACT_EMAIL,
-  telephone: WHATSAPP_DISPLAY,
+  telephone: `+${WHATSAPP_NUMBER}`,
   areaServed: {
     '@type': 'Country',
     name: 'Perú',
@@ -31,7 +31,7 @@ export const organizationJsonLd = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer service',
-    telephone: WHATSAPP_DISPLAY,
+    telephone: `+${WHATSAPP_NUMBER}`,
     email: CONTACT_EMAIL,
     areaServed: 'PE',
     availableLanguage: ['Spanish'],
@@ -70,43 +70,35 @@ export const buildBreadcrumbJsonLd = (items: BreadcrumbItem[]) => ({
   })),
 });
 
-const availability = (available: boolean) =>
-  available ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock';
+const schemaAvailability: Record<ProductAvailability, string> = {
+  available: 'https://schema.org/InStock',
+  'coming-soon': 'https://schema.org/PreOrder',
+  'sold-out': 'https://schema.org/OutOfStock',
+};
 
-/* `available` ausente = disponible. Se publica tal cual, para no afirmar stock que no hay. */
-const isAvailable = (product: Product) => product.available !== false;
+/* `availability` ausente = disponible. Se publica tal cual, para no afirmar stock que no hay. */
+const getAvailability = (product: Product): ProductAvailability => product.availability ?? 'available';
 
 /*
-  schema.org Product. La ficha canónica de un grupo con varias tallas publica un
-  AggregateOffer con el rango de precios de todas; el resto, el Offer de su talla.
+  schema.org Product. Toda ficha publica el Offer de su propia talla (el precio que
+  muestra); un AggregateOffer con el rango del grupo contradecía el precio visible.
+  El name es el título de la ficha, con la talla.
 */
-export const buildProductJsonLd = (product: Product, variants: Product[], categoryTitle?: string) => {
+export const buildProductJsonLd = (product: Product, categoryTitle?: string) => {
   const url = `${SITE_URL}${getProductUrl(product.slug)}`;
-  const isCanonicalOfGroup = variants.length > 1 && getDefaultVariant(variants).slug === product.slug;
-  const prices = variants.map((p) => p.price);
 
-  const offers = isCanonicalOfGroup
-    ? {
-        '@type': 'AggregateOffer',
-        lowPrice: Math.min(...prices),
-        highPrice: Math.max(...prices),
-        offerCount: variants.length,
-        priceCurrency: CURRENCY,
-        availability: availability(variants.some(isAvailable)),
-        url,
-      }
-    : {
-        '@type': 'Offer',
-        price: product.price,
-        priceCurrency: CURRENCY,
-        availability: availability(isAvailable(product)),
-        url,
-      };
+  const offers = {
+    '@type': 'Offer',
+    price: product.price,
+    priceCurrency: CURRENCY,
+    availability: schemaAvailability[getAvailability(product)],
+    url,
+  };
 
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: isCanonicalOfGroup ? getProductBaseTitle(product) : product.title,
+    name: product.title,
     description: product.shortDescription,
     image: `${SITE_URL}${getProductImage(product)}`,
     brand: { '@type': 'Brand', name: SITE_NAME },

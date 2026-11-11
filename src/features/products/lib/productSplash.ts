@@ -6,6 +6,13 @@ export interface SplashLayer {
   src: string;
   className: string;
   delay?: string;
+  /* 'front' = encima de la botella (p. ej. frutas en la base). Por defecto, detrás. */
+  placement?: 'behind' | 'front';
+  /*
+    Curva y estado de entrada con mouse (la capa aparece al hover). Sin él: ease-out
+    y escala 0.9 → 1. Clases completas: Tailwind no ve las que se arman por partes.
+  */
+  motion?: { ease: string; enter: string };
 }
 
 // Frutados: dos splashes grandes anclados abajo, uno a cada lado — enmarcan la
@@ -27,6 +34,33 @@ const leftRight = (left: string, right: string, size: string = SIZE, posY: strin
 const centered = (src: string, box: string = 'inset-0'): SplashLayer[] => [{ src: `${BASE}/${src}`, className: box }];
 
 /*
+  Salpicadura en "U" detrás (la botella queda en el hueco) + frutas delante de la
+  base. Con reduced motion solo cambia la opacidad (`motion-safe:`).
+*/
+const cupWithFruits = (splash: string, fruits: string): SplashLayer[] => [
+  {
+    src: `${BASE}/${splash}`,
+    className: 'inset-0 -translate-y-[3%]',
+    motion: {
+      ease: 'ease-suave',
+      enter: 'motion-safe:[@media(hover:hover)]:scale-[0.92] motion-safe:[@media(hover:hover)]:group-hover:scale-100',
+    },
+  },
+  {
+    src: `${BASE}/${fruits}`,
+    className:
+      'inset-x-[8%] bottom-0 h-[16%] drop-shadow-[0_6px_6px_rgba(22,32,26,0.25)] [&_img]:object-bottom cq-sm:inset-x-[10%]',
+    delay: '90ms',
+    placement: 'front',
+    motion: {
+      ease: 'ease-suave',
+      enter:
+        'motion-safe:[@media(hover:hover)]:translate-y-[8%] motion-safe:[@media(hover:hover)]:group-hover:translate-y-0',
+    },
+  },
+];
+
+/*
   Splash por sabor (grupo `name`). Aparece al hover, o fijo cuando la card está destacada (centro del coverflow).
 */
 const SPLASHES: Record<string, SplashLayer[]> = {
@@ -39,9 +73,8 @@ const SPLASHES: Record<string, SplashLayer[]> = {
     SIZE_LG,
     'bottom-[-12%]',
   ),
-  'kefir-aguaymanto': leftRight('aguaymanto/aguaymantos-1.png', 'aguaymanto/aguaymantos-3.png'),
   'kefir-chocolate': centered('chocolate/chocolate-1.png', '-inset-[22%]'),
-  'kefir-frutos-bosque': centered('frutos-del-bosque/frutos-1.png', '-inset-[2%] translate-y-[2%] -rotate-90'),
+  'kefir-frutos-bosque': cupWithFruits('frutos-del-bosque/splash-u.webp', 'frutos-del-bosque/frutas.webp'),
 };
 
 export const getProductSplash = (product: Product): SplashLayer[] => SPLASHES[product.name] ?? [];

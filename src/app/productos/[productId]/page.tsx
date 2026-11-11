@@ -13,8 +13,12 @@ import {
   getProductImage,
   buildProductMetaDescription,
   isAttributeTag,
+  getDisplayTags,
+  badgeConfig,
 } from '@/features/products';
 import { ProductImageGallery } from '@/features/products/components/ProductImageGallery/ProductImageGallery';
+import { ComingSoonArt, isPhotoPending } from '@/features/products/components/ComingSoonArt';
+import { Badge } from '@/components/ui/Badge/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/Accordion/accordion';
 import { formatPrice } from '@/lib/formatPrice';
 import { buildWhatsAppUrl } from '@/lib/site';
@@ -80,16 +84,16 @@ export default function ProductPage({ params }: ProductPageProps) {
   const galleryImages = [getProductImage(product), ...(product.galleryImages || [])].filter(Boolean);
 
   const category = categoryDetails[product.category];
-  const tags = product.tags ?? [];
+  const tags = getDisplayTags(product);
   const curationTags = tags.filter((tag) => !isAttributeTag(tag));
   const attributeTags = tags.filter(isAttributeTag);
   const sizeVariants = getSizeVariants(product);
   const relatedProducts = getRelatedProducts(product);
 
-  /* Ausente = disponible, para no tener que marcar los 25 productos. */
-  const isAvailable = product.available !== false;
+  const isComingSoon = product.availability === 'coming-soon';
+  const isAvailable = product.availability !== 'sold-out' && !isComingSoon;
 
-  const jsonLd = buildProductJsonLd(product, sizeVariants, category?.title);
+  const jsonLd = buildProductJsonLd(product, category?.title);
 
   /* Refleja las migas visibles de abajo, para que Google muestre la ruta. */
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
@@ -112,6 +116,12 @@ export default function ProductPage({ params }: ProductPageProps) {
       '',
       '¿Me confirmas y coordinamos la entrega?',
     ].join('\n'),
+  );
+
+  /* shortName de las kombuchas de sabor es solo el sabor; si ya dice "Kombucha", no se repite. */
+  const flavor = (product.shortName ?? baseTitle).toLowerCase();
+  const notifyUrl = buildWhatsAppUrl(
+    `Hola, quiero que me avisen cuando salga ${flavor.startsWith('kombucha') ? 'la' : 'la kombucha de'} ${flavor}`,
   );
 
   const restockUrl = buildWhatsAppUrl(`Hola, ¿cuándo vuelve a haber *${baseTitle}*${size ? ` de ${size}` : ''}?`);
@@ -158,7 +168,20 @@ export default function ProductPage({ params }: ProductPageProps) {
             del carrusel y se dispara el ancho (scroll horizontal en móvil). */}
         <div className='min-w-0 lg:sticky lg:top-24 lg:self-start'>
           <Reveal x={-18}>
-            <ProductImageGallery images={galleryImages} productTitle={product.title} />
+            {/* PROVISIONAL: sin foto propia, el color del sabor en vez de la botella (ver ComingSoonArt). */}
+            {isPhotoPending(product) ? (
+              <div className='relative aspect-[4/5] w-full overflow-hidden rounded-panel'>
+                <ComingSoonArt product={product} />
+                <div className='absolute left-5 top-5 flex flex-col items-start gap-1.5 tablet:left-6 tablet:top-6'>
+                  <span className='rounded-[4px] bg-papel px-2.5 py-1 font-display text-sm font-semibold tracking-tight text-tinta'>
+                    {formatPrice(product.price)}
+                  </span>
+                  <Badge variant={badgeConfig['coming-soon'].variant}>{badgeConfig['coming-soon'].label}</Badge>
+                </div>
+              </div>
+            ) : (
+              <ProductImageGallery images={galleryImages} productTitle={product.title} />
+            )}
           </Reveal>
         </div>
 
@@ -178,20 +201,30 @@ export default function ProductPage({ params }: ProductPageProps) {
 
           {/* CTA principal */}
           {/*
-            El estado sigue a `available` para no contradecir al JSON-LD: si la
+            El estado sigue a `availability` para no contradecir al JSON-LD: si la
             página ofrece pedir, Google lee InStock; si no, OutOfStock.
           */}
           <div className='flex flex-col gap-2'>
-            <Button asChild variant={isAvailable ? 'primary' : 'dark'} className='w-full py-4 text-base lg:py-4'>
-              <Link href={isAvailable ? orderUrl : restockUrl} target='_blank' rel='noopener noreferrer'>
-                {isAvailable ? 'Pedir por WhatsApp' : 'Avísame cuando vuelva'}
+            <Button
+              asChild
+              variant={isAvailable || isComingSoon ? 'primary' : 'dark'}
+              className='w-full py-4 text-base lg:py-4'
+            >
+              <Link
+                href={isComingSoon ? notifyUrl : isAvailable ? orderUrl : restockUrl}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {isComingSoon ? 'Avísame por WhatsApp' : isAvailable ? 'Pedir por WhatsApp' : 'Avísame cuando vuelva'}
                 <ArrowUpRight className='h-4 w-4' />
               </Link>
             </Button>
             <p className='text-center text-xs text-tinta-suave'>
-              {isAvailable
-                ? 'Coordinamos entrega y pago por WhatsApp.'
-                : 'Este lote está agotado. Escríbenos y te avisamos del siguiente.'}
+              {isComingSoon
+                ? 'Escríbenos y te avisamos cuando salga.'
+                : isAvailable
+                  ? 'Coordinamos entrega y pago por WhatsApp.'
+                  : 'Este lote está agotado. Escríbenos y te avisamos del siguiente.'}
             </p>
           </div>
 

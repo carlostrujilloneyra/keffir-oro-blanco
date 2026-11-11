@@ -18,8 +18,8 @@ export const questionsData: FaqItem[] = [
     question: '¿Es 100% kéfir o yogurt sabor a kéfir?',
     answer: (
       <>
-        Nuestro kéfir de TRIALFERI, se diferencia de otras marcas al usar 30-40 próbioticos y prebióticos en su
-        preparación. Es por ello que la duración no es tan extensa porque no usamos conservantes ni preservantes para
+        Nuestro kéfir de TRIALFERI, se diferencia de otras marcas al elaborarse con cultivos activos de
+        kéfir. Es por ello que la duración no es tan extensa porque no usamos conservantes ni preservantes para
         mantener nuestro <strong>producto artesanal.</strong>
       </>
     ),
@@ -30,8 +30,7 @@ export const questionsData: FaqItem[] = [
     question: '¿Sus productos son orgánicos?',
     answer: (
       <p>
-        Nos enorgullece usar ingredientes <strong>100% naturales y puros</strong>. Siempre que es posible, como en
-        nuestro Vinagre de Manzana, utilizamos ingredientes orgánicos certificados. Nuestra prioridad es ofrecerte un
+        Nos enorgullece usar ingredientes <strong>100% naturales y puros</strong>. Nuestra prioridad es ofrecerte un
         producto libre de aditivos y conservantes artificiales.
       </p>
     ),

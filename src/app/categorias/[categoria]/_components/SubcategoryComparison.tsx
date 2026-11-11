@@ -1,6 +1,11 @@
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { formatPrice } from '@/lib/formatPrice';
-import type { ProductGroup, SubcategoryComparison as Comparison } from '@/features/products';
+import {
+  getAvailableFromPrice,
+  getSizeVariants,
+  type ProductGroup,
+  type SubcategoryComparison as Comparison,
+} from '@/features/products';
 
 type Props = {
   comparison: Comparison;
@@ -12,7 +17,7 @@ export const SubcategoryComparison = ({ comparison, groups }: Props) => {
     const group = groups.find((g) => g.product.name === name);
     /* Una clave que no es producto de la subcategoría rompe el build, no la página. */
     if (!group) throw new Error(`Comparación "${comparison.title}": "${name}" no está en la subcategoría`);
-    return { name, label, fromPrice: group.fromPrice };
+    return { name, label, fromPrice: getAvailableFromPrice(getSizeVariants(group.product)) };
   });
 
   const rows = [
@@ -20,7 +25,8 @@ export const SubcategoryComparison = ({ comparison, groups }: Props) => {
       label,
       cells: columns.map((column) => values[column.name] ?? '—'),
     })),
-    { label: 'Precio', cells: columns.map((column) => `Desde ${formatPrice(column.fromPrice)}`) },
+    { label: 'Precio', cells: columns.map(({ fromPrice }) => (fromPrice !== undefined ? `Desde ${formatPrice(fromPrice)}` : 'Próximamente')),
+    },
   ];
 
   return (

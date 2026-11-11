@@ -1,31 +1,46 @@
-import { ProductCategory } from './categories';
-import { allProducts } from './products';
-import { getProductGroups } from './collections';
+import type { ProductCategory } from './categories';
+import { allProducts, productFamilies } from './products';
+import { subcategoryCategory, type SubcategorySlug } from './subcategoryIndex';
+import { getAvailableFromPrice, getProductGroups } from './collections';
 import type { Product } from '../types/product.type';
 import type { SectionTone } from '../lib/productAccent';
 import { getProductImage } from '../lib/productDisplay';
 
 export interface SubcategoryDetail {
-  slug: string;
+  slug: SubcategorySlug;
+  /* Derivada de subcategoryIndex. */
   category: ProductCategory;
   title: string;
   eyebrow: string;
   description: string;
   tone: SectionTone;
+  /*
+    Hero "etiqueta": fondo oscuro y luz con los colores de la etiqueta del producto
+    (medidos en sus fotos). La categoría usa el de su primera subcategoría.
+  */
+  panel: SubcategoryPanel;
+  /* Título de los accesos a productos del hero; por defecto "Elige tu sabor". */
+  chipsTitle?: string;
 
   /*
-    Grupos de producto que forman la subcategoría, por `Product.name`.
-    Se agrupa por `name` y no por slug para que las tallas hermanas entren
-    juntas sin listarlas una a una: 'kefir-leche-vaca' arrastra 1 L, 475 y 250.
+    Grupos de producto que forman la subcategoría, por `Product.name`. Derivado:
+    las familias cuya `subcategory` es este slug, en el orden de productFamilies.
   */
   productNames: string[];
 
   /* Si no se define, se toma la imagen del primer producto del grupo. */
   imageUrl?: string;
+  /* Agranda la imagen del hero desde lg (anclada abajo) sin cambiar el layout; útil para grupos de varias botellas. Por defecto 1. */
+  imageScale?: number;
 
   /* Tabla "¿A o B?" bajo la grilla. Las claves son `Product.name` de esta subcategoría;
      la fila de precio "Desde" se calcula de los datos. */
   comparison?: SubcategoryComparison;
+}
+
+export interface SubcategoryPanel {
+  backdrop: string;
+  glow: string;
 }
 
 export interface SubcategoryComparison {
@@ -42,17 +57,17 @@ export interface SubcategoryComparison {
   subcategoría es una página propia que Google puede posicionar por una
   intención concreta.
 */
-export const subcategoryDetails: SubcategoryDetail[] = [
+const subcategoryContent: Omit<SubcategoryDetail, 'category' | 'productNames'>[] = [
   /* ── Probióticos ──────────────────────────────────────────────────────── */
   {
     slug: 'kefir-natural',
-    category: ProductCategory.PROBIOTICOS,
+    chipsTitle: 'Elige tu leche',
     title: 'Kéfir de leche natural',
     eyebrow: 'Fermentación viva',
     description:
-      'Kéfir de leche de vaca y de cabra, sin fruta ni azúcar añadida. Cultivos activos fermentados en frío, en las presentaciones de 1 L, 475 ml y 250 ml.',
+      'Kéfir de leche de vaca y de cabra, sin fruta ni azúcar añadida. Con cultivos activos, en presentaciones de 1 L, 475 ml y 250 ml.',
     tone: 'verde',
-    productNames: ['kefir-leche-vaca', 'kefir-leche-cabra'],
+    panel: { backdrop: '#060F1E', glow: '#0178E4' },
     imageUrl: '/assets/images/content/products/kefir-de-leche/hero.webp',
     comparison: {
       title: '¿Vaca o cabra?',
@@ -77,74 +92,65 @@ export const subcategoryDetails: SubcategoryDetail[] = [
   },
   {
     slug: 'kefir-frutado',
-    category: ProductCategory.PROBIOTICOS,
-    title: 'Kéfires frutados',
+    title: 'Kéfir con fruta y chocolate',
     eyebrow: 'Fermento con fruta',
     description:
-      'La cremosidad del kéfir con pulpa de fruta real, endulzado con stevia. Fresa, arándanos, aguaymanto, frutos del bosque y chocolate.',
+      'La cremosidad del kéfir con pulpa de fruta real, endulzado con stevia. Fresa, arándanos, frutos del bosque y chocolate.',
     tone: 'verde',
-    productNames: [
-      'kefir-pulpa-fresa',
-      'kefir-pulpa-arandanos',
-      'kefir-aguaymanto',
-      'kefir-frutos-bosque',
-      'kefir-chocolate',
-    ],
-    imageUrl: '/assets/images/content/products/kefir-con-fresa/featured.webp',
+    panel: { backdrop: '#1B0511', glow: '#FB035E' },
+    imageUrl: '/assets/images/subcategories/kefir-frutado.webp',
+    imageScale: 1.1,
   },
   {
     slug: 'kombucha-y-kefir-de-agua',
-    category: ProductCategory.PROBIOTICOS,
     title: 'Kombucha y kéfir de agua',
     eyebrow: 'Sin lácteos',
     description:
-      'Bebidas fermentadas con cultivos vivos y sin lácteos: kombucha natural, cinco sabores nuevos en botella de 355 ml y kéfir de agua. Ligeras y naturalmente burbujeantes.',
+      'Kombucha natural en 1 L y 475 ml, y kéfir de agua. Además, 4 sabores de kombucha en 275 ml y 355 ml que llegan pronto. Sin lácteos, ligeras y burbujeantes.',
     tone: 'verde',
-    productNames: [
-      'kombucha-natural',
-      'kombucha-flor-de-guisante',
-      'kombucha-espirulina-azul',
-      'kombucha-arandanos',
-      'kombucha-frambuesa',
-      'kombucha-pitahaya',
-      'kefir-agua',
-    ],
+    panel: { backdrop: '#130F25', glow: '#7040CC' },
   },
   {
     slug: 'fermentados',
-    category: ProductCategory.PROBIOTICOS,
-    title: 'Fermentados',
+    chipsTitle: 'Elige tu producto',
+    title: 'Para untar y acompañar',
     eyebrow: 'Cultivos vivos',
     description:
       'Chucrut morado y crema de kéfir con aceitunas. Fermentados de mesa con probióticos naturales, para acompañar y untar.',
     tone: 'verde',
-    productNames: ['chucrut-morado', 'crema-de-kefir-aceituna'],
+    panel: { backdrop: '#1B0511', glow: '#FB035E' },
     imageUrl: '/assets/images/content/products/chucrut-morado/featured.webp',
   },
 
   /* ── Tradicionales ────────────────────────────────────────────────────── */
   {
     slug: 'para-cocinar',
-    category: ProductCategory.TRADICIONALES,
-    title: 'Para cocinar',
+    chipsTitle: 'Elige tu producto',
+    title: 'Para cocinar y sazonar',
     eyebrow: 'Saberes ancestrales',
     description:
-      'Los básicos de la cocina de casa: manteca de cerdo artesanal para freír y hornear, sal rosada de Maras y vinagre de manzana con madre.',
+      'Los básicos de la cocina de casa: manteca de cerdo artesanal para freír y hornear y sal rosada de Maras.',
     tone: 'miel',
-    productNames: ['manteca-de-cerdo', 'sal-de-maras', 'vinagre-de-manzana'],
+    panel: { backdrop: '#190C05', glow: '#F6BC02' },
     imageUrl: '/assets/images/categories/manteca-de-cerdo.webp',
   },
   {
     slug: 'mermeladas',
-    category: ProductCategory.TRADICIONALES,
     title: 'Mermeladas',
     eyebrow: 'Fruta y paciencia',
     description:
-      'Mermeladas artesanales sin conservantes: fresa natural y quito quito traído de Oxapampa. Fruta cocida despacio, nada más.',
+      'Mermeladas artesanales hechas con pulpa de fruta y endulzadas con stevia, sin colorantes ni conservantes: fresa, arándanos y quito quito de Oxapampa.',
     tone: 'miel',
-    productNames: ['mermelada-fresa', 'mermelada-quito-quito'],
+    panel: { backdrop: '#1C0706', glow: '#AC0102' },
+    imageUrl: '/assets/images/subcategories/mermeladas.webp',
   },
 ];
+
+export const subcategoryDetails: SubcategoryDetail[] = subcategoryContent.map((sub) => ({
+  ...sub,
+  category: subcategoryCategory[sub.slug],
+  productNames: productFamilies.filter((family) => family.subcategory === sub.slug).map((family) => family.name),
+}));
 
 /* Productos de una subcategoría, en el orden de `productNames`. */
 export const getSubcategoryProducts = (subcategory: SubcategoryDetail): Product[] =>
@@ -158,7 +164,7 @@ export const getSubcategorySummary = (subcategory: SubcategoryDetail) => {
     products,
     groups,
     count: groups.length,
-    fromPrice: products.length > 0 ? Math.min(...products.map((p) => p.price)) : 0,
+    fromPrice: getAvailableFromPrice(products),
   };
 };
 

@@ -1,5 +1,5 @@
-import { Product } from '../types/product.type';
-import { ProductCategory } from './categories';
+import type { Product, ProductFamily } from '../types/product.type';
+import { subcategoryCategory } from './subcategoryIndex';
 
 const compactSize = (size: string) =>
   size
@@ -7,10 +7,16 @@ const compactSize = (size: string) =>
     .replace(/\s+/g, '')
     .replace(/^(\d+)l$/, '$1lt'); // 1 L → 1lt (475 ml y 200 g quedan igual)
 
-const make = (product: Omit<Product, 'slug'>): Product => ({
-  ...product,
-  slug: product.size ? `${product.name}-${compactSize(product.size)}` : product.name,
-});
+/* Un Product por variante: datos de la familia + los de la talla (los overrides de la variante ganan). */
+const toProducts = ({ subcategory, title, variants, ...family }: ProductFamily): Product[] =>
+  variants.map(({ size, ...variant }) => ({
+    ...family,
+    category: subcategoryCategory[subcategory],
+    title: size ? `${title} ${size}` : title,
+    ...(size ? { size } : {}),
+    ...variant,
+    slug: size ? `${family.name}-${compactSize(size)}` : family.name,
+  }));
 
 const vacaNatural = {
   containsDairy: true,
@@ -159,9 +165,11 @@ const kombuchaNatural = {
   shelfLife: '30 días',
 };
 
+const KOMBUCHA_275 = '275 ml';
+const KOMBUCHA_355 = '355 ml';
+
 const kombucha355 = {
-  category: ProductCategory.PROBIOTICOS,
-  size: '355 ml',
+  subcategory: 'kombucha-y-kefir-de-agua' as const,
   // TODO: fotos reales de cada sabor (placeholder: kéfir de agua, igual que la kombucha natural).
   featuredImage: '/assets/images/content/products/kefir-de-agua/background.webp',
   thumbnailImage: '/assets/images/content/products/kefir-de-agua/background.webp',
@@ -224,93 +232,62 @@ const mermeladaHowToUse = (
 
 /* ── Catálogo ───────────────────────────────────────────────────────────── */
 
-export const allProducts: Product[] = [
-  /* ── Probióticos · Kéfir de leche de vaca (grupo de tallas) ──────────── */
-  make({
-    id: 'kefir-vaca-1l',
-    category: ProductCategory.PROBIOTICOS,
+/*
+  Orden de las familias = orden de allProducts y de las grillas de cada
+  subcategoría (productNames se deriva de aquí).
+*/
+export const productFamilies: ProductFamily[] = [
+  /* ── Probióticos · Kéfir de leche natural ────────────────────────────── */
+  {
     name: 'kefir-leche-vaca',
-    title: 'Kéfir de leche de vaca natural 1 L',
-    size: '1 L',
-    price: 24.0,
-    tags: ['probiotic', 'best-seller'],
+    subcategory: 'kefir-natural',
+    shortName: 'Vaca',
+    title: 'Kéfir de leche de vaca natural',
     featuredImage: '/assets/images/content/products/kefir-de-leche/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-leche/featured.webp',
     ...vacaNatural,
-  }),
-  make({
-    id: 'kefir-vaca-475',
-    category: ProductCategory.PROBIOTICOS,
-    name: 'kefir-leche-vaca',
-    title: 'Kéfir de leche de vaca natural 475 ml',
-    size: '475 ml',
-    price: 14.0,
-    tags: ['probiotic'],
-    featuredImage: '/assets/images/content/products/kefir-de-leche-475ml/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-de-leche-475ml/featured.webp',
-    ...vacaNatural,
-  }),
-  make({
-    id: 'kefir-vaca-250',
-    category: ProductCategory.PROBIOTICOS,
-    name: 'kefir-leche-vaca',
-    title: 'Kéfir de leche de vaca natural 250 ml',
-    size: '250 ml',
-    price: 8.9,
-    tags: ['probiotic'],
-    featuredImage: '/assets/images/content/products/kefir-de-leche-250ml/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-de-leche-250ml/featured.webp',
-    ...vacaNatural,
-  }),
-
-  /* ── Probióticos · Kéfir de leche de cabra (grupo de tallas) ─────────── */
-  make({
-    id: 'kefir-cabra-1l',
-    category: ProductCategory.PROBIOTICOS,
+    variants: [
+      { id: 'kefir-vaca-1l', size: '1 L', price: 24.0, tags: ['probiotic', 'best-seller'] },
+      {
+        id: 'kefir-vaca-475',
+        size: '475 ml',
+        price: 14.0,
+        tags: ['probiotic'],
+        featuredImage: '/assets/images/content/products/kefir-de-leche-475ml/featured.webp',
+        thumbnailImage: '/assets/images/content/products/kefir-de-leche-475ml/featured.webp',
+      },
+      {
+        id: 'kefir-vaca-250',
+        size: '250 ml',
+        price: 8.9,
+        tags: ['probiotic'],
+        featuredImage: '/assets/images/content/products/kefir-de-leche-250ml/featured.webp',
+        thumbnailImage: '/assets/images/content/products/kefir-de-leche-250ml/featured.webp',
+      },
+    ],
+  },
+  {
     name: 'kefir-leche-cabra',
-    title: 'Kéfir de leche de cabra natural 1 L',
-    size: '1 L',
-    price: 25.0,
-    tags: ['probiotic', 'best-seller'],
+    subcategory: 'kefir-natural',
+    shortName: 'Cabra',
+    title: 'Kéfir de leche de cabra natural',
     featuredImage: '/assets/images/content/products/kefir-de-leche-de-cabra/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-leche-de-cabra/featured.webp',
     ...cabraNatural,
-  }),
-  make({
-    id: 'kefir-cabra-475',
-    category: ProductCategory.PROBIOTICOS,
-    name: 'kefir-leche-cabra',
-    title: 'Kéfir de leche de cabra natural 475 ml',
-    size: '475 ml',
-    price: 15.0,
-    tags: ['probiotic'],
-    featuredImage: '/assets/images/content/products/kefir-de-leche-de-cabra/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-de-leche-de-cabra/featured.webp',
-    ...cabraNatural,
-  }),
-  make({
-    id: 'kefir-cabra-250',
-    category: ProductCategory.PROBIOTICOS,
-    name: 'kefir-leche-cabra',
-    title: 'Kéfir de leche de cabra natural 250 ml',
-    size: '250 ml',
-    price: 9.9,
-    tags: ['probiotic'],
-    featuredImage: '/assets/images/content/products/kefir-de-leche-de-cabra/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-de-leche-de-cabra/featured.webp',
-    ...cabraNatural,
-  }),
+    variants: [
+      { id: 'kefir-cabra-1l', size: '1 L', price: 25.0, tags: ['probiotic', 'best-seller'] },
+      { id: 'kefir-cabra-475', size: '475 ml', price: 15.0, tags: ['probiotic'] },
+      { id: 'kefir-cabra-250', size: '250 ml', price: 9.9, tags: ['probiotic'] },
+    ],
+  },
 
   /* ── Probióticos · Kéfires frutados (475 ml, talla única) ────────────── */
-  make({
-    id: 'kefir-fresa',
-    containsDairy: true,
-    category: ProductCategory.PROBIOTICOS,
+  {
     name: 'kefir-pulpa-fresa',
-    title: 'Kéfir de leche de vaca con pulpa de fresa 475 ml',
-    size: '475 ml',
-    price: 17.0,
-    tags: ['best-seller', 'recommended', 'sugar-free', 'probiotic'],
+    subcategory: 'kefir-frutado',
+    shortName: 'Fresa',
+    title: 'Kéfir de leche de vaca con pulpa de fresa',
+    containsDairy: true,
     featuredImage: '/assets/images/content/products/kefir-con-fresa/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-con-fresa/featured.webp',
     galleryImages: [
@@ -341,16 +318,21 @@ export const allProducts: Product[] = [
     ],
     howToUse: vacaNatural.howToUse,
     shelfLife: '19 días',
-  }),
-  make({
-    id: 'kefir-arandanos',
-    containsDairy: true,
-    category: ProductCategory.PROBIOTICOS,
+    variants: [
+      {
+        id: 'kefir-fresa',
+        size: '475 ml',
+        price: 17.0,
+        tags: ['best-seller', 'recommended', 'sugar-free', 'probiotic'],
+      },
+    ],
+  },
+  {
     name: 'kefir-pulpa-arandanos',
-    title: 'Kéfir de leche de vaca con pulpa de arándanos 475 ml',
-    size: '475 ml',
-    price: 17.9,
-    tags: ['best-seller', 'recommended', 'sugar-free', 'probiotic'],
+    subcategory: 'kefir-frutado',
+    shortName: 'Arándanos',
+    title: 'Kéfir de leche de vaca con pulpa de arándanos',
+    containsDairy: true,
     featuredImage: '/assets/images/content/products/kefir-con-arandanos/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-con-arandanos/featured.webp',
     shortDescription: 'Un impulso de antioxidantes y probióticos.',
@@ -381,48 +363,21 @@ export const allProducts: Product[] = [
     ],
     howToUse: vacaNatural.howToUse,
     shelfLife: '19 días',
-  }),
-  make({
-    id: 'kefir-aguaymanto',
-    containsDairy: true,
-    category: ProductCategory.PROBIOTICOS,
-    name: 'kefir-aguaymanto',
-    title: 'Kéfir de leche de vaca con aguaymanto 475 ml',
-    size: '475 ml',
-    price: 17.0,
-    tags: ['recommended', 'sugar-free', 'probiotic'],
-    featuredImage: '/assets/images/content/products/kefir-con-aguaymanto/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-con-aguaymanto/featured.webp',
-    shortDescription: 'Un tesoro andino lleno de vitaminas y probióticos.',
-    longDescription: (
-      <>
-        <p>
-          La cremosidad del kéfir de leche con el sabor natural del <strong>aguaymanto</strong>.
-        </p>
-        <p>
-          Una experiencia andina cargada de <strong>probióticos, vitamina A y antioxidantes</strong> que fortalecen tu
-          sistema inmune y cuidan tu digestión.
-        </p>
-      </>
-    ),
-    benefits: [
-      'Refuerza la **flora intestinal** con bacterias buenas.',
-      'Apoya tu **sistema inmunológico** naturalmente.',
-      'Rico en **vitamina A y antioxidantes** gracias al aguaymanto.',
-      'Producto 100% natural, sin conservantes ni aditivos.',
+    variants: [
+      {
+        id: 'kefir-arandanos',
+        size: '475 ml',
+        price: 17.9,
+        tags: ['best-seller', 'recommended', 'sugar-free', 'probiotic'],
+      },
     ],
-    howToUse: vacaNatural.howToUse,
-    shelfLife: '19 días',
-  }),
-  make({
-    id: 'kefir-frutos-bosque',
-    containsDairy: true,
-    category: ProductCategory.PROBIOTICOS,
+  },
+  {
     name: 'kefir-frutos-bosque',
-    title: 'Kéfir de leche de vaca con frutos del bosque 475 ml',
-    size: '475 ml',
-    price: 18.5,
-    tags: ['new', 'probiotic', 'sugar-free'],
+    subcategory: 'kefir-frutado',
+    shortName: 'Frutos del bosque',
+    title: 'Kéfir de leche de vaca con frutos del bosque',
+    containsDairy: true,
     featuredImage: '/assets/images/content/products/kefir-con-frutos-del-bosque/gallery-01.webp',
     thumbnailImage: '/assets/images/content/products/kefir-con-frutos-del-bosque/gallery-01.webp',
     galleryImages: [
@@ -453,16 +408,16 @@ export const allProducts: Product[] = [
     ],
     howToUse: vacaNatural.howToUse,
     shelfLife: '19 días',
-  }),
-  make({
-    id: 'kefir-chocolate',
-    containsDairy: true,
-    category: ProductCategory.PROBIOTICOS,
+    variants: [
+      { id: 'kefir-frutos-bosque', size: '475 ml', price: 18.5, tags: ['best-seller', 'probiotic', 'sugar-free'] },
+    ],
+  },
+  {
     name: 'kefir-chocolate',
-    title: 'Kéfir de leche de vaca con chocolate 475 ml',
-    size: '475 ml',
-    price: 17.9,
-    tags: ['probiotic', 'recommended', 'sugar-free'],
+    subcategory: 'kefir-frutado',
+    shortName: 'Chocolate',
+    title: 'Kéfir de leche de vaca con chocolate',
+    containsDairy: true,
     featuredImage: '/assets/images/content/products/kefir-de-chocolate/featured.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-chocolate/featured.webp',
     galleryImages: [
@@ -493,68 +448,32 @@ export const allProducts: Product[] = [
     ],
     howToUse: vacaNatural.howToUse,
     shelfLife: '15 días',
-  }),
+    variants: [
+      { id: 'kefir-chocolate', size: '475 ml', price: 17.9, tags: ['probiotic', 'recommended', 'sugar-free'] },
+    ],
+  },
 
-  /* ── Probióticos · Kéfir de agua (grupo de tallas) ───────────────────── */
-  make({
-    id: 'kefir-agua-1l',
-    category: ProductCategory.PROBIOTICOS,
-    name: 'kefir-agua',
-    title: 'Kéfir de agua 1 L',
-    size: '1 L',
-    price: 19.0,
-    tags: ['recommended', 'best-seller', 'vegan'],
-    featuredImage: '/assets/images/content/products/kefir-de-agua/background.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-de-agua/background.webp',
-    ...aguaKefir,
-  }),
-  make({
-    id: 'kefir-agua-475',
-    category: ProductCategory.PROBIOTICOS,
-    name: 'kefir-agua',
-    title: 'Kéfir de agua 475 ml',
-    size: '475 ml',
-    price: 10.0,
-    tags: ['vegan', 'probiotic'],
-    featuredImage: '/assets/images/content/products/kefir-de-agua/background.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-de-agua/background.webp',
-    ...aguaKefir,
-  }),
-
-  /* ── Probióticos · Kombucha natural (grupo de tallas) ────────────────── */
-  make({
-    id: 'kombucha-1l',
-    category: ProductCategory.PROBIOTICOS,
+  /* ── Probióticos · Kombucha y kéfir de agua ─────────────────────────── */
+  {
     name: 'kombucha-natural',
-    title: 'Kombucha natural 1 L',
-    size: '1 L',
-    price: 21.5,
-    tags: ['new', 'vegan', 'probiotic'],
+    subcategory: 'kombucha-y-kefir-de-agua',
+    shortName: 'Kombucha natural',
+    title: 'Kombucha natural',
     // TODO: imagen real de kombucha (placeholder: kéfir de agua).
     featuredImage: '/assets/images/content/products/kefir-de-agua/background.webp',
     thumbnailImage: '/assets/images/content/products/kefir-de-agua/background.webp',
     ...kombuchaNatural,
-  }),
-  make({
-    id: 'kombucha-475',
-    category: ProductCategory.PROBIOTICOS,
-    name: 'kombucha-natural',
-    title: 'Kombucha natural 475 ml',
-    size: '475 ml',
-    price: 12.5,
-    tags: ['new', 'vegan', 'probiotic'],
-    featuredImage: '/assets/images/content/products/kefir-de-agua/background.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-de-agua/background.webp',
-    ...kombuchaNatural,
-  }),
+    variants: [
+      { id: 'kombucha-1l', size: '1 L', price: 21.5, tags: ['new', 'vegan', 'probiotic'] },
+      { id: 'kombucha-475', size: '475 ml', price: 12.5, tags: ['new', 'vegan', 'probiotic'] },
+    ],
+  },
 
-  /* ── Probióticos · Kombuchas de sabores (355 ml, cada una es un producto) ── */
-  make({
-    id: 'kombucha-flor-de-guisante',
+  /* ── Probióticos · Kombuchas de sabores (275 y 355 ml, cada una es un producto) ── */
+  {
     name: 'kombucha-flor-de-guisante',
-    title: 'Kombucha de flor de guisante con limón 355 ml',
-    price: 13.0,
-    tags: ['new', 'vegan', 'probiotic'],
+    shortName: 'Flor de guisante',
+    title: 'Kombucha de flor de guisante con limón',
     ...kombucha355,
     shortDescription: 'Té fermentado con flor de guisante y un toque cítrico de limón.',
     longDescription: (
@@ -572,13 +491,27 @@ export const allProducts: Product[] = [
       '**Naturalmente burbujeante**, sin gas añadido.',
       '**Sin lácteos**, apta para dietas veganas.',
     ],
-  }),
-  make({
-    id: 'kombucha-espirulina-azul',
+    variants: [
+      {
+        id: 'kombucha-flor-de-guisante-275',
+        size: KOMBUCHA_275,
+        price: 10.5,
+        tags: ['new', 'vegan', 'probiotic'],
+        availability: 'coming-soon',
+      },
+      {
+        id: 'kombucha-flor-de-guisante',
+        size: KOMBUCHA_355,
+        price: 13.0,
+        tags: ['new', 'vegan', 'probiotic'],
+        availability: 'coming-soon',
+      },
+    ],
+  },
+  {
     name: 'kombucha-espirulina-azul',
-    title: 'Kombucha de espirulina azul con hierba luisa 355 ml',
-    price: 13.0,
-    tags: ['new', 'vegan', 'probiotic'],
+    shortName: 'Espirulina azul',
+    title: 'Kombucha de espirulina azul con hierba luisa',
     ...kombucha355,
     shortDescription: 'Té fermentado con espirulina azul y el aroma fresco de la hierba luisa.',
     longDescription: (
@@ -596,13 +529,27 @@ export const allProducts: Product[] = [
       '**Naturalmente burbujeante**, sin gas añadido.',
       '**Sin lácteos**, apta para dietas veganas.',
     ],
-  }),
-  make({
-    id: 'kombucha-arandanos',
+    variants: [
+      {
+        id: 'kombucha-espirulina-azul-275',
+        size: KOMBUCHA_275,
+        price: 10.5,
+        tags: ['new', 'vegan', 'probiotic'],
+        availability: 'coming-soon',
+      },
+      {
+        id: 'kombucha-espirulina-azul',
+        size: KOMBUCHA_355,
+        price: 12.0,
+        tags: ['new', 'vegan', 'probiotic'],
+        availability: 'coming-soon',
+      },
+    ],
+  },
+  {
     name: 'kombucha-arandanos',
-    title: 'Kombucha de arándanos con menta 355 ml',
-    price: 12.0,
-    tags: ['new', 'vegan', 'probiotic'],
+    shortName: 'Arándanos',
+    title: 'Kombucha de arándanos con menta',
     ...kombucha355,
     shortDescription: 'Té fermentado con arándanos y menta fresca.',
     longDescription: (
@@ -620,37 +567,27 @@ export const allProducts: Product[] = [
       '**Naturalmente burbujeante**, sin gas añadido.',
       '**Sin lácteos**, apta para dietas veganas.',
     ],
-  }),
-  make({
-    id: 'kombucha-frambuesa',
-    name: 'kombucha-frambuesa',
-    title: 'Kombucha de frambuesa con menta 355 ml',
-    price: 12.0,
-    tags: ['new', 'vegan', 'probiotic'],
-    ...kombucha355,
-    shortDescription: 'Té fermentado con frambuesa y menta fresca.',
-    longDescription: (
-      <>
-        <p>
-          Nuestra kombucha de <strong>té fermentado con cultivos vivos</strong>, con <strong>frambuesa</strong> y{' '}
-          <strong>menta</strong>.
-        </p>
-        <p>Frutal, ligeramente ácida y naturalmente burbujeante, en botella de vidrio de 355 ml.</p>
-      </>
-    ),
-    benefits: [
-      'Elaborada con **té fermentado** y cultivos vivos.',
-      'Con **frambuesa** y **menta**.',
-      '**Naturalmente burbujeante**, sin gas añadido.',
-      '**Sin lácteos**, apta para dietas veganas.',
+    variants: [
+      {
+        id: 'kombucha-arandanos-275',
+        size: KOMBUCHA_275,
+        price: 9.9,
+        tags: ['new', 'vegan', 'probiotic'],
+        availability: 'coming-soon',
+      },
+      {
+        id: 'kombucha-arandanos',
+        size: KOMBUCHA_355,
+        price: 12.0,
+        tags: ['new', 'vegan', 'probiotic'],
+        availability: 'coming-soon',
+      },
     ],
-  }),
-  make({
-    id: 'kombucha-pitahaya',
+  },
+  {
     name: 'kombucha-pitahaya',
-    title: 'Kombucha de pitahaya 355 ml',
-    price: 13.9,
-    tags: ['new', 'limited', 'vegan', 'probiotic'],
+    shortName: 'Pitahaya',
+    title: 'Kombucha de pitahaya',
     ...kombucha355,
     shortDescription: 'Edición especial: té fermentado con pitahaya.',
     longDescription: (
@@ -668,118 +605,145 @@ export const allProducts: Product[] = [
       '**Naturalmente burbujeante**, sin gas añadido.',
       '**Sin lácteos**, apta para dietas veganas.',
     ],
-  }),
+    variants: [
+      {
+        id: 'kombucha-pitahaya-275',
+        size: KOMBUCHA_275,
+        price: 11.5,
+        tags: ['new', 'limited', 'vegan', 'probiotic'],
+        availability: 'coming-soon',
+      },
+      {
+        id: 'kombucha-pitahaya',
+        size: KOMBUCHA_355,
+        price: 14.0,
+        tags: ['new', 'limited', 'vegan', 'probiotic'],
+        availability: 'coming-soon',
+      },
+    ],
+  },
 
-  /* ── Tradicionales · Manteca de cerdo (grupo de tallas) ──────────────── */
-  make({
-    id: 'manteca-100',
-    category: ProductCategory.TRADICIONALES,
+  /* Va detrás de las kombuchas: es su orden en la subcategoría. */
+  {
+    name: 'kefir-agua',
+    subcategory: 'kombucha-y-kefir-de-agua',
+    shortName: 'Kéfir de agua',
+    title: 'Kéfir de agua',
+    featuredImage: '/assets/images/content/products/kefir-de-agua/background.webp',
+    thumbnailImage: '/assets/images/content/products/kefir-de-agua/background.webp',
+    ...aguaKefir,
+    variants: [
+      { id: 'kefir-agua-1l', size: '1 L', price: 19.0, tags: ['recommended', 'best-seller', 'vegan', 'probiotic'] },
+      { id: 'kefir-agua-475', size: '475 ml', price: 10.0, tags: ['vegan', 'probiotic'] },
+    ],
+  },
+
+  /* ── Tradicionales · Manteca de cerdo ────────────────────────────────── */
+  {
     name: 'manteca-de-cerdo',
-    title: 'Manteca de cerdo artesanal 100 ml',
-    size: '100 ml',
-    price: 8.0,
-    tags: ['artisan'],
+    subcategory: 'para-cocinar',
+    shortName: 'Manteca',
+    title: 'Manteca de cerdo artesanal',
     ...mantecaCerdo,
-  }),
-  make({
-    id: 'manteca-300',
-    category: ProductCategory.TRADICIONALES,
-    name: 'manteca-de-cerdo',
-    title: 'Manteca de cerdo artesanal 300 ml',
-    size: '300 ml',
-    price: 24.0,
-    tags: ['artisan'],
-    ...mantecaCerdo,
-  }),
-  make({
-    id: 'manteca-500',
-    category: ProductCategory.TRADICIONALES,
-    name: 'manteca-de-cerdo',
-    title: 'Manteca de cerdo artesanal 500 ml',
-    size: '500 ml',
-    price: 32.0,
-    tags: ['artisan', 'best-seller'],
-    ...mantecaCerdo,
-  }),
-  make({
-    id: 'manteca-1l',
-    category: ProductCategory.TRADICIONALES,
-    name: 'manteca-de-cerdo',
-    title: 'Manteca de cerdo artesanal 1 L',
-    size: '1 L',
-    price: 60.0,
-    tags: ['artisan'],
-    ...mantecaCerdo,
-  }),
+    variants: [
+      { id: 'manteca-370', size: '370 ml', price: 25.0, tags: ['artisan'] },
+      { id: 'manteca-580', size: '580 ml', price: 33.9, tags: ['artisan', 'best-seller'] },
+      { id: 'manteca-1l', size: '1 L', price: 62.0, tags: ['artisan'] },
+    ],
+  },
 
   /* ── Tradicionales · Mermeladas (200 g, envase de vidrio, talla única) ─ */
-  make({
-    id: 'mermelada-fresa',
-    category: ProductCategory.TRADICIONALES,
+  {
     name: 'mermelada-fresa',
-    title: 'Mermelada de fresa natural 200 g',
-    size: '200 g',
-    price: 13.5,
-    tags: ['new', 'natural'],
-    // TODO: imagen real de la mermelada (placeholder temporal).
-    featuredImage: '/assets/images/content/products/kefir-con-fresa/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-con-fresa/featured.webp',
-    shortDescription: 'Mermelada artesanal de fresa, dulce y natural, en envase de vidrio.',
+    subcategory: 'mermeladas',
+    shortName: 'Fresa',
+    title: 'Mermelada de fresa natural',
+    // TODO: foto individual de la mermelada (temporal: la de la subcategoría, con los 3 frascos).
+    featuredImage: '/assets/images/subcategories/mermeladas.webp',
+    thumbnailImage: '/assets/images/subcategories/mermeladas.webp',
+    shortDescription: 'Mermelada artesanal de fresa, hecha con pulpa de fruta y endulzada con stevia.',
     longDescription: (
       <>
         <p>
-          Mermelada artesanal de <strong>fresa</strong>, dulce y natural, sin conservantes. Elaborada en pequeños lotes
-          y envasada en <strong>vidrio</strong>.
+          Mermelada artesanal hecha con pulpa de <strong>fresa</strong> y endulzada con <strong>stevia</strong>, sin
+          colorantes ni conservantes. Elaborada en pequeños lotes y envasada en <strong>vidrio</strong>.
         </p>
         <p>Perfecta para acompañar tus desayunos y meriendas.</p>
       </>
     ),
     benefits: [
-      'Elaborada con **fruta natural**, sin conservantes.',
+      'Hecha con **pulpa de fresa**, endulzada con **stevia**.',
+      'Sin colorantes ni conservantes.',
       'Producto artesanal en pequeños lotes.',
-      'Envase de **vidrio**, más limpio y reutilizable.',
+      'Envase de **vidrio** reutilizable.',
     ],
     howToUse: mermeladaHowToUse,
-    shelfLife: '6 meses',
-  }),
-  make({
-    id: 'mermelada-quito-quito',
-    category: ProductCategory.TRADICIONALES,
-    name: 'mermelada-quito-quito',
-    title: 'Mermelada de Quito Quito 200 g',
-    size: '200 g',
-    price: 13.5,
-    tags: ['new', 'recommended', 'natural'],
-    // TODO: imagen real de la mermelada (placeholder temporal).
-    featuredImage: '/assets/images/content/products/kefir-con-aguaymanto/featured.webp',
-    thumbnailImage: '/assets/images/content/products/kefir-con-aguaymanto/featured.webp',
-    shortDescription: 'Explosión de sabor andino con frutos de Quito Quito de Oxapampa.',
+    shelfLife: '24 días',
+    variants: [{ id: 'mermelada-fresa', size: '200 g', price: 13.5, tags: ['new', 'natural'] }],
+  },
+  {
+    name: 'mermelada-arandanos',
+    subcategory: 'mermeladas',
+    shortName: 'Arándanos',
+    title: 'Mermelada de arándanos natural',
+    // TODO: foto individual de la mermelada (temporal: la de la subcategoría, con los 3 frascos).
+    featuredImage: '/assets/images/subcategories/mermeladas.webp',
+    thumbnailImage: '/assets/images/subcategories/mermeladas.webp',
+    shortDescription: 'Mermelada artesanal de arándanos, hecha con pulpa de fruta y endulzada con stevia.',
     longDescription: (
       <>
         <p>
-          Mermelada artesanal elaborada con frutos de <strong>Quito Quito</strong> traídos directamente de{' '}
-          <strong>Oxapampa</strong>. Dulce y suave, en envase de <strong>vidrio</strong>.
+          Mermelada artesanal hecha con pulpa de <strong>arándanos</strong> y endulzada con <strong>stevia</strong>, sin
+          colorantes ni conservantes. Elaborada en pequeños lotes y envasada en <strong>vidrio</strong>.
         </p>
-        <p>Perfecta para convertir tu desayuno en un momento especial. 100% natural y sin conservantes.</p>
+        <p>Perfecta para acompañar tus desayunos y meriendas.</p>
       </>
     ),
     benefits: [
-      'Elaborada con **frutos de Oxapampa**, sin conservantes.',
+      'Hecha con **pulpa de arándanos**, endulzada con **stevia**.',
+      'Sin colorantes ni conservantes.',
       'Producto artesanal en pequeños lotes.',
-      'Envase de **vidrio**, más limpio y reutilizable.',
+      'Envase de **vidrio** reutilizable.',
     ],
     howToUse: mermeladaHowToUse,
-    shelfLife: '6 meses',
-  }),
+    shelfLife: '24 días',
+    variants: [{ id: 'mermelada-arandanos', size: '200 g', price: 13.5, tags: ['new', 'natural'] }],
+  },
+  {
+    name: 'mermelada-quito-quito',
+    subcategory: 'mermeladas',
+    shortName: 'Quito quito',
+    title: 'Mermelada de Quito Quito',
+    // TODO: foto individual de la mermelada (temporal: la de la subcategoría, con los 3 frascos).
+    featuredImage: '/assets/images/subcategories/mermeladas.webp',
+    thumbnailImage: '/assets/images/subcategories/mermeladas.webp',
+    shortDescription: 'Mermelada artesanal de Quito Quito de Oxapampa, endulzada con stevia.',
+    longDescription: (
+      <>
+        <p>
+          Mermelada artesanal hecha con pulpa de <strong>Quito Quito</strong> traído de <strong>Oxapampa</strong> y
+          endulzada con <strong>stevia</strong>, sin colorantes ni conservantes. Envasada en <strong>vidrio</strong>.
+        </p>
+        <p>Perfecta para convertir tu desayuno en un momento especial.</p>
+      </>
+    ),
+    benefits: [
+      'Hecha con **pulpa de Quito Quito** de Oxapampa, endulzada con **stevia**.',
+      'Sin colorantes ni conservantes.',
+      'Producto artesanal en pequeños lotes.',
+      'Envase de **vidrio** reutilizable.',
+    ],
+    howToUse: mermeladaHowToUse,
+    shelfLife: '24 días',
+    variants: [{ id: 'mermelada-quito-quito', size: '200 g', price: 13.5, tags: ['new', 'recommended', 'natural'] }],
+  },
 
   /* ── Tradicionales · Otros (sin cambios; confirmar si siguen en catálogo) */
-  make({
-    id: 'sal-de-maras',
-    category: ProductCategory.TRADICIONALES,
+  {
     name: 'sal-de-maras',
+    subcategory: 'para-cocinar',
+    shortName: 'Sal de Maras',
     title: 'Sal rosada de Maras, Cusco',
-    price: 19,
-    tags: ['new', 'natural', 'artisan'],
     featuredImage: '/assets/images/content/products/sal-de-maras/featured.webp',
     thumbnailImage: '/assets/images/content/products/sal-de-maras/thumbnail.webp',
     shortDescription: 'Sal gourmet extraída de las salineras milenarias de Maras, Cusco.',
@@ -813,55 +777,13 @@ export const allProducts: Product[] = [
       </>
     ),
     shelfLife: 'Indefinida',
-  }),
-  make({
-    id: 'vinagre-de-manzana',
-    category: ProductCategory.TRADICIONALES,
-    name: 'vinagre-de-manzana',
-    title: 'Vinagre de Manzana',
-    price: 17,
-    tags: ['new', 'natural', 'healthy'],
-    featuredImage: '/assets/images/content/products/vinagre-de-manzana/featured.webp',
-    thumbnailImage: '/assets/images/content/products/vinagre-de-manzana/thumbnail.webp',
-    galleryImages: [
-      '/assets/images/content/products/vinagre-de-manzana/gallery-01.webp',
-      '/assets/images/content/products/vinagre-de-manzana/gallery-03.webp',
-      '/assets/images/content/products/vinagre-de-manzana/gallery-02.webp',
-    ],
-    shortDescription: 'Vinagre artesanal con madre, sin pasteurizar ni filtrar.',
-    longDescription: (
-      <>
-        <p>
-          Hecho con <strong>manzanas 100% ecológicas</strong> y un proceso artesanal que transforma su sabor: suave,
-          equilibrado y delicioso. Es un vinagre <strong>con &ldquo;madre&rdquo;</strong>, sin pasteurizar ni filtrar.
-        </p>
-        <p>Ideal diluido en agua o para dar vida a ensaladas, aderezos y marinados.</p>
-      </>
-    ),
-    benefits: [
-      'Elaborado con **manzanas 100% ecológicas** mediante fermentación natural.',
-      'Con **“madre”**: sin pasteurizar ni filtrar.',
-      '**100% natural**, sin conservantes.',
-    ],
-    howToUse: (
-      <>
-        <p>
-          <strong>Para beber:</strong> diluye 1-2 cucharadas en un vaso de agua tibia, en ayunas o antes de las comidas.
-        </p>
-        <p>
-          <strong>Conservación:</strong> lugar fresco y oscuro. Agita antes de usar.
-        </p>
-      </>
-    ),
-    shelfLife: '2 años',
-  }),
-  make({
-    id: 'chucrut-morado',
-    category: ProductCategory.PROBIOTICOS,
+    variants: [{ id: 'sal-de-maras', price: 19, tags: ['new', 'natural', 'artisan'] }],
+  },
+  {
     name: 'chucrut-morado',
+    subcategory: 'fermentados',
+    shortName: 'Chucrut morado',
     title: 'Chucrut Morado Fermentado',
-    price: 14,
-    tags: ['recommended', 'discover', 'vegan', 'natural', 'probiotic'],
     featuredImage: '/assets/images/content/products/chucrut-morado/featured.webp',
     thumbnailImage: '/assets/images/content/products/chucrut-morado/thumbnail.png',
     galleryImages: [
@@ -899,15 +821,14 @@ export const allProducts: Product[] = [
       </>
     ),
     shelfLife: '3 meses',
-  }),
-  make({
-    id: 'crema-de-kefir-aceituna',
-    containsDairy: true,
-    category: ProductCategory.PROBIOTICOS,
+    variants: [{ id: 'chucrut-morado', price: 14, tags: ['recommended', 'discover', 'vegan', 'natural', 'probiotic'] }],
+  },
+  {
     name: 'crema-de-kefir-aceituna',
+    subcategory: 'fermentados',
+    shortName: 'Crema de kéfir',
     title: 'Crema de Kéfir con aceitunas',
-    price: 15,
-    tags: ['recommended', 'discover', 'probiotic'],
+    containsDairy: true,
     featuredImage: '/assets/images/content/products/crema-de-kefir-aceitunas/featured.webp',
     thumbnailImage: '/assets/images/content/products/crema-de-kefir-aceitunas/thumbnail.png',
     galleryImages: [
@@ -943,5 +864,8 @@ export const allProducts: Product[] = [
       </>
     ),
     shelfLife: '15 días',
-  }),
+    variants: [{ id: 'crema-de-kefir-aceituna', price: 15, tags: ['recommended', 'discover', 'probiotic'] }],
+  },
 ];
+
+export const allProducts: Product[] = productFamilies.flatMap(toProducts);

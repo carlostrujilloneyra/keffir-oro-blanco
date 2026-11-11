@@ -31,6 +31,28 @@ $enter-ease: cubic-bezier(0.32, 0.72, 0, 1);
   animation: shadow $duration $ease $enter infinite both;
 }
 
+// La sombra se apoya en la base real de la imagen (desde lg la imagen
+// deja 1.5rem abajo), más suave y difusa para que el producto se sienta apoyado.
+.grounded {
+  height: 6%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0));
+  filter: blur(10px);
+
+  @media (min-width: 1024px) {
+    bottom: calc(1.5rem + 1%);
+  }
+}
+
+// Grano de papel sobre el fondo del panel. SVG en línea: sin imágenes externas.
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 .halo {
   animation: halo $duration $ease $enter infinite both;
 }

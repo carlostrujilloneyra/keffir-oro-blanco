@@ -6,3 +6,4 @@ export { KombuchaIcon } from './KombuchaIcon';
 export { FruitIcon } from './FruitIcon';
 export { TiktokIcon } from './TiktokIcon';
 export { InstagramIcon } from './InstagramIcon';
+export { WhatsAppIcon } from './WhatsAppIcon';

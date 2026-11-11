@@ -13,6 +13,12 @@ export interface BadgeConfig {
 /* Variantes (ver Badge): 'alert' para urgencia/novedad, 'category' para
   curaduría, 'neutral' para atributos descriptivos. */
 export const badgeConfig = {
+  /* No es un tag: lo agrega getDisplayTags() cuando availability es 'coming-soon'. */
+  'coming-soon': {
+    label: 'Próximamente',
+    variant: 'alert',
+    description: 'Todavía no está a la venta',
+  },
   // Novedad / urgencia → alert (fucsia, con moderación)
   new: {
     label: 'Nuevo',
@@ -107,6 +113,13 @@ export const badgeConfig = {
 
 // Inferir BadgeType automáticamente desde las keys de badgeConfig
 export type BadgeType = keyof typeof badgeConfig;
+
+/* Tags visibles de un producto: 'Próximamente' sustituye a 'Nuevo' y va primero. */
+export const getDisplayTags = (product: { tags?: BadgeType[]; availability?: string }): BadgeType[] => {
+  const tags = product.tags ?? [];
+  if (product.availability !== 'coming-soon') return tags;
+  return ['coming-soon', ...tags.filter((tag) => tag !== 'new')];
+};
 
 /* Atributos del producto (variante neutral): van en la ficha como cintas de etiqueta. */
 export const isAttributeTag = (tag: BadgeType) => badgeConfig[tag].variant === 'neutral';

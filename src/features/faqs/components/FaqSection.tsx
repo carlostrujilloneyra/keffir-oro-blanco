@@ -11,12 +11,9 @@ export const FaqSection = () => {
   if (!questionsData || questionsData.length === 0) return null;
 
   return (
-    <section
-      id='faq'
-      aria-labelledby='faq-titulo'
-      className='w-full scroll-mt-24 bg-papel px-6 py-section tablet:px-10 lg:px-18'
-    >
-      <div className='container-max grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16'>
+    /* Sin padding lateral propio: <main> ya da el margen de la página. */
+    <section id='faq' aria-labelledby='faq-titulo' className='w-full scroll-mt-24 py-8 tablet:py-10 lg:py-16'>
+      <div className='grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16'>
         {/* Encabezado (sticky en desktop) */}
         <Stagger inView className='flex flex-col gap-5 lg:sticky lg:top-28 lg:self-start'>
           <Eyebrow>Preguntas frecuentes</Eyebrow>

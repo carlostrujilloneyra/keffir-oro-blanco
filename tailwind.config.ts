@@ -8,7 +8,6 @@ const config: Config = {
     extend: {
       spacing: {
         '18': '72px',
-        section: '96px',
       },
 
       screens: {
@@ -52,6 +51,7 @@ const config: Config = {
           DEFAULT: '#F2B705', // acento de etiqueta (destaques cálidos)
           oscuro: '#C9860E', // fin del gradiente miel
         },
+        guisante: '#7040CC', // acento de la kombucha de flor de guisante
 
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',

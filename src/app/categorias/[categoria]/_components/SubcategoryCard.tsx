@@ -8,7 +8,8 @@ import { ToneHalo } from '@/features/products/components/ToneHalo';
 
 type Props = {
   subcategory: SubcategoryDetail;
-  fromPrice: number;
+  /* Sin productos disponibles, undefined: no se muestra "Desde". */
+  fromPrice?: number;
   count: number;
 };
 
@@ -44,7 +45,9 @@ export const SubcategoryCard = ({ subcategory, fromPrice, count }: Props) => {
         <p className='line-clamp-2 text-sm text-tinta-media'>{firstSentence(subcategory.description)}</p>
 
         <div className='mt-auto flex items-center justify-between gap-3 border-t border-papel-sombra/70 pt-3 text-sm'>
-          <span className='font-display font-semibold text-tinta'>Desde {formatPrice(fromPrice)}</span>
+          <span className='font-display font-semibold text-tinta'>
+            {fromPrice !== undefined ? `Desde ${formatPrice(fromPrice)}` : 'Próximamente'}
+          </span>
           <span className='text-tinta-media'>
             {count} {count === 1 ? 'producto' : 'productos'}
           </span>
