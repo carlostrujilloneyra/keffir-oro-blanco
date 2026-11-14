@@ -17,7 +17,7 @@ export const ShelfLife = ({ shelfLife }: ShelfLifeProps) => {
 
       <AccordionContent>
         <div className='flex items-center gap-2 text-tinta-media tablet:gap-3'>
-          <Clock className='h-4 w-4 shrink-0 text-verde tablet:h-5 tablet:w-5' />
+          <Clock className='h-4 w-4 shrink-0 text-fucsia tablet:h-5 tablet:w-5' />
           <span className='text-sm font-medium tablet:text-base'>{shelfLife}</span>
         </div>
       </AccordionContent>

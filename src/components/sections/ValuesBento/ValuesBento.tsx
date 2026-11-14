@@ -14,7 +14,6 @@ const origins = [
   { ingredient: 'Sal rosada', place: 'Maras, Cusco' },
 ];
 
-/* Glow verde sobre base casi negra, mismo lenguaje que CategoriesSection. */
 const ctaBackground =
   'radial-gradient(80% 140% at 100% 0%, rgba(47,125,82,0.5), rgba(47,125,82,0.2) 40%, rgba(22,32,26,0) 75%), #16201A';
 

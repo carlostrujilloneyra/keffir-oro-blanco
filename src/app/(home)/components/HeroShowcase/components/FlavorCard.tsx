@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { toneStyles, type Tone } from '@/features/products';
 import { cn } from '@/lib/utils';
 import type { ResolvedHeroSlide } from '../lib/resolveHeroSlides';
+import styles from './FlavorCard.module.scss';
 
 type Props = {
   flavor: string;
@@ -19,12 +20,12 @@ export const FlavorCard = ({ flavor, thumbnail, priceLabel, url, linkLabel, tone
   <div
     className={cn(
       'relative flex h-full items-center gap-2.5 rounded-card p-2.5 transition-colors duration-300 ease-suave',
+      /* La inactiva lleva borde de 1px (vidrio): la activa reserva el mismo espacio para no saltar. */
       active
-        ? cn('bg-papel text-tinta', toneStyles[tone].shadowStatic)
-        : 'bg-tinta/55 text-papel ring-1 ring-inset ring-papel/15 backdrop-blur-md hover:bg-tinta/70',
+        ? cn('border border-transparent bg-papel text-tinta', toneStyles[tone].shadowStatic)
+        : cn('text-papel', styles.glass),
     )}
   >
-    {/* Recorte de la foto del slide (cuadrado) o, sin foto, la botella entera. */}
     <div
       className={cn(
         'relative shrink-0 overflow-hidden',

@@ -1,0 +1,153 @@
+// Efectos de marca para zonas OSCURAS (ver docs/plan-ui.md). En zonas crema no se usan.
+// Uso desde un módulo: @use '@/styles/effects' as fx; y luego @include fx.glass; etc.
+// Máximo 2 animaciones infinitas visibles por pantalla: spin-border es infinito;
+// shimmer repite pocas veces por defecto para no consumir ese presupuesto.
+
+$fucsia: #d11e82;
+$fucsia-oscuro: #a3145f;
+$miel: #f2b705;
+$guisante: #7040cc;
+
+@property --spin-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes spin-angle {
+  to {
+    --spin-angle: 360deg;
+  }
+}
+
+@keyframes shimmer-sweep {
+  from {
+    transform: translateX(-120%) skewX(-20deg);
+  }
+  to {
+    transform: translateX(220%) skewX(-20deg);
+  }
+}
+
+// Borde cónico giratorio, como anillo superpuesto en ::before: no toca el fondo del
+// elemento (sirve sobre el degradado del botón y sobre la card) y el centro es
+// transparente gracias a la máscara. El elemento usa ::before; el borde queda DENTRO
+// de su caja (cubre sus $width px de borde) y hereda su border-radius.
+// Sin @property el ángulo no se interpola, así que el anillo animado solo se activa
+// donde existe transition-behavior (Chrome 117, Safari 17.4, Firefox 129; todos
+// traen @property). Antes, y con reduced-motion, queda un anillo fucsia sólido.
+// Las copias ocultas (aria-hidden, p. ej. textos invisibles del hero) no animan.
+@mixin spin-border($width: 2px, $duration: 4s) {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    padding: $width;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(135deg, $fucsia, $fucsia-oscuro);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+  }
+
+  @supports (transition-behavior: allow-discrete) {
+    &::before {
+      background: conic-gradient(from var(--spin-angle), $fucsia, $miel, $guisante, $fucsia);
+      animation: spin-angle $duration linear infinite;
+    }
+
+    [aria-hidden='true'] &::before {
+      animation: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before {
+      animation: none;
+      background: linear-gradient(135deg, $fucsia, $fucsia-oscuro);
+    }
+  }
+}
+
+// Vidrio esmerilado. Sin backdrop-filter queda un fondo oscuro casi opaco para que
+// el texto siga legible. En mobile el desenfoque es menor (costo de GPU).
+@mixin glass(
+  $blur: 14px,
+  $blur-mobile: 8px,
+  $saturate: 160%,
+  $tint: rgba(255, 255, 255, 0.1),
+  $border: rgba(255, 255, 255, 0.18),
+  $fallback: rgba(22, 32, 26, 0.78)
+) {
+  background: $fallback;
+  border: 1px solid $border;
+
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    background: $tint;
+    -webkit-backdrop-filter: blur($blur-mobile) saturate($saturate);
+    backdrop-filter: blur($blur-mobile) saturate($saturate);
+
+    @media (min-width: 600px) {
+      -webkit-backdrop-filter: blur($blur) saturate($saturate);
+      backdrop-filter: blur($blur) saturate($saturate);
+    }
+  }
+}
+
+// Franja de luz que cruza el elemento (badge). Usa transform sobre un pseudo-elemento,
+// sin repintar el texto. $iterations: usar `infinite` solo si hay presupuesto de animaciones.
+// $on-hover: la franja no corre al montar, solo al pasar el cursor o enfocar (botones).
+// $when: selector de clase (p. ej. '.play'); la franja corre cuando el elemento la recibe (badges).
+@mixin shimmer(
+  $duration: 2.4s,
+  $delay: 0.6s,
+  $iterations: 2,
+  $light: rgba(255, 255, 255, 0.55),
+  $on-hover: false,
+  $when: null
+) {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 40%;
+    background: linear-gradient(90deg, transparent, $light, transparent);
+    pointer-events: none;
+    transform: translateX(-120%) skewX(-20deg);
+
+    @if not $on-hover and not $when {
+      animation: shimmer-sweep $duration ease-in-out $delay $iterations both;
+    }
+  }
+
+  @if $on-hover {
+    &:hover::after,
+    &:focus-visible::after {
+      animation: shimmer-sweep $duration ease-in-out $delay $iterations both;
+    }
+  }
+
+  @if $when {
+    &#{$when}::after {
+      animation: shimmer-sweep $duration ease-in-out $delay $iterations both;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::after {
+      display: none;
+      animation: none;
+    }
+  }
+}

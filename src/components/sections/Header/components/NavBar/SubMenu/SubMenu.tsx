@@ -13,13 +13,13 @@ const EntryItem = ({ label, href, description, icon, chips, onClick }: SubMenuEn
     propio enlace; no se anidan anclas.
   */
   <li className='group/entry relative grid grid-cols-[auto_1fr] gap-3 rounded-[8px] p-3 hover:bg-papel-hueso'>
-    <span className='flex h-6 w-6 items-center justify-center text-verde'>{icon}</span>
+    <span className='flex h-6 w-6 items-center justify-center text-fucsia'>{icon}</span>
 
     <div className='min-w-0'>
       <Link
         href={href}
         onClick={onClick}
-        className="text-sm font-semibold text-tinta transition-colors after:absolute after:inset-0 after:rounded-[8px] after:content-[''] focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-verde group-hover/entry:text-verde"
+        className="text-sm font-semibold text-tinta transition-colors after:absolute after:inset-0 after:rounded-[8px] after:content-[''] focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-fucsia group-hover/entry:text-fucsia-oscuro"
       >
         {label}
       </Link>
@@ -37,7 +37,7 @@ const EntryItem = ({ label, href, description, icon, chips, onClick }: SubMenuEn
                 href={chip.href}
                 onClick={onClick}
                 /* Velo de tinta: se apoya igual sobre papel (reposo) y papel-hueso (hover). */
-                className='relative z-10 inline-flex rounded-[4px] bg-tinta/[0.06] px-2.5 py-1 text-xs font-medium text-tinta-media transition-colors hover:bg-verde/15 hover:text-verde focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde'
+                className='relative z-10 inline-flex rounded-[4px] bg-tinta/[0.06] px-2.5 py-1 text-xs font-medium text-tinta-media transition-colors hover:bg-fucsia/10 hover:text-fucsia-oscuro focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fucsia'
               >
                 {chip.label}
               </Link>
@@ -107,7 +107,7 @@ export const SubMenu = ({ slug, closed = false, onNavigate }: SubMenuProps) => {
             <Link
               href={parent.href}
               onClick={handleClick}
-              className='text-sm font-semibold text-verde underline decoration-verde/30 underline-offset-4 transition-colors hover:decoration-verde focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde'
+              className='text-sm font-semibold text-fucsia-oscuro underline decoration-fucsia/30 underline-offset-4 transition-colors hover:decoration-fucsia focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fucsia'
             >
               Ver los {total} productos de {parent.label}
             </Link>

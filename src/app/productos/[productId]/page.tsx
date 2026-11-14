@@ -15,10 +15,12 @@ import {
   isAttributeTag,
   getDisplayTags,
   badgeConfig,
+  accentFor,
+  tonePanelBackground,
 } from '@/features/products';
 import { ProductImageGallery } from '@/features/products/components/ProductImageGallery/ProductImageGallery';
-import { ComingSoonArt, isPhotoPending } from '@/features/products/components/ComingSoonArt';
-import { Badge } from '@/components/ui/Badge/badge';
+import { COMING_SOON_PRICE_CLASS, ComingSoonArt, isPhotoPending } from '@/features/products/components/ComingSoonArt';
+import { ShimmerBadge } from '@/components/ui/Badge/ShimmerBadge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/Accordion/accordion';
 import { formatPrice } from '@/lib/formatPrice';
 import { buildWhatsAppUrl } from '@/lib/site';
@@ -138,21 +140,24 @@ export default function ProductPage({ params }: ProductPageProps) {
       <nav aria-label='Migas de pan' className='mb-8 text-sm text-tinta-suave lg:mb-10'>
         <Link
           href={category ? getCategoryUrl(category.slug) : '/'}
-          className='-ml-1 inline-flex min-h-11 items-center gap-1 pr-2 font-medium transition-colors hover:text-verde tablet:hidden'
+          className='-ml-1 inline-flex min-h-11 items-center gap-1 pr-2 font-medium transition-colors hover:text-fucsia-oscuro tablet:hidden'
         >
           <ChevronLeft className='h-4 w-4' />
           {category ? category.title : 'Inicio'}
         </Link>
 
         <div className='hidden flex-wrap items-center gap-x-2.5 gap-y-1 tablet:flex'>
-          <Link href='/' className='font-medium transition-colors hover:text-verde'>
+          <Link href='/' className='font-medium transition-colors hover:text-fucsia-oscuro'>
             Inicio
           </Link>
 
           {category && (
             <>
               <ChevronRight className='h-4 w-4 text-tinta-suave/50' />
-              <Link href={getCategoryUrl(category.slug)} className='font-medium transition-colors hover:text-verde'>
+              <Link
+                href={getCategoryUrl(category.slug)}
+                className='font-medium transition-colors hover:text-fucsia-oscuro'
+              >
                 {category.title}
               </Link>
             </>
@@ -173,14 +178,22 @@ export default function ProductPage({ params }: ProductPageProps) {
               <div className='relative aspect-[4/5] w-full overflow-hidden rounded-panel'>
                 <ComingSoonArt product={product} />
                 <div className='absolute left-5 top-5 flex flex-col items-start gap-1.5 tablet:left-6 tablet:top-6'>
-                  <span className='rounded-[4px] bg-papel px-2.5 py-1 font-display text-sm font-semibold tracking-tight text-tinta'>
+                  <span
+                    className={`rounded-[4px] px-2.5 py-1 font-display text-sm font-semibold tracking-tight ${COMING_SOON_PRICE_CLASS}`}
+                  >
                     {formatPrice(product.price)}
                   </span>
-                  <Badge variant={badgeConfig['coming-soon'].variant}>{badgeConfig['coming-soon'].label}</Badge>
+                  <ShimmerBadge variant={badgeConfig['coming-soon'].variant}>
+                    {badgeConfig['coming-soon'].label}
+                  </ShimmerBadge>
                 </div>
               </div>
             ) : (
-              <ProductImageGallery images={galleryImages} productTitle={product.title} />
+              <ProductImageGallery
+                images={galleryImages}
+                productTitle={product.title}
+                panelBackground={tonePanelBackground[accentFor(product)]}
+              />
             )}
           </Reveal>
         </div>

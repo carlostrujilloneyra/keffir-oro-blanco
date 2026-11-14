@@ -63,7 +63,6 @@ export const MobileMenu = ({ open, onClose }: Props) => {
     };
   }, [open, onClose]);
 
-  // Colapsa los submenús al cerrar.
   useEffect(() => {
     if (!open) setExpanded(null);
   }, [open]);
@@ -163,7 +162,7 @@ export const MobileMenu = ({ open, onClose }: Props) => {
                             <Link
                               href={href}
                               onClick={onClose}
-                              className='block rounded-[8px] px-2 py-2.5 text-sm font-semibold text-verde underline decoration-verde/30 underline-offset-4'
+                              className='block rounded-[8px] px-2 py-2.5 text-sm font-semibold text-fucsia-oscuro underline decoration-fucsia/30 underline-offset-4'
                             >
                               Ver los {subMenu.total} productos de {label}
                             </Link>
@@ -178,7 +177,7 @@ export const MobileMenu = ({ open, onClose }: Props) => {
                                       key={subHref}
                                       className='relative flex items-start gap-3 rounded-[8px] px-2 py-3'
                                     >
-                                      <span className='flex h-6 w-6 shrink-0 items-center justify-center text-verde'>
+                                      <span className='flex h-6 w-6 shrink-0 items-center justify-center text-fucsia'>
                                         {icon}
                                       </span>
 
@@ -186,7 +185,7 @@ export const MobileMenu = ({ open, onClose }: Props) => {
                                         <Link
                                           href={subHref}
                                           onClick={onClose}
-                                          className="text-sm font-semibold text-tinta transition-colors after:absolute after:inset-0 after:rounded-[8px] after:content-[''] hover:text-verde"
+                                          className="text-sm font-semibold text-tinta transition-colors after:absolute after:inset-0 after:rounded-[8px] after:content-[''] hover:text-fucsia-oscuro"
                                         >
                                           {subLabel}
                                         </Link>
@@ -205,7 +204,7 @@ export const MobileMenu = ({ open, onClose }: Props) => {
                                                   href={chip.href}
                                                   onClick={onClose}
                                                   /* Mismo velo que en escritorio (ver SubMenu). */
-                                                  className='relative z-10 inline-flex rounded-[4px] bg-tinta/[0.06] px-2.5 py-1.5 text-xs font-medium text-tinta-media transition-colors hover:bg-verde/15 hover:text-verde'
+                                                  className='relative z-10 inline-flex rounded-[4px] bg-tinta/[0.06] px-2.5 py-1.5 text-xs font-medium text-tinta-media transition-colors hover:bg-fucsia/10 hover:text-fucsia-oscuro'
                                                 >
                                                   {chip.label}
                                                 </Link>

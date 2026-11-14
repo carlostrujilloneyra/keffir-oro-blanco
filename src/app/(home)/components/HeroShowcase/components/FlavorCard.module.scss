@@ -1,0 +1,9 @@
+@use '@/styles/effects' as fx;
+
+.glass {
+  @include fx.glass($tint: rgba(22, 32, 26, 0.55), $border: rgba(247, 245, 239, 0.18));
+
+  &:hover {
+    background: rgba(22, 32, 26, 0.7);
+  }
+}

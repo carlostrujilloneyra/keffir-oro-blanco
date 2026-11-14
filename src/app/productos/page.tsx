@@ -88,7 +88,7 @@ export default function CatalogPage() {
                 <div className='flex items-baseline justify-between gap-4'>
                   <div className='flex flex-col gap-0.5'>
                     <h3 className='font-display text-xl font-semibold tracking-tight text-tinta'>
-                      <Link href={href} className='transition-colors hover:text-verde'>
+                      <Link href={href} className='transition-colors hover:text-fucsia-oscuro'>
                         {sub.title}
                       </Link>
                     </h3>

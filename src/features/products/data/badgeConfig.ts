@@ -8,6 +8,8 @@ export interface BadgeConfig {
   label: string;
   variant?: BadgeVariant;
   description?: string;
+  /* Franja de luz al entrar en pantalla (ShimmerBadge). */
+  shimmer?: boolean;
 }
 
 /* Variantes (ver Badge): 'alert' para urgencia/novedad, 'category' para
@@ -16,8 +18,10 @@ export const badgeConfig = {
   /* No es un tag: lo agrega getDisplayTags() cuando availability es 'coming-soon'. */
   'coming-soon': {
     label: 'Próximamente',
-    variant: 'alert',
+    /* Siempre va sobre el panel oscuro del sabor (ComingSoonArt): contorno papel. */
+    variant: 'soon-inverse',
     description: 'Todavía no está a la venta',
+    shimmer: true,
   },
   // Novedad / urgencia → alert (fucsia, con moderación)
   new: {
@@ -31,11 +35,12 @@ export const badgeConfig = {
     description: 'Disponibilidad limitada',
   },
 
-  // Curaduría / categoría → category (acento verde)
+  // Curaduría / categoría → category (tinta)
   'best-seller': {
     label: 'Más vendido',
     variant: 'category',
     description: 'Uno de nuestros productos más populares',
+    shimmer: true,
   },
   recommended: {
     label: 'Recomendado',

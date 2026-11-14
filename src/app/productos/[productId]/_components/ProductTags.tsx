@@ -1,4 +1,5 @@
 import { Badge } from '@/components/ui/Badge/badge';
+import { ShimmerBadge } from '@/components/ui/Badge/ShimmerBadge';
 import { badgeConfig, type BadgeType } from '@/features/products';
 
 interface ProductTagsProps {
@@ -17,10 +18,12 @@ export function ProductTags({ tags }: ProductTagsProps) {
 
         if (!config) return null;
 
+        const Comp = 'shimmer' in config && config.shimmer ? ShimmerBadge : Badge;
+
         return (
-          <Badge key={tag} variant={config.variant} title={config.description}>
+          <Comp key={tag} variant={config.variant} title={config.description}>
             <span>{config.label}</span>
-          </Badge>
+          </Comp>
         );
       })}
     </div>

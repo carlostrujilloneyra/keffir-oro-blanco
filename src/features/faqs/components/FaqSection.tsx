@@ -49,12 +49,12 @@ export const FaqSection = () => {
           >
             {questionsData.map(({ value, question, answer }) => (
               <AccordionItem key={value} value={value} className='border-b-0'>
-                <AccordionTrigger className='group items-start gap-6 py-6 text-left font-display text-base font-semibold text-tinta transition-colors duration-200 hover:text-verde hover:no-underline tablet:text-lg [&>svg]:hidden'>
+                <AccordionTrigger className='group items-start gap-6 py-6 text-left font-display text-base font-semibold text-tinta transition-colors duration-200 hover:text-fucsia-oscuro hover:no-underline tablet:text-lg [&>svg]:hidden'>
                   {question}
                   {/* + que gira a × al abrir. Va en un span: el trigger oculta sus svg directos. */}
                   <span
                     aria-hidden
-                    className='mt-1 shrink-0 text-tinta-suave transition-transform duration-300 group-hover:text-verde group-data-[state=open]:rotate-45 group-data-[state=open]:text-verde'
+                    className='mt-1 shrink-0 text-tinta-suave transition-transform duration-300 group-hover:text-fucsia-oscuro group-data-[state=open]:rotate-45 group-data-[state=open]:text-fucsia-oscuro'
                   >
                     <Plus className='h-5 w-5' />
                   </span>

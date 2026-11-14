@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { formatPrice } from '@/lib/formatPrice';
 import { getProductUrl } from '@/lib/routes';
 import { keepUnitsTogether } from '@/lib/keepUnitsTogether';
-import { Badge } from '@/components/ui/Badge/badge';
+import { ShimmerBadge } from '@/components/ui/Badge/ShimmerBadge';
 import { badgeConfig, getDisplayTags } from '../data/badgeConfig';
 import { categoryDetails } from '../data/categories';
 import { getSizeVariants } from '../data/collections';
@@ -13,7 +13,8 @@ import { accentFor, toneStyles } from '../lib/productAccent';
 import { getProductSplash, type SplashLayer } from '../lib/productSplash';
 import { getProductBaseTitle, getProductShortName } from '../lib/productDisplay';
 import { ToneHalo } from './ToneHalo';
-import { ComingSoonArt, isPhotoPending } from './ComingSoonArt';
+import { COMING_SOON_PRICE_CLASS, ComingSoonArt, isPhotoPending } from './ComingSoonArt';
+import styles from './ProductShowcaseCard.module.scss';
 
 /*
   'category': dentro de su categoría o subcategoría el contexto ya lo da la página:
@@ -92,7 +93,9 @@ export const ProductShowcaseCard = ({
 
   const rootClass = cn(
     'group cq flex h-full w-full flex-col overflow-hidden rounded-card bg-papel-hueso transition-all duration-300 ease-out',
-    highlighted ? tone.shadowStatic : cn(asLink && 'hover:-translate-x-1 hover:-translate-y-1', tone.shadow),
+    highlighted
+      ? cn(tone.shadowStatic, styles.ring)
+      : cn(asLink && 'hover:-translate-x-1 hover:-translate-y-1', tone.shadow),
   );
 
   const backdrop = (
@@ -147,10 +150,7 @@ export const ProductShowcaseCard = ({
               sizes={IMAGE_SIZES}
               className='object-contain px-4 pb-3 pt-9 transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-[1.04] cq-sm:p-6'
             />
-            <SplashLayers
-              layers={splashes.filter((layer) => layer.placement === 'front')}
-              highlighted={highlighted}
-            />
+            <SplashLayers layers={splashes.filter((layer) => layer.placement === 'front')} highlighted={highlighted} />
           </>
         )}
         {/* Sello de precio y, debajo, "Próximamente": apilados para no chocar en cards angostas. */}
@@ -158,15 +158,15 @@ export const ProductShowcaseCard = ({
           <span
             className={cn(
               'rounded-[4px] px-2 py-0.5 font-display text-xs font-semibold tracking-tight cq-sm:px-2.5 cq-sm:py-1 cq-sm:text-sm',
-              photoPending ? 'bg-papel text-tinta' : 'bg-tinta text-papel',
+              photoPending ? COMING_SOON_PRICE_CLASS : 'bg-tinta text-papel',
             )}
           >
             {fromPrice !== undefined ? `Desde ${formatPrice(fromPrice)}` : formatPrice(product.price)}
           </span>
           {comingSoon && (
-            <Badge variant={badgeConfig['coming-soon'].variant} className='px-2 py-0.5 cq-sm:px-2.5 cq-sm:py-1'>
+            <ShimmerBadge variant={badgeConfig['coming-soon'].variant} className='px-2 py-0.5 cq-sm:px-2.5 cq-sm:py-1'>
               {badgeConfig['coming-soon'].label}
-            </Badge>
+            </ShimmerBadge>
           )}
         </div>
       </div>

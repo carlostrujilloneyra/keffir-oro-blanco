@@ -9,9 +9,13 @@ import { CONTACT_EMAIL, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/lib/site';
 const currentYear = new Date().getFullYear();
 
 export const Footer = () => (
-  <footer className='w-full bg-bosque text-papel'>
-    <div className='container-max px-6 py-14 tablet:px-10 lg:px-18 lg:py-16'>
-      {/* Marca + CTA */}
+  <footer className='relative w-full overflow-hidden bg-tinta text-papel'>
+    {/* Resplandor de marca en la esquina, fuera de las columnas de texto. */}
+    <div
+      aria-hidden
+      className='pointer-events-none absolute -bottom-40 -right-40 h-[28rem] w-[28rem] bg-[radial-gradient(closest-side,rgba(209,30,130,0.35),rgba(112,64,204,0.12)_55%,transparent)]'
+    />
+    <div className='container-max relative px-6 py-14 tablet:px-10 lg:px-18 lg:py-16'>
       <FooterReveal className='flex flex-col gap-8 border-b border-papel/10 pb-10 lg:flex-row lg:items-end lg:justify-between'>
         <div className='max-w-md'>
           <Link href='/' aria-label='Ir al inicio' className='inline-flex'>
@@ -32,7 +36,6 @@ export const Footer = () => (
         </Button>
       </FooterReveal>
 
-      {/* Enlaces esenciales + contacto y redes */}
       <FooterReveal delay={0.08} className='flex flex-col gap-8 py-10 md:flex-row md:items-start md:justify-between'>
         <nav aria-label='Pie de página'>
           <ul className='flex flex-wrap gap-x-6'>
@@ -88,12 +91,11 @@ export const Footer = () => (
         </div>
       </FooterReveal>
 
-      {/* Legal + volver arriba */}
       <FooterReveal
         delay={0.16}
         className='flex flex-col gap-4 border-t border-papel/10 pt-6 md:flex-row md:items-center md:justify-between'
       >
-        <p className='text-xs text-papel/50 lg:text-sm'>© {currentYear} TRIALFERI. Todos los derechos reservados.</p>
+        <p className='text-xs text-papel/60 lg:text-sm'>© {currentYear} TRIALFERI. Todos los derechos reservados.</p>
         <BackToTop />
       </FooterReveal>
     </div>

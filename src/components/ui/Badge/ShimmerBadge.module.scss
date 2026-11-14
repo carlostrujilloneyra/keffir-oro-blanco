@@ -1,0 +1,6 @@
+@use '@/styles/effects' as fx;
+
+// Dos pasadas de luz cuando el badge entra en pantalla (.play); no es infinito.
+.shimmer {
+  @include fx.shimmer($duration: 1.6s, $delay: 0.3s, $iterations: 2, $when: '.play');
+}

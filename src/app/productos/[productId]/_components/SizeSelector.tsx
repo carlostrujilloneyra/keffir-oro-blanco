@@ -30,7 +30,7 @@ export const SizeSelector = ({ variants, currentSlug }: Props) => {
           const body = (
             <>
               <span className='font-display text-base font-semibold leading-none'>{label}</span>
-              <span className={cn('mt-1 text-xs', isActive ? 'text-papel/80' : 'text-tinta-suave')}>
+              <span className={cn('mt-1 text-xs', isActive ? 'text-white' : 'text-tinta-suave')}>
                 {formatPrice(variant.price)}
               </span>
             </>
@@ -40,7 +40,7 @@ export const SizeSelector = ({ variants, currentSlug }: Props) => {
             <span
               key={variant.id}
               aria-current='true'
-              className='flex min-w-[112px] flex-col items-center rounded-[10px] border-2 border-verde bg-verde px-5 py-3 text-papel'
+              className='flex min-w-[112px] flex-col items-center rounded-[10px] border-2 border-transparent bg-gradient-marca px-5 py-3 text-white'
             >
               {body}
             </span>
@@ -48,7 +48,7 @@ export const SizeSelector = ({ variants, currentSlug }: Props) => {
             <Link
               key={variant.id}
               href={getProductUrl(variant.slug)}
-              className='flex min-w-[112px] flex-col items-center rounded-[10px] border-2 border-papel-sombra px-5 py-3 text-tinta transition-colors duration-200 hover:border-verde hover:bg-verde/5'
+              className='flex min-w-[112px] flex-col items-center rounded-[10px] border-2 border-papel-sombra px-5 py-3 text-tinta transition-colors duration-200 hover:border-fucsia hover:bg-fucsia/5'
             >
               {body}
             </Link>

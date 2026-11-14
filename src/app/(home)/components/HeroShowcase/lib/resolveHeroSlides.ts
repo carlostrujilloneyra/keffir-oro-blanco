@@ -24,7 +24,6 @@ type SlideCopy = Pick<HeroSlide, 'tone' | 'eyebrow' | 'headline' | 'description'
 
 export type ResolvedHeroSlide = SlideCopy & {
   id: string;
-  /* Nombre de la mini-card. */
   flavor: string;
   url: string;
   cardLinkLabel: string;

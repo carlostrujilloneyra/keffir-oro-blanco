@@ -25,7 +25,6 @@ export const NavBar = ({ className }: { className?: string }) => {
       {/* relative: el submenú se centra respecto de esta lista, no de cada ítem. */}
       <ul className='relative flex items-center gap-1'>
         {NAV_ITEMS.map(({ label, href, slug }) => {
-          /* La sección actual queda pintada en verde. */
           const isActive = pathname === href;
           const isClosed = closedSlug === slug;
 
@@ -44,8 +43,8 @@ export const NavBar = ({ className }: { className?: string }) => {
                   setClosedSlug(slug);
                 }}
                 className={cn(
-                  'inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 hover:bg-papel-hueso hover:text-verde focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde md:text-base',
-                  isActive ? 'bg-verde/10 text-verde' : 'text-tinta',
+                  'inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 hover:bg-papel-hueso hover:text-fucsia-oscuro focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fucsia md:text-base',
+                  isActive ? 'bg-tinta text-papel hover:bg-tinta hover:text-papel' : 'text-tinta',
                 )}
               >
                 {label}

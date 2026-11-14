@@ -1,0 +1,6 @@
+@use '@/styles/effects' as fx;
+
+// Precio sobre el panel oscuro del sabor (sin foto): vidrio claro en vez del sello papel.
+.price {
+  @include fx.glass($tint: rgba(255, 255, 255, 0.14), $border: rgba(255, 255, 255, 0.22));
+}

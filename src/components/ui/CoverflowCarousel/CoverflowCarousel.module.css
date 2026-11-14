@@ -47,7 +47,7 @@
 
 .arrow {
   align-items: center;
-  background: #1e3a2f; /* bosque */
+  background: #16201a; /* tinta */
   border: none;
   border-radius: 9999px;
   color: #f7f5ef; /* papel */
@@ -87,7 +87,7 @@
 }
 
 .arrow:disabled:hover {
-  background: #1e3a2f; /* sin cambio de color cuando está deshabilitada */
+  background: #16201a; /* sin cambio de color cuando está deshabilitada */
 }
 
 /* Dots de paginación */
@@ -124,18 +124,18 @@
 }
 
 .dotActive {
-  background: #2f7d52; /* verde */
+  background: linear-gradient(135deg, #d11e82, #7040cc); /* gradiente de marca */
   width: 26px;
 }
 
 .dot:focus-visible {
-  outline: 2px solid #2f7d52;
+  outline: 2px solid #d11e82;
   outline-offset: 2px;
 }
 
 .arrow:focus-visible {
   opacity: 1;
-  outline: 2px solid #2f7d52;
+  outline: 2px solid #d11e82;
   outline-offset: 2px;
   transform: scale(1);
 }

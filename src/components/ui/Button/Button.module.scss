@@ -1,0 +1,9 @@
+@use '@/styles/effects' as fx;
+
+.sweep {
+  @include fx.shimmer($duration: 0.9s, $delay: 0s, $iterations: 1, $on-hover: true);
+}
+
+.spin {
+  @include fx.spin-border;
+}

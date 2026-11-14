@@ -12,10 +12,9 @@ import 'swiper/css';
 interface ProductImageGalleryProps {
   images: string[];
   productTitle: string;
+  /* Fondo oscuro del panel: el tono de la línea del producto (`tonePanelBackground`). */
+  panelBackground: string;
 }
-
-// Panel oscuro (bosque + glow verde): la botella clara resalta como héroe.
-const PANEL_BG = 'radial-gradient(80% 80% at 50% 30%, rgba(47,125,82,0.40), rgba(30,58,47,0) 70%), #1E3A2F';
 
 const IMG_SIZES = '(max-width: 1024px) 100vw, 50vw';
 
@@ -37,7 +36,7 @@ const ProductPhoto = ({ src, alt, priority = false }: { src: string; alt: string
 const arrowClass =
   'absolute top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-black/25 text-papel backdrop-blur-md transition-colors duration-200 hover:bg-black/45 tablet:flex';
 
-export function ProductImageGallery({ images, productTitle }: ProductImageGalleryProps) {
+export function ProductImageGallery({ images, productTitle, panelBackground }: ProductImageGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
 
@@ -45,9 +44,12 @@ export function ProductImageGallery({ images, productTitle }: ProductImageGaller
 
   if (images.length === 1) {
     return (
-      <div className='relative aspect-[4/5] w-full overflow-hidden rounded-panel' style={{ background: PANEL_BG }}>
+      <div
+        className='relative aspect-[4/5] w-full overflow-hidden rounded-panel'
+        style={{ background: panelBackground }}
+      >
         <BlurBackdrop src={images[0]} />
-        <div className='absolute inset-0 bg-bosque/60' />
+        <div className='absolute inset-0 bg-tinta/60' />
         <ProductPhoto src={images[0]} alt={productTitle} priority />
       </div>
     );
@@ -57,7 +59,7 @@ export function ProductImageGallery({ images, productTitle }: ProductImageGaller
     <div className='flex w-full min-w-0 flex-col gap-3 tablet:gap-4'>
       <div
         className='relative aspect-[4/5] w-full min-w-0 overflow-hidden rounded-panel'
-        style={{ background: PANEL_BG }}
+        style={{ background: panelBackground }}
       >
         {images.map((image, index) => (
           <div
@@ -70,7 +72,7 @@ export function ProductImageGallery({ images, productTitle }: ProductImageGaller
             <BlurBackdrop src={image} />
           </div>
         ))}
-        <div className='absolute inset-0 bg-bosque/60' />
+        <div className='absolute inset-0 bg-tinta/60' />
 
         <Swiper
           className='absolute inset-0 h-full w-full'
@@ -127,7 +129,7 @@ export function ProductImageGallery({ images, productTitle }: ProductImageGaller
             aria-current={activeIndex === index}
             /* En móvil ancho fijo + scroll; desde tablet se reparten el ancho. */
             className={`relative aspect-square w-16 shrink-0 overflow-hidden rounded-xl border-2 bg-papel-hueso transition-all duration-200 tablet:w-auto tablet:min-w-0 tablet:flex-1 tablet:shrink ${
-              activeIndex === index ? 'border-verde' : 'border-transparent opacity-60 hover:opacity-100'
+              activeIndex === index ? 'border-fucsia' : 'border-transparent opacity-60 hover:opacity-100'
             }`}
           >
             <Image

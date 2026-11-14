@@ -16,7 +16,7 @@ export const getSlideText = (slide: ResolvedHeroSlide) => [
     {slide.description}
   </p>,
   <div key='actions' className='flex flex-wrap gap-3'>
-    <Button asChild variant='primary'>
+    <Button asChild variant='primary' spin>
       <Link href={slide.url}>{slide.ctaLabel}</Link>
     </Button>
     <Button asChild variant='light'>

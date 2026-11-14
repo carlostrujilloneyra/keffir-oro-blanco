@@ -23,7 +23,7 @@ export const PackCard = ({ pack, onSelect }: PackCardProps) => {
         {pack.draft && <Badge variant='alert'>Borrador · solo en local</Badge>}
       </div>
 
-      <div className='relative aspect-[4/3] overflow-hidden rounded-[8px] bg-gradient-to-br from-verde/20 via-verde/10 to-transparent'>
+      <div className='relative aspect-[4/3] overflow-hidden rounded-[8px] bg-gradient-to-br from-fucsia/20 via-guisante/10 to-transparent'>
         <Image src={pack.image} alt={pack.title} fill sizes='280px' className='object-contain p-3' />
       </div>
 

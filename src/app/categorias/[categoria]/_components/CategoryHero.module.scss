@@ -1,3 +1,13 @@
+@use '@/styles/effects' as fx;
+
+.chip {
+  @include fx.glass($tint: rgba(255, 255, 255, 0.1), $border: rgba(255, 255, 255, 0.18));
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
 $duration: 6s;
 $ease: cubic-bezier(0.45, 0, 0.55, 1);
 $lift: 14px;

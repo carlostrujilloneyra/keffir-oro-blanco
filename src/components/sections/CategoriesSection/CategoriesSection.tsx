@@ -7,34 +7,29 @@ import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { Reveal, Stagger } from '@/components/ui/Motion/Motion';
 import { categoryDetails, ProductCategory, type SectionTone } from '@/features/products';
 import { getCategoryUrl } from '@/lib/routes';
-import { Button, type ButtonVariant } from '@/components/ui/Button/Button';
+import { Button } from '@/components/ui/Button/Button';
 
 interface CategoryThemeStyle {
   gradient: string;
   halo: string;
-  button: ButtonVariant;
 }
 
 const toneStyles: Record<SectionTone, CategoryThemeStyle> = {
   verde: {
-    // base tinta + glows verdes en esquinas opuestas + veladura negra.
     gradient:
       'linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)),' +
       'radial-gradient(80% 130% at 100% 0%, rgba(47,125,82,0.70), rgba(47,125,82,0.38) 34%, rgba(22,32,26,0) 76%),' +
       'radial-gradient(85% 150% at 0% 100%, rgba(47,125,82,0.55), rgba(30,58,47,0.30) 42%, rgba(22,32,26,0) 82%),' +
       '#1A2A21',
     halo: 'bg-verde/40',
-    button: 'light',
   },
   miel: {
-    // base tinta + glows miel en esquinas opuestas + veladura negra.
     gradient:
       'linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),' +
       'radial-gradient(80% 130% at 100% 0%, rgba(242,183,5,0.45), rgba(242,183,5,0.24) 34%, rgba(22,32,26,0) 76%),' +
       'radial-gradient(85% 150% at 0% 100%, rgba(201,134,14,0.38), rgba(201,134,14,0.20) 42%, rgba(22,32,26,0) 82%),' +
       '#16201A',
     halo: 'bg-miel/30',
-    button: 'miel',
   },
 };
 
@@ -76,7 +71,6 @@ export const CategoriesSection = () => {
                 style={{ background: t.gradient }}
                 className='group relative flex flex-col overflow-hidden rounded-panel'
               >
-                {/* Imagen con halo de fermento (más grande en desktop) */}
                 <div className='relative h-80 tablet:h-[360px] lg:h-[480px]'>
                   <div
                     className={cn(
@@ -92,14 +86,12 @@ export const CategoriesSection = () => {
                     className='object-contain px-8 pb-4 pt-20 transition-transform duration-500 ease-out group-hover:scale-105 tablet:p-6 tablet:pt-20'
                   />
 
-                  {/* Sello glass */}
                   <span className='absolute left-5 top-5 z-10 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-papel shadow-sm backdrop-blur-md'>
                     <TagIcon className='h-3.5 w-3.5' />
                     {cat.tag}
                   </span>
                 </div>
 
-                {/* Contenido */}
                 <div className='flex flex-1 flex-col gap-4 px-7 pb-9 pt-6 tablet:px-8 tablet:py-8 lg:p-10'>
                   <Eyebrow variant='light'>{cat.eyebrow}</Eyebrow>
 
@@ -112,7 +104,7 @@ export const CategoriesSection = () => {
                   </p>
 
                   {/* mt-auto: el botón va al fondo, así queda alineado entre cards aunque el texto mida distinto. */}
-                  <Button asChild variant={t.button} className='mt-auto'>
+                  <Button asChild variant='primary' className='mt-auto'>
                     <Link href={getCategoryUrl(cat.slug)}>Ver categoría</Link>
                   </Button>
                 </div>

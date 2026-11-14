@@ -10,9 +10,10 @@ import { Stagger } from '@/components/ui/Motion/Motion';
 import type { SubcategoryPanel } from '@/features/products';
 import styles from './CategoryHero.module.scss';
 
-/* Accesos del hero: subcategorías (categoría) o productos (subcategoría). */
-const CHIP_CLASS =
-  'flex min-h-11 flex-col justify-center rounded-[8px] border border-white/15 bg-white/10 px-3 py-1.5 transition-colors duration-200 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-papel tablet:py-2';
+const CHIP_CLASS = cn(
+  styles.chip,
+  'flex min-h-11 flex-col justify-center rounded-[8px] px-3 py-1.5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-papel tablet:py-2',
+);
 
 const CONTENT_CLASS =
   'relative z-10 flex max-w-full flex-col justify-center gap-3 px-1 pb-2 tablet:min-h-[320px] tablet:px-6 tablet:py-8 lg:min-h-[380px] lg:gap-4 lg:px-6 lg:py-10';
@@ -26,7 +27,6 @@ type Props = {
   /* Escala de la imagen desde lg, anclada abajo (grupos de varias botellas). */
   imageScale?: number;
   count: number;
-  /* Fondo y luz con los colores de la etiqueta del producto. */
   panel: SubcategoryPanel;
   /* Subcategorías: un acceso por producto en vez del contador. */
   productLinks?: { title: string; items: { label: string; priceLabel: string; href: string }[] };
@@ -59,7 +59,6 @@ export const CategoryHero = ({
       <div aria-hidden className={styles.grain} />
 
       <Stagger delay={0.15} className={CONTENT_CLASS}>
-        {/* Migas de pan */}
         <nav
           aria-label='Migas de pan'
           className='mb-1 flex items-center gap-1.5 text-xs text-papel/70 tablet:mb-4 md:mb-6 md:text-sm'
@@ -111,7 +110,6 @@ export const CategoryHero = ({
         ) : productLinks ? (
           <nav aria-label={`Productos de ${title}`} className='mt-2 flex flex-col gap-3'>
             <p className='text-xs font-medium text-papel/70 md:text-sm'>{productLinks.title}</p>
-            {/* Se envuelven en varias filas: sin scroll horizontal. */}
             <ul className='flex flex-wrap gap-2'>
               {productLinks.items.map(({ label, priceLabel, href }) => (
                 <li key={href}>

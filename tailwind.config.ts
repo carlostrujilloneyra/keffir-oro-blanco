@@ -18,6 +18,7 @@ const config: Config = {
         // Gradientes de marca (con motivo: el líquido del fermento y las etiquetas).
         'gradient-verde': 'linear-gradient(135deg, #2F7D52 0%, #1E3A2F 100%)',
         'gradient-fucsia': 'linear-gradient(135deg, #D11E82 0%, #A3145F 100%)',
+        'gradient-marca': 'linear-gradient(135deg, #D11E82 0%, #7040CC 100%)', // fucsia → guisante; blanco encima ≥ 4.98:1
         'gradient-miel': 'linear-gradient(135deg, #F2B705 0%, #C9860E 100%)',
       },
 

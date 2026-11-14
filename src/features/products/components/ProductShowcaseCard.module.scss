@@ -1,0 +1,11 @@
+@use '@/styles/effects' as fx;
+
+// Card central del coverflow de "Productos más vendidos": anillo cónico giratorio (infinito).
+// will-change aísla su repintado en su propia capa para no repintar la foto y los splashes.
+.ring {
+  @include fx.spin-border;
+
+  &::before {
+    will-change: transform;
+  }
+}

@@ -17,7 +17,6 @@ const BUTTON_CLASS =
 
 const pad = (value: number) => String(value).padStart(2, '0');
 
-/* Indicador "01 ━━── 04" y botones de pausa, anterior y siguiente. */
 export const CarouselControls = ({
   activeIndex,
   total,
