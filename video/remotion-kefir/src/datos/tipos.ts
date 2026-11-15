@@ -1,14 +1,17 @@
 import type {Tono} from '../tema';
 
 export type TipoEscena =
-  | 'ganchoNatural' | 'queEs' | 'beneficios' | 'diferencia' | 'servido' | 'primeraVez'
-  | 'ganchoFrutado' | 'frutaDeVerdad' | 'sabor' | 'frutosDelBosque' | 'chocolate' | 'todos'
+  | 'ganchoNatural' | 'queEs' | 'beneficios' | 'sinAnadidos' | 'origen' | 'lactosa' | 'servido'
+  | 'ganchoFrutado' | 'frutaDeVerdad' | 'sabor' | 'frutosDelBosque' | 'stevia'
   | 'combinalo' | 'cierre';
+
+// Cómo entra una escena (componentes/Corte.tsx). Sin indicar, el barrido de Ola.
+export type Transicion = 'ola' | 'fundido' | 'whip' | 'whipIzq' | 'flash' | 'zoom';
 
 /*
   Una escena = un tramo de la voz. `inicio` y `cues` están en segundos de la voz (transcripción de Whisper):
   al regrabar la voz solo se actualizan estos números.
-  - `ola`: color de la franja del barrido que trae esta escena (el del sabor que llega).
+  - `transicion` y `ola`: cómo entra la escena y el color que trae (franja del barrido o destello): el del sabor que llega.
   - `lista[].pulso`: segundo en que la voz nombra ese ítem, si el ítem se muestra antes (ver regla de 1.5 s abajo).
   - `clip`: video real (en public/) que reemplaza al visual de producto de la escena cuando existan grabaciones.
   - `foto`: segundo(s) del frame más cargado; de ahí sale el storyboard.
@@ -24,10 +27,12 @@ export type Escena = {
   cues: Record<string, number>;
   lista?: {txt: string; nota?: string; en: number; pulso?: number}[];
   imagenes?: Record<string, string>;
+  transicion?: Transicion;
   ola?: string;
   clip?: {src: string; desde?: number};
   foto: number[];
   enGolpe?: 'golpe' | 'medio' | 'voz'; // lo rellena ritmo.ts: dónde cayó el corte respecto a la música
+  fin?: number; // lo rellena ritmo.ts: inicio de la escena siguiente (o fin del video); con él se reparte el movimiento de cámara
 };
 
 export type VideoKefirProps = {

@@ -1,107 +1,103 @@
 import {AZUL_ETIQUETA, PALETAS} from '../tema';
-import type {Escena, VideoKefirProps} from './tipos';
+import type {VideoKefirProps} from './tipos';
 
 const LECHE = '#F6F1E6';
 
 /*
-  Los tres pasos de "¿Primera vez?" se muestran en las dos escenas (servido y foto) en la misma posición:
-  el primero aparece durante el servido y sigue en pantalla al cambiar de escena.
-  "Poco a poco" entra 0.7 s antes que la voz para cumplir la regla de 1.5 s en pantalla.
-*/
-const PASOS: Escena['lista'] = [
-  {txt: 'En ayunas', nota: '1 shot de 30 ml', en: 26.6},
-  {txt: 'En la noche', nota: 'otro shot de 30 ml', en: 27.96},
-  {txt: 'Poco a poco', nota: 'aumenta la cantidad', en: 28.5},
-];
-
-/*
-  Kéfir natural · voz-kefir-natural.mp3 (41.7 s). Cada `inicio` cae justo antes de la primera palabra
-  de su frase; los cues son el arranque de la palabra que nombra lo que aparece (ritmo.ts los cuadra con la música).
-  Los beneficios son, palabra por palabra, los de la etiqueta aprobada.
+  Kéfir natural v2 · voz-kefir-natural-v2.mp3 (49.9 s). Cada `inicio` cae en el silencio previo a su frase y los cues son
+  el arranque de la palabra que nombra lo que aparece (ritmo.ts los cuadra con la música).
+  Reglas del texto en pantalla: solo frases de la etiqueta aprobada y nunca más de 7 palabras a la vez. Por eso varias
+  escenas tienen dos tiempos (el texto del primero sale cuando entra el del segundo) y algunos cues van antes que la voz:
+  ningún texto sale antes de 1.5 s de haber terminado de aparecer.
 */
 export const natural: VideoKefirProps = {
   variante: 'natural',
-  duracion: 42.3,
-  voz: 'audio/voz-kefir-natural.mp3',
+  duracion: 50.5,
+  voz: 'audio/voz-kefir-natural-v2.mp3',
   musica: 'audio/musica-kefir.mp3',
   musicaDesde: 0,
   escenas: [
     {
-      // el titular entra completo de inmediato y aguanta hasta "Nuestro kéfir…": queda entero más de 1.5 s
-      id: '01-gancho', tipo: 'ganchoNatural', inicio: 0, tono: 'natural', foto: [1.9],
-      textos: {l1: '¿Ya probaste', l2: 'Kéfir', l3: 'de verdad?'},
-      cues: {l1: 0, l2: 0.08, l3: 0.16},
+      // "Mucha gente cree que el kéfir es yogurt… y NO lo es": el golpe cae en el "no"
+      id: '01-gancho', tipo: 'ganchoNatural', inicio: 0, tono: 'natural', foto: [1.4, 3.4],
+      textos: {l1: 'Esto no es', l2: 'Yogurt'},
+      cues: {l1: 0, l2: 0.1, golpe: 2.95},
       imagenes: {heroe: 'img/leche-splash.webp'},
     },
     {
-      id: '02-que-es', tipo: 'queEs', inicio: 2.6, tono: 'natural', foto: [6.6],
+      // "100 % kéfir vivo" entra entero al abrir la escena; en "hecho a mano" (cue `mano`) cambia el titular
+      id: '02-que-es', tipo: 'queEs', inicio: 4.06, tono: 'noche', foto: [6.6, 9.3],
       ola: LECHE,
-      textos: {cien: '100 %', kefir: 'Kéfir', natural: 'natural', noEs: 'No es yogurt estilo kéfir'},
-      cues: {kefir: 2.7, natural: 3.05, cien: 3.78, noEs: 4.95},
-      imagenes: {heroe: 'img/vaca-1l.png'},
+      textos: {cien: '100 %', kefir: 'Kéfir vivo', resalta: 'vivo', mano: 'Hecho a mano', lote: 'Lote a lote'},
+      cues: {cien: 4.2, kefir: 4.34, mano: 7.66, lote: 7.95},
+      imagenes: {heroe: 'img/natural-vaca-hero.webp'},
     },
     {
-      id: '03-beneficios', tipo: 'beneficios', inicio: 7.08, tono: 'marino', foto: [13.6],
-      ola: PALETAS.natural.luz,
-      textos: {l1: 'En cada', l2: 'botella'},
-      cues: {titulo: 7.14},
-      lista: [
-        {txt: 'Alto en probióticos vivos', en: 7.26},
-        {txt: 'Bajo en lactosa', en: 8.86},
-        {txt: 'Fortalece tu microbiota', en: 10.2},
-        {txt: 'Digestión equilibrada', en: 11.66},
-      ],
-      imagenes: {heroe: 'img/vaca-1l.png'},
-    },
-    {
-      id: '04-diferencia', tipo: 'diferencia', inicio: 14.12, tono: 'noche', foto: [22.7],
-      ola: LECHE,
+      id: '03-beneficios', tipo: 'beneficios', inicio: 9.68, tono: 'noche', foto: [12.9, 15.3],
+      // el único corte fuerte entre el gancho y el cierre
+      transicion: 'whip',
       textos: {},
       cues: {},
       lista: [
-        {txt: 'Artesanal', en: 15.15},
-        {txt: 'Leche de vaca o de cabra', en: 16.0},
-        {txt: 'Ollas de acero quirúrgico', en: 18.25},
-        {txt: 'Sin azúcar añadida', en: 19.8},
-        {txt: 'Sin conservantes añadidos', en: 20.85},
+        {txt: 'Fortalece tu microbiota', en: 9.72},
+        {txt: 'Alto en probióticos vivos', en: 11.36},
+        {txt: 'Digestión equilibrada', en: 13.3},
       ],
+      imagenes: {heroe: 'img/natural-475-hero.webp'},
+    },
+    {
+      id: '04-sin-anadidos', tipo: 'sinAnadidos', inicio: 15.77, tono: 'leche', foto: [18.5, 20.5],
+      transicion: 'fundido',
+      textos: {sin1: 'Sin azúcar añadida', sin2: 'Sin conservantes añadidos', sello: '100 %|ARTESANAL'},
+      cues: {sin1: 15.82, sin2: 17.12, sello: 18.9},
+      imagenes: {heroe: 'img/leche-duo.png'},
+    },
+    {
+      // sin lugar de origen: solo lo que dice la etiqueta (cabra de libre pastoreo, ollas de acero quirúrgico)
+      id: '05-origen', tipo: 'origen', inicio: 20.89, tono: 'noche', foto: [22.9, 28.0],
+      ola: LECHE,
+      textos: {titulo: 'Vaca o cabra', resalta: 'cabra', c1: 'Cabra de pastoreo libre', c2: 'Ollas de acero quirúrgico'},
+      cues: {titulo: 20.95, c1: 21.5, c2: 25.6},
       imagenes: {heroe: 'img/hero-vaca-cabra.png'},
     },
     {
-      // servido lento: de la inclinación (23.45) a la línea de 30 ml (27.3) pasan casi 4 s
-      id: '05a-servido', tipo: 'servido', inicio: 23.18, tono: 'marino', foto: [27.2],
+      // "Por la fermentación" entra 0.6 s antes que la voz para quedar 1.5 s completo antes del segundo tiempo;
+      // en ese segundo tiempo (cue `cabra`) la foto pasa a la botella de cabra de `imagenes.cabra`
+      id: '06-lactosa', tipo: 'lactosa', inicio: 28.5, tono: 'noche', foto: [30.9, 32.4, 34.1],
+      transicion: 'fundido',
+      textos: {l1: 'Bajos en', l2: 'lactosa', c1: 'Por la fermentación', l3: 'El de cabra', resalta: 'cabra', c2: 'Se digiere más fácil'},
+      cues: {l1: 28.55, l2: 28.68, c1: 29.3, cabra: 31.4, c2: 32.3},
+      imagenes: {heroe: 'img/natural-475-hero.webp', cabra: 'img/hero-vaca-cabra.png'},
+    },
+    {
+      // servido: de la inclinación (34.56) a la línea de 30 ml (37.85) pasan 3.3 s; el contador sube con el llenado
+      id: '07-primera-vez', tipo: 'servido', inicio: 34.5, tono: 'marino', foto: [36.3, 38.3],
       ola: PALETAS.natural.luz,
-      textos: {titulo: '¿Primera vez?', shot: '1 shot de', ml: '30 ml'},
-      cues: {titulo: 23.28, inclina: 23.45, sirve: 24.4, marca: 25.4, lleno: 27.3, fin: 28.3},
-      lista: PASOS,
-    },
-    {
-      id: '05b-primera-vez', tipo: 'primeraVez', inicio: 27.9, tono: 'marino', foto: [30.2],
-      ola: LECHE,
       textos: {titulo: '¿Primera vez?'},
-      cues: {},
-      lista: PASOS,
-      imagenes: {heroe: 'img/primera-vez.webp'},
-    },
-    {
-      // las cintas de ingredientes entran juntas antes de que la voz los nombre; lo que cae en el bowl sí va con la voz
-      id: '06-combinalo', tipo: 'combinalo', inicio: 30.62, tono: 'leche', foto: [34.5],
-      ola: '#FFFFFF',
-      textos: {titulo: 'Combínalo', apoyo: 'como más te guste, con'},
-      cues: {titulo: 30.72, apoyo: 31.38, granola: 32.85, cereales: 33.67, frutas: 34.36},
+      cues: {titulo: 34.38, inclina: 34.56, sirve: 35.44, lleno: 37.85, fin: 38.6, pasos: 36.6},
       lista: [
-        {txt: 'Granola', en: 32.5},
-        {txt: 'Cereales', en: 32.75},
-        {txt: 'Frutas', en: 33.0},
+        {txt: 'En ayunas', en: 36.6},
+        {txt: 'En la noche', en: 36.68},
       ],
-      imagenes: {heroe: 'img/vaca-1l.png'},
     },
     {
-      id: '07-cierre', tipo: 'cierre', inicio: 34.98, tono: 'tinta', foto: [41.2],
-      ola: AZUL_ETIQUETA,
-      textos: {lema: 'Hecho a mano, lote a lote', pide: 'Pídelo por WhatsApp', numero: '941 462 492', tiktok: '@trialferi', tamanos: 'De vaca o de cabra · 1 L · 475 ml · 250 ml', acento: '#7CC8FF', luz: '#3F86C4'},
-      // el número entra con la escena (no espera a la voz): así está completo y en color los 7 s del cierre
-      cues: {lema: 35.1, pide: 35.5, g1: 38.25, g2: 39.5, g3: 40.59},
+      id: '08-combinalo', tipo: 'combinalo', inicio: 38.66, tono: 'noche', foto: [40.6, 42.6],
+      transicion: 'fundido',
+      textos: {l1: 'Tu desayuno', l2: 'favorito', resalta: 'favorito', tam: '136'},
+      cues: {titulo: 38.7, clave: 42.2},
+      lista: [
+        {txt: 'Granola', en: 38.88},
+        {txt: 'Cereales', en: 39.6},
+        {txt: 'Frutas', en: 40.26},
+      ],
+      imagenes: {heroe: 'img/natural-bowl.webp'},
+    },
+    {
+      // el número entra completo con un golpe al abrir la escena (no espera a la voz); g1-g3 son los grupos dichos
+      id: '09-cierre', tipo: 'cierre', inicio: 43.14, tono: 'tinta', foto: [45.2, 49.3],
+      transicion: 'zoom', ola: AZUL_ETIQUETA,
+      textos: {cta: 'Separa el tuyo hoy', resalta: 'hoy', tam: '96', whatsapp: 'WhatsApp', numero: '941 462 492', acento: '#7CC8FF'},
+      cues: {cta: 43.3, luz: 45.73, numero: 43.8, g1: 46.86, g2: 47.68, g3: 48.79},
       imagenes: {heroe: 'img/hero-vaca-cabra.png'},
     },
   ],

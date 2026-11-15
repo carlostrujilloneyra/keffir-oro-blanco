@@ -1,716 +1,674 @@
 [
  {
-  "text": "¿Quieres",
+  "text": "Fresa,",
   "startMs": 80,
-  "endMs": 640,
-  "timestampMs": 360,
+  "endMs": 600,
+  "timestampMs": 340,
   "confidence": null
  },
  {
-  "text": " algo",
-  "startMs": 640,
-  "endMs": 960,
-  "timestampMs": 800,
-  "confidence": null
- },
- {
-  "text": " más",
-  "startMs": 960,
-  "endMs": 1200,
-  "timestampMs": 1080,
-  "confidence": null
- },
- {
-  "text": " rico?",
-  "startMs": 1200,
-  "endMs": 1800,
-  "timestampMs": 1500,
-  "confidence": null
- },
- {
-  "text": " También",
-  "startMs": 1940,
-  "endMs": 2340,
-  "timestampMs": 2140,
-  "confidence": null
- },
- {
-  "text": " tenemos",
-  "startMs": 2340,
-  "endMs": 2880,
-  "timestampMs": 2610,
-  "confidence": null
- },
- {
-  "text": " kéfir",
-  "startMs": 2880,
-  "endMs": 3250,
-  "timestampMs": 3065,
-  "confidence": null
- },
- {
-  "text": " con",
-  "startMs": 3250,
-  "endMs": 3300,
-  "timestampMs": 3275,
-  "confidence": null
- },
- {
-  "text": " pulpa",
-  "startMs": 3660,
-  "endMs": 3860,
-  "timestampMs": 3760,
-  "confidence": null
- },
- {
-  "text": " de",
-  "startMs": 3860,
-  "endMs": 3980,
-  "timestampMs": 3920,
-  "confidence": null
- },
- {
-  "text": " fruta.",
-  "startMs": 4030,
-  "endMs": 4440,
-  "timestampMs": 4235,
-  "confidence": null
- },
- {
-  "text": " Hecho",
-  "startMs": 4560,
-  "endMs": 4750,
-  "timestampMs": 4655,
-  "confidence": null
- },
- {
-  "text": " con",
-  "startMs": 4750,
-  "endMs": 4940,
-  "timestampMs": 4845,
-  "confidence": null
- },
- {
-  "text": " fruta",
-  "startMs": 4940,
-  "endMs": 5250,
-  "timestampMs": 5095,
-  "confidence": null
- },
- {
-  "text": " de",
-  "startMs": 5250,
-  "endMs": 5370,
-  "timestampMs": 5310,
-  "confidence": null
- },
- {
-  "text": " verdad,",
-  "startMs": 5370,
-  "endMs": 5900,
-  "timestampMs": 5635,
-  "confidence": null
- },
- {
-  "text": " sin",
-  "startMs": 5900,
-  "endMs": 5940,
-  "timestampMs": 5920,
-  "confidence": null
- },
- {
-  "text": " colorantes",
-  "startMs": 6300,
-  "endMs": 6780,
-  "timestampMs": 6540,
-  "confidence": null
- },
- {
-  "text": " ni",
-  "startMs": 6780,
-  "endMs": 6910,
-  "timestampMs": 6845,
-  "confidence": null
- },
- {
-  "text": " saborizantes.",
-  "startMs": 6910,
-  "endMs": 7960,
-  "timestampMs": 7435,
-  "confidence": null
- },
- {
-  "text": " El",
-  "startMs": 8100,
-  "endMs": 8120,
-  "timestampMs": 8110,
-  "confidence": null
- },
- {
-  "text": " color",
-  "startMs": 8120,
-  "endMs": 8500,
-  "timestampMs": 8310,
-  "confidence": null
- },
- {
-  "text": " es",
-  "startMs": 8530,
-  "endMs": 8670,
-  "timestampMs": 8600,
-  "confidence": null
- },
- {
-  "text": " de",
-  "startMs": 8670,
-  "endMs": 8830,
-  "timestampMs": 8750,
-  "confidence": null
- },
- {
-  "text": " la",
-  "startMs": 8830,
-  "endMs": 8950,
-  "timestampMs": 8890,
-  "confidence": null
- },
- {
-  "text": " fruta.",
-  "startMs": 9020,
-  "endMs": 9460,
-  "timestampMs": 9240,
-  "confidence": null
- },
- {
-  "text": " Fresa",
-  "startMs": 9780,
-  "endMs": 10120,
-  "timestampMs": 9950,
-  "confidence": null
- },
- {
-  "text": " con",
-  "startMs": 10120,
-  "endMs": 10410,
-  "timestampMs": 10265,
-  "confidence": null
- },
- {
-  "text": " pulpa",
-  "startMs": 10410,
-  "endMs": 10890,
-  "timestampMs": 10650,
-  "confidence": null
- },
- {
-  "text": " natural,",
-  "startMs": 10890,
-  "endMs": 11710,
-  "timestampMs": 11300,
-  "confidence": null
- },
- {
-  "text": " con",
-  "startMs": 11710,
-  "endMs": 11890,
-  "timestampMs": 11800,
-  "confidence": null
- },
- {
-  "text": " antioxidantes",
-  "startMs": 11890,
-  "endMs": 12680,
-  "timestampMs": 12285,
-  "confidence": null
- },
- {
-  "text": " y",
-  "startMs": 12680,
-  "endMs": 12690,
-  "timestampMs": 12685,
-  "confidence": null
- },
- {
-  "text": " vitamina",
-  "startMs": 12770,
-  "endMs": 13400,
-  "timestampMs": 13085,
-  "confidence": null
- },
- {
-  "text": " C",
-  "startMs": 13500,
-  "endMs": 13600,
-  "timestampMs": 13550,
-  "confidence": null
- },
- {
-  "text": " de",
-  "startMs": 13600,
-  "endMs": 13710,
-  "timestampMs": 13655,
-  "confidence": null
- },
- {
-  "text": " la",
-  "startMs": 13710,
-  "endMs": 13800,
-  "timestampMs": 13755,
-  "confidence": null
- },
- {
-  "text": " fresa.",
-  "startMs": 14120,
-  "endMs": 14390,
-  "timestampMs": 14255,
-  "confidence": null
- },
- {
-  "text": " Arándanos,",
-  "startMs": 14580,
-  "endMs": 15220,
-  "timestampMs": 14900,
-  "confidence": null
- },
- {
-  "text": " también",
-  "startMs": 15220,
-  "endMs": 15710,
-  "timestampMs": 15465,
-  "confidence": null
- },
- {
-  "text": " con",
-  "startMs": 15800,
-  "endMs": 15930,
-  "timestampMs": 15865,
-  "confidence": null
- },
- {
-  "text": " pulpa",
-  "startMs": 15930,
-  "endMs": 16290,
-  "timestampMs": 16110,
-  "confidence": null
- },
- {
-  "text": " natural,",
-  "startMs": 16310,
-  "endMs": 16990,
-  "timestampMs": 16650,
-  "confidence": null
- },
- {
-  "text": " fuente",
-  "startMs": 17050,
-  "endMs": 17290,
-  "timestampMs": 17170,
-  "confidence": null
- },
- {
-  "text": " de",
-  "startMs": 17380,
-  "endMs": 17490,
-  "timestampMs": 17435,
-  "confidence": null
- },
- {
-  "text": " antioxidantes.",
-  "startMs": 17570,
-  "endMs": 18550,
-  "timestampMs": 18060,
-  "confidence": null
- },
- {
-  "text": " Y",
-  "startMs": 18660,
-  "endMs": 18750,
-  "timestampMs": 18705,
-  "confidence": null
- },
- {
-  "text": " el",
-  "startMs": 18750,
-  "endMs": 18860,
-  "timestampMs": 18805,
-  "confidence": null
- },
- {
-  "text": " más",
-  "startMs": 18860,
-  "endMs": 19160,
-  "timestampMs": 19010,
-  "confidence": null
- },
- {
-  "text": " pedido,",
-  "startMs": 19160,
-  "endMs": 19960,
-  "timestampMs": 19560,
+  "text": " arándanos,",
+  "startMs": 600,
+  "endMs": 1450,
+  "timestampMs": 1025,
   "confidence": null
  },
  {
   "text": " frutos",
-  "startMs": 19960,
-  "endMs": 20360,
-  "timestampMs": 20160,
+  "startMs": 1450,
+  "endMs": 1750,
+  "timestampMs": 1600,
   "confidence": null
  },
  {
   "text": " del",
-  "startMs": 20430,
-  "endMs": 20560,
-  "timestampMs": 20495,
+  "startMs": 1920,
+  "endMs": 2160,
+  "timestampMs": 2040,
   "confidence": null
  },
  {
-  "text": " bosque.",
-  "startMs": 20560,
-  "endMs": 21170,
-  "timestampMs": 20865,
+  "text": " bosque",
+  "startMs": 2160,
+  "endMs": 2590,
+  "timestampMs": 2375,
   "confidence": null
  },
  {
-  "text": " Cuatro",
-  "startMs": 21340,
-  "endMs": 21650,
-  "timestampMs": 21495,
+  "text": " o",
+  "startMs": 2650,
+  "endMs": 2660,
+  "timestampMs": 2655,
   "confidence": null
  },
  {
-  "text": " frutos",
-  "startMs": 21650,
-  "endMs": 22100,
-  "timestampMs": 21875,
+  "text": " chocolate...",
+  "startMs": 2760,
+  "endMs": 3620,
+  "timestampMs": 3190,
   "confidence": null
  },
  {
-  "text": " en",
-  "startMs": 22100,
-  "endMs": 22190,
-  "timestampMs": 22145,
+  "text": " ¿cuál",
+  "startMs": 3930,
+  "endMs": 4110,
+  "timestampMs": 4020,
   "confidence": null
  },
  {
-  "text": " una",
-  "startMs": 22260,
-  "endMs": 22470,
-  "timestampMs": 22365,
+  "text": " eliges?",
+  "startMs": 4110,
+  "endMs": 4650,
+  "timestampMs": 4380,
   "confidence": null
  },
  {
-  "text": " sola",
-  "startMs": 22470,
-  "endMs": 22700,
-  "timestampMs": 22585,
+  "text": " Es",
+  "startMs": 4650,
+  "endMs": 4990,
+  "timestampMs": 4820,
   "confidence": null
  },
  {
-  "text": " botella.",
-  "startMs": 22990,
-  "endMs": 23560,
-  "timestampMs": 23275,
-  "confidence": null
- },
- {
-  "text": " Fresa,",
-  "startMs": 23700,
-  "endMs": 24100,
-  "timestampMs": 23900,
-  "confidence": null
- },
- {
-  "text": " frambuesa,",
-  "startMs": 24130,
-  "endMs": 25000,
-  "timestampMs": 24565,
-  "confidence": null
- },
- {
-  "text": " arándano",
-  "startMs": 25000,
-  "endMs": 25640,
-  "timestampMs": 25320,
-  "confidence": null
- },
- {
-  "text": " y",
-  "startMs": 25640,
-  "endMs": 25720,
-  "timestampMs": 25680,
-  "confidence": null
- },
- {
-  "text": " zarzamora.",
-  "startMs": 25720,
-  "endMs": 26520,
-  "timestampMs": 26120,
-  "confidence": null
- },
- {
-  "text": " ¿Te",
-  "startMs": 26840,
-  "endMs": 26910,
-  "timestampMs": 26875,
-  "confidence": null
- },
- {
-  "text": " gusta",
-  "startMs": 26910,
-  "endMs": 27170,
-  "timestampMs": 27040,
-  "confidence": null
- },
- {
-  "text": " el",
-  "startMs": 27170,
-  "endMs": 27270,
-  "timestampMs": 27220,
-  "confidence": null
- },
- {
-  "text": " chocolate?",
-  "startMs": 27270,
-  "endMs": 27910,
-  "timestampMs": 27590,
-  "confidence": null
- },
- {
-  "text": " Lo",
-  "startMs": 27910,
-  "endMs": 28060,
-  "timestampMs": 27985,
-  "confidence": null
- },
- {
-  "text": " hacemos",
-  "startMs": 28060,
-  "endMs": 28470,
-  "timestampMs": 28265,
-  "confidence": null
- },
- {
-  "text": " con",
-  "startMs": 28490,
-  "endMs": 28670,
-  "timestampMs": 28580,
-  "confidence": null
- },
- {
-  "text": " cacao",
-  "startMs": 28670,
-  "endMs": 28910,
-  "timestampMs": 28790,
+  "text": " kéfir",
+  "startMs": 4990,
+  "endMs": 5390,
+  "timestampMs": 5190,
   "confidence": null
  },
  {
   "text": " de",
-  "startMs": 28980,
-  "endMs": 29100,
-  "timestampMs": 29040,
+  "startMs": 5390,
+  "endMs": 5560,
+  "timestampMs": 5475,
   "confidence": null
  },
  {
-  "text": " Quillabamba.",
-  "startMs": 29100,
-  "endMs": 30040,
-  "timestampMs": 29570,
-  "confidence": null
- },
- {
-  "text": " Todos",
-  "startMs": 30180,
-  "endMs": 30370,
-  "timestampMs": 30275,
-  "confidence": null
- },
- {
-  "text": " endulzados",
-  "startMs": 30370,
-  "endMs": 31020,
-  "timestampMs": 30695,
+  "text": " verdad,",
+  "startMs": 5560,
+  "endMs": 6260,
+  "timestampMs": 5910,
   "confidence": null
  },
  {
   "text": " con",
-  "startMs": 31020,
-  "endMs": 31220,
-  "timestampMs": 31120,
+  "startMs": 6260,
+  "endMs": 6500,
+  "timestampMs": 6380,
   "confidence": null
  },
  {
-  "text": " stevia.",
-  "startMs": 31220,
-  "endMs": 31840,
-  "timestampMs": 31530,
+  "text": " fruta",
+  "startMs": 6510,
+  "endMs": 6930,
+  "timestampMs": 6720,
   "confidence": null
  },
  {
-  "text": " Altos",
-  "startMs": 31990,
-  "endMs": 32170,
-  "timestampMs": 32080,
+  "text": " de",
+  "startMs": 6930,
+  "endMs": 7100,
+  "timestampMs": 7015,
   "confidence": null
  },
  {
-  "text": " en",
-  "startMs": 32240,
-  "endMs": 32340,
-  "timestampMs": 32290,
-  "confidence": null
- },
- {
-  "text": " probióticos",
-  "startMs": 32340,
-  "endMs": 33110,
-  "timestampMs": 32725,
-  "confidence": null
- },
- {
-  "text": " y",
-  "startMs": 33200,
-  "endMs": 33230,
-  "timestampMs": 33215,
+  "text": " verdad,",
+  "startMs": 7100,
+  "endMs": 7770,
+  "timestampMs": 7435,
   "confidence": null
  },
  {
   "text": " sin",
-  "startMs": 33230,
-  "endMs": 33340,
-  "timestampMs": 33285,
+  "startMs": 7820,
+  "endMs": 7980,
+  "timestampMs": 7900,
   "confidence": null
  },
  {
-  "text": " conservantes",
-  "startMs": 33700,
-  "endMs": 34280,
-  "timestampMs": 33990,
+  "text": " colorantes",
+  "startMs": 7990,
+  "endMs": 8410,
+  "timestampMs": 8200,
   "confidence": null
  },
  {
-  "text": " añadidos.",
-  "startMs": 34280,
-  "endMs": 35080,
-  "timestampMs": 34680,
+  "text": " ni",
+  "startMs": 8730,
+  "endMs": 8830,
+  "timestampMs": 8780,
   "confidence": null
  },
  {
-  "text": " Disfrútalos",
-  "startMs": 35230,
-  "endMs": 35880,
-  "timestampMs": 35555,
+  "text": " saborizantes.",
+  "startMs": 8830,
+  "endMs": 9680,
+  "timestampMs": 9255,
   "confidence": null
  },
  {
-  "text": " solos",
-  "startMs": 35880,
-  "endMs": 36280,
-  "timestampMs": 36080,
+  "text": " El",
+  "startMs": 9680,
+  "endMs": 9870,
+  "timestampMs": 9775,
   "confidence": null
  },
  {
-  "text": " o",
-  "startMs": 36280,
-  "endMs": 36350,
-  "timestampMs": 36315,
+  "text": " color",
+  "startMs": 9870,
+  "endMs": 10340,
+  "timestampMs": 10105,
+  "confidence": null
+ },
+ {
+  "text": " es",
+  "startMs": 10340,
+  "endMs": 10480,
+  "timestampMs": 10410,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "startMs": 10560,
+  "endMs": 10720,
+  "timestampMs": 10640,
+  "confidence": null
+ },
+ {
+  "text": " la",
+  "startMs": 10720,
+  "endMs": 10910,
+  "timestampMs": 10815,
+  "confidence": null
+ },
+ {
+  "text": " fruta.",
+  "startMs": 10910,
+  "endMs": 11440,
+  "timestampMs": 11175,
+  "confidence": null
+ },
+ {
+  "text": " Fresa,",
+  "startMs": 11630,
+  "endMs": 12040,
+  "timestampMs": 11835,
   "confidence": null
  },
  {
   "text": " con",
-  "startMs": 36350,
-  "endMs": 36570,
-  "timestampMs": 36460,
+  "startMs": 12040,
+  "endMs": 12240,
+  "timestampMs": 12140,
   "confidence": null
  },
  {
-  "text": " granola,",
-  "startMs": 36570,
-  "endMs": 37260,
-  "timestampMs": 36915,
+  "text": " pulpa",
+  "startMs": 12320,
+  "endMs": 12730,
+  "timestampMs": 12525,
   "confidence": null
  },
  {
-  "text": " cereales",
-  "startMs": 37310,
-  "endMs": 37930,
-  "timestampMs": 37620,
+  "text": " natural",
+  "startMs": 12730,
+  "endMs": 13130,
+  "timestampMs": 12930,
+  "confidence": null
+ },
+ {
+  "text": " y",
+  "startMs": 13360,
+  "endMs": 13420,
+  "timestampMs": 13390,
+  "confidence": null
+ },
+ {
+  "text": " la",
+  "startMs": 13420,
+  "endMs": 13590,
+  "timestampMs": 13505,
+  "confidence": null
+ },
+ {
+  "text": " vitamina",
+  "startMs": 13590,
+  "endMs": 14290,
+  "timestampMs": 13940,
+  "confidence": null
+ },
+ {
+  "text": " C",
+  "startMs": 14290,
+  "endMs": 14400,
+  "timestampMs": 14345,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "startMs": 14400,
+  "endMs": 14540,
+  "timestampMs": 14470,
+  "confidence": null
+ },
+ {
+  "text": " la",
+  "startMs": 14540,
+  "endMs": 14710,
+  "timestampMs": 14625,
+  "confidence": null
+ },
+ {
+  "text": " fresa.",
+  "startMs": 14710,
+  "endMs": 15240,
+  "timestampMs": 14975,
+  "confidence": null
+ },
+ {
+  "text": " Arándanos,",
+  "startMs": 15390,
+  "endMs": 16040,
+  "timestampMs": 15715,
+  "confidence": null
+ },
+ {
+  "text": " con",
+  "startMs": 16120,
+  "endMs": 16300,
+  "timestampMs": 16210,
+  "confidence": null
+ },
+ {
+  "text": " pulpa",
+  "startMs": 16300,
+  "endMs": 16680,
+  "timestampMs": 16490,
+  "confidence": null
+ },
+ {
+  "text": " natural,",
+  "startMs": 16680,
+  "endMs": 17370,
+  "timestampMs": 17025,
+  "confidence": null
+ },
+ {
+  "text": " fuente",
+  "startMs": 17370,
+  "endMs": 17820,
+  "timestampMs": 17595,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "startMs": 17820,
+  "endMs": 17830,
+  "timestampMs": 17825,
+  "confidence": null
+ },
+ {
+  "text": " antioxidantes.",
+  "startMs": 18000,
+  "endMs": 19080,
+  "timestampMs": 18540,
+  "confidence": null
+ },
+ {
+  "text": " Y",
+  "startMs": 19180,
+  "endMs": 19250,
+  "timestampMs": 19215,
+  "confidence": null
+ },
+ {
+  "text": " el",
+  "startMs": 19250,
+  "endMs": 19320,
+  "timestampMs": 19285,
+  "confidence": null
+ },
+ {
+  "text": " más",
+  "startMs": 19320,
+  "endMs": 19480,
+  "timestampMs": 19400,
+  "confidence": null
+ },
+ {
+  "text": " pedido:",
+  "startMs": 19630,
+  "endMs": 20230,
+  "timestampMs": 19930,
+  "confidence": null
+ },
+ {
+  "text": " frutos",
+  "startMs": 20230,
+  "endMs": 20720,
+  "timestampMs": 20475,
+  "confidence": null
+ },
+ {
+  "text": " del",
+  "startMs": 20720,
+  "endMs": 20830,
+  "timestampMs": 20775,
+  "confidence": null
+ },
+ {
+  "text": " bosque,",
+  "startMs": 21000,
+  "endMs": 21670,
+  "timestampMs": 21335,
+  "confidence": null
+ },
+ {
+  "text": " cuatro",
+  "startMs": 21840,
+  "endMs": 22150,
+  "timestampMs": 21995,
+  "confidence": null
+ },
+ {
+  "text": " frutos",
+  "startMs": 22150,
+  "endMs": 22600,
+  "timestampMs": 22375,
+  "confidence": null
+ },
+ {
+  "text": " en",
+  "startMs": 22600,
+  "endMs": 22720,
+  "timestampMs": 22660,
+  "confidence": null
+ },
+ {
+  "text": " una",
+  "startMs": 22720,
+  "endMs": 23010,
+  "timestampMs": 22865,
+  "confidence": null
+ },
+ {
+  "text": " sola",
+  "startMs": 23010,
+  "endMs": 23300,
+  "timestampMs": 23155,
+  "confidence": null
+ },
+ {
+  "text": " botella.",
+  "startMs": 23300,
+  "endMs": 23900,
+  "timestampMs": 23600,
+  "confidence": null
+ },
+ {
+  "text": " ¿Antojo",
+  "startMs": 24240,
+  "endMs": 24520,
+  "timestampMs": 24380,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "startMs": 24520,
+  "endMs": 24670,
+  "timestampMs": 24595,
+  "confidence": null
+ },
+ {
+  "text": " chocolate?",
+  "startMs": 24670,
+  "endMs": 25480,
+  "timestampMs": 25075,
+  "confidence": null
+ },
+ {
+  "text": " Lo",
+  "startMs": 25480,
+  "endMs": 25610,
+  "timestampMs": 25545,
+  "confidence": null
+ },
+ {
+  "text": " hacemos",
+  "startMs": 25610,
+  "endMs": 26080,
+  "timestampMs": 25845,
+  "confidence": null
+ },
+ {
+  "text": " con",
+  "startMs": 26080,
+  "endMs": 26280,
+  "timestampMs": 26180,
+  "confidence": null
+ },
+ {
+  "text": " cacao",
+  "startMs": 26280,
+  "endMs": 26610,
+  "timestampMs": 26445,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "startMs": 26610,
+  "endMs": 26710,
+  "timestampMs": 26660,
+  "confidence": null
+ },
+ {
+  "text": " Quillabamba.",
+  "startMs": 26770,
+  "endMs": 27520,
+  "timestampMs": 27145,
+  "confidence": null
+ },
+ {
+  "text": " Dulce,",
+  "startMs": 27710,
+  "endMs": 27920,
+  "timestampMs": 27815,
+  "confidence": null
+ },
+ {
+  "text": " pero",
+  "startMs": 28070,
+  "endMs": 28290,
+  "timestampMs": 28180,
+  "confidence": null
+ },
+ {
+  "text": " endulzado",
+  "startMs": 28290,
+  "endMs": 28920,
+  "timestampMs": 28605,
+  "confidence": null
+ },
+ {
+  "text": " con",
+  "startMs": 28920,
+  "endMs": 29130,
+  "timestampMs": 29025,
+  "confidence": null
+ },
+ {
+  "text": " stevia",
+  "startMs": 29130,
+  "endMs": 29620,
+  "timestampMs": 29375,
+  "confidence": null
+ },
+ {
+  "text": " y",
+  "startMs": 29620,
+  "endMs": 29690,
+  "timestampMs": 29655,
+  "confidence": null
+ },
+ {
+  "text": " sin",
+  "startMs": 29690,
+  "endMs": 29890,
+  "timestampMs": 29790,
+  "confidence": null
+ },
+ {
+  "text": " conservantes",
+  "startMs": 29890,
+  "endMs": 30750,
+  "timestampMs": 30320,
+  "confidence": null
+ },
+ {
+  "text": " añadidos.",
+  "startMs": 30750,
+  "endMs": 31600,
+  "timestampMs": 31175,
+  "confidence": null
+ },
+ {
+  "text": " Solo,",
+  "startMs": 31790,
+  "endMs": 31930,
+  "timestampMs": 31860,
+  "confidence": null
+ },
+ {
+  "text": " con",
+  "startMs": 31930,
+  "endMs": 32180,
+  "timestampMs": 32055,
+  "confidence": null
+ },
+ {
+  "text": " granola",
+  "startMs": 32180,
+  "endMs": 32750,
+  "timestampMs": 32465,
   "confidence": null
  },
  {
   "text": " o",
-  "startMs": 38020,
-  "endMs": 38060,
-  "timestampMs": 38040,
+  "startMs": 32750,
+  "endMs": 32830,
+  "timestampMs": 32790,
   "confidence": null
  },
  {
-  "text": " tus",
-  "startMs": 38060,
-  "endMs": 38260,
-  "timestampMs": 38160,
+  "text": " en",
+  "startMs": 32830,
+  "endMs": 32990,
+  "timestampMs": 32910,
   "confidence": null
  },
  {
-  "text": " frutas",
-  "startMs": 38260,
-  "endMs": 38600,
-  "timestampMs": 38430,
+  "text": " tu",
+  "startMs": 32990,
+  "endMs": 33150,
+  "timestampMs": 33070,
   "confidence": null
  },
  {
-  "text": " favoritas.",
-  "startMs": 38670,
-  "endMs": 39300,
-  "timestampMs": 38985,
+  "text": " bowl",
+  "startMs": 33150,
+  "endMs": 33350,
+  "timestampMs": 33250,
   "confidence": null
  },
  {
-  "text": " Pídelos",
-  "startMs": 39570,
-  "endMs": 40140,
-  "timestampMs": 39855,
+  "text": " de",
+  "startMs": 33520,
+  "endMs": 33640,
+  "timestampMs": 33580,
+  "confidence": null
+ },
+ {
+  "text": " frutas.",
+  "startMs": 33690,
+  "endMs": 34440,
+  "timestampMs": 34065,
+  "confidence": null
+ },
+ {
+  "text": " Comenta",
+  "startMs": 34630,
+  "endMs": 34840,
+  "timestampMs": 34735,
+  "confidence": null
+ },
+ {
+  "text": " cuál",
+  "startMs": 34990,
+  "endMs": 35240,
+  "timestampMs": 35115,
+  "confidence": null
+ },
+ {
+  "text": " elegirías",
+  "startMs": 35320,
+  "endMs": 36000,
+  "timestampMs": 35660,
+  "confidence": null
+ },
+ {
+  "text": " y",
+  "startMs": 36000,
+  "endMs": 36060,
+  "timestampMs": 36030,
+  "confidence": null
+ },
+ {
+  "text": " pídelo",
+  "startMs": 36060,
+  "endMs": 36440,
+  "timestampMs": 36250,
   "confidence": null
  },
  {
   "text": " por",
-  "startMs": 40140,
-  "endMs": 40420,
-  "timestampMs": 40280,
+  "startMs": 36440,
+  "endMs": 36640,
+  "timestampMs": 36540,
   "confidence": null
  },
  {
   "text": " WhatsApp",
-  "startMs": 40420,
-  "endMs": 40970,
-  "timestampMs": 40695,
+  "startMs": 36640,
+  "endMs": 37030,
+  "timestampMs": 36835,
   "confidence": null
  },
  {
   "text": " al",
-  "startMs": 41340,
-  "endMs": 41380,
-  "timestampMs": 41360,
+  "startMs": 37200,
+  "endMs": 37410,
+  "timestampMs": 37305,
   "confidence": null
  },
  {
   "text": " 941",
-  "startMs": 40720,
-  "endMs": 41850,
-  "timestampMs": 41285,
+  "startMs": 37460,
+  "endMs": 38430,
+  "timestampMs": 37945,
   "confidence": null
  },
  {
   "text": " 462",
-  "startMs": 42030,
-  "endMs": 42950,
-  "timestampMs": 42490,
+  "startMs": 38600,
+  "endMs": 39460,
+  "timestampMs": 39030,
   "confidence": null
  },
  {
   "text": " 492",
-  "startMs": 43130,
-  "endMs": 44200,
-  "timestampMs": 43665,
+  "startMs": 39640,
+  "endMs": 40570,
+  "timestampMs": 40105,
   "confidence": null
  }
 ]

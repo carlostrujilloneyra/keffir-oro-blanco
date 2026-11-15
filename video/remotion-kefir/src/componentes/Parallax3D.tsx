@@ -17,9 +17,9 @@ const DIST = ALTO / 2 / Math.tan((FOV / 2) * (Math.PI / 180));
 const mx = (x: number) => x - ANCHO / 2;
 const my = (y: number) => ALTO / 2 - y;
 
-export type Plano = {src: string; ancho: number; alto: number; x: number; base: number; z?: number; giro?: number; sombra?: boolean; reflejo?: number};
+export type Plano = {src: string; ancho: number; alto: number; x: number; base: number; z?: number; giro?: number; sombra?: boolean; reflejo?: number; funde?: number};
 export type Franja = {color: string; x: number; ancho: number; z: number};
-export type Camara = {x?: number; y?: number; acercar?: number; miraX?: number; miraY?: number};
+export type Camara = {x?: number; y?: number; acercar?: number; miraX?: number; miraY?: number; miraZ?: number};
 
 // Sombra de contacto: elipse con caída suave generada como textura (un círculo plano se vería recortado).
 const useSombra = () =>
@@ -51,11 +51,28 @@ const useDegradado = () =>
     return tex;
   }, []);
 
+// Borde superior desvanecido para fotos con fondo propio (`funde` = fracción del alto): transparente arriba, opaca desde ahí.
+const useFundido = (frac?: number) =>
+  React.useMemo(() => {
+    if (!frac) return null;
+    const N = 128, data = new Uint8Array(N * 4);
+    for (let j = 0; j < N; j++) {
+      const s = Math.min(1, (1 - j / (N - 1)) / frac), v = Math.round(255 * s * s * (3 - 2 * s));
+      data.set([v, v, v, 255], j * 4);
+    }
+    const tex = new THREE.DataTexture(data, 1, N, THREE.RGBAFormat);
+    tex.magFilter = THREE.LinearFilter;
+    tex.minFilter = THREE.LinearFilter;
+    tex.needsUpdate = true;
+    return tex;
+  }, [frac]);
+
 const Imagen: React.FC<{p: Plano; sombra: THREE.Texture; degradado: THREE.Texture}> = ({p, sombra, degradado}) => {
   // useTexture suspende hasta que carga; ThreeCanvas no captura el frame con un Suspense pendiente.
   const tex = useTexture(staticFile(p.src));
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = 8;
+  const fundido = useFundido(p.funde);
   return (
     <group position={[mx(p.x), my(p.base), p.z ?? 0]}>
       {p.reflejo && (
@@ -72,7 +89,7 @@ const Imagen: React.FC<{p: Plano; sombra: THREE.Texture; degradado: THREE.Textur
       )}
       <mesh position={[0, p.alto / 2, 0]} rotation-y={p.giro ?? 0}>
         <planeGeometry args={[p.ancho, p.alto]} />
-        <meshBasicMaterial map={tex} transparent alphaTest={0.02} toneMapped={false} side={THREE.DoubleSide} />
+        <meshBasicMaterial map={tex} alphaMap={fundido ?? undefined} transparent alphaTest={0.02} toneMapped={false} side={THREE.DoubleSide} />
       </mesh>
     </group>
   );
@@ -97,7 +114,7 @@ const Cam: React.FC<{c: Camara}> = ({c}) => {
   const camera = useThree((s) => s.camera);
   camera.position.set(c.x ?? 0, c.y ?? 0, DIST - (c.acercar ?? 0));
   // por defecto mira recto: mover la cámara desplaza cada capa según su profundidad sin girar el encuadre
-  camera.lookAt(c.miraX ?? c.x ?? 0, c.miraY ?? c.y ?? 0, 0);
+  camera.lookAt(c.miraX ?? c.x ?? 0, c.miraY ?? c.y ?? 0, c.miraZ ?? 0);
   return null;
 };
 
@@ -118,5 +135,28 @@ export const Parallax3D: React.FC<{planos: Plano[]; franjas?: Franja[]; camara: 
         <Imagen key={p.src + p.x} p={p} sombra={sombra} degradado={degradado} />
       ))}
     </ThreeCanvas>
+  );
+};
+
+/*
+  Foto a cuadro completo (public/img/*-hero.webp, *-bowl.webp) como plano al fondo de la escena 3D, para moverle una cámara de verdad:
+  - `zoom` acerca la cámara hacia `foco` (px del cuadro con la foto en reposo): ese punto no se mueve y todo crece desde él.
+  - `incl` inclina la vista unos grados [horizontal, vertical] orbitando la cámara alrededor de la foto. La foto no gira
+    sobre sí misma: es plana y se notaría.
+  - `escala` y `dy` colocan la foto en reposo (algo más grande, más abajo); si al bajar asoma su borde superior, `funde`
+    lo desvanece sobre el fondo de la escena (fracción del alto de la foto).
+  Las motas flotan delante de la foto y se desplazan más que ella (paralaje).
+*/
+const Z_FOTO = -1400, LEJOS = DIST - Z_FOTO, KZ = LEJOS / DIST;
+export const Foto3D: React.FC<{src: string; t: number; zoom?: number; foco?: [number, number]; incl?: [number, number]; escala?: number; dy?: number; funde?: number; motas?: string}> = ({src, t, zoom = 1, foco = [540, 960], incl = [0, 0], escala = 1.04, dy = 0, funde, motas = '#E4F1FB'}) => {
+  const u = 1 - 1 / zoom;
+  // la cámara avanza por la recta que va de su posición inicial al foco, que está sobre el plano de la foto
+  const cx = mx(foco[0]) * KZ * u, cy = my(foco[1]) * KZ * u;
+  const brazo = LEJOS * (1 - u), rad = Math.PI / 180;
+  const alto = ALTO * KZ * escala;
+  return (
+    <Parallax3D t={t} motas={motas} nMotas={24}
+      camara={{x: cx + Math.tan(incl[0] * rad) * brazo, y: cy + Math.tan(incl[1] * rad) * brazo, acercar: LEJOS * u, miraX: cx, miraY: cy, miraZ: Z_FOTO}}
+      planos={[{src, ancho: ANCHO * KZ * escala, alto, x: 540, base: 960 + alto / 2 + dy * KZ, z: Z_FOTO, sombra: false, funde}]} />
   );
 };

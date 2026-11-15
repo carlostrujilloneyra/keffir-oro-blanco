@@ -1,13 +1,13 @@
 import React from 'react';
 import {AbsoluteFill, Img, OffthreadVideo, staticFile, useVideoConfig} from 'remotion';
-import {cl, muelle, rampa, useT} from '../anim';
-import {Bowl} from '../componentes/Bowl';
-import {Fondo} from '../componentes/Fondo';
-import {IconoTikTok, IconoWhatsApp} from '../componentes/Iconos';
-import {Producto} from '../componentes/Producto';
+import {cl, EIO, pulso, rampa, useT, vaiven} from '../anim';
+import {Fondo, Grano} from '../componentes/Fondo';
+import {Franjas} from '../componentes/Franjas';
+import {IconoWhatsApp} from '../componentes/Iconos';
+import {Foto3D} from '../componentes/Parallax3D';
 import {Cinta, Dato, Linea} from '../componentes/Texto';
 import type {Escena, VideoKefirProps} from '../datos/tipos';
-import {FUENTE, PALETAS, PAPEL, SEGURA, TINTA} from '../tema';
+import {ALTO, ANCHO, FUENTE, PALETAS, SEGURA} from '../tema';
 
 type FC = React.FC<{e: Escena; variante: VideoKefirProps['variante']}>;
 
@@ -17,13 +17,16 @@ export const Halo: React.FC<{x: number; y: number; d: number; color?: string; fu
 );
 
 /*
-  Foto héroe con fondo oscuro propio (public/img/hero-*.png, 1498x1792): se coloca a escala `k` y se funde con la escena
+  Foto héroe con fondo oscuro propio (public/img/hero-*.png, base 1498x1792): se coloca a escala `k` y se funde con la escena
   desvaneciendo los bordes que no llegan al borde del cuadro. La escena usa de fondo el mismo color oscuro de la foto.
+  `izq` = [desde, hasta] en % del ancho: oculta todo lo que queda a la izquierda (para encuadrar una sola botella).
+  `incl` la inclina unos grados en 3D [horizontal, vertical]; no es un giro, solo volumen.
 */
-export const FotoHeroe: React.FC<{src: string; k: number; left: number; top: number; arriba?: number; abajo?: number; der?: number; escala?: number; origen?: string; opacidad?: number}> = ({src, k, left, top, arriba = 0, abajo = 0, der = 0, escala = 1, origen = '50% 50%', opacidad = 1}) => {
-  const mascara = `linear-gradient(to bottom, transparent 0%, #000 ${arriba}%, #000 ${100 - abajo}%, transparent 100%), linear-gradient(to right, #000 ${100 - der}%, transparent 100%)`;
+export const FotoHeroe: React.FC<{src: string; k: number; left: number; top: number; arriba?: number; abajo?: number; der?: number; izq?: [number, number]; escala?: number; origen?: string; opacidad?: number; incl?: [number, number]}> = ({src, k, left, top, arriba = 0, abajo = 0, der = 0, izq = [0, 0], escala = 1, origen = '50% 50%', opacidad = 1, incl = [0, 0]}) => {
+  const mascara = `linear-gradient(to bottom, transparent 0%, #000 ${arriba}%, #000 ${100 - abajo}%, transparent 100%), linear-gradient(to right, transparent ${izq[0]}%, #000 ${izq[1]}%, #000 ${100 - der}%, transparent 100%)`;
   return (
-    <Img src={staticFile(src)} style={{position: 'absolute', left, top, width: 1498 * k, height: 1792 * k, transformOrigin: origen, scale: `${escala}`, opacity: opacidad,
+    <Img src={staticFile(src)} style={{position: 'absolute', left, top, width: 1498 * k, height: 1792 * k, maxWidth: 'none', transformOrigin: origen, scale: `${escala}`, opacity: opacidad,
+      transform: `perspective(2400px) rotateY(${incl[0]}deg) rotateX(${incl[1]}deg)`,
       WebkitMaskImage: mascara, maskImage: mascara, WebkitMaskComposite: 'source-in', maskComposite: 'intersect'}} />
   );
 };
@@ -43,78 +46,106 @@ export const Heroe: React.FC<{e: Escena; children: React.ReactNode}> = ({e, chil
   );
 };
 
-const BOTELLA = {
-  natural: {ancho: 358, alto: 1150, base: 1556, bowl: ['#2D7FC4', '#123C63'] as [string, string], kefir: ['#FFFFFF', '#EFE7D6'] as [string, string]},
-  frutado: {ancho: 384, alto: 960, base: 1716, bowl: ['#D8336F', '#7A1040'] as [string, string], kefir: ['#FBD3E0', '#F2A9C4'] as [string, string]},
-};
-
-// Combínalo: bowl ilustrado; granola, cereales y fruta caen cuando la voz los nombra (las cintas entran antes, para que se lean).
-export const Combinalo: FC = ({e, variante}) => {
-  const t = useT();
-  const b = BOTELLA[variante];
-  const s = muelle(t, e.inicio - 0.2, true);
-  const nat = variante === 'natural';
+/*
+  Foto IA a cuadro completo (public/img/*-hero.webp y *-bowl.webp, con su fondo oscuro). Es la cámara de las escenas:
+  `z` acerca hacia `foco` (px del cuadro; moverlo con z > 1 es un paneo), `dx`/`dy` desplazan y `giroY`/`giroX` inclinan en 3D.
+  Con z ≥ 1 y sin desplazar, la foto siempre cubre el cuadro; si se desplaza, `funde` desvanece los bordes que entran
+  ([arriba, izquierda] en %) sobre `fondo`, el color del borde de la foto.
+*/
+export const FotoIA: React.FC<{src: string; z?: number; foco?: [number, number]; dx?: number; dy?: number; giroY?: number; giroX?: number; desenfoque?: number; funde?: [number, number]; fondo?: string}> = ({src, z = 1, foco = [540, 960], dx = 0, dy = 0, giroY = 0, giroX = 0, desenfoque = 0, funde, fondo}) => {
+  const mascara = funde && `linear-gradient(to bottom, transparent 0%, #000 ${funde[0]}%), linear-gradient(to right, transparent 0%, #000 ${funde[1]}%)`;
   return (
-    <AbsoluteFill>
-      <Fondo tono={e.tono} t={t} luz={[40, 58]} />
-      <Heroe e={e}>
-        <Bowl t={t} x={400} y={1240} A={375} bowl={b.bowl} kefir={b.kefir} cues={{granola: e.cues.granola, cereales: e.cues.cereales, frutas: e.cues.frutas}} />
-        {/* la botella va delante del bowl y apoyada más abajo: nada tapa su etiqueta */}
-        <Producto src={e.imagenes!.heroe} ancho={b.ancho} alto={b.alto} x={884} base={b.base + (1 - s) * 60} reflejo={0.2} t={t} opacidad={cl(s * 3)} sombra="rgba(90,70,30,.3)" brillo={e.inicio + 1.1} />
-      </Heroe>
-      <Linea txt={e.textos.titulo} t={t} en={e.cues.titulo} y={240} tam={nat ? 176 : 148} color={TINTA} />
-      <Dato t={t} en={e.cues.apoyo} y={nat ? 432 : 404} tam={44} color={TINTA}>{e.textos.apoyo}</Dato>
-      <div style={{position: 'absolute', left: SEGURA.x0, top: nat ? 524 : 496, width: SEGURA.x1 - SEGURA.x0, display: 'flex', flexWrap: 'wrap', gap: '14px 12px'}}>
-        {e.lista!.map((c) => (
-          <Cinta key={c.txt} txt={c.txt} t={t} en={c.en} y={0} tam={36} enFlujo />
-        ))}
-      </div>
+    <AbsoluteFill style={{background: fondo, overflow: 'hidden'}}>
+      <Img src={staticFile(src)} style={{position: 'absolute', left: 0, top: 0, width: ANCHO, height: ALTO, objectFit: 'cover', transformOrigin: `${foco[0]}px ${foco[1]}px`,
+        transform: `perspective(2200px) translate(${dx}px, ${dy}px) rotateY(${giroY}deg) rotateX(${giroX}deg) scale(${z})`, filter: desenfoque ? `blur(${desenfoque}px)` : undefined,
+        WebkitMaskImage: mascara, maskImage: mascara, WebkitMaskComposite: 'source-in', maskComposite: 'intersect'}} />
     </AbsoluteFill>
   );
 };
 
-const FILA_FRUTADOS = [
-  {src: 'img/fresa-recta.png', w: 556, h: 1307},
-  {src: 'img/arandanos-recta.png', w: 472, h: 1231},
-  {src: 'img/frutos.png', w: 585, h: 1463},
-  {src: 'img/chocolate-botella.png', w: 465, h: 1300},
-];
+// Destello a cuadro completo en el segundo `en`: acompaña a un golpe de sonido.
+export const Destello: React.FC<{t: number; en: number; color?: string; fuerza?: number}> = ({t, en, color = '#FFFFFF', fuerza = 0.75}) => {
+  const p = pulso(t, en, 0.05, 0.32);
+  return p > 0 ? <AbsoluteFill style={{background: color, opacity: p * fuerza, pointerEvents: 'none'}} /> : null;
+};
 
-// Cierre: TRIALFERI como palabra, WhatsApp y TikTok. El número se ve completo y en color desde que aparece; cada grupo pulsa cuando la voz lo dicta.
-export const Cierre: FC = ({e, variante}) => {
+// Trazo de luz que se dibuja de izquierda a derecha (subraya la marca en el cierre); la punta brilla mientras avanza.
+export const TrazoLuz: React.FC<{t: number; en: number; x?: number; y: number; ancho: number; color: string; grosor?: number}> = ({t, en, x = SEGURA.x0, y, ancho, color, grosor = 7}) => {
+  const p = rampa(t, en, en + 0.75, 0, 1, EIO);
+  if (p <= 0) return null;
+  const punta = Math.sin(Math.PI * p);
+  return (
+    <>
+      <div style={{position: 'absolute', left: x, top: y, width: ancho * p, height: grosor, borderRadius: grosor, background: `linear-gradient(to right, ${color} 0%, #FFFFFF 100%)`,
+        boxShadow: `0 0 16px ${color}, 0 0 44px ${color}`, opacity: 1 - rampa(t, en + 0.75, en + 1.6, 0, 0.35, (k) => k)}} />
+      {punta > 0.02 && <div style={{position: 'absolute', left: x + ancho * p - 90, top: y + grosor / 2 - 90, width: 180, height: 180, borderRadius: '50%', background: `radial-gradient(circle, #FFFFFF 0%, ${color} 22%, transparent 64%)`, opacity: punta * 0.9, mixBlendMode: 'screen'}} />}
+    </>
+  );
+};
+
+/*
+  Combínalo: la foto del bowl con el mismo movimiento de las escenas de producto (la cámara se acerca despacio hacia la tapa
+  y el logo de la botella y vuelve a abrir, con una inclinación leve). Las cintas, si hay, entran cuando la voz nombra cada ingrediente.
+*/
+const FOCO_BOWL: Record<string, [number, number]> = {'img/natural-bowl.webp': [810, 900], 'img/frutado-bowl.webp': [815, 940]};
+export const Combinalo: FC = ({e}) => {
   const t = useT(), p = PALETAS[e.tono];
+  const a = e.inicio - 0.3, b = e.fin! + 0.3;
+  const tam = Number(e.textos.tam);
+  return (
+    <AbsoluteFill style={{background: PALETAS[e.tono].sombra}}>
+      <Heroe e={e}>
+        <Foto3D src={e.imagenes!.heroe} t={t} zoom={1 + vaiven(t, a, b) * 0.12} foco={FOCO_BOWL[e.imagenes!.heroe]} incl={[-2 + rampa(t, a, b, 0, 1.4, (k) => k), -0.8]} motas={p.acento} />
+      </Heroe>
+      <Grano fuerza={0.18} />
+      <Linea txt={e.textos.l1} t={t} en={e.cues.titulo} y={240} tam={tam} sombra resalta={e.textos.resalta} colorResalta={p.subtitulo} />
+      <Linea txt={e.textos.l2} t={t} en={e.cues.titulo + 0.12} y={240 + tam + 8} tam={tam} sombra resalta={e.textos.resalta} colorResalta={p.subtitulo} />
+      {e.lista?.map((c, i) => (
+        <Cinta key={c.txt} txt={c.txt} t={t} en={c.en} y={240 + tam * 2 + 52 + i * 86} tam={36} fondo={p.cinta} color={p.cintaTexto} />
+      ))}
+    </AbsoluteFill>
+  );
+};
+
+/*
+  Cierre: la llamada a la acción, TRIALFERI como palabra con un trazo de luz y el WhatsApp.
+  El número entra completo de un golpe (no por partes) al abrir la escena; cada grupo pulsa cuando la voz lo dicta.
+  Natural: la foto héroe queda bajo el número, a un tamaño en que el nombre y el logo de las etiquetas terminan justo
+  sobre los subtítulos; el zoom crece desde ahí (base de los logos) para que no bajen.
+*/
+export const Cierre: FC = ({e, variante}) => {
+  const t = useT(), c = e.cues;
   const grupos = e.textos.numero.split(' ');
-  const cueGrupo = [e.cues.g1, e.cues.g2, e.cues.g3];
+  const cueGrupo = [c.g1, c.g2, c.g3];
   const sd = rampa(t, e.inicio - 0.25, e.inicio + 0.9);
+  const llega = rampa(t, c.numero, c.numero + 0.34);
+  const golpe = pulso(t, c.numero, 0.07, 0.45);
+  const a = e.inicio - 0.3, b = e.fin!;
   return (
     <AbsoluteFill>
       <Fondo tono={e.tono} t={t} luz={[46, 30]} />
-      {variante === 'frutado' && <div style={{position: 'absolute', left: 540 - 700, top: 880, width: 1400, height: 1100, borderRadius: '50%', background: `radial-gradient(ellipse, ${e.textos.luz} 0%, transparent 66%)`, opacity: 0.42 * rampa(t, e.inicio + 0.3, e.inicio + 1.4)}} />}
-      <Cinta txt={e.textos.lema} t={t} en={e.cues.lema} y={244} tam={34} fondo={p.cinta} color={p.cintaTexto} />
-      <Linea txt="TRIALFERI" t={t} en={e.inicio - 0.12} y={330} tam={234} tracking={-1} />
-      <Dato t={t} en={e.cues.pide} y={604} tam={40}>
-        <span style={{display: 'flex', alignItems: 'center', gap: 16}}><IconoWhatsApp tam={48} />{e.textos.pide}</span>
+      {variante === 'natural' ? (
+        <>
+          {/* halo del mismo azul oscuro de la foto: sus bordes se pierden en él y no se ve el recuadro sobre el fondo tinta */}
+          <div style={{position: 'absolute', left: 540 - 1100, top: 500, width: 2200, height: 2000, borderRadius: '50%', background: 'radial-gradient(closest-side, #060F1E 0%, #060F1E 55%, transparent 74%)', opacity: cl(sd * 2)}} />
+          <FotoHeroe src={e.imagenes!.heroe} k={0.7} left={-55} top={728 + (1 - sd) * 60} arriba={14} der={9} origen="615px 742px" escala={1 + vaiven(t, a, b, 0.5, 0.15) * 0.08} opacidad={cl(sd * 2)} incl={[-1.8 + rampa(t, a, b, 0, 3, (k) => k), 0.8]} />
+        </>
+      ) : (
+        <Franjas t={t} en={e.inicio - 0.1} base={1660} alto={600} desde={960} />
+      )}
+      <Linea txt={e.textos.cta} t={t} en={c.cta} y={240} tam={Number(e.textos.tam)} resalta={e.textos.resalta} colorResalta={e.textos.acento} />
+      <Linea txt="TRIALFERI" t={t} en={e.inicio - 0.12} y={346} tam={234} tracking={-1} />
+      <TrazoLuz t={t} en={c.luz} y={596} ancho={806} color={e.textos.acento} />
+      <Dato t={t} en={c.numero - 0.12} y={636} tam={40}>
+        <span style={{display: 'flex', alignItems: 'center', gap: 16}}><IconoWhatsApp tam={48} />{e.textos.whatsapp}</span>
       </Dato>
-      <div style={{position: 'absolute', left: SEGURA.x0, top: 662, display: 'flex', gap: 34, fontFamily: FUENTE.anton, fontSize: 168, lineHeight: 1, opacity: rampa(t, e.cues.pide + 0.1, e.cues.pide + 0.6)}}>
+      <div style={{position: 'absolute', left: SEGURA.x0, top: 700, display: 'flex', gap: 32, fontFamily: FUENTE.anton, fontSize: 156, lineHeight: 1, opacity: cl(llega * 2.5), scale: `${1.28 - llega * 0.28 + golpe * 0.03}`, transformOrigin: '0 60%'}}>
         {grupos.map((g, i) => {
-          const c = cueGrupo[i];
-          const pulso = t < c + 0.12 ? rampa(t, c, c + 0.12) : 1 - rampa(t, c + 0.2, c + 0.7, 0, 1, (k) => k);
-          return <span key={i} style={{color: e.textos.acento, scale: `${1 + pulso * 0.06}`, transformOrigin: '50% 70%'}}>{g}</span>;
+          const dicho = pulso(t, cueGrupo[i], 0.12, 0.6);
+          return <span key={i} style={{color: e.textos.acento, scale: `${1 + dicho * 0.06}`, transformOrigin: '50% 70%'}}>{g}</span>;
         })}
       </div>
-      <Dato t={t} en={e.cues.pide + 0.35} y={838} tam={48} peso={600}>
-        <span style={{display: 'flex', alignItems: 'center', gap: 14}}><IconoTikTok tam={44} color={PAPEL} />{e.textos.tiktok}</span>
-      </Dato>
-      <Dato t={t} en={e.cues.pide + 0.5} y={906} tam={34} color="rgba(248,242,230,.78)">{e.textos.tamanos}</Dato>
-      {variante === 'natural' ? (
-        // foto héroe: las dos botellas al ~63 % del ancho en la mitad inferior; los subtítulos caen sobre el hombro blanco, encima de la etiqueta
-        <FotoHeroe src={e.imagenes!.heroe} k={0.8} left={-160} top={900 + (1 - sd) * 70} arriba={16} der={9} origen="58% 40%" escala={1.05 - sd * 0.05} opacidad={cl(sd * 2)} />
-      ) : (
-        FILA_FRUTADOS.map((b, i) => {
-          const s = muelle(t, e.inicio - 0.2 + i * 0.09, true);
-          return <Producto key={b.src} src={b.src} ancho={(660 * b.w) / b.h} alto={660} x={165 + i * 250} base={1618 + (1 - s) * 90} reflejo={0.22} t={t} opacidad={cl(s * 3)} sombra="rgba(0,0,0,.6)" brillo={e.inicio + 1 + i * 0.18} />;
-        })
-      )}
+      <Destello t={t} en={c.numero} color={e.textos.acento} fuerza={0.22} />
     </AbsoluteFill>
   );
 };

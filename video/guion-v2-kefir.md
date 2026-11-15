@@ -7,22 +7,25 @@ Objetivo: que el video **venda**: gancho en el segundo 0, crear la necesidad, be
 - `assets/sfx/voz-kefir-frutado-v2.mp3`
 
 ### Natural
+Guion final (el que tiene `voz-kefir-natural-v2.mp3`, 49.9 s):
 ```
 [seria] Mucha gente cree que el kéfir es yogurt... y no lo es.
 
 [cálida] El nuestro es cien por ciento kéfir natural: vivo, hecho a mano, lote a lote.
 
-[cálida] ¿Buscas algo natural para tu día a día? Sin azúcar añadida y sin conservantes añadidos.
+[entusiasmada] Fortalece tu microbiota, es alto en probióticos vivos... y contribuye a una digestión equilibrada.
 
-[entusiasmada] Es alto en probióticos vivos, bajo en lactosa... fortalece tu microbiota y contribuye a una digestión equilibrada.
+[cálida] Sin azúcar añadida, sin conservantes añadidos... cien por ciento artesanal.
 
-[cálida] Lo hacemos con leche de vaca o de cabra, pasteurizada en ollas de acero quirúrgico.
+[cálida] La leche de cabra viene de pastoreo libre... la de vaca, de establo. Ambas, pasteurizadas acá, en ollas de acero quirúrgico.
+
+[cálida] Ambos son bajos en lactosa por la fermentación... el de cabra, además, se digiere mucho más fácil.
 
 [sonriendo] ¿Primera vez? Un shot de treinta mililitros en ayunas, y otro en la noche.
 
 [entusiasmada] Con granola, cereales o frutas... se vuelve tu desayuno favorito.
 
-[cálida] Como lo hacemos por lotes, separa el tuyo hoy. [sonriendo] Escríbenos al nueve cuatro uno... cuatro seis dos... cuatro nueve dos.
+[cálida] Como lo hacemos por lotes, separa el tuyo hoy. Escríbenos al 941 462 492.
 ```
 
 ### Frutado
@@ -48,16 +51,19 @@ Objetivo: que el video **venda**: gancho en el segundo 0, crear la necesidad, be
 
 ## Cambios de escenas
 ### Natural
-| # | Escena | Texto en pantalla (≤7 palabras) | Visual / ritmo |
+Nunca más de 7 palabras en pantalla: en las escenas con dos tiempos, el texto del primero sale cuando entra el del segundo.
+
+| # | Escena (voz) | Texto en pantalla | Visual / ritmo |
 |---|---|---|---|
-| 1 | Hook | ESTO NO ES **YOGURT** | Frame 0 ya en movimiento: splash de leche + botella entrando con punch-in; golpe de sonido en "no lo es" |
-| 2 | Qué es | 100 % KÉFIR **VIVO** · Hecho a mano, lote a lote | Botella 3D (lo actual de "Qué es") |
-| 3 | Necesidad | ¿ALGO **NATURAL** PARA TU DÍA? · Sin azúcar añadida · Sin conservantes añadidos | Fondo crema, cintas que entran rápido |
-| 4 | Beneficios | (lo actual, cintas) | Una cinta por frase de la voz, con punch-in leve en cada una |
-| 5 | Diferencia | VACA O CABRA · Ollas de acero quirúrgico | `hero-vaca-cabra.png` |
-| 6 | Servido | ¿PRIMERA VEZ? · 1 SHOT DE **30 ML** | Servido actual (≈4 s) |
-| 7 | Combínalo | TU DESAYUNO **FAVORITO** | Bowl actual |
-| 8 | Cierre/CTA | SEPARA EL TUYO HOY · WhatsApp 941 462 492 | Cierre actual |
+| 1 | Hook · 0 s | ESTO NO ES **YOGURT** | `leche-splash`: la botella llega con punch-in desde el frame 0; en "no lo es", impacto + destello y la cinta de YOGURT pasa a azul |
+| 2 | Qué es · 4.1 s | 100 % KÉFIR **VIVO** → HECHO A MANO · Lote a lote | `natural-vaca-hero` como plano 3D (Parallax3D): la cámara avanza y orbita; paso adelante en "hecho a mano" |
+| 3 | Beneficios · 9.7 s | Fortalece tu microbiota · Alto en probióticos vivos · Digestión equilibrada (dos cintas a la vez) | `natural-475-hero`: botella a la derecha, un punch-in por cinta hacia el cuello y pull-back al final |
+| 4 | Sin añadidos · 15.8 s | Sin azúcar añadida · Sin conservantes añadidos → sello 100 % ARTESANAL | Fondo leche, `leche-duo`; el sello cae con golpe |
+| 5 | Origen · 20.8 s | VACA O **CABRA** · Cabra de pastoreo libre → Ollas de acero quirúrgico | `hero-vaca-cabra`: cerrada en la de cabra, paneo a la de vaca, abre a las dos. Sin lugar de origen |
+| 6 | Lactosa · 28.6 s | BAJOS EN **LACTOSA** · Por la fermentación → EL DE **CABRA** · Se digiere más fácil | `natural-475-hero`: push-in y paneo al vaso que rebalsa |
+| 7 | ¿Primera vez? · 34.4 s | ¿PRIMERA VEZ? → En ayunas · En la noche · contador 0 → **30 ML** | Servido actual (3.3 s de la inclinación a la línea) |
+| 8 | Combínalo · 38.6 s | TU DESAYUNO **FAVORITO** · Granola · Cereales · Frutas | `natural-bowl` con push-in hacia el bowl |
+| 9 | CTA · 43.0 s | SEPARA EL TUYO **HOY** · TRIALFERI · WhatsApp 941 462 492 | Riser al corte, trazo de luz bajo TRIALFERI, el número entra completo con un golpe |
 
 ### Frutado
 | # | Escena | Texto en pantalla | Visual / ritmo |

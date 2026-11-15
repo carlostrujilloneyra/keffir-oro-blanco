@@ -72,7 +72,8 @@ export const ajustarAlRitmo = (video: VideoKefirProps): VideoKefirProps => {
   });
   // la foto del storyboard nunca debe caer dentro de la transición a la escena siguiente
   escenas.forEach((e, i) => {
-    const tope = (escenas[i + 1]?.inicio ?? video.duracion) - 0.36;
+    e.fin = escenas[i + 1]?.inicio ?? video.duracion;
+    const tope = e.fin - 0.36;
     e.foto = e.foto.map((f) => Math.min(f, tope));
   });
   return {...video, musicaDesde: desde, escenas};

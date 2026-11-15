@@ -1,20 +1,19 @@
 import React from 'react';
 import {AbsoluteFill, Img, staticFile} from 'remotion';
-import {cl, muelle, rampa, useT} from '../anim';
+import {cl, muelle, pulso, rampa, useT} from '../anim';
 import {Fondo, Gotas, Grano} from '../componentes/Fondo';
-import {Parallax3D} from '../componentes/Parallax3D';
-import {Producto} from '../componentes/Producto';
+import {Franjas, SABORES} from '../componentes/Franjas';
 import {Sello} from '../componentes/Sello';
-import {Cinta, Dato, Linea} from '../componentes/Texto';
+import {Cinta, Linea, Sale} from '../componentes/Texto';
 import type {Escena} from '../datos/tipos';
 import {PALETAS, PAPEL, SEGURA, TINTA} from '../tema';
-import {FotoHeroe, Halo, Heroe} from './comunes';
+import {Destello, FotoIA, Heroe} from './comunes';
 
 type FC = React.FC<{e: Escena}>;
 
 // Medidas reales de cada splash (px), para escalarlos sin deformar.
 const MEDIDAS: Record<string, [number, number]> = {
-  'img/sp-fresa1.png': [575, 491], 'img/sp-fresa2.png': [448, 487], 'img/sp-ara1.png': [573, 723], 'img/sp-ara2.png': [467, 656], 'img/chocolate-splash.png': [736, 1104],
+  'img/sp-fresa1.png': [575, 491], 'img/sp-fresa2.png': [448, 487], 'img/sp-ara1.png': [573, 723], 'img/sp-ara2.png': [467, 656],
 };
 
 /*
@@ -31,26 +30,30 @@ const Splash: React.FC<{src: string; x: number; y: number; t: number; en: number
   );
 };
 
-// 1 · Gancho: el trío de frutados con fruta cayendo.
+/*
+  1 · Gancho: desde el frame 0, un corte por sabor cuando la voz lo nombra (destello de su color + punch-in sobre la botella)
+  y, en "¿cuál eliges?", las cuatro juntas en franjas. El titular está completo desde el inicio.
+*/
 export const GanchoFrutado: FC = ({e}) => {
-  const t = useT();
-  const s = muelle(t, e.inicio, true);
-  const W = 1160, H = (W * 1402) / 1122;
+  const t = useT(), c = e.cues, p = PALETAS[e.tono];
+  const cortes = [c.fresa, c.arandanos, c.frutos, c.chocolate];
+  const i = cortes.reduce((n, a, k) => (t >= a ? k : n), 0);
+  const s = SABORES[i], a = cortes[i];
   return (
     <AbsoluteFill>
-      <Fondo tono={e.tono} t={t} luz={[50, 62]} />
-      <Halo x={540} y={1250} d={1500} fuerza={0.4} />
-      <Splash src="img/sp-fresa2.png" x={930} y={560} t={t} en={0.05} escala={0.8} rot={18} foco={3} cae={520} />
       <Heroe e={e}>
-        <Img src={staticFile(e.imagenes!.heroe)} style={{position: 'absolute', left: 540 - W / 2, top: 577 + (1 - s) * 90, width: W, height: H, transformOrigin: '50% 70%',
-          scale: `${1.22 - s * 0.22 + rampa(t, 0.4, 4.6, 0, 0.05, (k) => k)}`, filter: 'drop-shadow(0 40px 50px rgba(110,10,60,.42))'}} />
+        {/* la última foto sigue debajo mientras suben las franjas */}
+        <FotoIA src={s.src} z={1.06 + rampa(t, a, a + 0.5) * 0.16 + rampa(t, a + 0.5, a + 1.6, 0, 0.05, (k) => k)} foco={[s.cx, 1500]} />
+        {i > 0 && <Destello t={t} en={a} color={PALETAS[s.tono].luz} fuerza={0.6} />}
+        <Franjas t={t} en={c.todos} />
       </Heroe>
-      <Splash src="img/sp-ara2.png" x={40} y={1720} t={t} en={0.3} escala={0.95} rot={-14} foco={9} cae={900} />
-      <Splash src="img/sp-fresa1.png" x={1050} y={1780} t={t} en={0.5} escala={1.05} rot={24} foco={12} cae={1100} />
-      <Linea txt={e.textos.l1} t={t} en={e.cues.l1} y={240} tam={164} sombra />
-      <Linea txt={e.textos.l2} t={t} en={e.cues.l2} y={400} tam={164} sombra />
-      <Dato t={t} en={e.cues.apoyo} y={570} tam={36} peso={600}>{e.textos.apoyo}</Dato>
-      <Cinta txt={e.textos.cinta} t={t} en={e.cues.cinta} y={624} tam={34} />
+      <Grano fuerza={0.2} />
+      <AbsoluteFill style={{background: 'linear-gradient(to bottom, rgba(0,0,0,.42) 0%, rgba(0,0,0,.14) 34%, transparent 46%)'}} />
+      <Destello t={t} en={c.todos} fuerza={0.5} />
+      <div style={{position: 'absolute', inset: 0, scale: `${1 + pulso(t, c.todos, 0.08, 0.5) * 0.05}`, transformOrigin: '300px 440px'}}>
+        <Linea txt={e.textos.l1} t={t} en={c.l1} y={240} tam={200} sombra />
+        <Linea txt={e.textos.l2} t={t} en={c.l2} y={446} tam={200} sombra color={p.subtitulo} />
+      </div>
     </AbsoluteFill>
   );
 };
@@ -61,7 +64,7 @@ const Mancha: React.FC<{x: number; y: number; d: number; color: string; p: numbe
     opacity: cl(p * 2) * 0.62, scale: `${0.3 + p * 0.7}`, filter: 'blur(26px)'}} />
 );
 
-// 2 · Fruta de verdad: sobre fondo de leche, cada splash tiñe lo que toca; el rojo de la fresa trae la escena siguiente.
+// 2 · Fruta de verdad: sobre fondo de leche, cada splash tiñe lo que toca ("el color es de la fruta"); el rojo de la fresa trae la escena siguiente.
 export const FrutaDeVerdad: FC = ({e}) => {
   const t = useT();
   const rojo = PALETAS.fresa.base;
@@ -77,124 +80,77 @@ export const FrutaDeVerdad: FC = ({e}) => {
       <Linea txt={e.textos.l2} t={t} en={e.cues.l2} y={446} tam={212} color={rojo} />
       <Cinta txt={e.textos.sin1} t={t} en={e.cues.sin1} y={694} tam={36} />
       <Cinta txt={e.textos.sin2} t={t} en={e.cues.sin2} y={784} x={SEGURA.x0 + 34} tam={36} />
-      <Linea txt={e.textos.color} t={t} en={e.cues.color} y={896} tam={86} color={rojo} escalon={0.06} />
     </AbsoluteFill>
   );
 };
 
 /*
-  3 y 4 · Fresa y Arándanos comparten encuadre a propósito: las dos fotos de vertido tienen la misma pose,
-  así el corte entre ellas se lee como un mismo vaso que cambia de sabor (match cut).
+  3, 4 y 6 · Fresa, Arándanos y Chocolate: la foto IA de cada sabor a cuadro completo. La cámara se acerca hacia la fruta
+  que cae sobre el vaso (`foco`) y cada cinta da un paso más. Entre sabores se entra con whip pan.
 */
+const FOCO: Record<string, [number, number]> = {
+  'img/fresa-hero.webp': [330, 800],
+  'img/arandanos-hero.webp': [300, 760],
+  'img/chocolate-hero.webp': [330, 740],
+};
 export const Sabor: FC = ({e}) => {
-  const t = useT(), p = PALETAS[e.tono];
-  const s = muelle(t, e.inicio - 0.25, true);
+  const t = useT(), p = PALETAS[e.tono], L = e.lista ?? [];
   const tam = Number(e.textos.tam);
-  const W = 880, H = 1321;
-  const yCinta = 306 + tam + 42;
+  const yNombre = e.textos.pre ? 328 : 240;
+  const z = 1.04 + rampa(t, e.inicio - 0.3, e.inicio + 4.4, 0, 0.1, (k) => k) + L.reduce((s, b) => s + rampa(t, b.en, b.en + 0.3) * 0.035, 0);
   return (
     <AbsoluteFill>
-      <Fondo tono={e.tono} t={t} luz={[66, 50]} />
-      <Halo x={740} y={1150} d={1400} color={p.luz} fuerza={0.6} />
-      <Splash src={e.imagenes!.splash1} x={870} y={1650} t={t} en={e.inicio - 0.15} escala={Number(e.textos.escalaSplash)} rot={8} />
-      <Linea txt={e.textos.pre} t={t} en={e.cues.nombre - 0.12} y={240} tam={58} fuente="slab" />
-      <Linea txt={e.textos.nombre} t={t} en={e.cues.nombre} y={306} tam={tam} sombra />
       <Heroe e={e}>
-        <Img src={staticFile(e.imagenes!.heroe)} style={{position: 'absolute', left: 320 + (1 - s) * 150, top: 420, width: W, height: H, transformOrigin: '80% 30%',
-          scale: `${1 + rampa(t, e.inicio, e.inicio + 5, 0, 0.045, (k) => k)}`, filter: `drop-shadow(0 34px 44px ${p.sombra})`}} />
+        <FotoIA src={e.imagenes!.heroe} z={z} foco={FOCO[e.imagenes!.heroe]} />
       </Heroe>
-      <Splash src={e.imagenes!.splash2} x={96} y={1810} t={t} en={e.inicio} escala={1.25} rot={-16} foco={11} />
-      <Cinta txt={e.textos.pulpa} t={t} en={e.cues.pulpa} y={yCinta} tam={36} />
-      <Dato t={t} en={e.cues.dato} y={yCinta + 112} tam={44} ancho={400} peso={500}>
-        {e.textos.dato.split('|').map((l) => <div key={l}>{l}</div>)}
-      </Dato>
+      <Grano fuerza={0.2} />
+      <Gotas t={t} color={p.acento} semilla={e.id} n={4} zona={[0, 1560, 1080, 1900]} />
+      {e.textos.pre && <Linea txt={e.textos.pre} t={t} en={e.cues.nombre - 0.1} y={240} tam={84} sombra />}
+      <Linea txt={e.textos.nombre} t={t} en={e.cues.nombre} y={yNombre} tam={tam} sombra color={p.acento} />
+      {L.map((b, i) => (
+        <Cinta key={b.txt} txt={b.txt} t={t} en={b.en} y={yNombre + tam + 36 + i * 88} x={SEGURA.x0 + i * 26} tam={36} fondo={p.cinta} color={p.cintaTexto} />
+      ))}
     </AbsoluteFill>
   );
 };
 
 /*
-  5 · Frutos del bosque: foto héroe (botella + vaso con las cuatro frutas cayendo) sobre su fondo vino oscuro (tono "mora").
-  Sello "El más pedido" junto al titular, sello "4 frutos en 1" como etiqueta sobre el hombro de la botella y las cuatro
-  frutas en cintas que entran juntas y pulsan cuando la voz nombra cada una.
+  5 · Frutos del bosque: el más pedido. El sello "El más pedido" entra con la voz y deja su sitio al de "4 frutos en 1";
+  cada sello da un golpe de cámara.
 */
 export const FrutosDelBosque: FC = ({e}) => {
-  const t = useT(), p = PALETAS[e.tono];
-  const s = rampa(t, e.inicio - 0.25, e.inicio + 0.9);
+  const t = useT(), p = PALETAS[e.tono], c = e.cues;
+  const z = 1.04 + rampa(t, e.inicio - 0.3, e.inicio + 5.4, 0, 0.11, (k) => k) + pulso(t, c.pedido + 0.15, 0.06, 0.4) * 0.03 + pulso(t, c.cuatro + 0.15, 0.06, 0.4) * 0.04;
   return (
     <AbsoluteFill>
-      <Fondo tono={e.tono} t={t} plano />
       <Heroe e={e}>
-        <FotoHeroe src={e.imagenes!.heroe} k={0.8} left={-59} top={445} arriba={9} abajo={5} origen="72% 60%" escala={1.07 - s * 0.07 + rampa(t, e.inicio, e.inicio + 8.2, 0, 0.035, (k) => k)} opacidad={cl(s * 2.2)} />
+        <FotoIA src={e.imagenes!.heroe} z={z} foco={[330, 840]} />
       </Heroe>
-      <Grano fuerza={0.22} />
-      <Gotas t={t} color="#F7B8D2" semilla="f5" n={5} zona={[0, 1500, 1080, 1900]} />
-      <Linea txt={e.textos.l1} t={t} en={e.cues.nombre} y={240} tam={190} sombra />
-      <Linea txt={e.textos.l2} t={t} en={e.cues.nombre + 0.3} y={426} tam={118} sombra />
-      <Sello t={t} en={e.cues.pedido} x={772} y={392} d={290} centro={e.textos.sello1.split('|')} />
-      <Sello t={t} en={e.cues.cuatro} x={824} y={868} d={290} centro={e.textos.sello2.split('|')} fondo={TINTA} color={PAPEL} inclinacion={9} />
-      <div style={{position: 'absolute', left: SEGURA.x0, top: 556, width: 540, display: 'flex', flexWrap: 'wrap', gap: '10px 10px'}}>
-        {e.lista!.map((f) => (
-          <Cinta key={f.txt} txt={f.txt} t={t} en={f.en} y={0} tam={34} fondo={p.cinta} color={p.cintaTexto} enFlujo pulso={f.pulso} colorPulso="#FF8FC4" />
-        ))}
-      </div>
+      <Grano fuerza={0.2} />
+      <Gotas t={t} color="#F7B8D2" semilla="f5" n={5} zona={[0, 1560, 1080, 1900]} />
+      <Linea txt={e.textos.l1} t={t} en={c.nombre} y={240} tam={190} sombra color={p.subtitulo} />
+      <Linea txt={e.textos.l2} t={t} en={c.nombre + 0.14} y={426} tam={118} sombra />
+      <Sale t={t} en={c.cuatro - 0.2}>
+        <Sello t={t} en={c.pedido} x={770} y={372} d={290} centro={e.textos.sello1.split('|')} />
+      </Sale>
+      <Sello t={t} en={c.cuatro} x={770} y={372} d={290} centro={e.textos.sello2.split('|')} fondo={p.subtitulo} color={TINTA} inclinacion={9} />
     </AbsoluteFill>
   );
 };
 
-// 6 · Chocolate: la mano ofrece la botella, con el remolino de cacao detrás.
-export const Chocolate: FC = ({e}) => {
-  const t = useT(), p = PALETAS[e.tono];
-  const s = muelle(t, e.inicio - 0.25, true);
-  const W = 817, H = 1348;
-  return (
-    <AbsoluteFill>
-      <Fondo tono={e.tono} t={t} luz={[58, 52]} />
-      <Halo x={640} y={1100} d={1300} color="#C98A5E" fuerza={0.5} />
-      <Splash src={e.imagenes!.splash} x={800} y={1010} t={t} en={e.inicio - 0.15} escala={1.22} rot={10} deriva={6} />
-      <Heroe e={e}>
-        <Img src={staticFile(e.imagenes!.heroe)} style={{position: 'absolute', left: 650 - W / 2, top: 572 + (1 - s) * 300, width: W, height: H, transformOrigin: '50% 100%', rotate: `${(1 - s) * 7 - 2}deg`,
-          scale: `${1 + rampa(t, e.inicio, e.inicio + 3.4, 0, 0.04, (k) => k)}`, filter: 'drop-shadow(0 34px 44px rgba(10,4,0,.55))'}} />
-      </Heroe>
-      <Gotas t={t} color="#7A4A2E" semilla="f6" n={6} zona={[0, 1200, 1080, 1900]} />
-      <Linea txt={e.textos.l1} t={t} en={e.cues.l1} y={240} tam={84} />
-      <Linea txt={e.textos.l2} t={t} en={e.cues.l2} y={326} tam={156} sombra />
-      <Cinta txt={e.textos.cinta} t={t} en={e.cues.cinta} y={496} tam={34} fondo={p.cinta} color={p.cintaTexto} />
-    </AbsoluteFill>
-  );
-};
-
-// 7 · Todos: las cuatro botellas, cada una frente a la franja de su color; la cámara las recorre (parallax 3D).
-const FILA = [
-  {src: 'img/fresa-recta.png', w: 556, h: 1307, tono: 'fresa'},
-  {src: 'img/arandanos-recta.png', w: 472, h: 1231, tono: 'arandanos'},
-  {src: 'img/frutos.png', w: 585, h: 1463, tono: 'frutos'},
-  {src: 'img/chocolate-botella.png', w: 465, h: 1300, tono: 'cacao'},
-] as const;
-export const Todos: FC = ({e}) => {
-  const t = useT();
-  const viaje = rampa(t, e.inicio, e.inicio + 5.2, 0, 1, (k) => k);
-  const Z = -700, k = 1 + 700 / 3582.7; // las franjas están detrás: se agrandan para verse del ancho de pantalla
-  const bordes = [-2400, 278, 540, 802, 3480];
+// 7 · Stevia: los cuatro sabores en franjas, cada botella sobre su color.
+export const Stevia: FC = ({e}) => {
+  const t = useT(), c = e.cues;
   return (
     <AbsoluteFill style={{background: TINTA}}>
       <Heroe e={e}>
-        <Parallax3D t={t} camara={{x: -46 + viaje * 92, acercar: viaje * 120}}
-          franjas={FILA.map((b, i) => {
-            const a = (bordes[i] - 540) * k, z = (bordes[i + 1] - 540) * k;
-            return {color: PALETAS[b.tono].base, x: (a + z) / 2 + 540, ancho: z - a + 2, z: Z};
-          })}
-          planos={FILA.map((b, i) => {
-            const s = muelle(t, e.inicio - 0.2 + i * 0.09, true);
-            const alto = 740;
-            return {src: b.src, reflejo: 0.22, ancho: (alto * b.w) / b.h, alto, x: 147 + i * 262, base: 1638 + (1 - s) * 260, z: i % 2 ? -110 : 40, giro: (1 - s) * -0.5};
-          })} />
+        <Franjas t={t} en={e.inicio - 0.2} />
       </Heroe>
-      <AbsoluteFill style={{background: 'linear-gradient(to bottom, rgba(0,0,0,.34) 0%, rgba(0,0,0,.12) 34%, transparent 46%, transparent 70%, rgba(0,0,0,.4) 100%)'}} />
-      <Linea txt={e.textos.l1} t={t} en={e.cues.l1} y={240} tam={150} sombra />
-      <Linea txt={e.textos.l2} t={t} en={e.cues.l2} y={388} tam={150} sombra />
-      <Cinta txt={e.textos.c1} t={t} en={e.cues.c1} y={560} tam={34} />
-      <Cinta txt={e.textos.c2} t={t} en={e.cues.c2} y={638} x={SEGURA.x0 + 34} tam={34} />
+      <Grano fuerza={0.2} />
+      <AbsoluteFill style={{background: 'linear-gradient(to bottom, rgba(0,0,0,.34) 0%, rgba(0,0,0,.12) 34%, transparent 46%)'}} />
+      <Linea txt={e.textos.l1} t={t} en={c.l1} y={240} tam={170} sombra />
+      <Linea txt={e.textos.l2} t={t} en={c.l2} y={416} tam={170} sombra resalta={e.textos.resalta} colorResalta="#FFE38A" />
+      <Cinta txt={e.textos.c1} t={t} en={c.c1} y={612} tam={36} fondo={PAPEL} color={TINTA} />
     </AbsoluteFill>
   );
 };
-

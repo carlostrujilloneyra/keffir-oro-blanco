@@ -1,5 +1,5 @@
 /*
-  Mezcla de audio con ffmpeg: voz (pista maestra) + música con ducking al 30 % bajo la voz + efectos en los cortes.
+  Mezcla de audio con ffmpeg: voz (pista maestra) + música con ducking al 30 % bajo la voz + efectos en los cortes y golpes.
   Los tiempos salen de la composición ya ajustada al ritmo (los mismos que usa el video), así nada se desfasa.
   Uso: node scripts/mezcla.mjs natural              → out/mezcla-natural.wav
        node scripts/mezcla.mjs natural --sin-musica → out/mezcla-natural-sin-musica.wav
@@ -23,47 +23,88 @@ const comp = await selectComposition({serveUrl, id: variante === 'natural' ? 'Ke
 const {escenas, musicaDesde, voz, musica} = comp.props;
 const DUR = comp.durationInFrames / comp.fps;
 
-// Efectos: [archivo, segundo, volumen, duración máxima, fundido de entrada]. Sutiles; los woosh van en los cortes.
+// Efectos: [archivo, segundo, volumen, duración máxima, fundido de entrada]. Cada corte suena según su transición y los golpes van en su cue.
 const ev = [];
 const fx = (nombre, t, vol, largo, entrada) => ev.push([nombre, Math.max(0, t), vol, largo, entrada]);
+const CORTE = {
+  ola: (t) => fx('woosh', t - 0.2, 0.15),
+  fundido: (t) => fx('woosh', t - 0.22, 0.08),
+  whip: (t) => fx('whip', t - 0.14, 0.34),
+  whipIzq: (t) => fx('whip', t - 0.14, 0.34),
+  flash: (t) => fx('impacto', t - 0.04, 0.24),
+  zoom: (t) => {
+    fx('woosh', t - 0.26, 0.17);
+    fx('impacto', t - 0.02, 0.2);
+  },
+};
 escenas.forEach((e, i) => {
   const c = e.cues, lista = e.lista ?? [];
-  if (i) fx('woosh', e.inicio - 0.2, 0.15);
-  if (e.tipo === 'ganchoNatural') fx('splash', 0, 0.3);
-  if (e.tipo === 'queEs') fx('pop', c.cien, 0.2);
-  if (e.tipo === 'beneficios') lista.forEach((b) => fx('pop', b.en, 0.12));
-  if (e.tipo === 'diferencia') lista.forEach((b) => fx('pop', b.en + 0.1, 0.11));
+  if (i) CORTE[e.transicion ?? 'ola'](e.inicio);
+  if (e.tipo === 'ganchoNatural') {
+    fx('splash', 0, 0.3);
+    fx('impacto', c.golpe - 0.03, 0.5);
+  }
+  if (e.tipo === 'queEs') {
+    fx('pop', c.mano, 0.14);
+    fx('pop', c.lote, 0.11);
+  }
+  if (e.tipo === 'beneficios') lista.forEach((b) => fx('pop', b.en, 0.14));
+  if (e.tipo === 'sinAnadidos') {
+    fx('pop', c.sin1, 0.12);
+    fx('pop', c.sin2, 0.12);
+    fx('sello', c.sello + 0.12, 0.3);
+  }
+  if (e.tipo === 'origen') {
+    fx('pop', c.c1, 0.11);
+    fx('pop', c.c2, 0.11);
+  }
+  if (e.tipo === 'lactosa') {
+    fx('splash', e.inicio + 0.05, 0.16);
+    fx('pop', c.c1, 0.11);
+    fx('woosh', c.cabra - 0.25, 0.08);
+    fx('pop', c.c2, 0.11);
+  }
   if (e.tipo === 'servido') {
     fx('destape', c.inclina - 0.45, 0.26);
-    // el efecto dura 2 s y el servido unos 3: se encadenan dos tomas con fundido
+    // el efecto dura 2 s y el servido algo más: se encadenan dos tomas con fundido
     const largo = c.lleno - c.sirve + 0.3;
     fx('vertido', c.sirve, 0.3, Math.min(largo, 1.9));
     if (largo > 1.9) fx('vertido', c.sirve + 1.5, 0.26, largo - 1.5, 0.35);
+    fx('pop', c.lleno, 0.16);
+    lista.forEach((b) => fx('pop', b.en, 0.1));
   }
-  if (e.tipo === 'primeraVez') fx('brindis', e.inicio + 0.12, 0.18);
-  if (e.tipo === 'combinalo') [c.granola, c.cereales, c.frutas].forEach((t) => fx('pop', t, 0.15));
+  if (e.tipo === 'combinalo') lista.forEach((b) => fx('pop', b.en, 0.15));
   if (e.tipo === 'cierre') {
+    // el riser dura 2 s y termina justo en el corte
+    fx('riser', e.inicio - 2, 0.24, 2, 0.5);
     fx('burbujas', e.inicio, 0.1);
+    fx('brillo-luz', c.luz - 0.05, 0.3);
+    fx('impacto', c.numero - 0.03, 0.4);
     [c.g1, c.g2, c.g3].forEach((t) => fx('pop', t, 0.09));
   }
-  if (e.tipo === 'ganchoFrutado') fx('splash', 0.05, 0.3);
+  if (e.tipo === 'ganchoFrutado') {
+    fx('splash', 0.05, 0.28);
+    [c.arandanos, c.frutos, c.chocolate].forEach((t) => fx('whip', t - 0.1, 0.22));
+    fx('impacto', c.todos - 0.03, 0.42);
+  }
   if (e.tipo === 'frutaDeVerdad') {
     fx('pop', c.sin1, 0.12);
     fx('pop', c.sin2, 0.12);
     fx('splash', c.color - 0.22, 0.26);
   }
   if (e.tipo === 'sabor') {
-    fx('vertido', e.inicio + 0.1, 0.24, 1.7);
-    fx('pop', c.pulpa, 0.11);
-  }
-  if (e.tipo === 'frutosDelBosque') {
-    fx('splash', e.inicio - 0.1, 0.22);
-    fx('pop', c.pedido, 0.2);
-    fx('pop', c.cuatro, 0.2);
+    fx('splash', e.inicio + 0.05, 0.18);
     lista.forEach((b) => fx('pop', b.en, 0.11));
   }
-  if (e.tipo === 'chocolate') fx('splash', e.inicio - 0.1, 0.2);
-  if (e.tipo === 'todos') [0, 1, 2, 3].forEach((k) => fx('pop', e.inicio + 0.1 + k * 0.09, 0.1));
+  if (e.tipo === 'frutosDelBosque') {
+    fx('splash', e.inicio + 0.05, 0.2);
+    fx('sello', c.pedido + 0.12, 0.26);
+    fx('sello', c.cuatro + 0.12, 0.28);
+  }
+  if (e.tipo === 'stevia') {
+    [0, 1, 2, 3].forEach((k) => fx('pop', e.inicio + 0.1 + k * 0.07, 0.1));
+    fx('pop', c.c1, 0.11);
+  }
 });
 
 // Tramos con voz: todo lo que no sea un silencio de más de 0.7 s. Ahí la música baja al 30 %.
