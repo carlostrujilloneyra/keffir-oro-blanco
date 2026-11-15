@@ -1,0 +1,758 @@
+[
+ {
+  "text": "¿Ya",
+  "startMs": 70,
+  "endMs": 220,
+  "timestampMs": 145,
+  "confidence": null
+ },
+ {
+  "text": " probaste",
+  "startMs": 220,
+  "endMs": 760,
+  "timestampMs": 490,
+  "confidence": null
+ },
+ {
+  "text": " kéfir",
+  "startMs": 910,
+  "endMs": 1190,
+  "timestampMs": 1050,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "startMs": 1210,
+  "endMs": 1360,
+  "timestampMs": 1285,
+  "confidence": null
+ },
+ {
+  "text": " verdad?",
+  "startMs": 1360,
+  "endMs": 2120,
+  "timestampMs": 1740,
+  "confidence": null
+ },
+ {
+  "text": " Nuestro",
+  "startMs": 2190,
+  "endMs": 2690,
+  "timestampMs": 2440,
+  "confidence": null
+ },
+ {
+  "text": " kéfir",
+  "startMs": 2690,
+  "endMs": 3090,
+  "timestampMs": 2890,
+  "confidence": null
+ },
+ {
+  "text": " natural",
+  "startMs": 3090,
+  "endMs": 3660,
+  "timestampMs": 3375,
+  "confidence": null
+ },
+ {
+  "text": " es",
+  "startMs": 3700,
+  "endMs": 3830,
+  "timestampMs": 3765,
+  "confidence": null
+ },
+ {
+  "text": " 100 %",
+  "startMs": 3830,
+  "endMs": 4630,
+  "timestampMs": 4230,
+  "confidence": null
+ },
+ {
+  "text": " kéfir.",
+  "startMs": 4720,
+  "endMs": 5160,
+  "timestampMs": 4940,
+  "confidence": null
+ },
+ {
+  "text": " No",
+  "startMs": 5230,
+  "endMs": 5320,
+  "timestampMs": 5275,
+  "confidence": null
+ },
+ {
+  "text": " es",
+  "startMs": 5320,
+  "endMs": 5410,
+  "timestampMs": 5365,
+  "confidence": null
+ },
+ {
+  "text": " yogurt",
+  "startMs": 5490,
+  "endMs": 5920,
+  "timestampMs": 5705,
+  "confidence": null
+ },
+ {
+  "text": " estilo",
+  "startMs": 6070,
+  "endMs": 6420,
+  "timestampMs": 6245,
+  "confidence": null
+ },
+ {
+  "text": " kéfir.",
+  "startMs": 6450,
+  "endMs": 6950,
+  "timestampMs": 6700,
+  "confidence": null
+ },
+ {
+  "text": " Es",
+  "startMs": 7190,
+  "endMs": 7240,
+  "timestampMs": 7215,
+  "confidence": null
+ },
+ {
+  "text": " alto",
+  "startMs": 7260,
+  "endMs": 7540,
+  "timestampMs": 7400,
+  "confidence": null
+ },
+ {
+  "text": " en",
+  "startMs": 7540,
+  "endMs": 7680,
+  "timestampMs": 7610,
+  "confidence": null
+ },
+ {
+  "text": " probióticos",
+  "startMs": 7680,
+  "endMs": 8420,
+  "timestampMs": 8050,
+  "confidence": null
+ },
+ {
+  "text": " vivos",
+  "startMs": 8420,
+  "endMs": 8800,
+  "timestampMs": 8610,
+  "confidence": null
+ },
+ {
+  "text": " y",
+  "startMs": 8800,
+  "endMs": 8880,
+  "timestampMs": 8840,
+  "confidence": null
+ },
+ {
+  "text": " bajo",
+  "startMs": 8880,
+  "endMs": 8910,
+  "timestampMs": 8895,
+  "confidence": null
+ },
+ {
+  "text": " en",
+  "startMs": 9330,
+  "endMs": 9360,
+  "timestampMs": 9345,
+  "confidence": null
+ },
+ {
+  "text": " lactosa.",
+  "startMs": 9360,
+  "endMs": 10110,
+  "timestampMs": 9735,
+  "confidence": null
+ },
+ {
+  "text": " Fortalece",
+  "startMs": 10230,
+  "endMs": 10720,
+  "timestampMs": 10475,
+  "confidence": null
+ },
+ {
+  "text": " tu",
+  "startMs": 10850,
+  "endMs": 10920,
+  "timestampMs": 10885,
+  "confidence": null
+ },
+ {
+  "text": " microbiota",
+  "startMs": 11070,
+  "endMs": 11640,
+  "timestampMs": 11355,
+  "confidence": null
+ },
+ {
+  "text": " y",
+  "startMs": 11640,
+  "endMs": 11690,
+  "timestampMs": 11665,
+  "confidence": null
+ },
+ {
+  "text": " contribuye",
+  "startMs": 11690,
+  "endMs": 12360,
+  "timestampMs": 12025,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 12370,
+  "endMs": 12420,
+  "timestampMs": 12395,
+  "confidence": null
+ },
+ {
+  "text": " una",
+  "startMs": 12420,
+  "endMs": 12600,
+  "timestampMs": 12510,
+  "confidence": null
+ },
+ {
+  "text": " digestión",
+  "startMs": 12600,
+  "endMs": 13150,
+  "timestampMs": 12875,
+  "confidence": null
+ },
+ {
+  "text": " equilibrada.",
+  "startMs": 13210,
+  "endMs": 14150,
+  "timestampMs": 13680,
+  "confidence": null
+ },
+ {
+  "text": " Lo",
+  "startMs": 14230,
+  "endMs": 14280,
+  "timestampMs": 14255,
+  "confidence": null
+ },
+ {
+  "text": " hacemos",
+  "startMs": 14300,
+  "endMs": 14730,
+  "timestampMs": 14515,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "startMs": 14860,
+  "endMs": 14870,
+  "timestampMs": 14865,
+  "confidence": null
+ },
+ {
+  "text": " forma",
+  "startMs": 14870,
+  "endMs": 15190,
+  "timestampMs": 15030,
+  "confidence": null
+ },
+ {
+  "text": " artesanal,",
+  "startMs": 15190,
+  "endMs": 15800,
+  "timestampMs": 15495,
+  "confidence": null
+ },
+ {
+  "text": " con",
+  "startMs": 15870,
+  "endMs": 16010,
+  "timestampMs": 15940,
+  "confidence": null
+ },
+ {
+  "text": " leche",
+  "startMs": 16010,
+  "endMs": 16360,
+  "timestampMs": 16185,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "startMs": 16360,
+  "endMs": 16370,
+  "timestampMs": 16365,
+  "confidence": null
+ },
+ {
+  "text": " vaca",
+  "startMs": 16500,
+  "endMs": 16780,
+  "timestampMs": 16640,
+  "confidence": null
+ },
+ {
+  "text": " o",
+  "startMs": 16780,
+  "endMs": 16850,
+  "timestampMs": 16815,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "startMs": 16930,
+  "endMs": 16990,
+  "timestampMs": 16960,
+  "confidence": null
+ },
+ {
+  "text": " cabra",
+  "startMs": 16990,
+  "endMs": 17330,
+  "timestampMs": 17160,
+  "confidence": null
+ },
+ {
+  "text": " pasteurizada",
+  "startMs": 17330,
+  "endMs": 18150,
+  "timestampMs": 17740,
+  "confidence": null
+ },
+ {
+  "text": " en",
+  "startMs": 18230,
+  "endMs": 18310,
+  "timestampMs": 18270,
+  "confidence": null
+ },
+ {
+  "text": " ollas",
+  "startMs": 18310,
+  "endMs": 18600,
+  "timestampMs": 18455,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "startMs": 18600,
+  "endMs": 18730,
+  "timestampMs": 18665,
+  "confidence": null
+ },
+ {
+  "text": " acero",
+  "startMs": 18730,
+  "endMs": 19060,
+  "timestampMs": 18895,
+  "confidence": null
+ },
+ {
+  "text": " quirúrgico,",
+  "startMs": 19060,
+  "endMs": 19760,
+  "timestampMs": 19410,
+  "confidence": null
+ },
+ {
+  "text": " sin",
+  "startMs": 19830,
+  "endMs": 19990,
+  "timestampMs": 19910,
+  "confidence": null
+ },
+ {
+  "text": " azúcar",
+  "startMs": 19990,
+  "endMs": 20330,
+  "timestampMs": 20160,
+  "confidence": null
+ },
+ {
+  "text": " añadida",
+  "startMs": 20460,
+  "endMs": 20990,
+  "timestampMs": 20725,
+  "confidence": null
+ },
+ {
+  "text": " y",
+  "startMs": 20990,
+  "endMs": 21060,
+  "timestampMs": 21025,
+  "confidence": null
+ },
+ {
+  "text": " sin",
+  "startMs": 21060,
+  "endMs": 21290,
+  "timestampMs": 21175,
+  "confidence": null
+ },
+ {
+  "text": " conservantes",
+  "startMs": 21290,
+  "endMs": 22220,
+  "timestampMs": 21755,
+  "confidence": null
+ },
+ {
+  "text": " añadidos.",
+  "startMs": 22220,
+  "endMs": 22860,
+  "timestampMs": 22540,
+  "confidence": null
+ },
+ {
+  "text": " ¿Es",
+  "startMs": 23180,
+  "endMs": 23310,
+  "timestampMs": 23245,
+  "confidence": null
+ },
+ {
+  "text": " tu",
+  "startMs": 23310,
+  "endMs": 23370,
+  "timestampMs": 23340,
+  "confidence": null
+ },
+ {
+  "text": " primera",
+  "startMs": 23450,
+  "endMs": 23880,
+  "timestampMs": 23665,
+  "confidence": null
+ },
+ {
+  "text": " vez?",
+  "startMs": 24030,
+  "endMs": 24360,
+  "timestampMs": 24195,
+  "confidence": null
+ },
+ {
+  "text": " Empieza",
+  "startMs": 24430,
+  "endMs": 24800,
+  "timestampMs": 24615,
+  "confidence": null
+ },
+ {
+  "text": " con",
+  "startMs": 24800,
+  "endMs": 24920,
+  "timestampMs": 24860,
+  "confidence": null
+ },
+ {
+  "text": " un",
+  "startMs": 25050,
+  "endMs": 25110,
+  "timestampMs": 25080,
+  "confidence": null
+ },
+ {
+  "text": " shot",
+  "startMs": 25110,
+  "endMs": 25360,
+  "timestampMs": 25235,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "startMs": 25360,
+  "endMs": 25400,
+  "timestampMs": 25380,
+  "confidence": null
+ },
+ {
+  "text": " 30",
+  "startMs": 25490,
+  "endMs": 25840,
+  "timestampMs": 25665,
+  "confidence": null
+ },
+ {
+  "text": " mililitros",
+  "startMs": 25860,
+  "endMs": 26490,
+  "timestampMs": 26175,
+  "confidence": null
+ },
+ {
+  "text": " en",
+  "startMs": 26570,
+  "endMs": 26610,
+  "timestampMs": 26590,
+  "confidence": null
+ },
+ {
+  "text": " la",
+  "startMs": 26610,
+  "endMs": 26700,
+  "timestampMs": 26655,
+  "confidence": null
+ },
+ {
+  "text": " mañana,",
+  "startMs": 26790,
+  "endMs": 27200,
+  "timestampMs": 26995,
+  "confidence": null
+ },
+ {
+  "text": " en",
+  "startMs": 27270,
+  "endMs": 27400,
+  "timestampMs": 27335,
+  "confidence": null
+ },
+ {
+  "text": " ayunas",
+  "startMs": 27400,
+  "endMs": 27960,
+  "timestampMs": 27680,
+  "confidence": null
+ },
+ {
+  "text": " y",
+  "startMs": 27960,
+  "endMs": 28110,
+  "timestampMs": 28035,
+  "confidence": null
+ },
+ {
+  "text": " otro",
+  "startMs": 28110,
+  "endMs": 28420,
+  "timestampMs": 28265,
+  "confidence": null
+ },
+ {
+  "text": " en",
+  "startMs": 28420,
+  "endMs": 28590,
+  "timestampMs": 28505,
+  "confidence": null
+ },
+ {
+  "text": " la",
+  "startMs": 28590,
+  "endMs": 28730,
+  "timestampMs": 28660,
+  "confidence": null
+ },
+ {
+  "text": " noche,",
+  "startMs": 28750,
+  "endMs": 29200,
+  "timestampMs": 28975,
+  "confidence": null
+ },
+ {
+  "text": " y",
+  "startMs": 29200,
+  "endMs": 29270,
+  "timestampMs": 29235,
+  "confidence": null
+ },
+ {
+  "text": " aumenta",
+  "startMs": 29270,
+  "endMs": 29760,
+  "timestampMs": 29515,
+  "confidence": null
+ },
+ {
+  "text": " poco",
+  "startMs": 29900,
+  "endMs": 29960,
+  "timestampMs": 29930,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 30110,
+  "endMs": 30140,
+  "timestampMs": 30125,
+  "confidence": null
+ },
+ {
+  "text": " poco.",
+  "startMs": 30140,
+  "endMs": 30680,
+  "timestampMs": 30410,
+  "confidence": null
+ },
+ {
+  "text": " Combínalo",
+  "startMs": 30750,
+  "endMs": 31250,
+  "timestampMs": 31000,
+  "confidence": null
+ },
+ {
+  "text": " como",
+  "startMs": 31380,
+  "endMs": 31700,
+  "timestampMs": 31540,
+  "confidence": null
+ },
+ {
+  "text": " más",
+  "startMs": 31700,
+  "endMs": 31920,
+  "timestampMs": 31810,
+  "confidence": null
+ },
+ {
+  "text": " te",
+  "startMs": 31970,
+  "endMs": 32100,
+  "timestampMs": 32035,
+  "confidence": null
+ },
+ {
+  "text": " guste,",
+  "startMs": 32100,
+  "endMs": 32520,
+  "timestampMs": 32310,
+  "confidence": null
+ },
+ {
+  "text": " con",
+  "startMs": 32590,
+  "endMs": 32770,
+  "timestampMs": 32680,
+  "confidence": null
+ },
+ {
+  "text": " granolas,",
+  "startMs": 32850,
+  "endMs": 33670,
+  "timestampMs": 33260,
+  "confidence": null
+ },
+ {
+  "text": " cereales",
+  "startMs": 33670,
+  "endMs": 34310,
+  "timestampMs": 33990,
+  "confidence": null
+ },
+ {
+  "text": " o",
+  "startMs": 34310,
+  "endMs": 34650,
+  "timestampMs": 34480,
+  "confidence": null
+ },
+ {
+  "text": " frutas.",
+  "startMs": 34650,
+  "endMs": 35040,
+  "timestampMs": 34845,
+  "confidence": null
+ },
+ {
+  "text": " Hecho",
+  "startMs": 35110,
+  "endMs": 35390,
+  "timestampMs": 35250,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 35390,
+  "endMs": 35460,
+  "timestampMs": 35425,
+  "confidence": null
+ },
+ {
+  "text": " mano,",
+  "startMs": 35460,
+  "endMs": 35800,
+  "timestampMs": 35630,
+  "confidence": null
+ },
+ {
+  "text": " lote",
+  "startMs": 35950,
+  "endMs": 36290,
+  "timestampMs": 36120,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 36330,
+  "endMs": 36390,
+  "timestampMs": 36360,
+  "confidence": null
+ },
+ {
+  "text": " lote.",
+  "startMs": 36390,
+  "endMs": 36830,
+  "timestampMs": 36610,
+  "confidence": null
+ },
+ {
+  "text": " Pídelo",
+  "startMs": 37140,
+  "endMs": 37440,
+  "timestampMs": 37290,
+  "confidence": null
+ },
+ {
+  "text": " por",
+  "startMs": 37440,
+  "endMs": 37620,
+  "timestampMs": 37530,
+  "confidence": null
+ },
+ {
+  "text": " WhatsApp",
+  "startMs": 37620,
+  "endMs": 38120,
+  "timestampMs": 37870,
+  "confidence": null
+ },
+ {
+  "text": " al",
+  "startMs": 38120,
+  "endMs": 38320,
+  "timestampMs": 38220,
+  "confidence": null
+ },
+ {
+  "text": " 941",
+  "startMs": 38250,
+  "endMs": 39340,
+  "timestampMs": 38795,
+  "confidence": null
+ },
+ {
+  "text": " 462",
+  "startMs": 39500,
+  "endMs": 40410,
+  "timestampMs": 39955,
+  "confidence": null
+ },
+ {
+  "text": " 492",
+  "startMs": 40590,
+  "endMs": 41600,
+  "timestampMs": 41095,
+  "confidence": null
+ }
+]

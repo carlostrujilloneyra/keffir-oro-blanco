@@ -1,0 +1,590 @@
+[
+  {
+    "text": "¿Quieres",
+    "start": 0.08,
+    "end": 0.64,
+    "id": "w0"
+  },
+  {
+    "text": "algo",
+    "start": 0.64,
+    "end": 0.96,
+    "id": "w1"
+  },
+  {
+    "text": "más",
+    "start": 0.96,
+    "end": 1.2,
+    "id": "w2"
+  },
+  {
+    "text": "rico?",
+    "start": 1.2,
+    "end": 1.8,
+    "id": "w3"
+  },
+  {
+    "text": "También",
+    "start": 1.94,
+    "end": 2.34,
+    "id": "w4"
+  },
+  {
+    "text": "tenemos",
+    "start": 2.34,
+    "end": 2.88,
+    "id": "w5"
+  },
+  {
+    "text": "kéfir",
+    "start": 2.88,
+    "end": 3.25,
+    "id": "w6"
+  },
+  {
+    "text": "con",
+    "start": 3.25,
+    "end": 3.3,
+    "id": "w7"
+  },
+  {
+    "text": "pulpa",
+    "start": 3.66,
+    "end": 3.86,
+    "id": "w8"
+  },
+  {
+    "text": "de",
+    "start": 3.86,
+    "end": 3.98,
+    "id": "w9"
+  },
+  {
+    "text": "fruta.",
+    "start": 4.03,
+    "end": 4.44,
+    "id": "w10"
+  },
+  {
+    "text": "Hecho",
+    "start": 4.56,
+    "end": 4.75,
+    "id": "w11"
+  },
+  {
+    "text": "con",
+    "start": 4.75,
+    "end": 4.94,
+    "id": "w12"
+  },
+  {
+    "text": "fruta",
+    "start": 4.94,
+    "end": 5.25,
+    "id": "w13"
+  },
+  {
+    "text": "de",
+    "start": 5.25,
+    "end": 5.37,
+    "id": "w14"
+  },
+  {
+    "text": "verdad,",
+    "start": 5.37,
+    "end": 5.9,
+    "id": "w15"
+  },
+  {
+    "text": "sin",
+    "start": 5.9,
+    "end": 5.94,
+    "id": "w16"
+  },
+  {
+    "text": "colorantes",
+    "start": 6.3,
+    "end": 6.78,
+    "id": "w17"
+  },
+  {
+    "text": "ni",
+    "start": 6.78,
+    "end": 6.91,
+    "id": "w18"
+  },
+  {
+    "text": "saborizantes.",
+    "start": 6.91,
+    "end": 7.96,
+    "id": "w19"
+  },
+  {
+    "text": "El",
+    "start": 8.1,
+    "end": 8.12,
+    "id": "w20"
+  },
+  {
+    "text": "color",
+    "start": 8.12,
+    "end": 8.5,
+    "id": "w21"
+  },
+  {
+    "text": "es",
+    "start": 8.53,
+    "end": 8.67,
+    "id": "w22"
+  },
+  {
+    "text": "de",
+    "start": 8.67,
+    "end": 8.83,
+    "id": "w23"
+  },
+  {
+    "text": "la",
+    "start": 8.83,
+    "end": 8.95,
+    "id": "w24"
+  },
+  {
+    "text": "fruta.",
+    "start": 9.02,
+    "end": 9.46,
+    "id": "w25"
+  },
+  {
+    "text": "Fresa",
+    "start": 9.78,
+    "end": 10.12,
+    "id": "w26"
+  },
+  {
+    "text": "con",
+    "start": 10.12,
+    "end": 10.41,
+    "id": "w27"
+  },
+  {
+    "text": "pulpa",
+    "start": 10.41,
+    "end": 10.89,
+    "id": "w28"
+  },
+  {
+    "text": "natural,",
+    "start": 10.89,
+    "end": 11.71,
+    "id": "w29"
+  },
+  {
+    "text": "con",
+    "start": 11.71,
+    "end": 11.89,
+    "id": "w30"
+  },
+  {
+    "text": "antioxidantes",
+    "start": 11.89,
+    "end": 12.68,
+    "id": "w31"
+  },
+  {
+    "text": "y",
+    "start": 12.68,
+    "end": 12.69,
+    "id": "w32"
+  },
+  {
+    "text": "vitamina",
+    "start": 12.77,
+    "end": 13.4,
+    "id": "w33"
+  },
+  {
+    "text": "Cde",
+    "start": 13.5,
+    "end": 13.63,
+    "id": "w34"
+  },
+  {
+    "text": "la",
+    "start": 13.71,
+    "end": 13.8,
+    "id": "w35"
+  },
+  {
+    "text": "fresa.",
+    "start": 14.12,
+    "end": 14.39,
+    "id": "w36"
+  },
+  {
+    "text": "Arándanos,",
+    "start": 14.58,
+    "end": 15.22,
+    "id": "w37"
+  },
+  {
+    "text": "también",
+    "start": 15.22,
+    "end": 15.71,
+    "id": "w38"
+  },
+  {
+    "text": "con",
+    "start": 15.8,
+    "end": 15.93,
+    "id": "w39"
+  },
+  {
+    "text": "pulpa",
+    "start": 15.93,
+    "end": 16.29,
+    "id": "w40"
+  },
+  {
+    "text": "natural,",
+    "start": 16.31,
+    "end": 16.99,
+    "id": "w41"
+  },
+  {
+    "text": "fuente",
+    "start": 17.05,
+    "end": 17.29,
+    "id": "w42"
+  },
+  {
+    "text": "de",
+    "start": 17.38,
+    "end": 17.49,
+    "id": "w43"
+  },
+  {
+    "text": "antioxidantes.",
+    "start": 17.57,
+    "end": 18.55,
+    "id": "w44"
+  },
+  {
+    "text": "Yel",
+    "start": 18.66,
+    "end": 18.86,
+    "id": "w45"
+  },
+  {
+    "text": "más",
+    "start": 18.86,
+    "end": 19.16,
+    "id": "w46"
+  },
+  {
+    "text": "pedido,",
+    "start": 19.16,
+    "end": 19.96,
+    "id": "w47"
+  },
+  {
+    "text": "frutos",
+    "start": 19.96,
+    "end": 20.36,
+    "id": "w48"
+  },
+  {
+    "text": "del",
+    "start": 20.43,
+    "end": 20.56,
+    "id": "w49"
+  },
+  {
+    "text": "bosque.",
+    "start": 20.56,
+    "end": 21.17,
+    "id": "w50"
+  },
+  {
+    "text": "Cuatro",
+    "start": 21.34,
+    "end": 21.65,
+    "id": "w51"
+  },
+  {
+    "text": "frutos",
+    "start": 21.65,
+    "end": 22.1,
+    "id": "w52"
+  },
+  {
+    "text": "en",
+    "start": 22.1,
+    "end": 22.19,
+    "id": "w53"
+  },
+  {
+    "text": "una",
+    "start": 22.26,
+    "end": 22.47,
+    "id": "w54"
+  },
+  {
+    "text": "sola",
+    "start": 22.47,
+    "end": 22.7,
+    "id": "w55"
+  },
+  {
+    "text": "botella.",
+    "start": 22.99,
+    "end": 23.56,
+    "id": "w56"
+  },
+  {
+    "text": "Fresa,",
+    "start": 23.7,
+    "end": 24.1,
+    "id": "w57"
+  },
+  {
+    "text": "frambuesa,",
+    "start": 24.13,
+    "end": 25,
+    "id": "w58"
+  },
+  {
+    "text": "arándano",
+    "start": 25,
+    "end": 25.64,
+    "id": "w59"
+  },
+  {
+    "text": "y",
+    "start": 25.64,
+    "end": 25.72,
+    "id": "w60"
+  },
+  {
+    "text": "zarzamora.¿Te",
+    "start": 25.72,
+    "end": 26.91,
+    "id": "w61"
+  },
+  {
+    "text": "gusta",
+    "start": 26.91,
+    "end": 27.17,
+    "id": "w62"
+  },
+  {
+    "text": "el",
+    "start": 27.17,
+    "end": 27.27,
+    "id": "w63"
+  },
+  {
+    "text": "chocolate?",
+    "start": 27.27,
+    "end": 27.91,
+    "id": "w64"
+  },
+  {
+    "text": "Lo",
+    "start": 27.91,
+    "end": 28.06,
+    "id": "w65"
+  },
+  {
+    "text": "hacemos",
+    "start": 28.06,
+    "end": 28.47,
+    "id": "w66"
+  },
+  {
+    "text": "con",
+    "start": 28.49,
+    "end": 28.67,
+    "id": "w67"
+  },
+  {
+    "text": "cacao",
+    "start": 28.67,
+    "end": 28.91,
+    "id": "w68"
+  },
+  {
+    "text": "de",
+    "start": 28.98,
+    "end": 29.1,
+    "id": "w69"
+  },
+  {
+    "text": "quillabamba.",
+    "start": 29.1,
+    "end": 30.04,
+    "id": "w70"
+  },
+  {
+    "text": "Todos",
+    "start": 30.18,
+    "end": 30.37,
+    "id": "w71"
+  },
+  {
+    "text": "endulzados",
+    "start": 30.37,
+    "end": 31.02,
+    "id": "w72"
+  },
+  {
+    "text": "con",
+    "start": 31.02,
+    "end": 31.22,
+    "id": "w73"
+  },
+  {
+    "text": "stevia.",
+    "start": 31.22,
+    "end": 31.84,
+    "id": "w74"
+  },
+  {
+    "text": "Altos",
+    "start": 31.99,
+    "end": 32.17,
+    "id": "w75"
+  },
+  {
+    "text": "en",
+    "start": 32.24,
+    "end": 32.34,
+    "id": "w76"
+  },
+  {
+    "text": "probióticos",
+    "start": 32.34,
+    "end": 33.11,
+    "id": "w77"
+  },
+  {
+    "text": "y",
+    "start": 33.2,
+    "end": 33.23,
+    "id": "w78"
+  },
+  {
+    "text": "sin",
+    "start": 33.23,
+    "end": 33.34,
+    "id": "w79"
+  },
+  {
+    "text": "conservantes",
+    "start": 33.7,
+    "end": 34.28,
+    "id": "w80"
+  },
+  {
+    "text": "añadidos.",
+    "start": 34.28,
+    "end": 35.08,
+    "id": "w81"
+  },
+  {
+    "text": "Disfruta",
+    "start": 35.23,
+    "end": 35.65,
+    "id": "w82"
+  },
+  {
+    "text": "los",
+    "start": 35.66,
+    "end": 35.88,
+    "id": "w83"
+  },
+  {
+    "text": "solos",
+    "start": 35.88,
+    "end": 36.28,
+    "id": "w84"
+  },
+  {
+    "text": "o",
+    "start": 36.28,
+    "end": 36.35,
+    "id": "w85"
+  },
+  {
+    "text": "con",
+    "start": 36.35,
+    "end": 36.57,
+    "id": "w86"
+  },
+  {
+    "text": "granola,",
+    "start": 36.57,
+    "end": 37.26,
+    "id": "w87"
+  },
+  {
+    "text": "cereales",
+    "start": 37.31,
+    "end": 37.93,
+    "id": "w88"
+  },
+  {
+    "text": "o",
+    "start": 38.02,
+    "end": 38.06,
+    "id": "w89"
+  },
+  {
+    "text": "tus",
+    "start": 38.06,
+    "end": 38.26,
+    "id": "w90"
+  },
+  {
+    "text": "frutas",
+    "start": 38.26,
+    "end": 38.6,
+    "id": "w91"
+  },
+  {
+    "text": "favoritas.",
+    "start": 38.67,
+    "end": 39.3,
+    "id": "w92"
+  },
+  {
+    "text": "Pídelos",
+    "start": 39.57,
+    "end": 40.14,
+    "id": "w93"
+  },
+  {
+    "text": "por",
+    "start": 40.14,
+    "end": 40.42,
+    "id": "w94"
+  },
+  {
+    "text": "WhatsApp",
+    "start": 40.42,
+    "end": 40.97,
+    "id": "w95"
+  },
+  {
+    "text": "al",
+    "start": 41.34,
+    "end": 41.38,
+    "id": "w96"
+  },
+  {
+    "text": "941-462-492.",
+    "start": 41.38,
+    "end": 44.23,
+    "id": "w97"
+  }
+]
