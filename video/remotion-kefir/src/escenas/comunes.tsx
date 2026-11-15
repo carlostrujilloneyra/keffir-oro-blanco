@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill, Img, OffthreadVideo, staticFile, useVideoConfig} from 'remotion';
-import {cl, EIO, pulso, rampa, useT, vaiven} from '../anim';
+import {cl, EIO, muelle, pulso, rampa, useT, vaiven} from '../anim';
 import {Fondo, Grano} from '../componentes/Fondo';
 import {Franjas} from '../componentes/Franjas';
 import {IconoWhatsApp} from '../componentes/Iconos';
@@ -108,11 +108,13 @@ export const Combinalo: FC = ({e}) => {
 };
 
 /*
-  Cierre: la llamada a la acción, TRIALFERI como palabra con un trazo de luz y el WhatsApp.
+  Cierre: el logo de TRIALFERI con la llamada a la acción a su lado (`cta`, una línea por cada `|`), un trazo de luz y el WhatsApp.
+  El logo trae su aro blanco y esquinas transparentes: se lee sobre el fondo oscuro sin placa.
   El número entra completo de un golpe (no por partes) al abrir la escena; cada grupo pulsa cuando la voz lo dicta.
   Natural: la foto héroe queda bajo el número, a un tamaño en que el nombre y el logo de las etiquetas terminan justo
   sobre los subtítulos; el zoom crece desde ahí (base de los logos) para que no bajen.
 */
+const LOGO = 372; // ancho del logo: el círculo ocupa el alto del bloque que antes llenaban el titular y la palabra TRIALFERI
 export const Cierre: FC = ({e, variante}) => {
   const t = useT(), c = e.cues;
   const grupos = e.textos.numero.split(' ');
@@ -121,6 +123,9 @@ export const Cierre: FC = ({e, variante}) => {
   const llega = rampa(t, c.numero, c.numero + 0.34);
   const golpe = pulso(t, c.numero, 0.07, 0.45);
   const a = e.inicio - 0.3, b = e.fin!;
+  const logo = muelle(t, e.inicio - 0.12, true);
+  const lineas = e.textos.cta.split('|'), tam = Number(e.textos.tam);
+  const yCta = 410 - (lineas.length * tam + (lineas.length - 1) * 10) / 2;
   return (
     <AbsoluteFill>
       <Fondo tono={e.tono} t={t} luz={[46, 30]} />
@@ -133,8 +138,11 @@ export const Cierre: FC = ({e, variante}) => {
       ) : (
         <Franjas t={t} en={e.inicio - 0.1} base={1660} alto={600} desde={960} />
       )}
-      <Linea txt={e.textos.cta} t={t} en={c.cta} y={240} tam={Number(e.textos.tam)} resalta={e.textos.resalta} colorResalta={e.textos.acento} />
-      <Linea txt="TRIALFERI" t={t} en={e.inicio - 0.12} y={346} tam={234} tracking={-1} />
+      <Img src={staticFile('img/trialferi-logo.png')} style={{position: 'absolute', left: SEGURA.x0 - 12, top: 232, width: LOGO, height: (LOGO * 1138) / 1224, opacity: cl(logo * 3),
+        scale: `${0.6 + logo * 0.4}`, rotate: `${(1 - logo) * -16}deg`, filter: 'drop-shadow(0 16px 30px rgba(0,0,0,.5))'}} />
+      {lineas.map((l, i) => (
+        <Linea key={l} txt={l} t={t} en={c.cta + i * 0.1} x={SEGURA.x0 + LOGO + 10} y={yCta + i * (tam + 10)} tam={tam} resalta={e.textos.resalta} colorResalta={e.textos.acento} />
+      ))}
       <TrazoLuz t={t} en={c.luz} y={596} ancho={806} color={e.textos.acento} />
       <Dato t={t} en={c.numero - 0.12} y={636} tam={40}>
         <span style={{display: 'flex', alignItems: 'center', gap: 16}}><IconoWhatsApp tam={48} />{e.textos.whatsapp}</span>

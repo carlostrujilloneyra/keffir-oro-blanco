@@ -2,7 +2,7 @@ import React from 'react';
 import {AbsoluteFill, Img, interpolateColors, staticFile} from 'remotion';
 import {cl, EIO, muelle, pulso, rampa, SUAVE, useT, vaiven} from '../anim';
 import {Fondo, Gotas, Grano} from '../componentes/Fondo';
-import {IconoEquilibrio, IconoLuna, IconoMicrobiota, IconoProbioticos, IconoSol} from '../componentes/Iconos';
+import {IconoLuna, IconoSol} from '../componentes/Iconos';
 import {Foto3D} from '../componentes/Parallax3D';
 import {Sello} from '../componentes/Sello';
 import {marcaVaso, Servido} from '../componentes/Servido';
@@ -54,22 +54,25 @@ const camara = (t: number, e: Escena, pico?: number, resto?: number) => {
   return {va: vaiven(t, a, b, pico, resto), deriva: rampa(t, a, b, -1, 1, (k) => k)};
 };
 
-// 2 · Qué es: las dos botellas. En "hecho a mano" cambia el titular: nunca hay más de 7 palabras en pantalla.
+/*
+  2 · Qué es: las dos botellas. El acercamiento llega a 1.49x sobre la foto (tapas, cuellos y logos); más cerca, los logos
+  bajarían hasta los subtítulos o las tapas subirían al titular, que por eso va en una sola línea.
+  En "hecho a mano" cambia el titular: nunca hay más de 7 palabras en pantalla.
+*/
 export const QueEs: FC = ({e}) => {
   const t = useT(), p = PALETAS[e.tono], c = e.cues;
-  const {va, deriva} = camara(t, e);
+  const {va, deriva} = camara(t, e, 0.55, 0.05);
   return (
     <AbsoluteFill style={{background: '#090B14'}}>
       <Heroe e={e}>
-        <Foto3D src={e.imagenes!.heroe} t={t} zoom={1 + va * 0.14} foco={[540, 900]} incl={[2.2 - deriva * 0.7, -1]} escala={1.1} dy={96} />
+        <Foto3D src={e.imagenes!.heroe} t={t} zoom={1 + va * 0.355} foco={[540, 1112]} incl={[2.2 - deriva * 0.7, -1]} escala={1.1} dy={96} />
       </Heroe>
       <Grano fuerza={0.2} />
       <Sale t={t} en={c.mano - 0.14}>
-        <Linea txt={e.textos.cien} t={t} en={c.cien} y={236} tam={150} sombra />
-        <Linea txt={e.textos.kefir} t={t} en={c.kefir} y={392} tam={104} fuente="slab" sombra resalta={e.textos.resalta} colorResalta={p.acento} />
+        <Linea txt={e.textos.cien} t={t} en={c.cien} y={238} tam={112} sombra resalta={e.textos.resalta} colorResalta={p.acento} />
       </Sale>
-      <Linea txt={e.textos.mano} t={t} en={c.mano} y={240} tam={132} sombra />
-      <Cinta txt={e.textos.lote} t={t} en={c.lote} y={398} tam={42} fondo={p.cinta} color={p.cintaTexto} />
+      <Linea txt={e.textos.mano} t={t} en={c.mano} y={244} tam={96} sombra />
+      <Cinta txt={e.textos.lote} t={t} en={c.lote} x={628} y={258} tam={34} fondo={p.cinta} color={p.cintaTexto} />
     </AbsoluteFill>
   );
 };
@@ -77,21 +80,22 @@ export const QueEs: FC = ({e}) => {
 /*
   3 · Beneficios: la botella a la derecha con el zoom lento; a la izquierda, arriba, las tres frases de la etiqueta entran
   una por una con la voz y se quedan hasta el final. La foto baja (`dy`) para dejarles el sitio sobre la tapa.
+  El acercamiento llega a 1.55x sobre la foto (tapa, cuello y logo) y vuelve a la botella entera. El foco está elegido para que,
+  en el punto más cercano, la base del logo quede justo sobre los subtítulos y la tapa pase a la derecha de las cintas
+  (por eso van sin icono: así terminan antes de x = 645, donde empieza la tapa).
 */
-const ICONOS = [IconoMicrobiota, IconoProbioticos, IconoEquilibrio];
 export const Beneficios: FC = ({e}) => {
   const t = useT(), p = PALETAS[e.tono];
-  const {va, deriva} = camara(t, e, 0.6, 0.25);
+  const {va, deriva} = camara(t, e, 0.5, 0);
   return (
     <AbsoluteFill style={{background: '#0B121C'}}>
       <Heroe e={e}>
-        <Foto3D src={e.imagenes!.heroe} t={t} zoom={1 + va * 0.12} foco={[790, 1050]} incl={[-2.2 + deriva * 0.7, -0.8]} dy={170} funde={0.14} />
+        <Foto3D src={e.imagenes!.heroe} t={t} zoom={1 + va * 0.49} foco={[600, 1319]} incl={[-2.2 + deriva * 0.7, -0.8]} dy={170} funde={0.14} />
       </Heroe>
       <Grano fuerza={0.2} />
-      {e.lista!.map((b, i) => {
-        const Icono = ICONOS[i];
-        return <Cinta key={b.txt} txt={b.txt} t={t} en={b.en} y={240 + i * 102} tam={46} fondo={p.cinta} color={p.cintaTexto} icono={<Icono tam={56} color={p.cintaTexto} />} />;
-      })}
+      {e.lista!.map((b, i) => (
+        <Cinta key={b.txt} txt={b.txt} t={t} en={b.en} y={240 + i * 92} tam={40} fondo={p.cinta} color={p.cintaTexto} />
+      ))}
     </AbsoluteFill>
   );
 };

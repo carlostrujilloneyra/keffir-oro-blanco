@@ -25,15 +25,16 @@ export const natural: VideoKefirProps = {
       imagenes: {heroe: 'img/leche-splash.webp'},
     },
     {
-      // "100 % kéfir vivo" entra entero al abrir la escena; en "hecho a mano" (cue `mano`) cambia el titular
-      id: '02-que-es', tipo: 'queEs', inicio: 4.06, tono: 'noche', foto: [6.6, 9.3],
+      // "100 % kéfir vivo" entra entero al abrir la escena; en "hecho a mano" (cue `mano`) cambia el titular.
+      // Esta escena y la de beneficios usan el PNG original de la foto (sin comprimir): el zoom llega a 1.5x
+      id: '02-que-es', tipo: 'queEs', inicio: 4.06, tono: 'noche', foto: [4.9, 7.15, 9.3],
       ola: LECHE,
-      textos: {cien: '100 %', kefir: 'Kéfir vivo', resalta: 'vivo', mano: 'Hecho a mano', lote: 'Lote a lote'},
-      cues: {cien: 4.2, kefir: 4.34, mano: 7.66, lote: 7.95},
-      imagenes: {heroe: 'img/natural-vaca-hero.webp'},
+      textos: {cien: '100 % kéfir vivo', resalta: 'vivo', mano: 'Hecho a mano', lote: 'Lote a lote'},
+      cues: {cien: 4.2, mano: 7.66, lote: 7.95},
+      imagenes: {heroe: 'img/natural-vaca-hero.png'},
     },
     {
-      id: '03-beneficios', tipo: 'beneficios', inicio: 9.68, tono: 'noche', foto: [12.9, 15.3],
+      id: '03-beneficios', tipo: 'beneficios', inicio: 9.68, tono: 'noche', foto: [10.4, 12.7, 15.3],
       // el único corte fuerte entre el gancho y el cierre
       transicion: 'whip',
       textos: {},
@@ -43,7 +44,7 @@ export const natural: VideoKefirProps = {
         {txt: 'Alto en probióticos vivos', en: 11.36},
         {txt: 'Digestión equilibrada', en: 13.3},
       ],
-      imagenes: {heroe: 'img/natural-475-hero.webp'},
+      imagenes: {heroe: 'img/natural-475-hero.png'},
     },
     {
       id: '04-sin-anadidos', tipo: 'sinAnadidos', inicio: 15.77, tono: 'leche', foto: [18.5, 20.5],
@@ -94,9 +95,9 @@ export const natural: VideoKefirProps = {
     },
     {
       // el número entra completo con un golpe al abrir la escena (no espera a la voz); g1-g3 son los grupos dichos
-      id: '09-cierre', tipo: 'cierre', inicio: 43.14, tono: 'tinta', foto: [45.2, 49.3],
+      id: '09-cierre', tipo: 'cierre', inicio: 43.14, tono: 'tinta', foto: [44.4, 49.3],
       transicion: 'zoom', ola: AZUL_ETIQUETA,
-      textos: {cta: 'Separa el tuyo hoy', resalta: 'hoy', tam: '96', whatsapp: 'WhatsApp', numero: '941 462 492', acento: '#7CC8FF'},
+      textos: {cta: 'Separa el|tuyo hoy', resalta: 'hoy', tam: '110', whatsapp: 'WhatsApp', numero: '941 462 492', acento: '#7CC8FF'},
       cues: {cta: 43.3, luz: 45.73, numero: 43.8, g1: 46.86, g2: 47.68, g3: 48.79},
       imagenes: {heroe: 'img/hero-vaca-cabra.png'},
     },

@@ -79,7 +79,7 @@ export const frutado: VideoKefirProps = {
     {
       id: '09-cierre', tipo: 'cierre', inicio: 34.58, tono: 'tinta', foto: [36.6, 40.3],
       transicion: 'zoom', ola: PALETAS.frutos.luz,
-      textos: {cta: 'Comenta cuál elegirías', resalta: 'elegirías', tam: '80', whatsapp: 'Pídelo por WhatsApp', numero: '941 462 492', acento: '#FF8FBF'},
+      textos: {cta: 'Comenta cuál|elegirías', resalta: 'elegirías', tam: '84', whatsapp: 'Pídelo por WhatsApp', numero: '941 462 492', acento: '#FF8FBF'},
       cues: {cta: 34.7, luz: 36.1, numero: 36.9, g1: 37.46, g2: 38.6, g3: 39.64},
     },
   ],
