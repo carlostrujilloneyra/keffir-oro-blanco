@@ -295,7 +295,9 @@ export const CierreTienda: FC = ({e, variante}) => {
       </Dato>
       <div style={{position: 'absolute', left: SEGURA.x0, top: 744, display: 'flex', gap: 32, fontFamily: FUENTE.anton, fontSize: 156, lineHeight: 1, opacity: cl(llega * 2.5), scale: `${1.28 - llega * 0.28 + golpe * 0.03}`, transformOrigin: '0 60%'}}>
         {x.numero.split(' ').map((g, i) => (
-          <span key={i} style={{color: x.acento, scale: `${1 + pulso(t, cueGrupo[i], 0.12, 0.6) * 0.06}`, transformOrigin: '50% 70%'}}>{g}</span>
+          // cada grupo se enciende cuando la voz lo dice (antes queda atenuado)
+          <span key={i} style={{color: x.acento, scale: `${1 + pulso(t, cueGrupo[i], 0.12, 0.6) * 0.06}`, transformOrigin: '50% 70%', opacity: 0.5 + rampa(t, cueGrupo[i] - 0.05, cueGrupo[i] + 0.15) * 0.5,
+            textShadow: `0 0 ${10 + pulso(t, cueGrupo[i], 0.12, 0.9) * 40}px ${x.acento}`}}>{g}</span>
         ))}
       </div>
       <Destello t={t} en={c.escribe} color={x.acento} fuerza={0.22} />

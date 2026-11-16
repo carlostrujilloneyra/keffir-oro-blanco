@@ -53,7 +53,7 @@ export const naturalEcocultivo: VideoKefirProps = {
     {
       id: '09-cierre', tipo: 'cierreTienda', inicio: 39.88, tono: 'tinta', foto: [42.0, 46.0],
       // fase A: logos + CTA; fase B en "Escríbenos" (cue `escribe`): dirección y número
-      transicion: 'zoom', ola: AZUL_ETIQUETA,
+      transicion: 'flash', ola: AZUL_ETIQUETA,
       textos: {cta: 'Encuéntralo|en EcoCultivo', resalta: 'ecocultivo', tam: '80', direccion: 'Ca. El Carmen 1159 · Surquillo', whatsapp: 'WhatsApp', numero: TIENDA.numero, acento: '#7CC8FF'},
       cues: {morph: 41.0, cta: 40.5, escribe: 43.1, g1: 44.19, g2: 45.03, g3: 46.07, luz: 46.7},
       imagenes: {heroe: 'img/hero-vaca-cabra.png'},
@@ -70,7 +70,7 @@ export const frutadoEcocultivo: VideoKefirProps = {
   escenas: [
     // cortes por sabor cada 0.8 s bajo "4 sabores · 0 conservantes"; en "¿cuál eliges?" las franjas (1.6 s)
     de(frutado, '01-gancho', {foto: [0.4, 1.2, 2.0, 2.8, 4.2],
-      textos: {pre1: '4 sabores', pre2: '0 conservantes añadidos', l1: '¿Cuál', l2: 'eliges?'},
+      textos: {pre1: '4 sabores', pre2: '0 conservantes|añadidos', l1: '¿Cuál', l2: 'eliges?'},
       cues: {pre1: 0, pre2: 0.1, l1: 3.2, l2: 3.3, fresa: 0, arandanos: 0.8, frutos: 1.6, chocolate: 2.4, todos: 3.2}}),
     de(frutado, '02-fruta-de-verdad', {inicio: 4.87, foto: [8.0, 11.9], cues: {empuje: 4.6, l1: 4.95, l2: 5.07, sin1: 7.0, sin2: 9.5, color: 11.2}}),
     // "Fresas del Fundo San Isidro" en relevo con la vitamina C
@@ -91,7 +91,7 @@ export const frutadoEcocultivo: VideoKefirProps = {
     },
     {
       id: '09-cierre', tipo: 'cierreTienda', inicio: 41.55, tono: 'tinta', foto: [43.0, 47.0],
-      transicion: 'zoom', ola: PALETAS.frutos.luz,
+      transicion: 'flash', ola: PALETAS.frutos.luz,
       textos: {cta: 'Encuéntralos|en EcoCultivo', resalta: 'ecocultivo', tam: '80', direccion: 'Ca. El Carmen 1159 · Surquillo', cinta: 'Comenta cuál eliges 👇', whatsapp: 'WhatsApp', numero: TIENDA.numero, acento: '#FF8FBF'},
       cues: {morph: 42.5, cta: 42.0, cinta: 41.6, escribe: 44.1, g1: 45.15, g2: 46.12, g3: 47.15, luz: 47.8},
     },

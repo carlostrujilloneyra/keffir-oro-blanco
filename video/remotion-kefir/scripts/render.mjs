@@ -20,7 +20,7 @@ const correr = (cmd, args) => {
 const {id} = VARIANTES[variante];
 const base = `out/kefir-${variante}${prueba ? '-720p' : ''}`;
 // --gl=angle por las escenas 3D; --muted porque el audio se mezcla aparte
-correr('npx', ['remotion', 'render', 'src/index.ts', id, `${base}-mudo.mp4`, '--muted', '--gl=angle', `--crf=${prueba ? 21 : 17}`, ...(prueba ? [`--scale=${2 / 3}`] : [])]);
+correr('npx', ['remotion', 'render', 'src/index.ts', id, `${base}-mudo.mp4`, '--muted', '--gl=angle', '--crf=17', ...(prueba ? [`--scale=${2 / 3}`] : [])]);
 
 const unir = (wav, salida) =>
   correr('ffmpeg', ['-y', '-v', 'error', '-i', `${base}-mudo.mp4`, '-i', wav, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', salida]);

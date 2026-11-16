@@ -59,7 +59,9 @@ export const GanchoFrutado: FC = ({e}) => {
       {e.textos.pre1 && (
         <Sale t={t} en={c.l1 - 0.24}>
           <Linea txt={e.textos.pre1} t={t} en={c.pre1} y={240} tam={190} sombra />
-          <Linea txt={e.textos.pre2} t={t} en={c.pre2} y={440} tam={84} sombra color={p.subtitulo} />
+          {e.textos.pre2.split('|').map((l, i) => (
+            <Linea key={l} txt={l} t={t} en={c.pre2 + i * 0.08} y={440 + i * 92} tam={84} sombra color={p.subtitulo} />
+          ))}
         </Sale>
       )}
     </AbsoluteFill>
