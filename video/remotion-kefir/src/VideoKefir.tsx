@@ -4,6 +4,7 @@ import {AbsoluteFill, Audio, Sequence, staticFile, useVideoConfig} from 'remotio
 import {InicioCtx} from './anim';
 import {Corte} from './componentes/Corte';
 import {OLA_FRAMES, OLA_PRE} from './componentes/Ola';
+import {LimpioCtx} from './componentes/Fondo';
 import {Subtitulos} from './componentes/Subtitulos';
 import captionsFrutado from './datos/captions-frutado.json';
 import captionsNatural from './datos/captions-natural.json';
@@ -32,6 +33,7 @@ export const VideoKefir: React.FC<VideoKefirProps> = ({variante, escenas, voz, m
   const colorEn = (t: number) => PALETAS[[...escenas].reverse().find((e) => t >= e.inicio)?.tono ?? escenas[0].tono].subtitulo ?? SUBTITULOS[variante];
   return (
     <AbsoluteFill style={{background: TINTA}}>
+      <LimpioCtx.Provider value={variante === 'frutado'}>
       {escenas.map((e, i) => {
         const Comp = ESCENAS[e.tipo];
         // cada escena entra OLA_PRE frames antes de su corte y la anterior aguanta hasta que la transición termina
@@ -47,6 +49,7 @@ export const VideoKefir: React.FC<VideoKefirProps> = ({variante, escenas, voz, m
           </Sequence>
         );
       })}
+      </LimpioCtx.Provider>
       <Subtitulos captions={CAPTIONS[variante]} colorEn={colorEn} />
       <Audio src={staticFile(voz)} />
       <Audio src={staticFile(musica)} trimBefore={Math.round(musicaDesde * fps)} volume={0.16} />

@@ -13,17 +13,19 @@ export const frutado: VideoKefirProps = {
   musicaDesde: 0,
   escenas: [
     {
-      // un corte por sabor cuando la voz lo nombra; en "¿cuál eliges?" (cue `todos`) las cuatro en franjas
-      id: '01-gancho', tipo: 'ganchoFrutado', inicio: 0, tono: 'mora', foto: [0.4, 1.1, 2.2, 3.4, 4.6],
+      // un corte por sabor cuando la voz lo nombra (arándanos entra un poco antes para durar 1 s); el titular ya está
+      // completo en el frame 0. En "¿cuál eliges?" (cue `todos`) las cuatro en franjas, que siguen en pantalla mientras
+      // la voz empieza "Es kéfir de verdad": el corte a la escena 2 se retrasó para que se vean más de 1.2 s
+      id: '01-gancho', tipo: 'ganchoFrutado', inicio: 0, tono: 'mora', foto: [0.4, 1.1, 2.2, 3.4, 4.9],
       textos: {l1: '¿Cuál', l2: 'eliges?'},
-      cues: {l1: 0, l2: 0.1, fresa: 0, arandanos: 0.62, frutos: 1.47, chocolate: 2.78, todos: 3.92},
+      cues: {l1: -0.7, l2: -0.6, fresa: 0, arandanos: 0.55, frutos: 1.6, chocolate: 2.78, todos: 3.92},
     },
     {
       // el titular entra al abrir la escena ("Es kéfir de verdad, con fruta de verdad"); `color` es el splash que tiñe en "el color es de la fruta"
-      id: '02-fruta-de-verdad', tipo: 'frutaDeVerdad', inicio: 4.95, tono: 'leche', foto: [9.3, 11.0],
+      id: '02-fruta-de-verdad', tipo: 'frutaDeVerdad', inicio: 5.45, tono: 'leche', foto: [9.3, 11.0],
       ola: '#FFFFFF',
       textos: {l1: 'Fruta', l2: 'de verdad', sin1: 'Sin colorantes', sin2: 'Sin saborizantes'},
-      cues: {l1: 5.0, l2: 5.15, sin1: 7.78, sin2: 8.75, color: 9.83},
+      cues: {l1: 5.5, l2: 5.62, sin1: 7.78, sin2: 8.75, color: 9.83},
     },
     {
       // las escenas de sabor usan el PNG original de la foto: el zoom llega hasta 1.56x.

@@ -3,12 +3,20 @@ import {AbsoluteFill, Img, random, staticFile} from 'remotion';
 import {ALTO, ANCHO, PALETAS, Tono} from '../tema';
 
 /*
+  Fondo limpio (lo activa VideoKefir solo en el frutado): casi sin grano, manchas de luz muy tenues y piso suave,
+  para que el color se vea parejo y sin una capa encima. El natural, ya aprobado, sigue con el fondo de estudio completo.
+*/
+export const LimpioCtx = React.createContext(false);
+
+/*
   Fondo de estudio en el color del sabor: foco de luz, dos manchas que derivan lento,
   piso más oscuro y grano. `luz` es la posición del foco en % (por defecto arriba a la izquierda).
 */
 export const Fondo: React.FC<{tono: Tono; t: number; luz?: [number, number]; piso?: boolean; plano?: boolean}> = ({tono, t, luz = [34, 30], piso = true, plano}) => {
   const p = PALETAS[tono];
   const claro = tono === 'leche';
+  const limpio = React.useContext(LimpioCtx);
+  const manchas = limpio ? 0.3 : 1;
   // plano: color base liso con un foco tenue arriba; lo usan las escenas donde una foto héroe trae su propio fondo oscuro
   if (plano)
     return (
@@ -19,17 +27,18 @@ export const Fondo: React.FC<{tono: Tono; t: number; luz?: [number, number]; pis
   return (
     <AbsoluteFill style={{background: p.base, overflow: 'hidden'}}>
       <AbsoluteFill style={{background: `radial-gradient(ellipse 92% 62% at ${luz[0]}% ${luz[1]}%, ${p.luz} 0%, ${p.base} 52%, ${p.sombra} 128%)`}} />
-      <div style={{position: 'absolute', width: 900, height: 900, borderRadius: '50%', left: 520 + Math.sin(t * 0.35) * 60, top: 1050 + Math.cos(t * 0.3) * 50, background: p.luz, opacity: claro ? 0.5 : 0.22, filter: 'blur(140px)'}} />
-      <div style={{position: 'absolute', width: 700, height: 700, borderRadius: '50%', left: -260 + Math.cos(t * 0.3) * 50, top: 620 + Math.sin(t * 0.4) * 60, background: p.sombra, opacity: claro ? 0.16 : 0.3, filter: 'blur(150px)'}} />
-      {piso && <AbsoluteFill style={{background: `linear-gradient(to bottom, transparent 60%, ${p.sombra} 122%)`, opacity: claro ? 0.55 : 0.9}} />}
+      <div style={{position: 'absolute', width: 900, height: 900, borderRadius: '50%', left: 520 + Math.sin(t * 0.35) * 60, top: 1050 + Math.cos(t * 0.3) * 50, background: p.luz, opacity: (claro ? 0.5 : 0.22) * manchas, filter: 'blur(140px)'}} />
+      <div style={{position: 'absolute', width: 700, height: 700, borderRadius: '50%', left: -260 + Math.cos(t * 0.3) * 50, top: 620 + Math.sin(t * 0.4) * 60, background: p.sombra, opacity: (claro ? 0.16 : 0.3) * manchas, filter: 'blur(150px)'}} />
+      {piso && <AbsoluteFill style={{background: `linear-gradient(to bottom, transparent 60%, ${p.sombra} 122%)`, opacity: (claro ? 0.55 : 0.9) * (limpio ? 0.5 : 1)}} />}
       <Grano fuerza={claro ? 0.2 : 0.3} />
     </AbsoluteFill>
   );
 };
 
-export const Grano: React.FC<{fuerza?: number}> = ({fuerza = 0.3}) => (
-  <Img src={staticFile('img/grano.png')} style={{position: 'absolute', left: 0, top: 0, width: ANCHO, height: ALTO, mixBlendMode: 'overlay', opacity: fuerza, pointerEvents: 'none'}} />
-);
+export const Grano: React.FC<{fuerza?: number}> = ({fuerza = 0.3}) => {
+  const limpio = React.useContext(LimpioCtx);
+  return <Img src={staticFile('img/grano.png')} style={{position: 'absolute', left: 0, top: 0, width: ANCHO, height: ALTO, mixBlendMode: 'overlay', opacity: limpio ? fuerza * 0.12 : fuerza, pointerEvents: 'none'}} />;
+};
 
 /*
   Gotas desenfocadas en primer plano: dan la tercera capa de profundidad y se mueven
