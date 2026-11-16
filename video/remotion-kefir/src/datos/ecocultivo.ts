@@ -82,7 +82,7 @@ export const frutadoEcocultivo: VideoKefirProps = {
     de(frutado, '05-frutos-del-bosque', {inicio: 22.09, foto: [23.0, 25.0], textos: {l1: 'Frutos', l2: 'del bosque', sello2: '4|FRUTOS EN 1'}, cues: {nombre: 22.2, cuatro: 23.6}}),
     de(frutado, '06-chocolate', {inicio: 25.77, foto: [27.6], textos: {nombre: 'Chocolate', tam: '166'}, cues: {nombre: 25.82}, lista: [{txt: 'Con cacao de Quillabamba', en: 26.5}]}),
     // las cuatro botellas: "Dulces, con stevia" y, en "¿sabías que también los hay de leche de cabra?", el sello
-    de(frutado, '07-stevia', {inicio: 28.2, foto: [29.8, 32.6], textos: {l1: 'Dulces,', l2: 'con stevia', resalta: 'stevia', sello: 'TAMBIÉN DE|LECHE DE CABRA'}, cues: {l1: 28.3, l2: 28.45, sello: 31.3}}),
+    de(frutado, '07-stevia', {inicio: 28.2, foto: [29.8, 32.6], textos: {l1: 'Dulces,', l2: 'con stevia', resalta: 'stevia', sello: 'TAMBIÉN|DE LECHE|DE CABRA'}, cues: {l1: 28.3, l2: 28.45, sello: 31.3}}),
     {
       id: '08-mapa', tipo: 'mapa', inicio: 33.2, tono: 'leche', foto: [33.9, 37.0, 41.1],
       ola: '#FFFFFF',

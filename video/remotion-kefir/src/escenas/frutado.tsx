@@ -178,7 +178,7 @@ export const Stevia: FC = ({e}) => {
       <Linea txt={e.textos.l2} t={t} en={c.l2} y={416} tam={170} sombra resalta={e.textos.resalta} colorResalta="#FFE38A" />
       {e.textos.c1 && <Cinta txt={e.textos.c1} t={t} en={c.c1} y={612} tam={36} fondo={PAPEL} color={TINTA} />}
       {/* sello opcional sobre las cuatro botellas (variantes: "También de leche de cabra") */}
-      {e.textos.sello && <Sello t={t} en={c.sello} x={760} y={770} d={300} centro={e.textos.sello.split('|')} fondo={PAPEL} color={TINTA} inclinacion={8} />}
+      {e.textos.sello && <Sello t={t} en={c.sello} x={730} y={780} d={320} centro={e.textos.sello.split('|')} fondo={PAPEL} color={TINTA} inclinacion={8} />}
     </AbsoluteFill>
   );
 };
