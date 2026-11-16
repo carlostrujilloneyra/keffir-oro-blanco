@@ -96,7 +96,7 @@ const CAM: Record<string, {dy: number; foco: [number, number]; z: number; lado: 
   'img/fresa-hero.png': {dy: 0, foco: [730, 1236], z: 0.5, lado: 1},
   'img/arandanos-hero.png': {dy: 140, foco: [766, 1085], z: 0.374, lado: -1, funde: 0.12},
   'img/frutos-bosque-hero.png': {dy: 0, foco: [807, 1314], z: 0.5, lado: 1},
-  'img/chocolate-hero.png': {dy: 0, foco: [612, 998], z: 0.36, lado: -1},
+  'img/chocolate-hero.png': {dy: 0, foco: [580, 998], z: 0.36, lado: -1},
 };
 const Camara: FC = ({e}) => {
   const t = useT(), c = CAM[e.imagenes!.heroe];
@@ -126,7 +126,7 @@ export const Sabor: FC = ({e}) => {
       {e.textos.pre && <Linea txt={e.textos.pre} t={t} en={e.cues.nombre - 0.1} y={240} tam={84} sombra />}
       <Linea txt={e.textos.nombre} t={t} en={e.cues.nombre} y={yNombre} tam={tam} sombra color={p.acento} />
       {L.map((b, i) => {
-        const cinta = <Cinta key={b.txt} txt={b.txt} t={t} en={b.en} y={e.textos.relevo ? yCinta : yCinta + i * 78} tam={36} fondo={p.cinta} color={p.cintaTexto} />;
+        const cinta = <Cinta key={b.txt} txt={b.txt} t={t} en={b.en} y={e.textos.relevo ? yCinta : yCinta + i * 78} tam={34} fondo={p.cinta} color={p.cintaTexto} />;
         return e.textos.relevo && L[i + 1] ? <Sale key={b.txt} t={t} en={L[i + 1].en - 0.2}>{cinta}</Sale> : cinta;
       })}
     </AbsoluteFill>
