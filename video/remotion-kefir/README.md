@@ -2,7 +2,7 @@
 
 Dos videos verticales 1080x1920 a 30 fps para TikTok y estados de WhatsApp, con una sola composición (`VideoKefir`) y dos registros en `src/Root.tsx`: `KefirNatural` y `KefirFrutado`. La voz es la pista maestra: todo se sincroniza con `public/audio/voz-kefir-*-v2.mp3` (las voces sin `-v2` son de la versión anterior y no se usan). Guion y escenas: `../guion-v2-kefir.md`.
 
-Estado (v2 con hooks): natural con escenas, tiempos, assets y storyboard revisados; falta aprobar su prueba a 720p. El frutado tiene datos y escenas v2 escritos, pero sin storyboard ni revisión: le faltan los criterios de cámara y subtítulos del natural. Los renders finales a 1080p esperan la aprobación de las pruebas.
+Estado (v2 con hooks): natural y frutado aprobados y renderizados a 1080 (`out/kefir-natural.mp4`, `out/kefir-frutado.mp4`). Criterios y flujo de trabajo para videos nuevos: `CLAUDE.md`.
 
 ## Estructura
 - `src/datos/natural.ts`, `src/datos/frutado.ts` – las escenas de cada video con los tiempos **de la voz**: inicio, cues, textos, color y transición. Es lo único que se toca al cambiar la voz o el copy.
