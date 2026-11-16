@@ -1,8 +1,9 @@
 import React from 'react';
 import {AbsoluteFill, Img, staticFile} from 'remotion';
-import {cl, muelle, pulso, rampa, useT} from '../anim';
-import {Fondo, Gotas, Grano} from '../componentes/Fondo';
+import {cl, muelle, pulso, rampa, useT, vaiven} from '../anim';
+import {Fondo, Grano} from '../componentes/Fondo';
 import {Franjas, SABORES} from '../componentes/Franjas';
+import {Foto3D} from '../componentes/Parallax3D';
 import {Sello} from '../componentes/Sello';
 import {Cinta, Linea, Sale} from '../componentes/Texto';
 import type {Escena} from '../datos/tipos';
@@ -85,49 +86,59 @@ export const FrutaDeVerdad: FC = ({e}) => {
 };
 
 /*
-  3, 4 y 6 · Fresa, Arándanos y Chocolate: la foto IA de cada sabor a cuadro completo. La cámara se acerca hacia la fruta
-  que cae sobre el vaso (`foco`) y cada cinta da un paso más. Entre sabores se entra con whip pan.
+  Escenas de sabor (3 a 6): la foto IA original de cada sabor (PNG sin comprimir) con el mismo movimiento del natural:
+  la cámara se acerca despacio a la tapa y el logo y vuelve a la botella entera, con una inclinación 3D leve.
+  `CAM` fija el encuadre de cada foto: `foco` y `z` están calculados para que, en el punto más cercano, la base del logo
+  quede justo sobre los subtítulos (y ≈ 1470) y la tapa pase a la derecha o por debajo de los textos. Por eso el zoom
+  no llega igual de lejos en todas: fresa y frutos del bosque 1.56x, arándanos 1.43x, chocolate 1.41x (sobre la foto).
 */
-const FOCO: Record<string, [number, number]> = {
-  'img/fresa-hero.webp': [330, 800],
-  'img/arandanos-hero.webp': [300, 760],
-  'img/chocolate-hero.webp': [330, 740],
+const CAM: Record<string, {dy: number; foco: [number, number]; z: number; lado: number; funde?: number}> = {
+  'img/fresa-hero.png': {dy: 0, foco: [730, 1236], z: 0.5, lado: 1},
+  'img/arandanos-hero.png': {dy: 140, foco: [766, 1085], z: 0.374, lado: -1, funde: 0.12},
+  'img/frutos-bosque-hero.png': {dy: 0, foco: [807, 1314], z: 0.5, lado: 1},
+  'img/chocolate-hero.png': {dy: 0, foco: [612, 998], z: 0.36, lado: -1},
 };
-export const Sabor: FC = ({e}) => {
-  const t = useT(), p = PALETAS[e.tono], L = e.lista ?? [];
-  const tam = Number(e.textos.tam);
-  const yNombre = e.textos.pre ? 328 : 240;
-  const z = 1.04 + rampa(t, e.inicio - 0.3, e.inicio + 4.4, 0, 0.1, (k) => k) + L.reduce((s, b) => s + rampa(t, b.en, b.en + 0.3) * 0.035, 0);
+const Camara: FC = ({e}) => {
+  const t = useT(), c = CAM[e.imagenes!.heroe];
+  const a = e.inicio - 0.3, b = e.fin! + 0.3;
   return (
-    <AbsoluteFill>
+    <AbsoluteFill style={{background: PALETAS[e.tono].base}}>
       <Heroe e={e}>
-        <FotoIA src={e.imagenes!.heroe} z={z} foco={FOCO[e.imagenes!.heroe]} />
+        <Foto3D src={e.imagenes!.heroe} t={t} zoom={1 + vaiven(t, a, b, 0.5, 0) * c.z} foco={c.foco} incl={[c.lado * (2.2 - rampa(t, a, b, 0, 1.4, (k) => k)), -0.8]} dy={c.dy} funde={c.funde} motas={PALETAS[e.tono].acento} />
       </Heroe>
       <Grano fuerza={0.2} />
-      <Gotas t={t} color={p.acento} semilla={e.id} n={4} zona={[0, 1560, 1080, 1900]} />
-      {e.textos.pre && <Linea txt={e.textos.pre} t={t} en={e.cues.nombre - 0.1} y={240} tam={84} sombra />}
-      <Linea txt={e.textos.nombre} t={t} en={e.cues.nombre} y={yNombre} tam={tam} sombra color={p.acento} />
-      {L.map((b, i) => (
-        <Cinta key={b.txt} txt={b.txt} t={t} en={b.en} y={yNombre + tam + 36 + i * 88} x={SEGURA.x0 + i * 26} tam={36} fondo={p.cinta} color={p.cintaTexto} />
-      ))}
     </AbsoluteFill>
   );
 };
 
 /*
-  5 · Frutos del bosque: el más pedido. El sello "El más pedido" entra con la voz y deja su sitio al de "4 frutos en 1";
-  cada sello da un golpe de cámara.
+  3, 4 y 6 · Fresa, Arándanos y Chocolate. Entre sabores se entra con whip pan.
+  Con `relevo`, las cintas comparten un solo sitio y cada una sale cuando entra la siguiente (máx. 7 palabras en pantalla).
 */
-export const FrutosDelBosque: FC = ({e}) => {
-  const t = useT(), p = PALETAS[e.tono], c = e.cues;
-  const z = 1.04 + rampa(t, e.inicio - 0.3, e.inicio + 5.4, 0, 0.11, (k) => k) + pulso(t, c.pedido + 0.15, 0.06, 0.4) * 0.03 + pulso(t, c.cuatro + 0.15, 0.06, 0.4) * 0.04;
+export const Sabor: FC = ({e}) => {
+  const t = useT(), p = PALETAS[e.tono], L = e.lista ?? [];
+  const tam = Number(e.textos.tam);
+  const yNombre = e.textos.pre ? 328 : 240;
+  const yCinta = yNombre + tam + 30;
   return (
     <AbsoluteFill>
-      <Heroe e={e}>
-        <FotoIA src={e.imagenes!.heroe} z={z} foco={[330, 840]} />
-      </Heroe>
-      <Grano fuerza={0.2} />
-      <Gotas t={t} color="#F7B8D2" semilla="f5" n={5} zona={[0, 1560, 1080, 1900]} />
+      <Camara e={e} />
+      {e.textos.pre && <Linea txt={e.textos.pre} t={t} en={e.cues.nombre - 0.1} y={240} tam={84} sombra />}
+      <Linea txt={e.textos.nombre} t={t} en={e.cues.nombre} y={yNombre} tam={tam} sombra color={p.acento} />
+      {L.map((b, i) => {
+        const cinta = <Cinta key={b.txt} txt={b.txt} t={t} en={b.en} y={e.textos.relevo ? yCinta : yCinta + i * 78} tam={36} fondo={p.cinta} color={p.cintaTexto} />;
+        return e.textos.relevo && L[i + 1] ? <Sale key={b.txt} t={t} en={L[i + 1].en - 0.2}>{cinta}</Sale> : cinta;
+      })}
+    </AbsoluteFill>
+  );
+};
+
+// 5 · Frutos del bosque: el más pedido. El sello "El más pedido" entra con la voz y deja su sitio al de "4 frutos en 1".
+export const FrutosDelBosque: FC = ({e}) => {
+  const t = useT(), p = PALETAS[e.tono], c = e.cues;
+  return (
+    <AbsoluteFill>
+      <Camara e={e} />
       <Linea txt={e.textos.l1} t={t} en={c.nombre} y={240} tam={190} sombra color={p.subtitulo} />
       <Linea txt={e.textos.l2} t={t} en={c.nombre + 0.14} y={426} tam={118} sombra />
       <Sale t={t} en={c.cuatro - 0.2}>

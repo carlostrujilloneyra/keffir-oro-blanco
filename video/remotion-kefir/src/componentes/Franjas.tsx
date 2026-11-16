@@ -9,10 +9,10 @@ import {ALTO, ANCHO, PALETAS, Tono} from '../tema';
   con eso las cuatro se ven del mismo alto y apoyadas en la misma línea.
 */
 export const SABORES: {src: string; tono: Tono; cx: number; tapa: number; base: number}[] = [
-  {src: 'img/fresa-hero.webp', tono: 'fresa', cx: 770, tapa: 768, base: 1770},
-  {src: 'img/arandanos-hero.webp', tono: 'arandanos', cx: 810, tapa: 504, base: 1740},
-  {src: 'img/frutos-bosque-hero.webp', tono: 'frutos', cx: 818, tapa: 840, base: 1716},
-  {src: 'img/chocolate-hero.webp', tono: 'cacao', cx: 762, tapa: 609, base: 1821},
+  {src: 'img/fresa-hero.webp', tono: 'fresa', cx: 773, tapa: 745, base: 1750},
+  {src: 'img/arandanos-hero.webp', tono: 'arandanos', cx: 790, tapa: 480, base: 1720},
+  {src: 'img/frutos-bosque-hero.webp', tono: 'frutos', cx: 796, tapa: 845, base: 1730},
+  {src: 'img/chocolate-hero.webp', tono: 'cacao', cx: 760, tapa: 585, base: 1790},
 ];
 
 const FUNDE = 'linear-gradient(to bottom, transparent 0%, #000 17%, #000 93%, transparent 100%)';

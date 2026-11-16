@@ -7,6 +7,7 @@
     "tiempos": "node scripts/tiempos.mjs",
     "audio": "node scripts/mezcla.mjs",
     "prueba": "node scripts/render.mjs natural --prueba",
+    "prueba:frutado": "node scripts/render.mjs frutado --prueba",
     "render:natural": "node scripts/render.mjs natural",
     "render:frutado": "node scripts/render.mjs frutado"
   },
