@@ -68,11 +68,11 @@ export const frutadoEcocultivo: VideoKefirProps = {
   duracion: 48.8,
   voz: 'audio/voz-kefir-frutado-ecocultivo.mp3',
   escenas: [
-    // cortes por sabor cada 0.8 s bajo "4 sabores · 0 conservantes"; en "¿cuál eliges?" las franjas (1.6 s)
-    de(frutado, '01-gancho', {foto: [0.4, 1.2, 2.0, 2.8, 4.2],
-      textos: {pre1: '4 sabores', pre2: '0 conservantes|añadidos', l1: '¿Cuál', l2: 'eliges?'},
-      cues: {pre1: 0, pre2: 0.1, l1: 3.2, l2: 3.3, fresa: 0, arandanos: 0.8, frutos: 1.6, chocolate: 2.4, todos: 3.2}}),
-    de(frutado, '02-fruta-de-verdad', {inicio: 4.87, foto: [8.0, 11.9], cues: {empuje: 4.6, l1: 4.95, l2: 5.07, sin1: 7.0, sin2: 9.5, color: 11.2}}),
+    // un sabor cada 1.05 s con fundido de 0.35 s bajo "4 sabores, cero conservantes"; en 4.2 "¿cuál eliges?" y las franjas (1.6 s)
+    de(frutado, '01-gancho', {foto: [0.5, 1.6, 2.7, 3.8, 5.0],
+      textos: {pre1: '4 sabores', pre2: 'cero|conservantes|añadidos', l1: '¿Cuál', l2: 'eliges?'},
+      cues: {pre1: 0, pre2: 0.1, l1: 4.2, l2: 4.3, fresa: 0, arandanos: 1.05, frutos: 2.1, chocolate: 3.15, todos: 4.2, cruce: 0.35}}),
+    de(frutado, '02-fruta-de-verdad', {inicio: 5.84, foto: [8.0, 11.9], cues: {empuje: 5.6, l1: 5.92, l2: 6.04, sin1: 7.0, sin2: 9.5, color: 11.2}}),
     // "Fresas del Fundo San Isidro" en relevo con la vitamina C
     de(frutado, '03-fresa', {inicio: 12.75, foto: [14.0, 18.4], cues: {nombre: 12.8}, lista: [
       {txt: 'Fresas del Fundo San Isidro', en: 13.0},

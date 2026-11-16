@@ -85,7 +85,8 @@ escenas.forEach((e, i) => {
   }
   if (e.tipo === 'ganchoFrutado') {
     fx('splash', 0.05, 0.28);
-    [c.arandanos, c.frutos, c.chocolate].forEach((t) => fx('whip', t - 0.1, 0.22));
+    // con fundido entre sabores (cue `cruce`) el paso suena con woosh suave en vez de whip
+    [c.arandanos, c.frutos, c.chocolate].forEach((t) => (c.cruce === undefined ? fx('whip', t - 0.1, 0.22) : fx('woosh', t - 0.15, 0.1)));
     fx('impacto', c.todos - 0.03, 0.42);
   }
   if (e.tipo === 'frutaDeVerdad') {

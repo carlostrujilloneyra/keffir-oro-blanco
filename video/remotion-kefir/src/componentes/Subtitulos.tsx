@@ -45,7 +45,7 @@ export const paginar = (captions: Caption[]): Pagina[] => {
   Subtítulos palabra por palabra: texto blanco sobre placa oscura semitransparente, con el borde inferior
   en SUBTITULOS.abajo. La palabra que se está diciendo toma el color del sabor en pantalla (`colorEn`).
 */
-export const Subtitulos: React.FC<{captions: Caption[]; colorEn: (t: number) => string}> = ({captions, colorEn}) => {
+export const Subtitulos: React.FC<{captions: Caption[]; colorEn: (t: number) => string; abajo?: number}> = ({captions, colorEn, abajo = SUBTITULOS.abajo}) => {
   const t = useCurrentFrame() / FPS;
   const paginas = React.useMemo(() => paginar(captions), [captions]);
   const pag = paginas.find((p) => t >= p.a - 0.06 && t < p.b);
@@ -53,7 +53,7 @@ export const Subtitulos: React.FC<{captions: Caption[]; colorEn: (t: number) => 
   const activo = colorEn(t);
   const e = rampa(t, pag.a - 0.06, pag.a + 0.14);
   return (
-    <div style={{position: 'absolute', left: SUBTITULOS.x0, width: SUBTITULOS.x1 - SUBTITULOS.x0, bottom: 1920 - SUBTITULOS.abajo, display: 'flex', justifyContent: 'center'}}>
+    <div style={{position: 'absolute', left: SUBTITULOS.x0, width: SUBTITULOS.x1 - SUBTITULOS.x0, bottom: 1920 - abajo, display: 'flex', justifyContent: 'center'}}>
       <div style={{display: 'flex', gap: 13, padding: '10px 26px 13px', borderRadius: 16, background: SUBTITULOS.placa, opacity: e, translate: `0 ${(1 - e) * 10}px`,
         fontFamily: FUENTE.txt, fontWeight: 600, fontSize: SUBTITULOS.tam, lineHeight: 1.2, whiteSpace: 'nowrap'}}>
         {pag.palabras.map((w, i) => {

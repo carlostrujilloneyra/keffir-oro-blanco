@@ -40,12 +40,22 @@ export const GanchoFrutado: FC = ({e}) => {
   const cortes = [c.fresa, c.arandanos, c.frutos, c.chocolate];
   const i = cortes.reduce((n, a, k) => (t >= a ? k : n), 0);
   const s = SABORES[i], a = cortes[i];
+  const zoomEn = (en: number) => 1.06 + rampa(t, en, en + 0.5) * 0.16 + rampa(t, en + 0.5, en + 1.6, 0, 0.05, (k) => k);
+  const funde = c.cruce === undefined || i === 0 ? 1 : rampa(t, a, a + c.cruce, 0, 1, SUAVE);
   return (
     <AbsoluteFill>
       <Heroe e={e}>
         {/* la última foto sigue debajo mientras suben las franjas */}
-        <FotoIA src={s.src} z={1.06 + rampa(t, a, a + 0.5) * 0.16 + rampa(t, a + 0.5, a + 1.6, 0, 0.05, (k) => k)} foco={[s.cx, 1500]} />
-        {i > 0 && <Destello t={t} en={a} color={PALETAS[s.tono].luz} fuerza={0.6} />}
+        {/* con cue `cruce`, cada sabor entra fundiéndose sobre el anterior (en esos segundos) en vez del destello */}
+        {funde < 1 && <FotoIA src={SABORES[i - 1].src} z={zoomEn(cortes[i - 1])} foco={[SABORES[i - 1].cx, 1500]} />}
+        {funde < 1 ? (
+          <AbsoluteFill style={{opacity: funde}}>
+            <FotoIA src={s.src} z={zoomEn(a)} foco={[s.cx, 1500]} />
+          </AbsoluteFill>
+        ) : (
+          <FotoIA src={s.src} z={zoomEn(a)} foco={[s.cx, 1500]} />
+        )}
+        {i > 0 && c.cruce === undefined && <Destello t={t} en={a} color={PALETAS[s.tono].luz} fuerza={0.6} />}
         <Franjas t={t} en={c.todos} />
       </Heroe>
       <Grano fuerza={0.2} />
@@ -60,7 +70,7 @@ export const GanchoFrutado: FC = ({e}) => {
         <Sale t={t} en={c.l1 - 0.24}>
           <Linea txt={e.textos.pre1} t={t} en={c.pre1} y={240} tam={190} sombra />
           {e.textos.pre2.split('|').map((l, i) => (
-            <Linea key={l} txt={l} t={t} en={c.pre2 + i * 0.08} y={440 + i * 76} tam={66} sombra color={p.subtitulo} />
+            <Linea key={l} txt={l} t={t} en={c.pre2 + i * 0.08} y={440 + i * 74} tam={66} sombra color={p.subtitulo} />
           ))}
         </Sale>
       )}

@@ -57,7 +57,8 @@ export const VideoKefir: React.FC<VideoKefirProps> = ({variante, escenas, voz, m
       })}
       </SinGranoCtx.Provider>
       </LimpioCtx.Provider>
-      <Subtitulos captions={CAPTIONS[variante]} colorEn={colorEn} />
+      {/* EcoCultivo: subtítulos 40 px más abajo (SUBTITULOS es de los videos aprobados) */}
+      <Subtitulos captions={CAPTIONS[variante]} colorEn={colorEn} abajo={variante !== fam ? SUBTITULOS.abajo + 40 : undefined} />
       <Audio src={staticFile(voz)} />
       <Audio src={staticFile(musica)} trimBefore={Math.round(musicaDesde * fps)} volume={0.16} />
     </AbsoluteFill>
