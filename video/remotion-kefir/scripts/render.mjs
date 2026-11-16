@@ -5,10 +5,11 @@
 */
 import {spawnSync} from 'child_process';
 import path from 'path';
+import {NOMBRES, VARIANTES} from './variantes.mjs';
 
 const variante = process.argv[2];
 const prueba = process.argv.includes('--prueba');
-if (!['natural', 'frutado'].includes(variante)) throw new Error('Uso: node scripts/render.mjs <natural|frutado> [--prueba]');
+if (!VARIANTES[variante]) throw new Error(`Uso: node scripts/render.mjs <${NOMBRES}> [--prueba]`);
 
 const raiz = path.resolve(import.meta.dirname, '..');
 const correr = (cmd, args) => {
@@ -16,7 +17,7 @@ const correr = (cmd, args) => {
   if (r.status !== 0) process.exit(r.status ?? 1);
 };
 
-const id = variante === 'natural' ? 'KefirNatural' : 'KefirFrutado';
+const {id} = VARIANTES[variante];
 const base = `out/kefir-${variante}${prueba ? '-720p' : ''}`;
 // --gl=angle por las escenas 3D; --muted porque el audio se mezcla aparte
 correr('npx', ['remotion', 'render', 'src/index.ts', id, `${base}-mudo.mp4`, '--muted', '--gl=angle', `--crf=${prueba ? 21 : 17}`, ...(prueba ? [`--scale=${2 / 3}`] : [])]);

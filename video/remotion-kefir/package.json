@@ -9,7 +9,11 @@
     "prueba": "node scripts/render.mjs natural --prueba",
     "prueba:frutado": "node scripts/render.mjs frutado --prueba",
     "render:natural": "node scripts/render.mjs natural",
-    "render:frutado": "node scripts/render.mjs frutado"
+    "render:frutado": "node scripts/render.mjs frutado",
+    "prueba:natural-ecocultivo": "node scripts/render.mjs natural-ecocultivo --prueba",
+    "prueba:frutado-ecocultivo": "node scripts/render.mjs frutado-ecocultivo --prueba",
+    "render:natural-ecocultivo": "node scripts/render.mjs natural-ecocultivo",
+    "render:frutado-ecocultivo": "node scripts/render.mjs frutado-ecocultivo"
   },
   "dependencies": {
     "@react-three/drei": "9.122.0",

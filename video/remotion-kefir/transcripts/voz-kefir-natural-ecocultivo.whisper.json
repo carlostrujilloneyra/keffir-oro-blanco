@@ -1,0 +1,650 @@
+[
+  {
+    "text": "Esto",
+    "start": 0.08,
+    "end": 0.53,
+    "id": "w0"
+  },
+  {
+    "text": "no",
+    "start": 0.53,
+    "end": 0.79,
+    "id": "w1"
+  },
+  {
+    "text": "es",
+    "start": 0.79,
+    "end": 0.98,
+    "id": "w2"
+  },
+  {
+    "text": "yogurt.",
+    "start": 1.08,
+    "end": 1.88,
+    "id": "w3"
+  },
+  {
+    "text": "Mucha",
+    "start": 1.95,
+    "end": 2.29,
+    "id": "w4"
+  },
+  {
+    "text": "gente",
+    "start": 2.29,
+    "end": 2.7,
+    "id": "w5"
+  },
+  {
+    "text": "los",
+    "start": 2.7,
+    "end": 2.9,
+    "id": "w6"
+  },
+  {
+    "text": "confunde,",
+    "start": 2.96,
+    "end": 3.8,
+    "id": "w7"
+  },
+  {
+    "text": "pero",
+    "start": 3.81,
+    "end": 4.11,
+    "id": "w8"
+  },
+  {
+    "text": "el",
+    "start": 4.16,
+    "end": 4.28,
+    "id": "w9"
+  },
+  {
+    "text": "kéfir",
+    "start": 4.33,
+    "end": 4.69,
+    "id": "w10"
+  },
+  {
+    "text": "es",
+    "start": 4.69,
+    "end": 4.74,
+    "id": "w11"
+  },
+  {
+    "text": "otra",
+    "start": 4.85,
+    "end": 5.18,
+    "id": "w12"
+  },
+  {
+    "text": "cosa.",
+    "start": 5.18,
+    "end": 5.56,
+    "id": "w13"
+  },
+  {
+    "text": "100%",
+    "start": 5.64,
+    "end": 6.42,
+    "id": "w14"
+  },
+  {
+    "text": "natural,",
+    "start": 6.42,
+    "end": 7.19,
+    "id": "w15"
+  },
+  {
+    "text": "vivo,",
+    "start": 7.48,
+    "end": 7.71,
+    "id": "w16"
+  },
+  {
+    "text": "hecho",
+    "start": 7.71,
+    "end": 8.14,
+    "id": "w17"
+  },
+  {
+    "text": "a",
+    "start": 8.14,
+    "end": 8.21,
+    "id": "w18"
+  },
+  {
+    "text": "mano,",
+    "start": 8.27,
+    "end": 8.73,
+    "id": "w19"
+  },
+  {
+    "text": "lote",
+    "start": 8.73,
+    "end": 9.07,
+    "id": "w20"
+  },
+  {
+    "text": "a",
+    "start": 9.07,
+    "end": 9.24,
+    "id": "w21"
+  },
+  {
+    "text": "lote.",
+    "start": 9.24,
+    "end": 9.84,
+    "id": "w22"
+  },
+  {
+    "text": "Fortalece",
+    "start": 9.91,
+    "end": 10.47,
+    "id": "w23"
+  },
+  {
+    "text": "tu",
+    "start": 10.47,
+    "end": 10.61,
+    "id": "w24"
+  },
+  {
+    "text": "microbiota,",
+    "start": 10.61,
+    "end": 11.47,
+    "id": "w25"
+  },
+  {
+    "text": "es",
+    "start": 11.48,
+    "end": 11.52,
+    "id": "w26"
+  },
+  {
+    "text": "alto",
+    "start": 11.76,
+    "end": 11.94,
+    "id": "w27"
+  },
+  {
+    "text": "en",
+    "start": 11.97,
+    "end": 12.07,
+    "id": "w28"
+  },
+  {
+    "text": "probióticos",
+    "start": 12.12,
+    "end": 12.93,
+    "id": "w29"
+  },
+  {
+    "text": "vivos",
+    "start": 12.93,
+    "end": 13.19,
+    "id": "w30"
+  },
+  {
+    "text": "y",
+    "start": 13.19,
+    "end": 13.44,
+    "id": "w31"
+  },
+  {
+    "text": "contribuye",
+    "start": 13.44,
+    "end": 14.14,
+    "id": "w32"
+  },
+  {
+    "text": "a",
+    "start": 14.14,
+    "end": 14.21,
+    "id": "w33"
+  },
+  {
+    "text": "una",
+    "start": 14.21,
+    "end": 14.38,
+    "id": "w34"
+  },
+  {
+    "text": "digestión",
+    "start": 14.44,
+    "end": 15.04,
+    "id": "w35"
+  },
+  {
+    "text": "equilibrada.",
+    "start": 15.27,
+    "end": 15.88,
+    "id": "w36"
+  },
+  {
+    "text": "Sin",
+    "start": 15.95,
+    "end": 16.07,
+    "id": "w37"
+  },
+  {
+    "text": "azúcar",
+    "start": 16.13,
+    "end": 16.51,
+    "id": "w38"
+  },
+  {
+    "text": "añadida,",
+    "start": 16.51,
+    "end": 17.14,
+    "id": "w39"
+  },
+  {
+    "text": "sin",
+    "start": 17.14,
+    "end": 17.29,
+    "id": "w40"
+  },
+  {
+    "text": "conservantes",
+    "start": 17.39,
+    "end": 18.2,
+    "id": "w41"
+  },
+  {
+    "text": "añadidos,",
+    "start": 18.2,
+    "end": 18.96,
+    "id": "w42"
+  },
+  {
+    "text": "100%",
+    "start": 19.04,
+    "end": 19.82,
+    "id": "w43"
+  },
+  {
+    "text": "artesanal.",
+    "start": 19.82,
+    "end": 20.88,
+    "id": "w44"
+  },
+  {
+    "text": "Se",
+    "start": 20.95,
+    "end": 21.02,
+    "id": "w45"
+  },
+  {
+    "text": "hace",
+    "start": 21.02,
+    "end": 21.31,
+    "id": "w46"
+  },
+  {
+    "text": "de",
+    "start": 21.31,
+    "end": 21.45,
+    "id": "w47"
+  },
+  {
+    "text": "leche",
+    "start": 21.45,
+    "end": 21.82,
+    "id": "w48"
+  },
+  {
+    "text": "de",
+    "start": 21.82,
+    "end": 21.91,
+    "id": "w49"
+  },
+  {
+    "text": "vaca",
+    "start": 21.96,
+    "end": 22.25,
+    "id": "w50"
+  },
+  {
+    "text": "y",
+    "start": 22.25,
+    "end": 22.29,
+    "id": "w51"
+  },
+  {
+    "text": "de",
+    "start": 22.38,
+    "end": 22.46,
+    "id": "w52"
+  },
+  {
+    "text": "cabra.",
+    "start": 22.46,
+    "end": 23.11,
+    "id": "w53"
+  },
+  {
+    "text": "Ambos",
+    "start": 23.19,
+    "end": 23.37,
+    "id": "w54"
+  },
+  {
+    "text": "son",
+    "start": 23.5,
+    "end": 23.65,
+    "id": "w55"
+  },
+  {
+    "text": "bajos",
+    "start": 23.65,
+    "end": 23.98,
+    "id": "w56"
+  },
+  {
+    "text": "en",
+    "start": 23.98,
+    "end": 24.1,
+    "id": "w57"
+  },
+  {
+    "text": "lactosa",
+    "start": 24.1,
+    "end": 24.53,
+    "id": "w58"
+  },
+  {
+    "text": "por",
+    "start": 24.62,
+    "end": 24.76,
+    "id": "w59"
+  },
+  {
+    "text": "la",
+    "start": 24.76,
+    "end": 24.8,
+    "id": "w60"
+  },
+  {
+    "text": "fermentación.",
+    "start": 25.04,
+    "end": 25.76,
+    "id": "w61"
+  },
+  {
+    "text": "Yel",
+    "start": 25.82,
+    "end": 25.95,
+    "id": "w62"
+  },
+  {
+    "text": "de",
+    "start": 25.95,
+    "end": 26.01,
+    "id": "w63"
+  },
+  {
+    "text": "cabra",
+    "start": 26.14,
+    "end": 26.41,
+    "id": "w64"
+  },
+  {
+    "text": "no",
+    "start": 26.41,
+    "end": 26.54,
+    "id": "w65"
+  },
+  {
+    "text": "se",
+    "start": 26.54,
+    "end": 26.67,
+    "id": "w66"
+  },
+  {
+    "text": "encuentra",
+    "start": 26.67,
+    "end": 27.17,
+    "id": "w67"
+  },
+  {
+    "text": "en",
+    "start": 27.26,
+    "end": 27.39,
+    "id": "w68"
+  },
+  {
+    "text": "cualquier",
+    "start": 27.68,
+    "end": 27.99,
+    "id": "w69"
+  },
+  {
+    "text": "lado.",
+    "start": 28.04,
+    "end": 28.52,
+    "id": "w70"
+  },
+  {
+    "text": "Se",
+    "start": 28.59,
+    "end": 28.67,
+    "id": "w71"
+  },
+  {
+    "text": "digiere",
+    "start": 28.67,
+    "end": 29.19,
+    "id": "w72"
+  },
+  {
+    "text": "mucho",
+    "start": 29.19,
+    "end": 29.5,
+    "id": "w73"
+  },
+  {
+    "text": "más",
+    "start": 29.56,
+    "end": 29.78,
+    "id": "w74"
+  },
+  {
+    "text": "fácil.¿Dónde",
+    "start": 29.78,
+    "end": 30.65,
+    "id": "w75"
+  },
+  {
+    "text": "lo",
+    "start": 30.78,
+    "end": 30.88,
+    "id": "w76"
+  },
+  {
+    "text": "encuentras?",
+    "start": 30.88,
+    "end": 31.68,
+    "id": "w77"
+  },
+  {
+    "text": "Aquí",
+    "start": 31.75,
+    "end": 31.95,
+    "id": "w78"
+  },
+  {
+    "text": "mismo,",
+    "start": 32.06,
+    "end": 32.48,
+    "id": "w79"
+  },
+  {
+    "text": "en",
+    "start": 32.48,
+    "end": 32.62,
+    "id": "w80"
+  },
+  {
+    "text": "la",
+    "start": 32.62,
+    "end": 32.71,
+    "id": "w81"
+  },
+  {
+    "text": "Biotienda",
+    "start": 32.76,
+    "end": 33.3,
+    "id": "w82"
+  },
+  {
+    "text": "Ecocultivo.",
+    "start": 33.55,
+    "end": 34.24,
+    "id": "w83"
+  },
+  {
+    "text": "Mercado",
+    "start": 34.31,
+    "end": 34.68,
+    "id": "w84"
+  },
+  {
+    "text": "San",
+    "start": 34.68,
+    "end": 34.87,
+    "id": "w85"
+  },
+  {
+    "text": "Felipe,",
+    "start": 34.87,
+    "end": 35.37,
+    "id": "w86"
+  },
+  {
+    "text": "en",
+    "start": 35.37,
+    "end": 35.49,
+    "id": "w87"
+  },
+  {
+    "text": "Surquillo.",
+    "start": 35.49,
+    "end": 36.28,
+    "id": "w88"
+  },
+  {
+    "text": "Calle",
+    "start": 36.35,
+    "end": 36.69,
+    "id": "w89"
+  },
+  {
+    "text": "El",
+    "start": 36.69,
+    "end": 36.85,
+    "id": "w90"
+  },
+  {
+    "text": "Carmen,",
+    "start": 36.85,
+    "end": 37.47,
+    "id": "w91"
+  },
+  {
+    "text": "cuadra",
+    "start": 37.52,
+    "end": 37.96,
+    "id": "w92"
+  },
+  {
+    "text": "11,",
+    "start": 38.2,
+    "end": 38.64,
+    "id": "w93"
+  },
+  {
+    "text": "tienda",
+    "start": 38.64,
+    "end": 39.13,
+    "id": "w94"
+  },
+  {
+    "text": "577.¿Cómo",
+    "start": 39.13,
+    "end": 40.17,
+    "id": "w95"
+  },
+  {
+    "text": "se",
+    "start": 40.3,
+    "end": 40.37,
+    "id": "w96"
+  },
+  {
+    "text": "hace",
+    "start": 40.37,
+    "end": 40.63,
+    "id": "w97"
+  },
+  {
+    "text": "por",
+    "start": 40.63,
+    "end": 40.82,
+    "id": "w98"
+  },
+  {
+    "text": "lotes?",
+    "start": 40.82,
+    "end": 41.33,
+    "id": "w99"
+  },
+  {
+    "text": "Pregunta",
+    "start": 41.43,
+    "end": 41.92,
+    "id": "w100"
+  },
+  {
+    "text": "hoy",
+    "start": 41.92,
+    "end": 42.13,
+    "id": "w101"
+  },
+  {
+    "text": "por",
+    "start": 42.13,
+    "end": 42.34,
+    "id": "w102"
+  },
+  {
+    "text": "el",
+    "start": 42.34,
+    "end": 42.48,
+    "id": "w103"
+  },
+  {
+    "text": "tuyo.",
+    "start": 42.48,
+    "end": 42.98,
+    "id": "w104"
+  },
+  {
+    "text": "Escríbenos",
+    "start": 43.07,
+    "end": 43.98,
+    "id": "w105"
+  },
+  {
+    "text": "al",
+    "start": 43.98,
+    "end": 44.18,
+    "id": "w106"
+  },
+  {
+    "text": "950-172-732.",
+    "start": 44.19,
+    "end": 47.2,
+    "id": "w107"
+  }
+]

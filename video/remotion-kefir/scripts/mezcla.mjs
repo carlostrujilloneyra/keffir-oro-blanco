@@ -9,17 +9,18 @@ import {selectComposition} from '@remotion/renderer';
 import {spawnSync} from 'child_process';
 import {mkdirSync, readFileSync} from 'fs';
 import path from 'path';
+import {NOMBRES, VARIANTES} from './variantes.mjs';
 
 const variante = process.argv[2];
 const sinMusica = process.argv.includes('--sin-musica');
-if (!['natural', 'frutado'].includes(variante)) throw new Error('Uso: node scripts/mezcla.mjs <natural|frutado> [--sin-musica]');
+if (!VARIANTES[variante]) throw new Error(`Uso: node scripts/mezcla.mjs <${NOMBRES}> [--sin-musica]`);
 
 const raiz = path.resolve(import.meta.dirname, '..');
 const SFX = path.resolve(raiz, '../assets/sfx');
 mkdirSync(path.join(raiz, 'out'), {recursive: true});
 
 const serveUrl = await bundle({entryPoint: path.join(raiz, 'src/index.ts'), publicDir: path.join(raiz, 'public')});
-const comp = await selectComposition({serveUrl, id: variante === 'natural' ? 'KefirNatural' : 'KefirFrutado', chromiumOptions: {gl: 'angle'}});
+const comp = await selectComposition({serveUrl, id: VARIANTES[variante].id, chromiumOptions: {gl: 'angle'}});
 const {escenas, musicaDesde, voz, musica} = comp.props;
 const DUR = comp.durationInFrames / comp.fps;
 

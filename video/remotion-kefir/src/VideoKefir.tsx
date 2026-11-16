@@ -7,20 +7,24 @@ import {OLA_FRAMES, OLA_PRE} from './componentes/Ola';
 import {LimpioCtx} from './componentes/Fondo';
 import {Subtitulos} from './componentes/Subtitulos';
 import captionsFrutado from './datos/captions-frutado.json';
+import captionsFrutadoEco from './datos/captions-frutado-ecocultivo.json';
 import captionsNatural from './datos/captions-natural.json';
-import type {Escena, TipoEscena, VideoKefirProps} from './datos/tipos';
+import captionsNaturalEco from './datos/captions-natural-ecocultivo.json';
+import {familia, type Escena, type Familia, type TipoEscena, type Variante, type VideoKefirProps} from './datos/tipos';
 import {Cierre, Combinalo} from './escenas/comunes';
+import {Cabra, CierreTienda, Mapa} from './escenas/ecocultivo';
 import {FrutaDeVerdad, FrutosDelBosque, GanchoFrutado, Sabor, Stevia} from './escenas/frutado';
 import {Beneficios, EscenaServido, GanchoNatural, Lactosa, Origen, QueEs, SinAnadidos} from './escenas/natural';
 import {PALETAS, SUBTITULOS, TINTA} from './tema';
 
-const ESCENAS: Record<TipoEscena, React.FC<{e: Escena; variante: VideoKefirProps['variante']}>> = {
+const ESCENAS: Record<TipoEscena, React.FC<{e: Escena; variante: Familia}>> = {
   ganchoNatural: GanchoNatural, queEs: QueEs, beneficios: Beneficios, sinAnadidos: SinAnadidos, origen: Origen, lactosa: Lactosa, servido: EscenaServido,
   ganchoFrutado: GanchoFrutado, frutaDeVerdad: FrutaDeVerdad, sabor: Sabor, frutosDelBosque: FrutosDelBosque, stevia: Stevia,
   combinalo: Combinalo, cierre: Cierre,
+  cabra: Cabra, mapa: Mapa, cierreTienda: CierreTienda,
 };
 
-const CAPTIONS: Record<VideoKefirProps['variante'], Caption[]> = {natural: captionsNatural, frutado: captionsFrutado};
+const CAPTIONS: Record<Variante, Caption[]> = {natural: captionsNatural, frutado: captionsFrutado, 'natural-ecocultivo': captionsNaturalEco, 'frutado-ecocultivo': captionsFrutadoEco};
 
 /*
   Una sola composición para los dos videos: recibe la variante y sus escenas por props.
@@ -29,11 +33,12 @@ const CAPTIONS: Record<VideoKefirProps['variante'], Caption[]> = {natural: capti
 */
 export const VideoKefir: React.FC<VideoKefirProps> = ({variante, escenas, voz, musica, musicaDesde}) => {
   const {fps, durationInFrames} = useVideoConfig();
+  const fam = familia(variante);
   // la palabra activa del subtítulo usa el color del sabor que está en pantalla; en fondos neutros, el del video
-  const colorEn = (t: number) => PALETAS[[...escenas].reverse().find((e) => t >= e.inicio)?.tono ?? escenas[0].tono].subtitulo ?? SUBTITULOS[variante];
+  const colorEn = (t: number) => PALETAS[[...escenas].reverse().find((e) => t >= e.inicio)?.tono ?? escenas[0].tono].subtitulo ?? SUBTITULOS[fam];
   return (
     <AbsoluteFill style={{background: TINTA}}>
-      <LimpioCtx.Provider value={variante === 'frutado'}>
+      <LimpioCtx.Provider value={fam === 'frutado'}>
       {escenas.map((e, i) => {
         const Comp = ESCENAS[e.tipo];
         // cada escena entra OLA_PRE frames antes de su corte y la anterior aguanta hasta que la transición termina
@@ -43,7 +48,7 @@ export const VideoKefir: React.FC<VideoKefirProps> = ({variante, escenas, voz, m
           <Sequence key={e.id} name={e.id} from={desde} durationInFrames={hasta - desde}>
             <InicioCtx.Provider value={desde / fps}>
               <Corte id={e.id} entra={i ? e.transicion ?? 'ola' : undefined} sale={escenas[i + 1] && (escenas[i + 1].transicion ?? 'ola')} dur={hasta - desde} color={e.ola}>
-                <Comp e={e} variante={variante} />
+                <Comp e={e} variante={fam} />
               </Corte>
             </InicioCtx.Provider>
           </Sequence>

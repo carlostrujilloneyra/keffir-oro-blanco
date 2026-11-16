@@ -10,6 +10,7 @@ import {renderStill, selectComposition} from '@remotion/renderer';
 import {mkdirSync} from 'fs';
 import {createRequire} from 'module';
 import path from 'path';
+import {VARIANTES} from './variantes.mjs';
 
 const [soloVariante, soloEscena] = process.argv.slice(2);
 const raiz = path.resolve(import.meta.dirname, '..');
@@ -28,7 +29,7 @@ async function hoja(archivos, destino) {
   console.log(path.basename(destino));
 }
 
-for (const [id, variante] of [['KefirNatural', 'natural'], ['KefirFrutado', 'frutado']]) {
+for (const [variante, {id}] of Object.entries(VARIANTES)) {
   if (soloVariante && soloVariante !== variante) continue;
   const hechas = [];
   const composition = await selectComposition({serveUrl, id, chromiumOptions});

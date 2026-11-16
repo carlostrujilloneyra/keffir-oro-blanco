@@ -1,0 +1,614 @@
+[
+  {
+    "text": "Cuatro",
+    "start": 0.05,
+    "end": 0.38,
+    "id": "w0"
+  },
+  {
+    "text": "sabores,",
+    "start": 0.46,
+    "end": 1.08,
+    "id": "w1"
+  },
+  {
+    "text": "cero",
+    "start": 1.2,
+    "end": 1.43,
+    "id": "w2"
+  },
+  {
+    "text": "conservantes",
+    "start": 1.43,
+    "end": 2.28,
+    "id": "w3"
+  },
+  {
+    "text": "añadidos.¿Cuál",
+    "start": 2.34,
+    "end": 3.51,
+    "id": "w4"
+  },
+  {
+    "text": "eliges?",
+    "start": 3.51,
+    "end": 4.08,
+    "id": "w5"
+  },
+  {
+    "text": "Fresa,",
+    "start": 4.21,
+    "end": 4.75,
+    "id": "w6"
+  },
+  {
+    "text": "arándanos,",
+    "start": 4.75,
+    "end": 5.68,
+    "id": "w7"
+  },
+  {
+    "text": "frutos",
+    "start": 5.68,
+    "end": 6.18,
+    "id": "w8"
+  },
+  {
+    "text": "del",
+    "start": 6.18,
+    "end": 6.44,
+    "id": "w9"
+  },
+  {
+    "text": "bosque",
+    "start": 6.44,
+    "end": 6.94,
+    "id": "w10"
+  },
+  {
+    "text": "o",
+    "start": 6.94,
+    "end": 6.99,
+    "id": "w11"
+  },
+  {
+    "text": "chocolate.",
+    "start": 7.05,
+    "end": 8.03,
+    "id": "w12"
+  },
+  {
+    "text": "Kéfir",
+    "start": 8.2,
+    "end": 8.5,
+    "id": "w13"
+  },
+  {
+    "text": "de",
+    "start": 8.5,
+    "end": 8.66,
+    "id": "w14"
+  },
+  {
+    "text": "verdad",
+    "start": 8.66,
+    "end": 9.04,
+    "id": "w15"
+  },
+  {
+    "text": "con",
+    "start": 9.05,
+    "end": 9.37,
+    "id": "w16"
+  },
+  {
+    "text": "fruta",
+    "start": 9.53,
+    "end": 9.76,
+    "id": "w17"
+  },
+  {
+    "text": "de",
+    "start": 9.76,
+    "end": 9.92,
+    "id": "w18"
+  },
+  {
+    "text": "verdad,",
+    "start": 9.92,
+    "end": 10.6,
+    "id": "w19"
+  },
+  {
+    "text": "sin",
+    "start": 10.65,
+    "end": 10.81,
+    "id": "w20"
+  },
+  {
+    "text": "colorantes",
+    "start": 10.88,
+    "end": 11.51,
+    "id": "w21"
+  },
+  {
+    "text": "ni",
+    "start": 11.58,
+    "end": 11.68,
+    "id": "w22"
+  },
+  {
+    "text": "saborizantes.",
+    "start": 12.03,
+    "end": 12.84,
+    "id": "w23"
+  },
+  {
+    "text": "La",
+    "start": 12.89,
+    "end": 12.97,
+    "id": "w24"
+  },
+  {
+    "text": "fresa",
+    "start": 12.97,
+    "end": 13.29,
+    "id": "w25"
+  },
+  {
+    "text": "viene",
+    "start": 13.3,
+    "end": 13.58,
+    "id": "w26"
+  },
+  {
+    "text": "del",
+    "start": 13.61,
+    "end": 13.76,
+    "id": "w27"
+  },
+  {
+    "text": "fondo",
+    "start": 13.79,
+    "end": 14.12,
+    "id": "w28"
+  },
+  {
+    "text": "San",
+    "start": 14.27,
+    "end": 14.31,
+    "id": "w29"
+  },
+  {
+    "text": "Isidro.",
+    "start": 14.31,
+    "end": 14.92,
+    "id": "w30"
+  },
+  {
+    "text": "Las",
+    "start": 14.97,
+    "end": 15.11,
+    "id": "w31"
+  },
+  {
+    "text": "mismas",
+    "start": 15.11,
+    "end": 15.48,
+    "id": "w32"
+  },
+  {
+    "text": "fresas",
+    "start": 15.48,
+    "end": 15.84,
+    "id": "w33"
+  },
+  {
+    "text": "que",
+    "start": 15.91,
+    "end": 16,
+    "id": "w34"
+  },
+  {
+    "text": "encuentras",
+    "start": 16.35,
+    "end": 16.68,
+    "id": "w35"
+  },
+  {
+    "text": "en",
+    "start": 16.68,
+    "end": 16.78,
+    "id": "w36"
+  },
+  {
+    "text": "eco-cultivo",
+    "start": 16.83,
+    "end": 17.56,
+    "id": "w37"
+  },
+  {
+    "text": "con",
+    "start": 17.61,
+    "end": 17.77,
+    "id": "w38"
+  },
+  {
+    "text": "la",
+    "start": 17.84,
+    "end": 17.94,
+    "id": "w39"
+  },
+  {
+    "text": "vitamina",
+    "start": 17.94,
+    "end": 18.48,
+    "id": "w40"
+  },
+  {
+    "text": "Cde",
+    "start": 18.54,
+    "end": 18.65,
+    "id": "w41"
+  },
+  {
+    "text": "la",
+    "start": 18.65,
+    "end": 18.99,
+    "id": "w42"
+  },
+  {
+    "text": "fresa.",
+    "start": 18.99,
+    "end": 19.56,
+    "id": "w43"
+  },
+  {
+    "text": "Arándanos,",
+    "start": 19.61,
+    "end": 20.3,
+    "id": "w44"
+  },
+  {
+    "text": "fuente",
+    "start": 20.33,
+    "end": 20.64,
+    "id": "w45"
+  },
+  {
+    "text": "de",
+    "start": 20.78,
+    "end": 20.9,
+    "id": "w46"
+  },
+  {
+    "text": "antioxidantes.",
+    "start": 20.99,
+    "end": 22.12,
+    "id": "w47"
+  },
+  {
+    "text": "Frutos",
+    "start": 22.17,
+    "end": 22.5,
+    "id": "w48"
+  },
+  {
+    "text": "del",
+    "start": 22.58,
+    "end": 22.81,
+    "id": "w49"
+  },
+  {
+    "text": "bosque,",
+    "start": 22.81,
+    "end": 23.44,
+    "id": "w50"
+  },
+  {
+    "text": "cuatro",
+    "start": 23.55,
+    "end": 23.95,
+    "id": "w51"
+  },
+  {
+    "text": "frutos",
+    "start": 23.95,
+    "end": 24.4,
+    "id": "w52"
+  },
+  {
+    "text": "en",
+    "start": 24.46,
+    "end": 24.63,
+    "id": "w53"
+  },
+  {
+    "text": "una",
+    "start": 24.63,
+    "end": 24.88,
+    "id": "w54"
+  },
+  {
+    "text": "sola",
+    "start": 24.88,
+    "end": 25.08,
+    "id": "w55"
+  },
+  {
+    "text": "botella.",
+    "start": 25.33,
+    "end": 25.84,
+    "id": "w56"
+  },
+  {
+    "text": "Ychocolate",
+    "start": 25.91,
+    "end": 26.55,
+    "id": "w57"
+  },
+  {
+    "text": "con",
+    "start": 26.55,
+    "end": 26.76,
+    "id": "w58"
+  },
+  {
+    "text": "cacao",
+    "start": 26.76,
+    "end": 27.11,
+    "id": "w59"
+  },
+  {
+    "text": "de",
+    "start": 27.11,
+    "end": 27.27,
+    "id": "w60"
+  },
+  {
+    "text": "quillabamba.",
+    "start": 27.27,
+    "end": 28.28,
+    "id": "w61"
+  },
+  {
+    "text": "Dulces,",
+    "start": 28.33,
+    "end": 28.87,
+    "id": "w62"
+  },
+  {
+    "text": "pero",
+    "start": 28.87,
+    "end": 29.17,
+    "id": "w63"
+  },
+  {
+    "text": "endulzados",
+    "start": 29.17,
+    "end": 29.91,
+    "id": "w64"
+  },
+  {
+    "text": "con",
+    "start": 29.91,
+    "end": 30.13,
+    "id": "w65"
+  },
+  {
+    "text": "stevia.¿Y",
+    "start": 30.13,
+    "end": 30.94,
+    "id": "w66"
+  },
+  {
+    "text": "sabías",
+    "start": 30.94,
+    "end": 31.22,
+    "id": "w67"
+  },
+  {
+    "text": "que",
+    "start": 31.3,
+    "end": 31.45,
+    "id": "w68"
+  },
+  {
+    "text": "también",
+    "start": 31.45,
+    "end": 31.76,
+    "id": "w69"
+  },
+  {
+    "text": "los",
+    "start": 31.76,
+    "end": 31.92,
+    "id": "w70"
+  },
+  {
+    "text": "hay",
+    "start": 31.92,
+    "end": 32.27,
+    "id": "w71"
+  },
+  {
+    "text": "de",
+    "start": 32.27,
+    "end": 32.31,
+    "id": "w72"
+  },
+  {
+    "text": "leche",
+    "start": 32.31,
+    "end": 32.6,
+    "id": "w73"
+  },
+  {
+    "text": "de",
+    "start": 32.6,
+    "end": 32.7,
+    "id": "w74"
+  },
+  {
+    "text": "cabra?",
+    "start": 32.75,
+    "end": 33.28,
+    "id": "w75"
+  },
+  {
+    "text": "Encuéntralos",
+    "start": 33.33,
+    "end": 33.96,
+    "id": "w76"
+  },
+  {
+    "text": "aquí,",
+    "start": 33.96,
+    "end": 34.35,
+    "id": "w77"
+  },
+  {
+    "text": "en",
+    "start": 34.35,
+    "end": 34.37,
+    "id": "w78"
+  },
+  {
+    "text": "la",
+    "start": 34.5,
+    "end": 34.61,
+    "id": "w79"
+  },
+  {
+    "text": "Biotienda",
+    "start": 34.68,
+    "end": 35.2,
+    "id": "w80"
+  },
+  {
+    "text": "Eco-Cultivo,",
+    "start": 35.2,
+    "end": 35.96,
+    "id": "w81"
+  },
+  {
+    "text": "Mercado",
+    "start": 36.01,
+    "end": 36.34,
+    "id": "w82"
+  },
+  {
+    "text": "San",
+    "start": 36.42,
+    "end": 36.57,
+    "id": "w83"
+  },
+  {
+    "text": "Felipe,",
+    "start": 36.57,
+    "end": 37.04,
+    "id": "w84"
+  },
+  {
+    "text": "en",
+    "start": 37.04,
+    "end": 37.36,
+    "id": "w85"
+  },
+  {
+    "text": "Surquillo.",
+    "start": 37.36,
+    "end": 37.96,
+    "id": "w86"
+  },
+  {
+    "text": "Calle",
+    "start": 38.01,
+    "end": 38.34,
+    "id": "w87"
+  },
+  {
+    "text": "El",
+    "start": 38.34,
+    "end": 38.49,
+    "id": "w88"
+  },
+  {
+    "text": "Carmen,",
+    "start": 38.49,
+    "end": 39.04,
+    "id": "w89"
+  },
+  {
+    "text": "cuadra",
+    "start": 39.39,
+    "end": 39.56,
+    "id": "w90"
+  },
+  {
+    "text": "11,",
+    "start": 39.56,
+    "end": 40.13,
+    "id": "w91"
+  },
+  {
+    "text": "tienda",
+    "start": 40.17,
+    "end": 40.62,
+    "id": "w92"
+  },
+  {
+    "text": "577.",
+    "start": 40.62,
+    "end": 41.52,
+    "id": "w93"
+  },
+  {
+    "text": "Comenta",
+    "start": 41.65,
+    "end": 42.16,
+    "id": "w94"
+  },
+  {
+    "text": "cuál",
+    "start": 42.16,
+    "end": 42.48,
+    "id": "w95"
+  },
+  {
+    "text": "elegirías",
+    "start": 42.48,
+    "end": 43.24,
+    "id": "w96"
+  },
+  {
+    "text": "y",
+    "start": 43.24,
+    "end": 43.27,
+    "id": "w97"
+  },
+  {
+    "text": "pídelo.",
+    "start": 43.33,
+    "end": 44.08,
+    "id": "w98"
+  },
+  {
+    "text": "Escríbenos",
+    "start": 44.13,
+    "end": 44.98,
+    "id": "w99"
+  },
+  {
+    "text": "al",
+    "start": 44.98,
+    "end": 45.15,
+    "id": "w100"
+  },
+  {
+    "text": "950-172-732.",
+    "start": 45.15,
+    "end": 47.98,
+    "id": "w101"
+  }
+]

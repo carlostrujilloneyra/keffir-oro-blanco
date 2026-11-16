@@ -6,10 +6,10 @@ import {Franjas} from '../componentes/Franjas';
 import {IconoWhatsApp} from '../componentes/Iconos';
 import {Foto3D} from '../componentes/Parallax3D';
 import {Cinta, Dato, Linea} from '../componentes/Texto';
-import type {Escena, VideoKefirProps} from '../datos/tipos';
+import type {Escena, Familia} from '../datos/tipos';
 import {ALTO, ANCHO, FUENTE, PALETAS, SEGURA} from '../tema';
 
-type FC = React.FC<{e: Escena; variante: VideoKefirProps['variante']}>;
+type FC = React.FC<{e: Escena; variante: Familia}>;
 
 // Resplandor detrás del producto: lo separa del fondo sin recurrir a un borde.
 export const Halo: React.FC<{x: number; y: number; d: number; color?: string; fuerza?: number}> = ({x, y, d, color = '#fff', fuerza = 0.45}) => (

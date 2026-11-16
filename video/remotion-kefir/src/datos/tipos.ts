@@ -3,7 +3,8 @@ import type {Tono} from '../tema';
 export type TipoEscena =
   | 'ganchoNatural' | 'queEs' | 'beneficios' | 'sinAnadidos' | 'origen' | 'lactosa' | 'servido'
   | 'ganchoFrutado' | 'frutaDeVerdad' | 'sabor' | 'frutosDelBosque' | 'stevia'
-  | 'combinalo' | 'cierre';
+  | 'combinalo' | 'cierre'
+  | 'cabra' | 'mapa' | 'cierreTienda';
 
 // Cómo entra una escena (componentes/Corte.tsx). Sin indicar, el barrido de Ola.
 export type Transicion = 'ola' | 'fundido' | 'whip' | 'whipIzq' | 'flash' | 'zoom';
@@ -35,8 +36,13 @@ export type Escena = {
   fin?: number; // lo rellena ritmo.ts: inicio de la escena siguiente (o fin del video); con él se reparte el movimiento de cámara
 };
 
+export type Variante = 'natural' | 'frutado' | 'natural-ecocultivo' | 'frutado-ecocultivo';
+// Las variantes de biotienda heredan el aspecto de su video base (fondo limpio del frutado, color de subtítulos, cierre)
+export type Familia = 'natural' | 'frutado';
+export const familia = (v: Variante): Familia => (v.startsWith('frutado') ? 'frutado' : 'natural');
+
 export type VideoKefirProps = {
-  variante: 'natural' | 'frutado';
+  variante: Variante;
   duracion: number;
   voz: string;
   musica: string;
