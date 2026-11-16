@@ -17,6 +17,7 @@ type FC = React.FC<{e: Escena; variante: Familia}>;
 
 const BOSQUE = '#1E3A2F'; // verde bosque de la marca (carteles del mapa)
 const AZUL_RUTA = AZUL_ETIQUETA;
+const MIEL = '#F2B53A';
 
 /*
   Cabra: natural-cabra-hero.png (1 L a la izquierda, 475 ml a la derecha). La foto baja (`dy`) para dejarle al titular
@@ -31,7 +32,7 @@ export const Cabra: FC = ({e}) => {
   const foco: [number, number] = [360 + pan * 425, 570 + pan * 320];
   return (
     <AbsoluteFill style={{background: '#0E1E38'}}>
-      <Foto3D src={e.imagenes!.heroe} t={t} zoom={zoom} foco={foco} incl={[-2 + pan * 4, -0.8]} escala={0.86} dy={90} funde={0.12} />
+      <Foto3D src={e.imagenes!.heroe} t={t} zoom={zoom} foco={foco} incl={[1.4 + pan * 0.8, -0.8]} escala={0.86} dy={90} funde={0.12} />
       {/* halo azul de la etiqueta: sigue a la botella enfocada */}
       <div style={{position: 'absolute', inset: 0, mixBlendMode: 'screen'}}>
         <Halo x={360 + pan * 400} y={1060} d={1100} color={AZUL_ETIQUETA} fuerza={0.32 + pulso(t, c.l1, 0.3, 1.2) * 0.1} />
@@ -39,7 +40,7 @@ export const Cabra: FC = ({e}) => {
       <Grano fuerza={0.18} />
       <Linea txt={e.textos.l1} t={t} en={c.l1} y={240} tam={104} sombra />
       <Linea txt={e.textos.l2} t={t} en={c.l2} y={352} tam={104} sombra color={p.acento} />
-      <Cinta txt={e.textos.c1} t={t} en={c.c1} y={466} tam={38} fondo={p.cinta} color={p.cintaTexto} />
+      <Cinta txt={e.textos.c1} t={t} en={c.c1} x={470} y={466} tam={38} fondo={p.cinta} color={p.cintaTexto} />
     </AbsoluteFill>
   );
 };
@@ -52,19 +53,19 @@ const MUNDO = 3000;
 const CALLE = {angamos: 1350, panama: 1250, sanFelipe: 1700, carmen: 1620, sanCarlos: 1500};
 const TIENDA_XY: [number, number] = [1585, CALLE.carmen];
 const RUTA: [number, number][] = [[1330, CALLE.angamos], [CALLE.sanFelipe, CALLE.angamos], [CALLE.sanFelipe, CALLE.carmen], TIENDA_XY];
-const GENERAL: [number, number] = [1520, 1560];
+const GENERAL: [number, number] = [1570, 1760]; // vista general centrada en Surquillo
 const ANCLA: [number, number] = [540, 1060]; // punto de la pantalla donde queda fijo el punto azul (y el pin)
 
 const DISTRITOS: {nombre: string; pts: string; label: [number, number]; activo?: boolean}[] = [
   {nombre: 'San Isidro', pts: '250,250 1550,250 1550,1340 250,1340', label: [900, 820]},
   {nombre: 'San Borja', pts: '1560,250 2750,250 2750,2300 2060,2300 2060,1340 1560,1340', label: [2300, 860]},
-  {nombre: 'Miraflores', pts: '250,1350 1200,1350 1200,2750 250,2750', label: [700, 2080]},
+  {nombre: 'Miraflores', pts: '250,1350 1200,1350 1200,2750 250,2750', label: [860, 2080]},
   {nombre: 'Surquillo', pts: '1210,1350 2050,1350 2050,2300 1700,2700 1210,2750', label: [1630, 2120], activo: true},
 ];
 // edificios extruidos [x, y, ancho, fondo, alto]: solo junto a la ruta y el destino
 const EDIFICIOS: [number, number, number, number, number][] = [
   [1560, 1150, 300, 130, 55], [1390, 1250, 90, 60, 70], [1750, 1400, 80, 70, 95], [1750, 1500, 70, 80, 70],
-  [1600, 1400, 70, 70, 115], [1430, 1660, 90, 80, 60], [1520, 1660, 170, 110, 38], [1620, 1540, 50, 45, 65],
+  [1600, 1400, 70, 70, 115], [1520, 1660, 170, 110, 38], [1620, 1540, 50, 45, 65],
 ];
 const ARBOLES: [number, number][] = [
   [1420, 1320], [1480, 1320], [1560, 1380], [1660, 1310], [1735, 1320], [1730, 1380], [1730, 1460], [1665, 1470], [1730, 1580],
@@ -128,7 +129,7 @@ const Cartel: React.FC<{t: number; en: number; txt: string; abajoIzq?: boolean}>
 const Pin: React.FC<{tam: number}> = ({tam}) => (
   <svg width={tam} height={tam * 1.3} viewBox="0 0 100 130">
     <path d="M50 128 C50 128 8 76 8 46 A42 42 0 0 1 92 46 C92 76 50 128 50 128 Z" fill={BOSQUE} stroke={PAPEL} strokeWidth={6} />
-    <circle cx={50} cy={46} r={16} fill="#F2C14E" />
+    <circle cx={50} cy={46} r={16} fill={MIEL} />
   </svg>
 );
 
@@ -144,7 +145,7 @@ export const Mapa: FC = ({e}) => {
   const d = avance(t, c);
   const punto = puntoEn(d);
   const centro = mezcla(GENERAL, punto, baja);
-  const escala = 0.44 + baja * 1.11;
+  const escala = 0.55 + baja * 1.0;
   const llegada = rampa(t, c.pin, e.fin! + 0.3, 0, 1, SUAVE);
   const incl = baja * 40 - llegada * 6;
   const giro = -5 * baja + rampa(t, c.giro1 - 0.3, c.giro1 + 0.9, 0, 7, SUAVE) + rampa(t, c.giro2 - 0.3, c.giro2 + 0.9, 0, -5, SUAVE) + llegada * 18;
@@ -167,9 +168,11 @@ export const Mapa: FC = ({e}) => {
             {Array.from({length: 12}, (_, i) => 1260 + i * 72).map((v) => <line key={`h${v}`} x1={1220} x2={2040} y1={v + 40} y2={v + 40} />)}
             {Array.from({length: 11}, (_, i) => 1300 + i * 76).map((v) => <line key={`v${v}`} x1={v} x2={v} y1={1360} y2={2200} />)}
           </g>
-          {/* avenidas */}
+          {/* avenidas: Vía Expresa y Tomás Marsano solo dan contexto en la vista general */}
           <g stroke="#FFFFFF" strokeLinecap="round">
-            <line x1={250} x2={2750} y1={CALLE.angamos} y2={CALLE.angamos} strokeWidth={34} />
+            <line x1={1040} x2={1100} y1={250} y2={2750} strokeWidth={48} />
+            <line x1={1930} x2={2300} y1={250} y2={2750} strokeWidth={42} />
+            <line x1={250} x2={2750} y1={CALLE.angamos} y2={CALLE.angamos} strokeWidth={44} />
             <line x1={CALLE.panama} x2={CALLE.panama} y1={250} y2={2750} strokeWidth={30} />
             <line x1={CALLE.sanFelipe} x2={CALLE.sanFelipe} y1={CALLE.angamos} y2={2250} strokeWidth={24} />
             <line x1={1220} x2={2040} y1={CALLE.carmen} y2={CALLE.carmen} strokeWidth={20} />
@@ -180,29 +183,28 @@ export const Mapa: FC = ({e}) => {
           </g>
           {/* nombres: distritos en la vista general; calles al bajar */}
           <g fontFamily="Poppins, sans-serif" fontWeight={600} textAnchor="middle">
-            <g opacity={1 - detalle} fontSize={104}>
+            <g opacity={1 - detalle} fontSize={90}>
               {DISTRITOS.map((k) => <text key={k.nombre} x={k.label[0]} y={k.label[1]} fill={k.activo ? BOSQUE : '#8A8172'}>{k.nombre}</text>)}
             </g>
             <g opacity={detalle} fontSize={30} fill="#7D7466">
               <text x={1150} y={CALLE.angamos - 26}>Av. Angamos Este</text>
-              <text x={1640} y={1218} fontSize={26} fill="#9A917F">Mallplaza Angamos</text>
               <text transform={`translate(${CALLE.panama - 26} 1520) rotate(-90)`}>Av. República de Panamá</text>
               <text transform={`translate(${CALLE.sanFelipe + 40} 1760) rotate(90)`}>Av. San Felipe</text>
-              <text x={1380} y={CALLE.carmen + 46}>Ca. El Carmen</text>
+              <text x={1360} y={CALLE.carmen + 46}>Ca. El Carmen</text>
               <text transform={`translate(${CALLE.sanCarlos - 18} 1490) rotate(-90)`} fontSize={22} fill="#A69D8C">Prol. San Carlos</text>
             </g>
           </g>
           {/* brillo de la tienda en la vista general */}
-          <circle cx={TIENDA_XY[0]} cy={TIENDA_XY[1]} r={150 + pulso(t, e.inicio + 0.3, 0.4, 0.9) * 60} fill="url(#brillo)" opacity={brillo} />
+          <circle cx={TIENDA_XY[0]} cy={TIENDA_XY[1]} r={230 + (0.5 - 0.5 * Math.cos((t - e.inicio) * 7)) * 90} fill="url(#brillo)" opacity={brillo} />
           <defs>
             <radialGradient id="brillo">
               <stop offset="0%" stopColor="#FFFFFF" />
-              <stop offset="35%" stopColor={AZUL_RUTA} stopOpacity={0.55} />
-              <stop offset="100%" stopColor={AZUL_RUTA} stopOpacity={0} />
+              <stop offset="35%" stopColor={MIEL} stopOpacity={0.75} />
+              <stop offset="100%" stopColor={MIEL} stopOpacity={0} />
             </radialGradient>
           </defs>
           {/* ruta: borde blanco y azul, dibujada hasta el punto */}
-          <g fill="none" strokeLinecap="round" strokeLinejoin="round" strokeDasharray={`${d} ${TOTAL + 10}`}>
+          <g fill="none" strokeLinecap="round" strokeLinejoin="round" strokeDasharray={`${d} ${TOTAL + 10}`} opacity={cl(d / 20)}>
             <path d={`M${ruta}`} stroke="#FFFFFF" strokeWidth={30} />
             <path d={`M${ruta}`} stroke={AZUL_RUTA} strokeWidth={18} />
           </g>
