@@ -99,12 +99,28 @@ escenas.forEach((e, i) => {
   }
   if (e.tipo === 'frutosDelBosque') {
     fx('splash', e.inicio + 0.05, 0.2);
-    fx('sello', c.pedido + 0.12, 0.26);
+    if (c.pedido !== undefined) fx('sello', c.pedido + 0.12, 0.26);
     fx('sello', c.cuatro + 0.12, 0.28);
   }
   if (e.tipo === 'stevia') {
     [0, 1, 2, 3].forEach((k) => fx('pop', e.inicio + 0.1 + k * 0.07, 0.1));
-    fx('pop', c.c1, 0.11);
+    if (c.c1 !== undefined) fx('pop', c.c1, 0.11);
+    if (c.sello !== undefined) fx('sello', c.sello + 0.12, 0.28);
+  }
+  // escenas EcoCultivo: sin efectos nuevos (pop para el pin, woosh para la ruta y el acercamiento)
+  if (e.tipo === 'cabra') fx('pop', c.c1, 0.11);
+  if (e.tipo === 'mapa') {
+    fx('woosh', c.baja - 0.15, 0.14);
+    fx('woosh', c.ruta - 0.1, 0.08);
+    fx('pop', c.pin + 0.18, 0.2);
+  }
+  if (e.tipo === 'cierreTienda') {
+    fx('riser', e.inicio - 2, 0.24, 2, 0.5);
+    fx('burbujas', e.inicio, 0.1);
+    fx('woosh', c.morph - 0.1, 0.1);
+    fx('impacto', c.escribe - 0.03, 0.4);
+    [c.g1, c.g2, c.g3].forEach((t) => fx('pop', t, 0.09));
+    fx('brillo-luz', c.luz - 0.05, 0.3);
   }
 });
 

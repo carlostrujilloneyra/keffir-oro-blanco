@@ -115,21 +115,12 @@ export const Combinalo: FC = ({e}) => {
   sobre los subtítulos; el zoom crece desde ahí (base de los logos) para que no bajen.
 */
 const LOGO = 372; // ancho del logo: el círculo ocupa el alto del bloque que antes llenaban el titular y la palabra TRIALFERI
-export const Cierre: FC = ({e, variante}) => {
-  const t = useT(), c = e.cues;
-  const grupos = e.textos.numero.split(' ');
-  const cueGrupo = [c.g1, c.g2, c.g3];
+// Parte baja del cierre: la foto héroe (natural) o las franjas de sabores (frutado). También la usa el cierre de tienda.
+export const PieCierre: FC = ({e, variante}) => {
+  const t = useT();
   const sd = rampa(t, e.inicio - 0.25, e.inicio + 0.9);
-  const llega = rampa(t, c.numero, c.numero + 0.34);
-  const golpe = pulso(t, c.numero, 0.07, 0.45);
   const a = e.inicio - 0.3, b = e.fin!;
-  const logo = muelle(t, e.inicio - 0.12, true);
-  const lineas = e.textos.cta.split('|'), tam = Number(e.textos.tam);
-  const yCta = 410 - (lineas.length * tam + (lineas.length - 1) * 10) / 2;
-  return (
-    <AbsoluteFill>
-      <Fondo tono={e.tono} t={t} luz={[46, 30]} />
-      {variante === 'natural' ? (
+  return variante === 'natural' ? (
         <>
           {/* halo del mismo azul oscuro de la foto: sus bordes se pierden en él y no se ve el recuadro sobre el fondo tinta */}
           <div style={{position: 'absolute', left: 540 - 1100, top: 500, width: 2200, height: 2000, borderRadius: '50%', background: 'radial-gradient(closest-side, #060F1E 0%, #060F1E 55%, transparent 74%)', opacity: cl(sd * 2)}} />
@@ -137,7 +128,22 @@ export const Cierre: FC = ({e, variante}) => {
         </>
       ) : (
         <Franjas t={t} en={e.inicio - 0.1} base={1660} alto={600} desde={960} />
-      )}
+      );
+};
+
+export const Cierre: FC = ({e, variante}) => {
+  const t = useT(), c = e.cues;
+  const grupos = e.textos.numero.split(' ');
+  const cueGrupo = [c.g1, c.g2, c.g3];
+  const llega = rampa(t, c.numero, c.numero + 0.34);
+  const golpe = pulso(t, c.numero, 0.07, 0.45);
+  const logo = muelle(t, e.inicio - 0.12, true);
+  const lineas = e.textos.cta.split('|'), tam = Number(e.textos.tam);
+  const yCta = 410 - (lineas.length * tam + (lineas.length - 1) * 10) / 2;
+  return (
+    <AbsoluteFill>
+      <Fondo tono={e.tono} t={t} luz={[46, 30]} />
+      <PieCierre e={e} variante={variante} />
       <Img src={staticFile('img/trialferi-logo.png')} style={{position: 'absolute', left: SEGURA.x0 - 12, top: 232, width: LOGO, height: (LOGO * 1138) / 1224, opacity: cl(logo * 3),
         scale: `${0.6 + logo * 0.4}`, rotate: `${(1 - logo) * -16}deg`, filter: 'drop-shadow(0 16px 30px rgba(0,0,0,.5))'}} />
       {lineas.map((l, i) => (

@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill, Img, staticFile} from 'remotion';
-import {cl, muelle, pulso, rampa, useT, vaiven} from '../anim';
+import {cl, muelle, pulso, rampa, SUAVE, useT, vaiven} from '../anim';
 import {Fondo, Grano} from '../componentes/Fondo';
 import {Franjas, SABORES} from '../componentes/Franjas';
 import {Foto3D} from '../componentes/Parallax3D';
@@ -8,7 +8,7 @@ import {Sello} from '../componentes/Sello';
 import {Cinta, Linea, Sale} from '../componentes/Texto';
 import type {Escena} from '../datos/tipos';
 import {PALETAS, PAPEL, SEGURA, TINTA} from '../tema';
-import {Destello, FotoIA, Heroe} from './comunes';
+import {Destello, FotoIA, Halo, Heroe} from './comunes';
 
 type FC = React.FC<{e: Escena}>;
 
@@ -55,6 +55,13 @@ export const GanchoFrutado: FC = ({e}) => {
         <Linea txt={e.textos.l1} t={t} en={c.l1} y={240} tam={200} sombra />
         <Linea txt={e.textos.l2} t={t} en={c.l2} y={446} tam={200} sombra color={p.subtitulo} />
       </div>
+      {/* titular previo opcional (`pre1`/`pre2`): sale cuando entra el de "¿cuál eliges?" */}
+      {e.textos.pre1 && (
+        <Sale t={t} en={c.l1 - 0.24}>
+          <Linea txt={e.textos.pre1} t={t} en={c.pre1} y={240} tam={190} sombra />
+          <Linea txt={e.textos.pre2} t={t} en={c.pre2} y={440} tam={84} sombra color={p.subtitulo} />
+        </Sale>
+      )}
     </AbsoluteFill>
   );
 };
@@ -69,14 +76,20 @@ const Mancha: React.FC<{x: number; y: number; d: number; color: string; p: numbe
 export const FrutaDeVerdad: FC = ({e}) => {
   const t = useT();
   const rojo = PALETAS.fresa.base;
+  // con cue `empuje`, push-in lento y halo que deriva mientras el titular está solo (antes del primer splash)
+  const emp = e.cues.empuje === undefined ? 0 : rampa(t, e.cues.empuje, e.cues.sin1 + 0.6, 0, 1, SUAVE);
+  const Capa = e.cues.empuje === undefined ? React.Fragment : ({children}: {children: React.ReactNode}) => <AbsoluteFill style={{scale: `${1 + emp * 0.07}`, transformOrigin: '50% 70%'}}>{children}</AbsoluteFill>;
   return (
     <AbsoluteFill>
+      <Capa>
       <Fondo tono={e.tono} t={t} luz={[40, 34]} />
+      {e.cues.empuje !== undefined && <Halo x={260 + emp * 520} y={1250 - emp * 160} d={1300} color={PALETAS.fresa.luz} fuerza={0.3 * (1 - rampa(t, e.cues.sin1, e.cues.sin1 + 1))} />}
       <Mancha x={236} y={1660} d={860} color={PALETAS.arandanos.luz} p={rampa(t, e.cues.sin1, e.cues.sin1 + 1.6)} />
       <Mancha x={650} y={1340} d={1250} color={PALETAS.fresa.luz} p={rampa(t, e.cues.color - 0.2, e.cues.color + 1.2)} />
       <Splash src="img/sp-ara1.png" x={230} y={1640} t={t} en={e.cues.sin1 - 0.1} escala={1.15} rot={-10} />
       <Splash src="img/sp-fresa1.png" x={640} y={1330} t={t} en={e.cues.color - 0.25} escala={1.8} rot={4} />
       <Splash src="img/sp-ara2.png" x={1010} y={1800} t={t} en={e.cues.sin2} escala={0.95} rot={20} foco={10} />
+      </Capa>
       <Linea txt={e.textos.l1} t={t} en={e.cues.l1} y={240} tam={212} color={TINTA} />
       <Linea txt={e.textos.l2} t={t} en={e.cues.l2} y={446} tam={212} color={rojo} />
       <Cinta txt={e.textos.sin1} t={t} en={e.cues.sin1} y={694} tam={36} />
@@ -141,9 +154,11 @@ export const FrutosDelBosque: FC = ({e}) => {
       <Camara e={e} />
       <Linea txt={e.textos.l1} t={t} en={c.nombre} y={240} tam={190} sombra color={p.subtitulo} />
       <Linea txt={e.textos.l2} t={t} en={c.nombre + 0.14} y={426} tam={118} sombra />
-      <Sale t={t} en={c.cuatro - 0.2}>
-        <Sello t={t} en={c.pedido} x={770} y={372} d={290} centro={e.textos.sello1.split('|')} />
-      </Sale>
+      {e.textos.sello1 && (
+        <Sale t={t} en={c.cuatro - 0.2}>
+          <Sello t={t} en={c.pedido} x={770} y={372} d={290} centro={e.textos.sello1.split('|')} />
+        </Sale>
+      )}
       <Sello t={t} en={c.cuatro} x={770} y={372} d={290} centro={e.textos.sello2.split('|')} fondo={p.subtitulo} color={TINTA} inclinacion={9} />
     </AbsoluteFill>
   );
@@ -161,7 +176,9 @@ export const Stevia: FC = ({e}) => {
       <AbsoluteFill style={{background: 'linear-gradient(to bottom, rgba(0,0,0,.34) 0%, rgba(0,0,0,.12) 34%, transparent 46%)'}} />
       <Linea txt={e.textos.l1} t={t} en={c.l1} y={240} tam={170} sombra />
       <Linea txt={e.textos.l2} t={t} en={c.l2} y={416} tam={170} sombra resalta={e.textos.resalta} colorResalta="#FFE38A" />
-      <Cinta txt={e.textos.c1} t={t} en={c.c1} y={612} tam={36} fondo={PAPEL} color={TINTA} />
+      {e.textos.c1 && <Cinta txt={e.textos.c1} t={t} en={c.c1} y={612} tam={36} fondo={PAPEL} color={TINTA} />}
+      {/* sello opcional sobre las cuatro botellas (variantes: "También de leche de cabra") */}
+      {e.textos.sello && <Sello t={t} en={c.sello} x={760} y={770} d={300} centro={e.textos.sello.split('|')} fondo={PAPEL} color={TINTA} inclinacion={8} />}
     </AbsoluteFill>
   );
 };

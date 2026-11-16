@@ -150,10 +150,15 @@ export const Origen: FC = ({e}) => {
       <Grano fuerza={0.22} />
       <Gotas t={t} color={LECHE} semilla="n5" n={4} zona={[0, 1620, 1080, 1900]} />
       <Linea txt={e.textos.titulo} t={t} en={c.titulo} y={240} tam={150} sombra resalta={e.textos.resalta} colorResalta={DORADO} />
-      <Sale t={t} en={c.c2 - 0.3}>
-        <Cinta txt={e.textos.c1} t={t} en={c.c1} y={428} tam={40} fondo={p.cinta} color={p.cintaTexto} />
-      </Sale>
-      <Cinta txt={e.textos.c2} t={t} en={c.c2} y={428} tam={40} fondo={p.cinta} color={p.cintaTexto} />
+      {/* sin cintas: solo el titular (variantes cuya voz no las nombra) */}
+      {e.textos.c1 && (
+        <>
+          <Sale t={t} en={c.c2 - 0.3}>
+            <Cinta txt={e.textos.c1} t={t} en={c.c1} y={428} tam={40} fondo={p.cinta} color={p.cintaTexto} />
+          </Sale>
+          <Cinta txt={e.textos.c2} t={t} en={c.c2} y={428} tam={40} fondo={p.cinta} color={p.cintaTexto} />
+        </>
+      )}
     </AbsoluteFill>
   );
 };
@@ -167,12 +172,14 @@ export const Origen: FC = ({e}) => {
 const CABRA = {k: 1.18, left: -549, top: 204};
 export const Lactosa: FC = ({e}) => {
   const t = useT(), p = PALETAS[e.tono], c = e.cues;
-  const b = rampa(t, c.cabra - 0.3, c.cabra + 0.3, 0, 1, EIO);
+  // sin cue `cabra` la escena se queda en el primer tiempo (el acercamiento sigue hasta el final)
+  const cabra = c.cabra ?? e.fin! + 0.3;
+  const b = c.cabra === undefined ? 0 : rampa(t, cabra - 0.3, cabra + 0.3, 0, 1, EIO);
   const a = e.inicio - 0.3;
   return (
     <AbsoluteFill style={{background: '#0B121C'}}>
       <Heroe e={e}>
-        {b < 1 && <Foto3D src={e.imagenes!.heroe} t={t} zoom={1 + rampa(t, a, c.cabra + 0.3, 0, 0.12, SUAVE)} foco={[777, 1010]} incl={[-2 + rampa(t, a, c.cabra, 0, 1.2, (k) => k), -0.8]} dy={70} funde={0.1} />}
+        {b < 1 && <Foto3D src={e.imagenes!.heroe} t={t} zoom={1 + rampa(t, a, cabra + 0.3, 0, 0.12, SUAVE)} foco={[777, 1010]} incl={[-2 + rampa(t, a, cabra, 0, 1.2, (k) => k), -0.8]} dy={70} funde={0.1} />}
         {b > 0 && (
           <AbsoluteFill style={{opacity: b}}>
             <Fondo tono={e.tono} t={t} plano />
@@ -183,13 +190,17 @@ export const Lactosa: FC = ({e}) => {
       </Heroe>
       <Grano fuerza={0.2} />
       <Gotas t={t} color={LECHE} semilla="n6" n={4} zona={[0, 1620, 1080, 1900]} />
-      <Sale t={t} en={c.cabra - 0.25}>
+      <Sale t={t} en={cabra - 0.25}>
         <Linea txt={e.textos.l1} t={t} en={c.l1} y={240} tam={150} sombra />
         <Linea txt={e.textos.l2} t={t} en={c.l2} y={396} tam={150} sombra color={p.acento} />
         <Cinta txt={e.textos.c1} t={t} en={c.c1} y={584} tam={38} fondo={p.cinta} color={p.cintaTexto} />
       </Sale>
-      <Linea txt={e.textos.l3} t={t} en={c.cabra} y={240} tam={138} sombra resalta={e.textos.resalta} colorResalta={DORADO} />
-      <Cinta txt={e.textos.c2} t={t} en={c.c2} y={416} tam={40} fondo={p.cinta} color={p.cintaTexto} />
+      {e.textos.l3 && (
+        <>
+          <Linea txt={e.textos.l3} t={t} en={c.cabra} y={240} tam={138} sombra resalta={e.textos.resalta} colorResalta={DORADO} />
+          <Cinta txt={e.textos.c2} t={t} en={c.c2} y={416} tam={40} fondo={p.cinta} color={p.cintaTexto} />
+        </>
+      )}
     </AbsoluteFill>
   );
 };
