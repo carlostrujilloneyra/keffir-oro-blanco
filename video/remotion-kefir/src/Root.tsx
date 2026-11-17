@@ -1,10 +1,11 @@
 import React from 'react';
-import {Composition, staticFile} from 'remotion';
+import {Composition, staticFile, Still} from 'remotion';
 import {loadFont} from '@remotion/fonts';
 import {frutadoEcocultivo as frutadoEcoVoz, naturalEcocultivo as naturalEcoVoz} from './datos/ecocultivo';
 import {frutado as frutadoVoz} from './datos/frutado';
 import {natural as naturalVoz} from './datos/natural';
 import {ajustarAlRitmo} from './datos/ritmo';
+import {CualEligesEcocultivo, CualEligesEcocultivoFinal, CualEligesEcocultivoLimpia} from './stills/CualEligesEcocultivo';
 import {ALTO, ANCHO, FPS} from './tema';
 import {VideoKefir} from './VideoKefir';
 
@@ -25,5 +26,9 @@ export const Root: React.FC = () => (
     <Composition id="KefirFrutado" component={VideoKefir} durationInFrames={Math.round(frutado.duracion * FPS)} fps={FPS} width={ANCHO} height={ALTO} defaultProps={frutado} />
     <Composition id="KefirNaturalEcocultivo" component={VideoKefir} durationInFrames={Math.round(naturalEco.duracion * FPS)} fps={FPS} width={ANCHO} height={ALTO} defaultProps={naturalEco} />
     <Composition id="KefirFrutadoEcocultivo" component={VideoKefir} durationInFrames={Math.round(frutadoEco.duracion * FPS)} fps={FPS} width={ANCHO} height={ALTO} defaultProps={frutadoEco} />
+    {/* imagen fija para el estado de WhatsApp de EcoCultivo */}
+    <Still id="EcocultivoCualEliges" component={CualEligesEcocultivo} width={ANCHO} height={ALTO} />
+    <Still id="EcocultivoCualEligesLimpia" component={CualEligesEcocultivoLimpia} width={ANCHO} height={ALTO} />
+    <Still id="EcocultivoCualEligesFinal" component={CualEligesEcocultivoFinal} width={ANCHO} height={ALTO} />
   </>
 );
