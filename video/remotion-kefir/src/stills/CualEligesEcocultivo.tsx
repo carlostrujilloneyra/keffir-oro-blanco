@@ -4,6 +4,7 @@ import {Fondo, LimpioCtx, SinGranoCtx} from '../componentes/Fondo';
 import {Franjas, NATURAL, SABORES} from '../componentes/Franjas';
 import {IconoArtesanal, IconoFresa, IconoSinConservantes, IconoStevia, IconoUbicacion, IconoVacaCabra, IconoWhatsAppLinea} from '../componentes/Iconos';
 import {Cinta, Dato, Linea} from '../componentes/Texto';
+import {Chip, VIDRIO, type Icono} from '../componentes/Vidrio';
 import {FUENTE, PALETAS, PAPEL, SEGURA, TINTA} from '../tema';
 
 /*
@@ -71,7 +72,7 @@ export const CualEligesEcocultivoLimpia: React.FC = () => <Franjas t={T} en={T -
   y encima solo textos, chips e íconos, en los huecos que deja: arriba del título hasta las tapas (~978) y bajo las botellas
   hasta 1780 (WhatsApp tapa los 180 px de arriba y lo que queda por debajo de 1780).
 */
-const CHIPS: [string, React.FC<{tam?: number; color?: string}>][] = [
+const CHIPS: [string, Icono][] = [
   ['100% artesanal', IconoArtesanal],
   ['Endulzado con Stevia', IconoStevia],
   ['Cero conservantes añadidos', IconoSinConservantes],
@@ -79,16 +80,6 @@ const CHIPS: [string, React.FC<{tam?: number; color?: string}>][] = [
   ['Leche de vaca y de cabra', IconoVacaCabra],
 ];
 const NOMBRES = ['Natural', 'Fresa', 'Arándano', 'Frutos del bosque'];
-
-// Chip de vidrio ligero: poco blanco y poco desenfoque, con el color de las franjas avivado; borde fino y brillo en el canto superior.
-const VIDRIO: React.CSSProperties = {borderRadius: 10, background: 'rgba(255,255,255,.1)', backdropFilter: 'blur(7px) saturate(150%)', WebkitBackdropFilter: 'blur(7px) saturate(150%)',
-  border: '1px solid rgba(255,255,255,.28)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,.45), 0 8px 24px rgba(0,0,0,.16)', color: PAPEL, fontFamily: FUENTE.txt, textShadow: '0 1px 8px rgba(0,0,0,.35)'};
-const Chip: React.FC<{txt: string; Icono: React.FC<{tam?: number; color?: string}>}> = ({txt, Icono}) => (
-  <div style={{...VIDRIO, display: 'flex', alignItems: 'center', gap: 13, height: 64, padding: '0 22px 0 16px', fontWeight: 600, fontSize: 34, whiteSpace: 'nowrap'}}>
-    <Icono tam={38} color={PAPEL} />
-    {txt}
-  </div>
-);
 
 const LOGO_ECO = 290;
 export const CualEligesEcocultivoFinal: React.FC = () => {

@@ -55,3 +55,6 @@ export const PALETAS: Record<Tono, Paleta> = {
   cacaoNoche: {luz: '#3A2318', base: '#160D0B', sombra: '#0B0605', texto: PAPEL, acento: '#F0C79E', cinta: PAPEL, cintaTexto: TINTA, subtitulo: '#E6B48A'},
   tinta: {luz: '#2E2A24', base: '#181613', sombra: '#090807', texto: PAPEL, acento: '#FFD27A', cinta: PAPEL, cintaTexto: TINTA},
 };
+
+// El degradado verde de los botones `primary` de la web (`gradient-verde` en tailwind.config.ts).
+export const GRADIENTE_VERDE = 'linear-gradient(135deg, #2F7D52 0%, #1E3A2F 100%)';

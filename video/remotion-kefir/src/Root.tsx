@@ -5,6 +5,7 @@ import {frutadoEcocultivo as frutadoEcoVoz, naturalEcocultivo as naturalEcoVoz} 
 import {frutado as frutadoVoz} from './datos/frutado';
 import {natural as naturalVoz} from './datos/natural';
 import {ajustarAlRitmo} from './datos/ritmo';
+import {ALTO_IG, ANCHO_IG, InstagramNaturales} from './stills/InstagramNaturales';
 import {CualEligesEcocultivo, CualEligesEcocultivoFinal, CualEligesEcocultivoLimpia} from './stills/CualEligesEcocultivo';
 import {ALTO, ANCHO, FPS} from './tema';
 import {VideoKefir} from './VideoKefir';
@@ -30,5 +31,8 @@ export const Root: React.FC = () => (
     <Still id="EcocultivoCualEliges" component={CualEligesEcocultivo} width={ANCHO} height={ALTO} />
     <Still id="EcocultivoCualEligesLimpia" component={CualEligesEcocultivoLimpia} width={ANCHO} height={ALTO} />
     <Still id="EcocultivoCualEligesFinal" component={CualEligesEcocultivoFinal} width={ANCHO} height={ALTO} />
+    {/* post de Instagram 3:4 de vaca y cabra 1 L, una por variante de hook */}
+    {(['A', 'B', 'C'] as const).map((hook) => <Still key={hook} id={`InstagramNaturales${hook}`} component={InstagramNaturales} width={ANCHO_IG} height={ALTO_IG} defaultProps={{hook}} />)}
+    <Still id="InstagramNaturalesA2" component={InstagramNaturales} width={ANCHO_IG} height={ALTO_IG} defaultProps={{hook: 'A', pulido: true}} />
   </>
 );

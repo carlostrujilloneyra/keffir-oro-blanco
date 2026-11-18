@@ -129,6 +129,18 @@ export const IconoVacaCabra: React.FC<P> = (p) => (
   </Svg>
 );
 
+// Frasco de fermento con burbujas: "Alto en probióticos" en chips pequeños, donde IconoProbioticos no se lee
+export const IconoFrasco: React.FC<P> = (p) => (
+  <Svg {...p}>
+    <rect x="15" y="6.5" width="18" height="5" rx="1.5" />
+    <path d="M17 11.5v3.5c-2 1.5-3 3.6-3 6.2V37a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4V21.2c0-2.6-1-4.7-3-6.2v-3.5" />
+    <path d="M14 23.5c3.3 1.6 6.7 1.6 10 0s6.7-1.6 10 0" />
+    <circle cx="21" cy="33" r="2.6" />
+    <circle cx="28" cy="29" r="1.8" />
+    <circle cx="27.5" cy="36" r="1.2" />
+  </Svg>
+);
+
 // WhatsApp de línea (globo con teléfono), para el pie de la imagen fija de EcoCultivo
 export const IconoWhatsAppLinea: React.FC<P> = (p) => (
   <Svg {...p}>
